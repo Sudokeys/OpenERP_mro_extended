@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Maintenance -->
+        
+        <record id="act_meeting" model="workflow.activity">
+            <field name="wkf_id" ref="mro.maintenance_order"/>
+            <field name="name">meeting</field>
+            <field name="kind">function</field>
+            <field name="action">action_meeting()</field>            
+        </record>
+        
+        <record id="act_progress" model="workflow.activity">
+            <field name="wkf_id" ref="mro.maintenance_order"/>
+            <field name="name">progress</field>
+            <field name="kind">function</field>
+            <field name="action">action_progress()</field>            
+        </record>
+        
+        <record id="trans_ready_meeting" model="workflow.transition">
+            <field name="act_from" ref="mro.act_ready"/>
+            <field name="act_to" ref="act_meeting"/>
+            <field name="signal">button_meeting</field>
+        </record>
+        <record id="trans_meeting_progress" model="workflow.transition">
+            <field name="act_from" ref="act_meeting"/>
+            <field name="act_to" ref="act_progress"/>
+            <field name="signal">button_progress</field>
+        </record>
+        <record id="trans_progress_done" model="workflow.transition">
+            <field name="act_from" ref="act_progress"/>
+            <field name="act_to" ref="mro.act_done"/>
+            <field name="signal">button_done</field>
+        </record>
+       
+    </data>
+</openerp>
