@@ -37,7 +37,7 @@ class mro_order(osv.osv):
     _inherit = 'mro.order'
     
     MAINTENANCE_TYPE_SELECTION = [
-        ('bm', 'Breakdown'),
+        #~ ('bm', 'Breakdown'),
         ('cm', 'Corrective'),
         ('pm', 'Preventive'),
         ('im', 'Implementation'),
@@ -122,6 +122,8 @@ class mro_order(osv.osv):
         return {'value': value}
     
     _columns = {
+        'asset_id': fields.many2one('asset.asset', 'Asset', required=False, readonly=True, states={'draft': [('readonly', False)]}),
+        'asset_ids': fields.many2many('product.product', string='Assets', required=True),
         'partner_id': fields.many2one('res.partner','Client'),
         'contract_id': fields.many2one('account.analytic.account','Contract'),
         'technician': fields.many2one('hr.employee','Technician'),
@@ -144,6 +146,7 @@ class mro_order(osv.osv):
         'date_planned': False,
         'date_scheduled': False,
         'date_execution': False,
+        'maintenance_type': lambda *a: 'cm',
     }
     
     def action_meeting(self, cr, uid, ids):
@@ -153,6 +156,26 @@ class mro_order(osv.osv):
     def action_progress(self, cr, uid, ids):
         self.write(cr, uid, ids, {'state': 'progress'})
         return True
+    
+    def _make_consume_parts_line(self, cr, uid, parts_line, context=None):
+        stock_move = self.pool.get('stock.move')
+        order = parts_line.maintenance_id
+        # Internal shipment is created for Stockable and Consumer Products
+        if parts_line.parts_id.type not in ('product', 'consu'):
+            return False
+        move_id = stock_move.create(cr, uid, {
+            'name': order.name,
+            'date': order.date_planned,
+            'product_id': parts_line.parts_id.id,
+            'product_qty': parts_line.parts_qty,
+            'product_uom': parts_line.parts_uom.id,
+            'location_id': order.parts_location_id.id,
+            'location_dest_id': order.asset_ids[0].property_stock_asset.id,
+            'state': 'waiting',
+            'company_id': order.company_id.id,
+        })
+        order.write({'parts_move_lines': [(4, move_id)]}, context=context)
+        return move_id
     
     
 class mro_tools(osv.osv):

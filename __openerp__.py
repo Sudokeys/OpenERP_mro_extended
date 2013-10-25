@@ -34,8 +34,8 @@ Required modules:
     'author': 'ADN France',
     'website': 'http://adn-france.com',
     'category': 'Enterprise Asset Management',
-    'sequence': 0,
-    'depends': ['mro','mro_pm','hr'],
+    'sequence': 150,
+    'depends': ['mro','mro_pm','hr','account_analytic_analysis'],
     'demo': [],
     'data': [
         'wizard/sale_make_mro_view.xml',

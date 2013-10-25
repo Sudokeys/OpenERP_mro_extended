@@ -31,7 +31,7 @@ class sale_make_mro(osv.osv_memory):
     _description = "Make mro orders"
     
     MAINTENANCE_TYPE_SELECTION = [
-        ('bm', 'Breakdown'),
+        #~ ('bm', 'Breakdown'),
         ('cm', 'Corrective'),
         ('pm', 'Preventive'),
         ('im', 'Implementation'),
@@ -94,7 +94,8 @@ class sale_make_mro(osv.osv_memory):
                     'contract_id': make.contract_id.id or False,
                     'partner_id': partner.id,
                     'description': make.description,
-                    'asset_id': make.asset_id.id,
+                    #~ 'asset_id': make.asset_id.id,
+                    'asset_ids': [(6,0,[x.id for x in make.asset_ids])],
                     'maintenance_type': make.maintenance_type,
                     'date_planned': make.date_planned,
                     'date_scheduled': make.date_planned,
@@ -178,7 +179,7 @@ class sale_make_mro(osv.osv_memory):
         'contract_id': fields.many2one('account.analytic.account', 'Contract'),
         'partner_id': fields.many2one('res.partner', 'Customer', required=True, domain=[('customer','=',True)]),
         'description': fields.char('Description', size=64, required=True),
-        'asset_id': fields.many2one('asset.asset', 'Asset', required=True),
+        'asset_ids': fields.many2many('product.product', string='Assets', required=True),
         'maintenance_type': fields.selection(MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=True),
         'date_planned': fields.datetime('Planned Date', required=True),
         'duration': fields.float('Duration'),

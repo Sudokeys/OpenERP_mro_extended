@@ -12,6 +12,7 @@
                         <group>
                             <group>
                                 <field name="mro_type"/>
+                                <field name="property_stock_asset" domain="[('usage','=','asset')]"/>
                             </group>
                             <group></group>
                         </group>

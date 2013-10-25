@@ -33,5 +33,12 @@ class product_product(osv.osv):
     _inherit = "product.product"
     
     _columns = {
-        'mro_type': fields.selection([('part','Part'),('labor','Labor')],string="Maintenance product type")
+        'mro_type': fields.selection([('part','Part'),('labor','Labor'),('asset','Asset')],string="Maintenance product type"),
+        'property_stock_asset': fields.property(
+          'stock.location',
+          type='many2one',
+          relation='stock.location',
+          string="Asset Location",
+          view_load=True,
+          help="This location will be used as the destination location for installed parts during asset life."),
     }

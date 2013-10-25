@@ -12,7 +12,7 @@
                     <field name="partner_id" required="1"/>
                     <field name="contract_id" domain="[('partner_id','=',partner_id)]"/> <!--domain="[('partner_id','=',partner_id)]"-->
                     <field name="description"/>
-                    <field name="asset_id"/>
+                    <field name="asset_ids" widget="many2many_tags" domain="[('mro_type','=','asset')]"/>
                     <field name="maintenance_type"/>
                     <field name="date_planned"/>
                     <field name="duration"/>

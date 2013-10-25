@@ -6,50 +6,98 @@
             <field name="name">mro.order.form</field>
             <field name="model">mro.order</field>
             <field name="inherit_id" ref="mro.mro_order_form_view" />
+            <field eval="20" name="priority"/>
             <field name="arch" type="xml">
                 <button name="button_done" position="replace">
                     <button name="button_meeting" states="ready" string="Meeting fixed" class="oe_highlight"/>
                     <button name="button_progress" states="meeting" string="In progress" class="oe_highlight"/>
                     <button name="button_done" states="progress" string="Done" class="oe_highlight"/>
                 </button>
-                <field name="maintenance_type" position="replace">
-                    <field name="maintenance_type"/>
-                </field>
-                <field name="description" position="replace">
-                    <label string=""/>
-                    <field name="description"/>
-                    <field name="partner_id" on_change="onchange_partner(partner_id)"/>
-                    <field name="contract_id" attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
-                </field>
-                <field name="date_planned" position="replace">
-                    <field name="date_planned" on_change="onchange_dates(date_planned, duration, False, allday,'date_planned')"/>
-                </field>
-                <field name="date_scheduled" position="replace">
-                    <field name="date_scheduled" on_change="onchange_dates(date_scheduled, duration, False, allday,'date_scheduled')"/>
-                </field>
-                <field name="date_execution" position="replace">
-                    <field name="date_execution" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"/>
-                </field>
-                <field name="origin" position="after">
-                    <field name="technician"/>
-                    <field name="order_id"/>
-                    <label for="duration"/>
-                    <div>
-                        <field name="duration" widget="float_time" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"
-                            class="oe_inline" attrs="{'invisible': [('allday','=',True)]}"/>
-                        <label string="hours" attrs="{'invisible': [('allday','=',True)]}"/>
-                        (<field name="allday" on_change="onchange_dates(date_execution, False, False, allday,'date_execution')" class="oe_inline"/>
-                        <label for="allday" string="All Day?"/>)
-                    </div>
-                    <field name="date_deadline" invisible="True"/>
-                </field>
+                
+                
+                <xpath expr="/form/sheet/group" position="replace">
+                <group>
+                    <group>
+                        <field name="partner_id" on_change="onchange_partner(partner_id)"/>
+                        <field name="contract_id" attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
+                        <field name="order_id"/>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="technician"/>
+                        <field name="maintenance_type"/>
+                        <field name="origin"/>
+                        <field name="task_id" invisible="True"/>
+                    </group>
+                    <group >
+                        <field name="date_planned" on_change="onchange_dates(date_planned, duration, False, allday,'date_planned')"/>
+                        <field name="date_scheduled" on_change="onchange_dates(date_scheduled, duration, False, allday,'date_scheduled')"/>
+                        <field name="date_execution" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"/>
+                        <label for="duration"/>
+                        <div>
+                            <field name="duration" widget="float_time" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"
+                                class="oe_inline" attrs="{'invisible': [('allday','=',True)]}"/>
+                            <label string="hours" attrs="{'invisible': [('allday','=',True)]}"/>
+                            (<field name="allday" on_change="onchange_dates(date_execution, False, False, allday,'date_execution')" class="oe_inline"/>
+                            <label for="allday" string="All Day?"/>)
+                        </div>
+                        <field name="date_deadline" invisible="True"/>
+                    </group>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                    </group>
+                </group>
+                </xpath>
+
+
                 <field name="tools_description" position="replace">
                     <field name="tools_ids"/>
                 </field>
-                <xpath expr="//label[@for='task_id']" position="replace"/>
-                <field name="task_id" position="replace">
-                    <field name="task_id" invisible="True" domain="[('asset_id','=',asset_id),('maintenance_type','=',maintenance_type)]"  on_change="onchange_task(task_id,parts_lines)"/>
+                
+                <page string="Parts" position="before">
+                    <page string="Assets" autofocus="True">
+                        <group string="Assets involved">
+                            <field name="asset_ids" nolabel="1" domain="[('mro_type','=','asset')]">
+                                <tree>
+                                    <field name="default_code"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+<!--
+                <group string="Planned Parts" position="attributes">
+                     <attribute name="states">"draft,released,meeting,progress,done,parts_except,cancel"</attribute>
+                </group>
+-->
+                <group string="Planned Parts" position="replace">
+                    <group string="Planned Parts" states="draft,released,meeting,progress,done,parts_except,cancel">
+                        <field name="parts_lines" nolabel="1">
+                            <tree string="Planned Parts" editable="bottom">
+                                <field name="parts_id" on_change="onchange_parts(parts_id)"/>
+                                <field name="parts_qty"/>
+                                <field name="parts_uom" groups="product.group_uom"/>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+                <field name="parts_lines" position="before">
+                    <group colspan="4">
+                        <field name="parts_location_id" domain="[('usage','=','internal')]" groups="stock.group_locations"/>
+                    </group>
                 </field>
+                
+                <field name="parts_id" position="replace">
+                    <field name="parts_id" domain="[('mro_type','=','part')]" context="{'default_mro_type':'part'}" on_change="onchange_parts(parts_id)"/>
+                </field>
+                
+<!--
+                <field name="problem_description" position="replace">
+                    <field name="problem_description" colspan="4" nolabel="1" widget="html"/>
+                </field>
+-->
             </field>
         </record>
         
@@ -59,7 +107,7 @@
             <field name="inherit_id" ref="mro.mro_order_calendar_view" />
             <field name="arch" type="xml">
                 <calendar string="Maintenance Orders" position="replace">
-                    <calendar color="asset_id" date_start="date_execution" date_delay="duration" string="Maintenance Orders">
+                    <calendar color="technician" date_start="date_execution" date_delay="duration" string="Maintenance Orders">
                         <field name="name"/>
                         <field name="description"/>
                     </calendar>
@@ -166,6 +214,34 @@
             action="action_mro_tools"
             id="menu_maintenance_mro_tools"
             parent="menu_maintenance_tools"
+            sequence="100"/>
+            
+        
+        <record id="action_assets" model="ir.actions.act_window">
+            <field name="name">Assets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('mro_type','=','asset')]</field>
+            <field name="context">{'default_mro_type':'asset'}</field>
+        </record>
+        
+        <delete model="ir.ui.menu" search="[('name', '=', 'Assets')]"/>
+        <menuitem name="Assets"
+            id="menu_maintenance_assets"
+            parent="base.menu_mro_root"
+            sequence="9"/>
+        <menuitem name="Assets"
+            action="action_assets"
+            id="menu_maintenance_assets_assets"
+            parent="menu_maintenance_assets"
+            sequence="100"/>
+        <menuitem name="Meters Logs"
+            action="mro_pm.action_meters_logs"
+            id="menu_meters_logs"
+            parent="menu_maintenance_assets"
+            groups="mro.group_mro_user"
             sequence="100"/>
     
     </data>
