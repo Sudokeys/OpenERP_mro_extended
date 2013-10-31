@@ -202,6 +202,7 @@ class mro_tools(osv.osv):
         'model': fields.char('Model', size=128),
         'manufacturer': fields.char('Manufacturer', size=128),
         'serial': fields.char('Serial no.', size=128),
+        'data': fields.binary('File'),
         # image: all image fields are base64 encoded and PIL-supported
         'image': fields.binary("Image",
             help="This field holds the image used as image for the tool, limited to 1024x1024px."),

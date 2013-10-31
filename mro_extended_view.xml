@@ -57,7 +57,7 @@
                 <page string="Parts" position="before">
                     <page string="Assets" autofocus="True">
                         <group string="Assets involved">
-                            <field name="asset_ids" nolabel="1" domain="[('mro_type','=','asset')]">
+                            <field name="asset_ids" nolabel="1" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]">
                                 <tree>
                                     <field name="default_code"/>
                                     <field name="name"/>
@@ -126,6 +126,7 @@
                     <field name="serial"/>
                     <field name="date_validity_begin"/>
                     <field name="date_validity_end"/>
+                    <field name="data"/>
                 </tree>
             </field>
         </record>
@@ -156,6 +157,7 @@
                                     <group>
                                         <field name="date_validity_begin"/>
                                         <field name="date_validity_end"/>
+                                        <field name="data"/>
                                     </group>
                                 </group>
                             </page>

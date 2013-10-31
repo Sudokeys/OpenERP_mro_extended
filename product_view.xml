@@ -7,6 +7,11 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
+                <div name="options" position="inside">
+                    <field name="contract"/>
+                    <label for="contract"/>
+                    <label string=" "/>
+                </div>
                 <notebook position="inside">
                     <page string="Maintenance">
                         <group>
@@ -20,6 +25,8 @@
                 </notebook>
             </field>
         </record>
+        
+        
     
     </data>
 </openerp>

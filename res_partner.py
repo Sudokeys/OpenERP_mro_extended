@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2013 ADN (<http://adn-france.com>).
 #
@@ -31,6 +28,5 @@ class res_partner(osv.osv):
     
     _columns = {
         'technician': fields.many2one('hr.employee','Technician'),
+        'asset_ids': fields.many2many('product.product', string='Assets'),
     }
-    
-    

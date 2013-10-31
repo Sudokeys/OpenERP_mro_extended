@@ -7,9 +7,19 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
-                <field name="user_id" position="after">
-                    <field name="technician"/>
-                </field>
+                <notebook position="inside">
+                    <page string="Maintenance">
+                        <group>
+                            <field name="technician"/>
+                            <field name="asset_ids" nolabel="0" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]">
+                                <tree>
+                                    <field name="default_code"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
     

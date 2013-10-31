@@ -45,6 +45,7 @@ Required modules:
         'sale_view.xml',
         'analytic_view.xml',
         'product_view.xml',
+        'product_data.xml',
     ],
     'application': True,
 }

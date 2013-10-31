@@ -5,9 +5,106 @@
         <record id="view_account_analytic_account_form" model="ir.ui.view">
             <field name="name">analytic.analytic.account.form</field>
             <field name="model">account.analytic.account</field>
-            <field name="inherit_id" ref="analytic.view_account_analytic_account_form" />
+            <field name="inherit_id" ref="account_analytic_analysis.account_analytic_account_form_form" />
             <field name="arch" type="xml">
+                <header position="replace">
+                    <header attrs="{'invisible':[('type','in',['contract'])]}">
+                        <button name="set_pending" string="Pending" type="object" states="open" />
+                        <button name="set_close" string="Contract Finished" type="object" states="open,pending" />
+                        <button name="set_open" string="Re-open project" type="object" states="pending,close" />
+                        <button name="set_open" string="Re-open project" type="object" states="cancelled,draft"/>
+                        <button name="set_cancel" string="Cancel Contract" type="object" states="open,pending"/>
+                        <field name="state" readonly="1" widget="statusbar"
+                            statusbar_visible="open,pending,close" statusbar_colors='{"pending":"red", "template":"blue"}'/>
+                    </header>
+                    <header attrs="{'invisible':[('type','not in',['contract'])]}">
+                        <button name="set_open" string="Open" type="object" states="draft"/>
+                        <button name="set_cancel" string="Terminate" type="object" states="open"/>
+                        <button name="set_close" string="Contract Finished" attrs="{'invisible': [('state','!=','open')]}" type="object"  />
+                        <button name="get_recurrency" string="Calculate next maintenance" type="object" states="open"  />
+                        <field name="date_today" eval="time.strftime('%%Y-%%m-%%d')"/>
+                        <field name="state" readonly="1" widget="statusbar"
+                            statusbar_visible="draft,open,close" statusbar_colors='{"cancelled":"red", "open":"blue"}'/>
+                    </header>
+                </header>
+                <group name="contract" position="after">
+                    <group string="Maintenance" name="maintenance">
+                        <group>
+<!--
+                            <field name="maintenance_date_start" />
+                            <field name="maintenance_date_end" attrs="{'invisible': [('date', '&lt;', maintenance_date_start)]}"/>
+-->
+                            <field name="recurrency"/>
+                        </group>
+                        <group attrs="{'invisible': [('recurrency','=',False)]}">
+                            <label for="interval"/>
+                            <div>
+                                <field name="interval" attrs="{'required': [('recurrency','==',True)]}" class="oe_inline"/>
+                                <field name="rrule_type" attrs="{'required': [('recurrency','==',True)]}" class="oe_inline"/>
+                            </div>
+                            <label string="Until" for="end_type"/>
+                            <div>
+                                <field name="end_type" attrs="{'required': [('recurrency','==',True)]}" class="oe_inline"/>
+                                <field name="count" attrs="{'invisible': [('end_type', '!=', 'count')], 'required': [('recurrency','==',True)]}" class="oe_inline"/>
+                                <field name="end_date" attrs="{'invisible': [('end_type', '!=', 'end_date')], 'required': [('end_type', '=', 'end_date')]}" class="oe_inline"/>
+                            </div>
+                            <label string="Select Weekdays" attrs="{'invisible' :[('rrule_type','not in', ['weekly'])]}"/>
+                            <group col="2" colspan="1" name="weekdays" attrs="{'invisible' :[('rrule_type','not in', ['weekly'])]}">
+                                <field name="mo"/>
+                                <field name="tu"/>
+                                <field name="we"/>
+                                <field name="th"/>
+                                <field name="fr"/>
+                                <field name="sa"/>
+                                <field name="su"/>
+                            </group>
+
+                            <label string="Day of Month"
+                                attrs="{'invisible': [('rrule_type','!=','monthly')]}"/>
+
+                            <div attrs="{'invisible': [('rrule_type','!=','monthly')]}">
+                                <field name="select1"/>
+                                <field name="day"
+                                    attrs="{'required': [('select1','=','date'), ('rrule_type','=','monthly')],
+                                        'invisible': [('select1','=','day')]}"/>
+                                <field name="byday" string="The"
+                                    attrs="{'required': [('select1','=','day'), ('rrule_type','=','monthly')], 'invisible': [('select1','=','date')]}"/>
+                                <field name="week_list" nolabel="1"
+                                    attrs="{'required': [('select1','=','day'), ('rrule_type','=','monthly')], 'invisible': [('select1','=','date')]}"/>
+                            </div>
+
+                        </group>
+                    </group>
+                </group>
                 <notebook position="inside">
+                    <page string="Contract amendments" name="amendment_page" attrs="{'invisible':[('type','not in',['contract'])]}">
+                        <field name="amendment_ids">
+                            <tree editable="top">
+                                <field name="name"/>
+                                <field name="date"/>
+                                <field name="data"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Contract services" name="service_page" attrs="{'invisible':[('type','not in',['contract'])]}">
+                        <field name="service_ids">
+                            <tree editable="top">
+                                <field name="service_id" on_change="onchange_service(service_id)" context="{'default_contract':True}" domain="[('contract','=',True)]"/>
+                                <field name="name"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Assets" name="asset_page" attrs="{'invisible':[('type','not in',['contract'])]}">
+                        <field name="asset_ids">
+                            <tree editable="top">
+                                <field name="asset_id" on_change="onchange_asset(asset_id)" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
+                                <field name="name"/>
+                                <field name="date_previous"/>
+                                <field name="date_next"/>
+                            </tree>
+                        </field>
+                    </page>
                     <page string="Maintenance Orders" name="mro_order_page" attrs="{'invisible':[('type','not in',['contract'])]}">
                         <field name="mro_order_ids"/>
                     </page>

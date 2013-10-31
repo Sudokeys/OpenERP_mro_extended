@@ -42,3 +42,9 @@ class product_product(osv.osv):
           view_load=True,
           help="This location will be used as the destination location for installed parts during asset life."),
     }
+class product_template(osv.osv):
+    _inherit = "product.template"
+    
+    _columns = {
+        'contract': fields.boolean('Contract service'),
+    }

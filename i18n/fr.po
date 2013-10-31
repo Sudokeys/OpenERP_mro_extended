@@ -1,42 +1,19 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#   * mro
 #   * mro_extended
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130714-231029\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 16:39+0000\n"
-"PO-Revision-Date: 2013-10-18 09:12+0100\n"
+"POT-Creation-Date: 2013-10-29 08:47+0000\n"
+"PO-Revision-Date: 2013-10-29 14:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-
-#. module: mro_extended
-#: view:mro.tools:0
-msgid "Info"
-msgstr "Info"
-
-#. module: mro_extended
-#: selection:mro.order,maintenance_type:0
-#: selection:sale.make.mro,maintenance_type:0
-msgid "Metrology"
-msgstr "Métrologie"
-
-#. module: mro_extended
-#: help:mro.tools,image_small:0
-msgid "Small-sized image of the tool. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr "L'image de petite taille de l'outil. Il est automatiquement redimensionnée comme une image 64x64px, avec un rapport d'aspect préservé. Utilisez ce champ où une petite image est nécessaire."
-
-#. module: mro_extended
-#: selection:mro.order,maintenance_type:0
-#: selection:sale.make.mro,maintenance_type:0
-msgid "Implementation"
-msgstr "Mise en service"
 
 #. module: mro_extended
 #: selection:product.product,mro_type:0
@@ -49,62 +26,26 @@ msgid "Make Maintenance Order"
 msgstr "Créer une intervention"
 
 #. module: mro_extended
-#: view:sale.make.mro:0
-msgid "_Create"
-msgstr "_Créer"
+#: code:addons/mro_extended/analytic.py:61
+#, python-format
+msgid "Contract: "
+msgstr "Contrat: "
 
 #. module: mro_extended
-#: field:mro.tools,message_follower_ids:0
-msgid "Followers"
-msgstr "Abonnés"
-
-#. module: mro_extended
-#: field:sale.make.mro,asset_id:0
+#: field:account.analytic.assets,asset_id:0
+#: selection:product.product,mro_type:0
 msgid "Asset"
-msgstr "Equipement"
+msgstr "Équipement"
 
 #. module: mro_extended
-#: view:product.product:0
-msgid "Maintenance"
-msgstr "Maintenance"
+#: field:account.analytic.account,maintenance_date_end:0
+msgid "Maintenance date end"
+msgstr "Date de fin"
 
 #. module: mro_extended
-#: view:mro.tools:0
-msgid "Serial No:"
-msgstr "N° de série:"
-
-#. module: mro_extended
-#: selection:mro.order,maintenance_type:0
-#: selection:sale.make.mro,maintenance_type:0
-msgid "Preventive"
-msgstr "Préventive"
-
-#. module: mro_extended
-#: view:mro.tools:0
-#: field:mro.tools,name:0
-msgid "Tool Name"
-msgstr "Nom de l'outils"
-
-#. module: mro_extended
-#: selection:mro.order,maintenance_type:0
-#: selection:sale.make.mro,maintenance_type:0
-msgid "Breakdown"
-msgstr "Casse"
-
-#. module: mro_extended
-#: model:ir.model,name:mro_extended.model_product_product
-msgid "Product"
-msgstr "Article"
-
-#. module: mro_extended
-#: view:sale.make.mro:0
-msgid "or"
-msgstr "ou"
-
-#. module: mro_extended
-#: field:sale.make.mro,description:0
-msgid "Description"
-msgstr "Description"
+#: field:mro.tools,date_validity_end:0
+msgid "Validity date end"
+msgstr "Date de fin de validité"
 
 #. module: mro_extended
 #: field:mro.tools,message_unread:0
@@ -117,79 +58,22 @@ msgid "All Day"
 msgstr "Journée entière"
 
 #. module: mro_extended
-#: field:mro.tools,image_medium:0
-msgid "Medium-sized image"
-msgstr "Image de taille moyenne"
-
-#. module: mro_extended
-#: field:sale.make.mro,date_planned:0
-msgid "Planned Date"
-msgstr "Date planifiée"
-
-#. module: mro_extended
-#: help:mro.tools,message_ids:0
-msgid "Messages and communication history"
-msgstr "Messages et historique de communication"
-
-#. module: mro_extended
-#: help:mro.tools,image:0
-msgid "This field holds the image used as image for the tool, limited to 1024x1024px."
-msgstr "Ce champ contient l'image utilisée comme image pour l'outil, limité à 1024x1024px."
-
-#. module: mro_extended
-#: selection:product.product,mro_type:0
-msgid "Part"
-msgstr "Pièce détachée"
-
-#. module: mro_extended
-#: field:mro.tools,message_is_follower:0
-msgid "Is a Follower"
-msgstr "Est un abonné"
-
-#. module: mro_extended
 #: view:account.analytic.account:0
-#: field:account.analytic.account,mro_order_ids:0
+#: field:account.analytic.account,asset_ids:0
+#: model:ir.actions.act_window,name:mro_extended.action_assets
+#: model:ir.ui.menu,name:mro_extended.menu_maintenance_assets
+#: model:ir.ui.menu,name:mro_extended.menu_maintenance_assets_assets
 #: view:mro.order:0
-#: view:sale.order:0
-#: field:sale.order,mro_order_ids:0
-msgid "Maintenance Orders"
-msgstr "Interventions"
+#: field:mro.order,asset_ids:0
+#: field:res.partner,asset_ids:0
+#: field:sale.make.mro,asset_ids:0
+msgid "Assets"
+msgstr "Équipements"
 
 #. module: mro_extended
-#: field:mro.order,technician:0
-#: field:res.partner,technician:0
-msgid "Technician"
-msgstr "Technicien"
-
-#. module: mro_extended
-#: field:mro.tools,active:0
-msgid "Active"
-msgstr "Actif"
-
-#. module: mro_extended
-#: model:ir.model,name:mro_extended.model_sale_make_mro
-msgid "Make mro orders"
-msgstr "Créer une intervention"
-
-#. module: mro_extended
-#: field:mro.tools,manufacturer:0
-msgid "Manufacturer"
-msgstr "Fabricant"
-
-#. module: mro_extended
-#: field:sale.make.mro,partner_id:0
-msgid "Customer"
-msgstr "Client"
-
-#. module: mro_extended
-#: field:mro.order,date_deadline:0
-msgid "End Date"
-msgstr "Date de fin"
-
-#. module: mro_extended
-#: help:mro.tools,image_medium:0
-msgid "Medium-sized image of the tool. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
-msgstr "Image de taille moyenne de l'outil. Il est automatiquement redimensionnée comme une image 128x128px, avec un rapport d'aspect préservé, seulement lorsque l'image est supérieure à un de ces formats. Utilisez ce domaine en vue de formulaire ou certaines vues kanban."
+#: model:product.uom.categ,name:mro_extended.uom_categ_ctime
+msgid "Contract Time"
+msgstr "Durée contractuelle"
 
 #. module: mro_extended
 #: field:product.product,mro_type:0
@@ -197,53 +81,15 @@ msgid "Maintenance product type"
 msgstr "Type de produit pour la maintenance"
 
 #. module: mro_extended
-#: field:mro.tools,message_ids:0
-msgid "Messages"
-msgstr "Messages"
+#: selection:account.analytic.account,rrule_type:0
+msgid "Year(s)"
+msgstr "Année(s)"
 
 #. module: mro_extended
-#: code:addons/mro_extended/wizard/sale_make_mro.py:135
-#: code:addons/mro_extended/wizard/sale_make_mro.py:146
-#: model:ir.model,name:mro_extended.model_mro_order
-#, python-format
-msgid "Maintenance Order"
-msgstr "Intervention"
-
-#. module: mro_extended
-#: field:mro.order,contract_id:0
-#: field:sale.make.mro,contract_id:0
-msgid "Contract"
-msgstr "Contrat"
-
-#. module: mro_extended
-#: field:mro.tools,message_summary:0
-msgid "Summary"
-msgstr "Résumé"
-
-#. module: mro_extended
-#: view:mro.order:0
-msgid "hours"
-msgstr "heures"
-
-#. module: mro_extended
-#: view:sale.make.mro:0
-msgid "Cancel"
-msgstr "Annuler"
-
-#. module: mro_extended
-#: field:mro.order,partner_id:0
-msgid "Client"
-msgstr "Client"
-
-#. module: mro_extended
-#: model:ir.model,name:mro_extended.model_res_partner
-msgid "Partner"
-msgstr "Partenaire"
-
-#. module: mro_extended
-#: field:mro.tools,model:0
-msgid "Model"
-msgstr "Modèle"
+#: selection:mro.order,maintenance_type:0
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Preventive"
+msgstr "Préventive"
 
 #. module: mro_extended
 #: help:mro.tools,message_unread:0
@@ -257,14 +103,156 @@ msgid "Maintenance Type"
 msgstr "Type d'intervention"
 
 #. module: mro_extended
-#: view:mro.order:0
-msgid "In progress"
-msgstr "En cours"
-
-#. module: mro_extended
 #: view:sale.make.mro:0
 msgid "Add a Maintenance Order"
 msgstr "Ajouter une intervention"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Cancel Contract"
+msgstr "Annuler le contrat"
+
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Manufacturer:"
+msgstr "Fabricant:"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Compte analytique"
+
+#. module: mro_extended
+#: selection:account.analytic.account,rrule_type:0
+#: model:product.uom,name:mro_extended.product_uom_month
+msgid "Month(s)"
+msgstr "Mois"
+
+#. module: mro_extended
+#: field:mro.tools,image_small:0
+msgid "Small-sized image"
+msgstr "Image de petite taille"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: mro_extended
+#: selection:mro.order,maintenance_type:0
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Metrology"
+msgstr "Métrologie"
+
+#. module: mro_extended
+#: selection:mro.order,maintenance_type:0
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Implementation"
+msgstr "Mise en service"
+
+#. module: mro_extended
+#: field:mro.tools,message_follower_ids:0
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: mro_extended
+#: view:mro.tools:0
+#: field:mro.tools,name:0
+msgid "Tool Name"
+msgstr "Nom de l'outils"
+
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Serial No:"
+msgstr "N° de série:"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: field:account.analytic.account,service_ids:0
+#: model:ir.model,name:mro_extended.model_account_analytic_services
+msgid "Contract services"
+msgstr "Prestations"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Re-open project"
+msgstr "Rouvrir le projet"
+
+#. module: mro_extended
+#: help:mro.tools,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: mro_extended
+#: field:sale.make.mro,date_planned:0
+msgid "Planned Date"
+msgstr "Date planifiée"
+
+#. module: mro_extended
+#: selection:product.product,mro_type:0
+msgid "Part"
+msgstr "Pièce détachée"
+
+#. module: mro_extended
+#: field:mro.order,technician:0
+#: field:res.partner,technician:0
+msgid "Technician"
+msgstr "Technicien"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Contract Finished"
+msgstr "Contrat terminé"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_make_mro
+msgid "Make mro orders"
+msgstr "Créer une intervention"
+
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Info"
+msgstr "Info"
+
+#. module: mro_extended
+#: view:sale.make.mro:0
+msgid "_Create"
+msgstr "_Créer"
+
+#. module: mro_extended
+#: field:product.product,property_stock_asset:0
+msgid "Asset Location"
+msgstr "Emplacement de destination des pièces détachées"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "hours"
+msgstr "heures"
+
+#. module: mro_extended
+#: selection:account.analytic.account,rrule_type:0
+msgid "Week(s)"
+msgstr "Semaine(s)"
+
+#. module: mro_extended
+#: help:account.analytic.account,rrule_type:0
+msgid "Let the event automatically repeat at that interval"
+msgstr "Laisser l'événement se répéter automatiquement à chaque intervalle"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: mro_extended
+#: model:ir.ui.menu,name:mro_extended.menu_meters_logs
+msgid "Meters Logs"
+msgstr "Logs de mesure"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "In progress"
+msgstr "En cours"
 
 #. module: mro_extended
 #: selection:mro.order,maintenance_type:0
@@ -273,14 +261,9 @@ msgid "Corrective"
 msgstr "Corrective"
 
 #. module: mro_extended
-#: field:mro.tools,date_validity_end:0
-msgid "Validity date end"
-msgstr "Date de fin de validité"
-
-#. module: mro_extended
-#: view:mro.order:0
-msgid "Meeting fixed"
-msgstr "RDV fixé client"
+#: view:account.analytic.account:0
+msgid "Open"
+msgstr "Ouverte"
 
 #. module: mro_extended
 #: field:mro.tools,image:0
@@ -288,15 +271,9 @@ msgid "Image"
 msgstr "Image"
 
 #. module: mro_extended
-#: code:addons/mro_extended/wizard/sale_make_mro.py:123
-#, python-format
-msgid "Maintenance Order <em>%s</em> has been <b>created</b>."
-msgstr "L'intervention <em>%s</em> a été <b>créée</b>."
-
-#. module: mro_extended
-#: view:mro.tools:0
-msgid "Manufacturer:"
-msgstr "Fabricant:"
+#: view:account.analytic.account:0
+msgid "Terminate"
+msgstr "Résiliation"
 
 #. module: mro_extended
 #: field:mro.tools,serial:0
@@ -304,14 +281,111 @@ msgid "Serial no."
 msgstr "N° de série"
 
 #. module: mro_extended
-#: model:ir.model,name:mro_extended.model_account_analytic_account
-msgid "Analytic Account"
-msgstr "Compte analytique"
+#: field:mro.tools,image_medium:0
+msgid "Medium-sized image"
+msgstr "Image de taille moyenne"
 
 #. module: mro_extended
-#: help:mro.tools,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+#: field:account.analytic.assets,date_next:0
+msgid "Next maintenance date"
+msgstr "Date de prochaine maintenance"
+
+#. module: mro_extended
+#: view:sale.make.mro:0
+msgid "or"
+msgstr "ou"
+
+#. module: mro_extended
+#: help:mro.tools,image_small:0
+msgid "Small-sized image of the tool. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr "L'image de petite taille de l'outil. Il est automatiquement redimensionnée comme une image 64x64px, avec un rapport d'aspect préservé. Utilisez ce champ où une petite image est nécessaire."
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: view:product.product:0
+#: view:res.partner:0
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#. module: mro_extended
+#: field:account.analytic.assets,date_previous:0
+msgid "Previous maintenance date"
+msgstr "Date de dernière maintenance"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Pending"
+msgstr "En suspend"
+
+#. module: mro_extended
+#: field:mro.order,order_id:0
+msgid "Order"
+msgstr "Intervention"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Calculate dates"
+msgstr "Calcul des dates"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: field:account.analytic.account,mro_order_ids:0
+#: view:mro.order:0
+#: view:sale.order:0
+#: field:sale.order,mro_order_ids:0
+msgid "Maintenance Orders"
+msgstr "Interventions"
+
+#. module: mro_extended
+#: field:mro.tools,active:0
+msgid "Active"
+msgstr "Actif"
+
+#. module: mro_extended
+#: field:mro.tools,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Est un abonné"
+
+#. module: mro_extended
+#: field:mro.tools,manufacturer:0
+msgid "Manufacturer"
+msgstr "Fabricant"
+
+#. module: mro_extended
+#: code:addons/mro_extended/wizard/sale_make_mro.py:136
+#: code:addons/mro_extended/wizard/sale_make_mro.py:147
+#: model:ir.model,name:mro_extended.model_mro_order
+#, python-format
+msgid "Maintenance Order"
+msgstr "Intervention"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Planned Parts"
+msgstr "Pièces planifiées"
+
+#. module: mro_extended
+#: field:account.analytic.assets,contract_id:0
+#: field:account.analytic.services,contract_id:0
+#: field:mro.order,contract_id:0
+#: field:sale.make.mro,contract_id:0
+msgid "Contract"
+msgstr "Contrat"
+
+#. module: mro_extended
+#: field:mro.tools,message_summary:0
+msgid "Summary"
+msgstr "Résumé"
+
+#. module: mro_extended
+#: field:mro.order,partner_id:0
+msgid "Client"
+msgstr "Client"
+
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Model:"
+msgstr "Modèle:"
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -324,9 +398,128 @@ msgid "All Day?"
 msgstr "Journée entière?"
 
 #. module: mro_extended
-#: field:mro.tools,image_small:0
-msgid "Small-sized image"
-msgstr "Image de petite taille"
+#: view:sale.make.mro:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mro_extended
+#: view:sale.order:0
+msgid "Add Maintenance Order"
+msgstr "Ajouter une intervention"
+
+#. module: mro_extended
+#: help:product.product,property_stock_asset:0
+msgid "This location will be used as the destination location for installed parts during asset life."
+msgstr "Cet emplacement sera utilisé comme emplacement de destination pour les pièces installées au cours de la vie de l'actif."
+
+#. module: mro_extended
+#: field:mro.tools,date_validity_begin:0
+msgid "Validity date begin"
+msgstr "Date de début de validité"
+
+#. module: mro_extended
+#: help:mro.tools,image:0
+msgid "This field holds the image used as image for the tool, limited to 1024x1024px."
+msgstr "Ce champ contient l'image utilisée comme image pour l'outil, limité à 1024x1024px."
+
+#. module: mro_extended
+#: field:account.analytic.account,rrule_type:0
+msgid "Recurrency"
+msgstr "Récurrence"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Parts"
+msgstr "Pièces détachées"
+
+#. module: mro_extended
+#: selection:account.analytic.account,rrule_type:0
+msgid "Day(s)"
+msgstr "Jour(s)"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: mro_extended
+#: field:account.analytic.assets,name:0
+#: field:account.analytic.services,name:0
+#: field:sale.make.mro,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: mro_extended
+#: field:account.analytic.services,price:0
+msgid "Price"
+msgstr "Prix"
+
+#. module: mro_extended
+#: field:account.analytic.services,service_id:0
+#: field:product.template,contract:0
+msgid "Contract service"
+msgstr "Prestation"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Assets involved"
+msgstr "Équipements concernés"
+
+#. module: mro_extended
+#: field:sale.make.mro,partner_id:0
+msgid "Customer"
+msgstr "Client"
+
+#. module: mro_extended
+#: field:mro.order,date_deadline:0
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: mro_extended
+#: field:mro.tools,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: mro_extended
+#: field:mro.tools,model:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: mro_extended
+#: help:mro.tools,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages et historique de communication"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_account_analytic_assets
+msgid "Contract Assets"
+msgstr "Équipements du contrat"
+
+#. module: mro_extended
+#: field:account.analytic.account,maintenance_date_start:0
+msgid "Maintenance date start"
+msgstr "Date de début"
+
+#. module: mro_extended
+#: help:mro.tools,image_medium:0
+msgid "Medium-sized image of the tool. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
+msgstr "Image de taille moyenne de l'outil. Il est automatiquement redimensionnée comme une image 128x128px, avec un rapport d'aspect préservé, seulement lorsque l'image est supérieure à un de ces formats. Utilisez ce domaine en vue de formulaire ou certaines vues kanban."
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Meeting fixed"
+msgstr "RDV fixé"
+
+#. module: mro_extended
+#: code:addons/mro_extended/wizard/sale_make_mro.py:124
+#, python-format
+msgid "Maintenance Order <em>%s</em> has been <b>created</b>."
+msgstr "L'intervention <em>%s</em> a été <b>créée</b>."
 
 #. module: mro_extended
 #: field:mro.order,duration:0
@@ -335,666 +528,12 @@ msgid "Duration"
 msgstr "Durée"
 
 #. module: mro_extended
-#: view:sale.order:0
-msgid "Add Maintenance Order"
-msgstr "Ajouter une intervention"
-
-#. module: mro_extended
-#: field:mro.order,order_id:0
-msgid "Order"
-msgstr "Pièce commerciale"
-
-#. module: mro_extended
-#: model:ir.model,name:mro_extended.model_sale_order
-msgid "Sales Order"
-msgstr "Bon de commande"
-
-#. module: mro_extended
 #: model:ir.actions.act_window,name:mro_extended.action_mro_tools
 #: model:ir.model,name:mro_extended.model_mro_tools
 #: model:ir.ui.menu,name:mro_extended.menu_maintenance_mro_tools
 #: model:ir.ui.menu,name:mro_extended.menu_maintenance_tools
 #: field:mro.order,tools_ids:0
 #: view:mro.tools:0
-msgid "Tools"
-msgstr "Outils"
-
-#. module: mro_extended
-#: field:mro.tools,date_validity_begin:0
-msgid "Validity date begin"
-msgstr "Date de début de validité"
-
-#. module: mro_extended
-#: view:mro.tools:0
-msgid "Model:"
-msgstr "Modèle:"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Description for Operations"
-msgstr "Description des opérations"
-
-#. module: mro
-#: view:mro.order:0
-msgid "Force Reservation"
-msgstr "Forcer la réservation"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Labor"
-msgstr "Main d'oeuvre"
-
-#. module: mro
-#: model:mail.message.subtype,name:mro.mt_asset_request_sent
-#: model:mail.message.subtype,name:mro.mt_request_sent
-#: view:mro.request:0
-msgid "Send Request"
-msgstr "Envoyer une requête"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Description for Labor"
-msgstr "Description de la main d'oeuvre"
-
-#. module: mro
-#: field:mro.order,asset_id:0
-#: field:mro.request,asset_id:0
-#: field:mro.task,asset_id:0
-msgid "Asset"
-msgstr "Equipement"
-
-#. module: mro
-#: view:mro.request:0
-msgid "Search Maintenance Request"
-msgstr "Chercher une requête de maintenance"
-
-#. module: mro
-#: view:mro.order:0
-#: field:mro.order.parts.line,parts_uom:0
-#: field:mro.task.parts.line,parts_uom:0
-msgid "Unit of Measure"
-msgstr "Unité de mesure"
-
-#. module: mro
-#: view:mro.order:0
-#: field:mro.order,problem_description:0
-msgid "Problem Description"
-msgstr "Description du problème"
-
-#. module: mro
-#: selection:mro.order,state:0
-msgid "Waiting parts"
-msgstr "Pièces en attente"
-
-#. module: mro
-#: view:mro.order:0
-#: field:mro.order,message_unread:0
-#: view:mro.request:0
-#: field:mro.request,message_unread:0
-msgid "Unread Messages"
-msgstr "Messages non lus"
-
-#. module: mro
-#: field:mro.order,company_id:0
-msgid "Company"
-msgstr "Société"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Specify the jobs that need execute..."
-msgstr "Specify the jobs that need execute..."
-
-#. module: mro
-#: view:mro.task:0
-msgid "Task Name"
-msgstr "Nom de la tâche"
-
-#. module: mro
-#: model:mail.message.subtype,description:mro.mt_request_confirmed
-msgid "Maintenance Request confirmed"
-msgstr "Requête de maintenance comfirmée"
-
-#. module: mro
-#: model:res.groups,name:mro.group_create_maintenance_request
-msgid "Create Maintenance Request"
-msgstr "Créer une requête de maintenance"
-
-#. module: mro
-#: field:mro.order,task_id:0
-msgid "Task"
-msgstr "Tâche"
-
-#. module: mro
-#: model:ir.model,name:mro.model_mro_request
-#: view:mro.request:0
-msgid "Maintenance Request"
-msgstr "Requête de maintenance"
-
-#. module: mro
-#: field:mro.order,message_ids:0
-#: field:mro.request,message_ids:0
-msgid "Messages"
-msgstr "Messages"
-
-#. module: mro
-#: selection:mro.task,maintenance_type:0
-msgid "Preventive"
-msgstr "Préventive"
-
-#. module: mro
-#: help:mro.order,message_unread:0
-#: help:mro.request,message_unread:0
-msgid "If checked new messages require your attention."
-msgstr "Si elle est cochée, les nouveaux messages nécessitent votre attention."
-
-#. module: mro
-#: field:mro.task,maintenance_type:0
-msgid "Maintenance Type"
-msgstr "Type d'intervention"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Operations"
-msgstr "Opérations"
-
-#. module: mro
-#: view:mro.order:0
-#: field:mro.order,parts_ready_lines:0
-msgid "Available Parts"
-msgstr "Pièces disponibles"
-
-#. module: mro
-#: field:mro.order,labor_description:0
-#: field:mro.task,labor_description:0
-msgid "Labor Description"
-msgstr "Description de la main d'oeuvre"
-
-#. module: mro
-#: field:mro.order,name:0
-#: field:mro.request,name:0
-msgid "Reference"
-msgstr "Référence"
-
-#. module: mro
-#: field:mro.order,parts_lines:0
-msgid "Planned parts"
-msgstr "Pièces planifiées"
-
-#. module: mro
-#: view:mro.order:0
-#: field:mro.order,parts_move_lines:0
-msgid "Parts to Consume"
-msgstr "Pièces à consommer"
-
-#. module: mro
-#: help:mro.order,message_summary:0
-#: help:mro.request,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-
-#. module: mro
-#: model:ir.model,name:mro.model_mro_task
-#: field:mro.task.parts.line,task_id:0
-msgid "Maintenance Task"
-msgstr "Tâche de maintenance"
-
-#. module: mro
-#: field:mro.order,operations_description:0
-#: field:mro.task,operations_description:0
-msgid "Operations Description"
-msgstr "Description des opérations"
-
-#. module: mro
-#: model:mail.message.subtype,description:mro.mt_request_sent
-msgid "Maintenance Request sent"
-msgstr "Requête de maintenance envoyé"
-
-#. module: mro
-#: field:mro.order,message_follower_ids:0
-#: field:mro.request,message_follower_ids:0
-msgid "Followers"
-msgstr "Abonnés"
-
-#. module: mro
-#: view:mro.request:0
-#: field:mro.request,reject_reason:0
-#: field:mro.request.reject,reject_reason:0
-msgid "Reject Reason"
-msgstr "Raison du refus"
-
-#. module: mro
-#: field:mro.order,parts_picking_id:0
-msgid "Parts Picking List"
-msgstr "Bon de livraison des pièces"
-
-#. module: mro
-#: selection:mro.order,state:0
-msgid "Parts exception"
-msgstr "Pièces en exception"
-
-#. module: mro
-#: field:mro.request,breakdown:0
-msgid "Breakdown"
-msgstr "Casse"
-
-#. module: mro
-#: view:mro.order:0
-msgid "Recreate Picking"
-msgstr "Recréer la réservation"
-
-#. module: mro
-#: selection:mro.request,state:0
-msgid "Rejected"
-msgstr "Rejeté"
-
-#. module: mro
-#: model:ir.module.category,description:mro.module_category_maintenance
-msgid "Helps you manage your maintenance processes."
-msgstr "Vous aide à gérer vos processus de maintenance."
-
-#. module: mro
-#: view:mro.request:0
-msgid "Undecided maintenance request"
-msgstr "Requête de maintenance non décidée"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Documentation"
-msgstr "Documentation"
-
-#. module: mro
-#: view:mro.order:0
-msgid "Order Date"
-msgstr "Date de commande"
-
-#. module: mro
-#: field:mro.order,date_planned:0
-msgid "Planned Date"
-msgstr "Date planifée"
-
-#. module: mro
-#: field:mro.order,tools_description:0
-#: field:mro.task,tools_description:0
-msgid "Tools Description"
-msgstr "Description des outils"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Specify the specialists needed for execute this order..."
-msgstr "Specify the specialists needed for execute this order..."
-
-#. module: mro
-#: selection:mro.order,state:0
-msgid "In progress"
-msgstr "En cours"
-
-#. module: mro
-#: model:ir.ui.menu,name:mro.menu_maintenance_tasks
-#: model:ir.ui.menu,name:mro.menu_maintenance_tasks_tasks
-#: view:mro.task:0
-msgid "Tasks"
-msgstr "Tâches"
-
-#. module: mro
-#: model:ir.actions.act_window,name:mro.action_requests
-#: model:ir.ui.menu,name:mro.menu_mro_request
-#: view:mro.request:0
-msgid "Maintenance Requests"
-msgstr "Requêtes de maintenance"
-
-#. module: mro
-#: selection:mro.task,maintenance_type:0
-msgid "Corrective"
-msgstr "Corrective"
-
-#. module: mro
-#: model:mail.message.subtype,name:mro.mt_order_confirmed
-#: view:mro.order:0
-msgid "Confirm Maintenance"
-msgstr "Intervention confirmée"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Specify the tools and mechanisms needed for execute this order..."
-msgstr "Specify the tools and mechanisms needed for execute this order..."
-
-#. module: mro
-#: selection:mro.order,state:0
-#: selection:mro.request,state:0
-msgid "Canceled"
-msgstr "Annulée"
-
-#. module: mro
-#: model:ir.model,name:mro.model_mro_order_parts_line
-#: model:ir.model,name:mro.model_mro_task_parts_line
-msgid "Maintenance Planned Parts"
-msgstr "Pièces planifiées"
-
-#. module: mro
-#: view:mro.request.reject:0
-msgid "or"
-msgstr "ou"
-
-#. module: mro
-#: selection:mro.order,state:0
-#: selection:mro.request,state:0
-msgid "Draft"
-msgstr "À planifier"
-
-#. module: mro
-#: model:ir.module.category,name:mro.module_category_maintenance
-#: model:ir.ui.menu,name:mro.menu_mro_maintenance
-msgid "Maintenance"
-msgstr "Maintenance"
-
-#. module: mro
-#: field:mro.request,requested_date:0
-msgid "Requested Date"
-msgstr "Date de requête"
-
-#. module: mro
-#: field:mro.order,state:0
-#: field:mro.request,state:0
-msgid "Status"
-msgstr "Statut"
-
-#. module: mro
-#: help:mro.request,state:0
-msgid ""
-"When the maintenance request is created the status is set to 'Draft'.\n"
-"            If the request is sent the status is set to 'Claim'.\n"
-"            If the request is confirmed the status is set to 'Execution'.\n"
-"            If the request is rejected the status is set to 'Rejected'.\n"
-"            When the maintenance is over, the status is set to 'Done'."
-msgstr ""
-"Lorsque la demande d'entretien est créé le statut est réglé sur 'Projet'. \n"
-"             Si la demande est envoyée le statut est réglé sur «revendication». \n"
-"             Si la demande est confirmée, le statut est réglé sur «exécution». \n"
-"             Si la demande est rejetée, le statut est réglé sur «Rejeté». \n"
-"             Lorsque l'entretien est terminé, le statut est réglé sur «Terminé»."
-
-#. module: mro
-#: model:mail.message.subtype,name:mro.mt_asset_request_confirmed
-#: model:mail.message.subtype,name:mro.mt_request_confirmed
-#: view:mro.request:0
-msgid "Confirm Request"
-msgstr "Confirmer la requête"
-
-#. module: mro
-#: view:mro.order:0
-msgid "Search Maintenance Order"
-msgstr "Rechercher l'intervention"
-
-#. module: mro
-#: field:mro.order,parts_location_id:0
-msgid "Parts Location"
-msgstr "Emplacement des pièces"
-
-#. module: mro
-#: field:mro.order,message_is_follower:0
-#: field:mro.request,message_is_follower:0
-msgid "Is a Follower"
-msgstr "Est un abonné"
-
-#. module: mro
-#: selection:mro.order,state:0
-msgid "Ready to maintenance"
-msgstr "Acceptée"
-
-#. module: mro
-#: model:ir.actions.act_window,name:mro.action_orders
-#: model:ir.ui.menu,name:mro.menu_mro_order
-#: view:mro.order:0
-msgid "Maintenance Orders"
-msgstr "Interventions"
-
-#. module: mro
-#: view:mro.request:0
-msgid "Date"
-msgstr "Date"
-
-#. module: mro
-#: selection:mro.request,state:0
-msgid "Execution"
-msgstr "Execution"
-
-#. module: mro
-#: view:mro.order:0
-#: field:mro.order,parts_moved_lines:0
-msgid "Consumed Parts"
-msgstr "Pièces consommées"
-
-#. module: mro
-#: model:res.groups,name:mro.group_mro_user
-msgid "User"
-msgstr "Utilisateur"
-
-#. module: mro
-#: model:mail.message.subtype,description:mro.mt_order_confirmed
-msgid "Maintenance Order confirmed"
-msgstr "Intervention confirmé"
-
-#. module: mro
-#: model:ir.model,name:mro.model_mro_order
-#: view:mro.order:0
-#: field:mro.order.parts.line,maintenance_id:0
-msgid "Maintenance Order"
-msgstr "Intervention"
-
-#. module: mro
-#: view:mro.order:0
-msgid "Planned Parts"
-msgstr "Pièces planifiées"
-
-#. module: mro
-#: help:mro.request,requested_date:0
-msgid "Date requested by the customer for maintenance."
-msgstr "Date de la demande du client pour la maintenance."
-
-#. module: mro
-#: field:mro.task,active:0
-msgid "Active"
-msgstr "Actif"
-
-#. module: mro
-#: view:mro.order:0
-#: field:mro.order.parts.line,parts_qty:0
-#: field:mro.task.parts.line,parts_qty:0
-msgid "Quantity"
-msgstr "Quantité"
-
-#. module: mro
-#: selection:mro.request,state:0
-msgid "Claim"
-msgstr "Réclamation"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Description for Documentation"
-msgstr "Description de la documentation"
-
-#. module: mro
-#: model:ir.actions.act_window,name:mro.action_tasks
-#: view:mro.task:0
-msgid "Maintenance Tasks"
-msgstr "Tâches de maintenance"
-
-#. module: mro
-#: view:mro.order:0
-#: selection:mro.order,state:0
-#: selection:mro.request,state:0
-msgid "Done"
-msgstr "Terminée"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.request:0
-#: view:mro.request.reject:0
-msgid "Cancel"
-msgstr "Annulée"
-
-#. module: mro
-#: view:mro.request:0
-msgid "Open"
-msgstr "Ouvert"
-
-#. module: mro
-#: field:mro.order,origin:0
-msgid "Source Document"
-msgstr "Document source"
-
-#. module: mro
-#: help:mro.order,parts_picking_id:0
-msgid "This is the Internal Picking List that brings parts to the asset"
-msgstr "Il s'agit de la liste de prélèvement interne des pièces détachées de l'équipement"
-
-#. module: mro
-#: model:mail.message.subtype,description:mro.mt_request_rejected
-msgid "Maintenance Request rejected"
-msgstr "Requête de maintenance rejetée"
-
-#. module: mro
-#: field:mro.request,create_uid:0
-msgid "Responsible"
-msgstr "Responsable"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Description for Tools"
-msgstr "Description des outils"
-
-#. module: mro
-#: model:ir.ui.menu,name:mro.menu_maintenance_parts
-#: model:ir.ui.menu,name:mro.menu_maintenance_parts_parts
-#: view:mro.order:0
-#: field:mro.order.parts.line,parts_id:0
-#: view:mro.task:0
-#: field:mro.task,parts_lines:0
-#: field:mro.task.parts.line,parts_id:0
-msgid "Parts"
-msgstr "Pièces détachées"
-
-#. module: mro
-#: help:mro.order,origin:0
-msgid "Reference of the document that generated this maintenance order."
-msgstr "Référence du document qui a généré cette intervention."
-
-#. module: mro
-#: field:mro.request,cause:0
-msgid "Cause"
-msgstr "Cause"
-
-#. module: mro
-#: model:ir.ui.menu,name:mro.menu_maintenance_assets
-#: model:ir.ui.menu,name:mro.menu_maintenance_assets_assets
-msgid "Assets"
-msgstr "Equipements"
-
-#. module: mro
-#: field:mro.order,date_scheduled:0
-msgid "Scheduled Date"
-msgstr "Date prévu"
-
-#. module: mro
-#: field:mro.order,description:0
-#: field:mro.order.parts.line,name:0
-#: view:mro.request:0
-#: field:mro.request,description:0
-#: field:mro.task,name:0
-#: field:mro.task.parts.line,name:0
-msgid "Description"
-msgstr "Description"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
-msgid "Specify the documentation useful when execute this order..."
-msgstr "Specify the documentation useful when execute this order..."
-
-#. module: mro
-#: model:res.groups,name:mro.group_mro_customer
-msgid "Customer"
-msgstr "Client"
-
-#. module: mro
-#: field:mro.order,documentation_description:0
-#: field:mro.task,documentation_description:0
-msgid "Documentation Description"
-msgstr "Description de la documentation"
-
-#. module: mro
-#: help:mro.order,parts_location_id:0
-msgid "Location where the system will look for parts."
-msgstr "Emplacement où le système va chercher des pièces."
-
-#. module: mro
-#: field:mro.order,date_execution:0
-#: field:mro.request,execution_date:0
-msgid "Execution Date"
-msgstr "Date d'exécution"
-
-#. module: mro
-#: model:ir.actions.act_window,name:mro.action_request_reject
-#: model:ir.model,name:mro.model_mro_request_reject
-#: model:mail.message.subtype,name:mro.mt_asset_request_rejected
-#: model:mail.message.subtype,name:mro.mt_request_rejected
-#: view:mro.request:0
-#: view:mro.request.reject:0
-msgid "Reject Request"
-msgstr "Requête rejetée"
-
-#. module: mro
-#: help:mro.order,state:0
-msgid ""
-"When the maintenance order is created the status is set to 'Draft'.\n"
-"            If the order is confirmed the status is set to 'Waiting Parts'.\n"
-"            If any exceptions are there, the status is set to 'Picking Exception'.\n"
-"            If the stock is available then the status is set to 'Ready to Maintenance'.\n"
-"            When the maintenance order gets started then the status is set to 'In Progress'.\n"
-"            When the maintenance is over, the status is set to 'Done'."
-msgstr ""
-"Lorsque l'intervention est créée le statut est réglé sur «Brouillon». \n"
-"             Si la commande est confirmée, le statut est réglé sur «Pièces en attente». \n"
-"             Si des exceptions sont là, le statut est réglé sur «Exception de réservation». \n"
-"             Si le stock est disponible, le statut est réglé sur «Accepté '. \n"
-"             Lorsque l'intervention se déroule alors le statut est réglé sur «En cours». \n"
-"             Lorsque l'intervention est terminée, le statut est réglé sur «Terminé»."
-
-#. module: mro
-#: field:mro.order,message_summary:0
-#: field:mro.request,message_summary:0
-msgid "Summary"
-msgstr "Résumé"
-
-#. module: mro
-#: help:mro.order,message_ids:0
-#: help:mro.request,message_ids:0
-msgid "Messages and communication history"
-msgstr "Messages et historique de communication"
-
-#. module: mro
-#: selection:mro.order,state:0
-msgid "Meeting fixed"
-msgstr "RDV fixé client"
-
-#. module: mro
-#: model:res.groups,name:mro.group_mro_manager
-msgid "Manager"
-msgstr "Responsable"
-
-#. module: mro
-#: view:mro.order:0
-#: view:mro.task:0
 msgid "Tools"
 msgstr "Outils"
 
