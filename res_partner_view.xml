@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
                 <notebook position="inside">
-                    <page string="Maintenance">
+                    <page string="Maintenance" groups="mro.group_mro_user">
                         <group>
                             <field name="technician"/>
                             <field name="asset_ids" nolabel="0" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]">

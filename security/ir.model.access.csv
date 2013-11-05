@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mro_tools,access_mro_tools,model_mro_tools,,1,1,1,1
+access_account_analytic_assets,access_account_analytic_assets,model_account_analytic_assets,,1,1,1,1
+access_account_analytic_services,access_account_analytic_services,model_account_analytic_services,,1,1,1,1
+access_account_analytic_amendments,access_account_analytic_amendments,model_account_analytic_amendments,,1,1,1,1
+access_mro_order_salesman,mro_order salesman,mro.model_mro_order,base.group_sale_salesman,1,1,1,0

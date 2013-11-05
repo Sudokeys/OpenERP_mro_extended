@@ -21,14 +21,16 @@
                         <button name="set_open" string="Open" type="object" states="draft"/>
                         <button name="set_cancel" string="Terminate" type="object" states="open"/>
                         <button name="set_close" string="Contract Finished" attrs="{'invisible': [('state','!=','open')]}" type="object"  />
-                        <button name="get_recurrency" string="Calculate next maintenance" type="object" states="open"  />
-                        <field name="date_today" eval="time.strftime('%%Y-%%m-%%d')"/>
+                        <button name="get_recurrency" string="Calculate maintenance dates" type="object" states="open"  groups="mro.group_mro_user"/>
                         <field name="state" readonly="1" widget="statusbar"
                             statusbar_visible="draft,open,close" statusbar_colors='{"cancelled":"red", "open":"blue"}'/>
                     </header>
                 </header>
+                <field name="date" position="replace">
+                    <field name="date" on_change="on_change_end_date(date)" class="oe_inline"/>
+                </field>
                 <group name="contract" position="after">
-                    <group string="Maintenance" name="maintenance">
+                    <group string="Maintenance" name="maintenance" groups="mro.group_mro_user">
                         <group>
 <!--
                             <field name="maintenance_date_start" />
@@ -78,11 +80,15 @@
                 </group>
                 <notebook position="inside">
                     <page string="Contract amendments" name="amendment_page" attrs="{'invisible':[('type','not in',['contract'])]}">
+                        <field name="amendment"/>
                         <field name="amendment_ids">
                             <tree editable="top">
                                 <field name="name"/>
                                 <field name="date"/>
                                 <field name="data"/>
+                                <field name="state"/>
+                                <button name="button_draft" string="Back to draft" type="object" icon="gtk-cancel" states="accepted" />
+                                <button name="button_accepted" string="Accepted" type="object" icon="gtk-apply" states="draft" />
                             </tree>
                         </field>
                     </page>
@@ -105,11 +111,24 @@
                             </tree>
                         </field>
                     </page>
-                    <page string="Maintenance Orders" name="mro_order_page" attrs="{'invisible':[('type','not in',['contract'])]}">
+                    <page string="Maintenance Orders" name="mro_order_page" groups="mro.group_mro_user" attrs="{'invisible':[('type','not in',['contract'])]}">
                         <field name="mro_order_ids"/>
                     </page>
                 </notebook>
             </field>
         </record>
+        
+        <record id="view_account_analytic_account_overdue_search" model="ir.ui.view">
+            <field name="name">account.analytic.account.search</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account_analytic_analysis.view_account_analytic_account_overdue_search" />
+            <field name="arch" type="xml">
+                <filter string="Contracts not assigned" position="after" >
+                    <separator/>
+                    <filter string="Amendments not accepted" domain="[('amendment', '=', True)]"/>
+                </filter>
+            </field>
+        </record>
+        
      </data>
 </openerp>

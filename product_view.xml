@@ -13,7 +13,7 @@
                     <label string=" "/>
                 </div>
                 <notebook position="inside">
-                    <page string="Maintenance">
+                    <page string="Maintenance" groups="mro.group_mro_user">
                         <group>
                             <group>
                                 <field name="mro_type"/>

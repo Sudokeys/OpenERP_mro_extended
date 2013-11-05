@@ -73,8 +73,6 @@ class sale_make_mro(osv.osv_memory):
         """
         if context is None:
             context = {}
-        # update context: if come from phonecall, default state values can make the quote crash lp:1017353
-        context.pop('default_state', False)        
         
         mro_obj = self.pool.get('mro.order')
         sale_obj = self.pool.get('sale.order')

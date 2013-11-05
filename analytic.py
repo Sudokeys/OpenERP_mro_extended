@@ -29,6 +29,7 @@ import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 from openerp import netsvc
 from openerp import tools, SUPERUSER_ID
+import re
 
 months = {
     1: "January", 2: "February", 3: "March", 4: "April", \
@@ -106,13 +107,41 @@ class account_analytic_account(osv.osv):
                 data.update(update_data)
                 super(calendar_event, obj).write(cr, uid, ids, data, context=context)
         return True
+        
+    def _get_amendment(self, cr, uid, ids, name, arg, context=None):
+        result = {}
+        if not isinstance(ids, list):
+            ids = [ids]
+
+        for id in ids:
+            #read these fields as SUPERUSER because if the record is private a normal search could return False and raise an error
+            data = self.read(cr, SUPERUSER_ID, id, ['amendment_ids'], context=context)
+            print 'data',data
+            result[id]=False
+            if data.get('amendment_ids', False):
+                for amendment in data['amendment_ids']:
+                    print 'amendment',amendment
+                    amend_data = self.pool.get('account.analytic.amendments').read(cr,uid,amendment,['state'],context=context)
+                    print 'amedn_data',amend_data
+                    if amend_data['state'] == 'draft':
+                        result[id]=True
+        return result
+    
+    def _get_amendment_search(self, cr, uid, obj, name, domain, context=None):
+        res=[]
+        ids=self.search(cr,uid,[],context=context)
+        for contract in self.browse(cr,uid,ids,context=context):
+            for amend in contract.amendment_ids:
+                if amend.state=='draft':
+                    res.append(contract.id)
+        return [('id','in',res)]
     
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
         'asset_ids': fields.one2many('account.analytic.assets','contract_id','Assets'),
         'service_ids': fields.one2many('account.analytic.services','contract_id','Contract services'),
         'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Contract services'),
-        
+        'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
         'date_today': fields.date('date_today'),
         'maintenance_date_start': fields.datetime('Maintenance date start'),
         'maintenance_date_end': fields.datetime('Maintenance date end'),
@@ -166,6 +195,12 @@ class account_analytic_account(osv.osv):
     _defaults = {
         'state':'draft',
         'date': lambda *a: (datetime.strptime(time.strftime('%Y-%m-%d'),'%Y-%m-%d')+relativedelta(years=1)).strftime('%Y-%m-%d'),
+        'end_date': lambda *a: (datetime.strptime(time.strftime('%Y-%m-%d'),'%Y-%m-%d')+relativedelta(years=1)).strftime('%Y-%m-%d'),
+        'end_type': 'end_date',
+        'count': 1,
+        'rrule_type': False,
+        'select1': 'date',
+        'interval': 1,
     }
     
     def on_change_partner_id(self, cr, uid, ids,partner_id, name, context={}):
@@ -184,23 +219,32 @@ class account_analytic_account(osv.osv):
                         self.pool.get('account.analytic.assets').unlink(cr,uid,exist_ids)
                 res['asset_ids'].append(self.pool.get('account.analytic.assets').create(cr,uid,{'asset_id':asset.id}))
         return {'value': res}
+        
+    def on_change_end_date(self, cr, uid, ids,date, context={}):
+        res={}
+        if date:
+            res['end_date']=date
+        return {'value': res}
     
     def get_recurrency(self, cr, uid, ids, context=None):
+        mro_obj = self.pool.get('mro.order')
+        result=[]
         res={}
         contracts=self.browse(cr,uid,ids,context)
-        for data in self.read(cr, uid, ids, ['rrule', 'exdate', 'exrule', 'maintenance_date_start'], context=context):
-            if not data['rrule']:
-                result.append(data['id'])
+        #~ for data in self.read(cr, uid, ids, ['rrule', 'exdate', 'exrule', 'date_start'], context=context):
+        for data in contracts:
+            if not data.rrule:
+                result.append(data.id)
                 continue
-            event_date = datetime.strptime(data['maintenance_date_start'], "%Y-%m-%d %H:%M:%S")
+            event_date = datetime.strptime(data.date_start, "%Y-%m-%d")
 
             # TOCHECK: the start date should be replaced by event date; the event date will be changed by that of calendar code
 
-            if not data['rrule']:
+            if not data.rrule:
                 continue
 
-            exdate = data['exdate'] and data['exdate'].split(',') or []
-            rrule_str = data['rrule']
+            exdate = data.exdate and data.exdate.split(',') or []
+            rrule_str = data.rrule
             new_rrule_str = []
             rrule_until_date = False
             is_until = False
@@ -209,14 +253,29 @@ class account_analytic_account(osv.osv):
                 if name == "UNTIL":
                     is_until = True
                     value = parser.parse(value)
-                    rrule_until_date = parser.parse(value.strftime("%Y-%m-%d %H:%M:%S"))
-                    value = value.strftime("%Y%m%d%H%M%S")
+                    rrule_until_date = parser.parse(value.strftime("%Y-%m-%d 00:00:00"))
+                    value = value.strftime("%Y%m%d000000")
                 new_rule = '%s=%s' % (name, value)
                 new_rrule_str.append(new_rule)
             new_rrule_str = ';'.join(new_rrule_str)
-            rdates = get_recurrent_dates(str(new_rrule_str), exdate, event_date, data['exrule'])
+            rdates = get_recurrent_dates(str(new_rrule_str), exdate, event_date, data.exrule)
             for r_date in rdates:
                 print 'r_date.strftime("%Y-%m-%d %H:%M:%S")',r_date.strftime("%Y-%m-%d %H:%M:%S")
+                vals = {
+                    #~ 'origin': sale.name,
+                    #~ 'order_id': sale.id,
+                    'contract_id': data.id,
+                    'partner_id': data.partner_id.id,
+                    'description': '',
+                    'origin': data.code,
+                    'asset_ids': [(6,0,[x.asset_id.id for x in data.asset_ids])],
+                    'maintenance_type': 'pm',
+                    'date_planned': r_date.strftime("%Y-%m-%d %H:%M:%S"),
+                    'date_scheduled': r_date.strftime("%Y-%m-%d %H:%M:%S"),
+                    'date_execution': r_date.strftime("%Y-%m-%d %H:%M:%S"),
+                    #~ 'duration': make.duration,
+                }
+                mro_obj.create(cr, uid, vals, context=context)
         return res
     
     def compute_rule_string(self, data):
@@ -379,11 +438,18 @@ class account_analytic_amendments(osv.osv):
         'name': fields.char('Description', size=128),
         'date': fields.date('Date'),
         'data': fields.binary('File'),
+        'state': fields.selection([('draft','Draft'),('accepted','Accepted')],'Status'),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
     }
     
     _defaults = {
+        'state': 'draft',
     }
     
+    def button_draft(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+        
+    def button_accepted(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'accepted'}, context=context)
         
     

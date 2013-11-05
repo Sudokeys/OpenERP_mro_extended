@@ -7,12 +7,14 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form" />
             <field name="arch" type="xml">
-                <field name="project_id" position="after">
-                    <button states="draft,sent,progress,waiting_date,manual" string="Add Maintenance Order" name="%(action_sale_make_mro)d" type="action" class="oe_highlight"/>
+                <field name="project_id" position="replace">
+                    <field name="project_id" context="{'partner_id':partner_invoice_id, 'default_pricelist_id':pricelist_id, 'default_name':name, 'default_type': 'contract'}" groups="sale.group_analytic_accounting" domain="[('type','in',['contract'])]"/>
+                    <button string="Add Maintenance Contract" name="%(action_sale_make_contract)d" attrs="{'invisible':['|',('project_id','!=',False),('state','in',('draft','sent'))]}" type="action" class="oe_link" />
                 </field>
                 <notebook position="inside">
-                    <page string="Maintenance Orders" name="mro_order_page">
-                        <field name="mro_order_ids" readonly="True"/>
+                    <page string="Maintenance Orders" groups="mro.group_mro_user" name="mro_order_page">
+                        <button states="draft,sent,progress,waiting_date,manual" string="Add Maintenance Order" name="%(action_sale_make_mro)d" type="action" class="oe_highlight"/>
+                        <field name="mro_order_ids"  readonly="True"/>
                     </page>
                 </notebook>
             </field>
