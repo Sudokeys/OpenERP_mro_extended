@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130714-231029\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 08:45+0000\n"
-"PO-Revision-Date: 2013-11-12 10:14+0100\n"
+"PO-Revision-Date: 2013-11-12 10:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgstr "Créer un contrat"
 #: field:account.analytic.services,service_id:0
 #: field:product.template,contract:0
 msgid "Contract service"
-msgstr "Préstation contractuelle"
+msgstr "Prestation contractuelle"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
@@ -308,7 +308,7 @@ msgstr "N° de série:"
 #: model:ir.model,name:mro_extended.model_account_analytic_services
 #: field:sale.make.contract,service_ids:0
 msgid "Contract services"
-msgstr "Préstations contractuelle"
+msgstr "Prestations contractuelle"
 
 #. module: mro_extended
 #: model:ir.model,name:mro_extended.model_account_analytic_account
