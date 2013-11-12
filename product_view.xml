@@ -23,6 +23,15 @@
                         </group>
                     </page>
                 </notebook>
+                <field name="description" position="after">
+                    <group string="Serial numbers">
+                        <field name="childs_serial" nolabel="1" colspan="4">
+                            <tree editable="top">
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </field>
             </field>
         </record>
         

@@ -41,10 +41,42 @@ class product_product(osv.osv):
           string="Asset Location",
           view_load=True,
           help="This location will be used as the destination location for installed parts during asset life."),
+        'childs_serial': fields.one2many('product.serial','parent_id', 'Serials #'),
     }
+    
+    def copy(self, cr, uid, id, default=None, context=None):
+        if context is None:
+            context={}
+        if not default:
+            default = {}
+
+        default.update(childs_serial=[])
+        return super(product_product, self).copy(cr, uid, id, default=default,
+                    context=context)
+    
+    
 class product_template(osv.osv):
     _inherit = "product.template"
     
     _columns = {
         'contract': fields.boolean('Contract service'),
     }
+
+class product_serial(osv.osv):
+    _name = "product.serial"
+
+    _columns = {
+        'name': fields.char('Serial #', size=255),
+        'parent_id': fields.many2one('product.product', 'Parent product'),
+        #~ 'picking_in_id': fields.many2one('stock.picking', 'Réception associée'),
+        #~ 'picking_out_id': fields.many2one('stock.picking', 'Livraison associée'),
+    }
+
+    _defaults = {
+    }
+    
+    _sql_constraints = [
+                     ('name_unique', 
+                      'unique(name)',
+                      u'Le numéro de série doit être unique')
+    ]

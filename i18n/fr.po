@@ -1,19 +1,29 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#   * mro_extended
+#	* mro_extended
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130714-231029\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-29 08:47+0000\n"
-"PO-Revision-Date: 2013-10-29 14:05+0100\n"
+"POT-Creation-Date: 2013-11-12 08:45+0000\n"
+"PO-Revision-Date: 2013-11-12 10:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+
+#. module: mro_extended
+#: field:account.analytic.account,we:0
+msgid "Wed"
+msgstr "Mer"
+
+#. module: mro_extended
+#: field:product.serial,parent_id:0
+msgid "Parent product"
+msgstr "Produit parent"
 
 #. module: mro_extended
 #: selection:product.product,mro_type:0
@@ -26,7 +36,8 @@ msgid "Make Maintenance Order"
 msgstr "Créer une intervention"
 
 #. module: mro_extended
-#: code:addons/mro_extended/analytic.py:61
+#: code:addons/mro_extended/analytic.py:214
+#: code:addons/mro_extended/wizard/sale_make_contract.py:57
 #, python-format
 msgid "Contract: "
 msgstr "Contrat: "
@@ -34,13 +45,35 @@ msgstr "Contrat: "
 #. module: mro_extended
 #: field:account.analytic.assets,asset_id:0
 #: selection:product.product,mro_type:0
+#: field:res.partner.assets,name:0
 msgid "Asset"
 msgstr "Équipement"
 
 #. module: mro_extended
-#: field:account.analytic.account,maintenance_date_end:0
-msgid "Maintenance date end"
-msgstr "Date de fin"
+#: selection:account.analytic.account,byday:0
+msgid "Fourth"
+msgstr "Quatrième"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_make_contract
+msgid "Make contract"
+msgstr "Créer un contrat"
+
+#. module: mro_extended
+#: field:account.analytic.services,service_id:0
+#: field:product.template,contract:0
+msgid "Contract service"
+msgstr "Préstation contractuelle"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Back to draft"
+msgstr "Remettre en brouillon"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Until"
+msgstr "Jusqu'à"
 
 #. module: mro_extended
 #: field:mro.tools,date_validity_end:0
@@ -48,14 +81,60 @@ msgid "Validity date end"
 msgstr "Date de fin de validité"
 
 #. module: mro_extended
+#: help:account.analytic.account,count:0
+msgid "Repeat x times"
+msgstr "Répéter x fois"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "March"
+msgstr "Mars"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: model:ir.model,name:mro_extended.model_account_analytic_amendments
+msgid "Contract amendments"
+msgstr "Avenants"
+
+#. module: mro_extended
+#: field:account.analytic.account,amendment:0
+msgid "Amendment not accepted"
+msgstr "Avenants en attente"
+
+#. module: mro_extended
 #: field:mro.tools,message_unread:0
 msgid "Unread Messages"
 msgstr "Messages non lus"
 
 #. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Friday"
+msgstr "Vendredi"
+
+#. module: mro_extended
 #: field:mro.order,allday:0
 msgid "All Day"
 msgstr "Journée entière"
+
+#. module: mro_extended
+#: selection:product.product,mro_type:0
+msgid "Part"
+msgstr "Pièce détachée"
+
+#. module: mro_extended
+#: field:account.analytic.account,mo:0
+msgid "Mon"
+msgstr "Lun"
+
+#. module: mro_extended
+#: view:sale.order:0
+msgid "Add Maintenance Contract"
+msgstr "Ajouter un contrat de maintenance"
+
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Last"
+msgstr "Dernier"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
@@ -66,9 +145,15 @@ msgstr "Journée entière"
 #: view:mro.order:0
 #: field:mro.order,asset_ids:0
 #: field:res.partner,asset_ids:0
+#: field:sale.make.contract,asset_ids:0
 #: field:sale.make.mro,asset_ids:0
 msgid "Assets"
 msgstr "Équipements"
+
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Model:"
+msgstr "Modèle:"
 
 #. module: mro_extended
 #: model:product.uom.categ,name:mro_extended.uom_categ_ctime
@@ -84,6 +169,19 @@ msgstr "Type de produit pour la maintenance"
 #: selection:account.analytic.account,rrule_type:0
 msgid "Year(s)"
 msgstr "Année(s)"
+
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:305
+#, python-format
+msgid "Error!"
+msgstr "Erreur!"
+
+#. module: mro_extended
+#: field:account.analytic.assets,serial_id:0
+#: field:product.serial,name:0
+#: field:res.partner.assets,serial_id:0
+msgid "Serial #"
+msgstr "N° de série"
 
 #. module: mro_extended
 #: selection:mro.order,maintenance_type:0
@@ -108,9 +206,19 @@ msgid "Add a Maintenance Order"
 msgstr "Ajouter une intervention"
 
 #. module: mro_extended
+#: field:res.partner.assets,default_code:0
+msgid "Reference"
+msgstr "Référence"
+
+#. module: mro_extended
 #: view:account.analytic.account:0
 msgid "Cancel Contract"
 msgstr "Annuler le contrat"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Sunday"
+msgstr "Dimanche"
 
 #. module: mro_extended
 #: view:mro.tools:0
@@ -118,25 +226,42 @@ msgid "Manufacturer:"
 msgstr "Fabricant:"
 
 #. module: mro_extended
-#: model:ir.model,name:mro_extended.model_account_analytic_account
-msgid "Analytic Account"
-msgstr "Compte analytique"
+#: view:account.analytic.account:0
+msgid "Contracts not assigned"
+msgstr "Liste des contrats non assignés"
 
 #. module: mro_extended
-#: selection:account.analytic.account,rrule_type:0
-#: model:product.uom,name:mro_extended.product_uom_month
-msgid "Month(s)"
-msgstr "Mois"
+#: field:account.analytic.account,end_date:0
+msgid "Repeat Until"
+msgstr "Répéter jusqu'à"
 
 #. module: mro_extended
-#: field:mro.tools,image_small:0
-msgid "Small-sized image"
-msgstr "Image de petite taille"
+#: help:mro.tools,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:89
+#: code:addons/mro_extended/analytic.py:91
+#, python-format
+msgid "Warning!"
+msgstr "Attention!"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_res_partner
+#: field:res.partner.assets,partner_id:0
+msgid "Partner"
+msgstr "Partenaire"
 
 #. module: mro_extended
 #: model:ir.model,name:mro_extended.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
+
+#. module: mro_extended
+#: field:account.analytic.account,sa:0
+msgid "Sat"
+msgstr "Sam"
 
 #. module: mro_extended
 #: selection:mro.order,maintenance_type:0
@@ -149,6 +274,16 @@ msgstr "Métrologie"
 #: selection:sale.make.mro,maintenance_type:0
 msgid "Implementation"
 msgstr "Mise en service"
+
+#. module: mro_extended
+#: field:account.analytic.account,su:0
+msgid "Sun"
+msgstr "Dim"
+
+#. module: mro_extended
+#: view:sale.make.contract:0
+msgid "Add a Maintenance Contract"
+msgstr "Ajouter un contrat de maintenance"
 
 #. module: mro_extended
 #: field:mro.tools,message_follower_ids:0
@@ -168,30 +303,71 @@ msgstr "N° de série:"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
+#: field:account.analytic.account,amendment_ids:0
 #: field:account.analytic.account,service_ids:0
 #: model:ir.model,name:mro_extended.model_account_analytic_services
+#: field:sale.make.contract,service_ids:0
 msgid "Contract services"
-msgstr "Prestations"
+msgstr "Préstations contractuelle"
 
 #. module: mro_extended
-#: view:account.analytic.account:0
-msgid "Re-open project"
-msgstr "Rouvrir le projet"
+#: model:ir.model,name:mro_extended.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Compte analytique"
 
 #. module: mro_extended
-#: help:mro.tools,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+#: field:account.analytic.account,date_today:0
+msgid "date_today"
+msgstr "date_today"
 
 #. module: mro_extended
+#: field:account.analytic.account,select1:0
+msgid "Option"
+msgstr "Option"
+
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:91
+#, python-format
+msgid "Count cannot be negative or 0."
+msgstr "Nombre de répétitions ne peut être négatif ou 0."
+
+#. module: mro_extended
+#: field:account.analytic.account,interval:0
+msgid "Repeat Every"
+msgstr "Répéter tous les"
+
+#. module: mro_extended
+#: field:account.analytic.account,day:0
+#: selection:account.analytic.account,select1:0
+msgid "Date of month"
+msgstr "Date dans le mois"
+
+#. module: mro_extended
+#: selection:account.analytic.account,rrule_type:0
+#: model:product.uom,name:mro_extended.product_uom_month
+msgid "Month(s)"
+msgstr "Mois"
+
+#. module: mro_extended
+#: field:sale.make.contract,date_planned:0
 #: field:sale.make.mro,date_planned:0
 msgid "Planned Date"
 msgstr "Date planifiée"
 
 #. module: mro_extended
-#: selection:product.product,mro_type:0
-msgid "Part"
-msgstr "Pièce détachée"
+#: view:account.analytic.account:0
+msgid "Day of Month"
+msgstr "Jour du mois"
+
+#. module: mro_extended
+#: field:product.product,childs_serial:0
+msgid "Serials #"
+msgstr "N° de série"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_product_serial
+msgid "product.serial"
+msgstr "product.serial"
 
 #. module: mro_extended
 #: field:mro.order,technician:0
@@ -205,9 +381,20 @@ msgid "Contract Finished"
 msgstr "Contrat terminé"
 
 #. module: mro_extended
-#: model:ir.model,name:mro_extended.model_sale_make_mro
-msgid "Make mro orders"
-msgstr "Créer une intervention"
+#: selection:account.analytic.account,month_list:0
+msgid "July"
+msgstr "Juillet"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: selection:account.analytic.amendments,state:0
+msgid "Accepted"
+msgstr "Accepté"
+
+#. module: mro_extended
+#: field:account.analytic.account,tu:0
+msgid "Tue"
+msgstr "Mar"
 
 #. module: mro_extended
 #: view:mro.tools:0
@@ -215,6 +402,7 @@ msgid "Info"
 msgstr "Info"
 
 #. module: mro_extended
+#: view:sale.make.contract:0
 #: view:sale.make.mro:0
 msgid "_Create"
 msgstr "_Créer"
@@ -223,6 +411,11 @@ msgstr "_Créer"
 #: field:product.product,property_stock_asset:0
 msgid "Asset Location"
 msgstr "Emplacement de destination des pièces détachées"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Order Date"
+msgstr "Date d'éxécution"
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -240,9 +433,24 @@ msgid "Let the event automatically repeat at that interval"
 msgstr "Laisser l'événement se répéter automatiquement à chaque intervalle"
 
 #. module: mro_extended
-#: model:ir.model,name:mro_extended.model_res_partner
-msgid "Partner"
-msgstr "Partenaire"
+#: view:account.analytic.account:0
+msgid "The maintenance orders 'Draft' will be replaced."
+msgstr "Les interventions \"À planifier\" seront remplacées."
+
+#. module: mro_extended
+#: view:sale.order:0
+msgid "Add Maintenance Order"
+msgstr "Ajouter une intervention"
+
+#. module: mro_extended
+#: field:mro.order,order_id:0
+msgid "Order"
+msgstr "Intervention"
+
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "First"
+msgstr "Premier"
 
 #. module: mro_extended
 #: model:ir.ui.menu,name:mro_extended.menu_meters_logs
@@ -261,9 +469,19 @@ msgid "Corrective"
 msgstr "Corrective"
 
 #. module: mro_extended
-#: view:account.analytic.account:0
-msgid "Open"
-msgstr "Ouverte"
+#: model:ir.model,name:mro_extended.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "September"
+msgstr "Septembre"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "December"
+msgstr "Décembre"
 
 #. module: mro_extended
 #: field:mro.tools,image:0
@@ -276,9 +494,9 @@ msgid "Terminate"
 msgstr "Résiliation"
 
 #. module: mro_extended
-#: field:mro.tools,serial:0
-msgid "Serial no."
-msgstr "N° de série"
+#: field:account.analytic.account,month_list:0
+msgid "Month"
+msgstr "Mois"
 
 #. module: mro_extended
 #: field:mro.tools,image_medium:0
@@ -286,19 +504,61 @@ msgid "Medium-sized image"
 msgstr "Image de taille moyenne"
 
 #. module: mro_extended
+#: model:ir.model,name:mro_extended.model_res_partner_assets
+msgid "Partner Assets"
+msgstr "Équipements"
+
+#. module: mro_extended
+#: field:mro.order,place:0
+msgid "Place"
+msgstr "Lieu"
+
+#. module: mro_extended
 #: field:account.analytic.assets,date_next:0
 msgid "Next maintenance date"
 msgstr "Date de prochaine maintenance"
 
 #. module: mro_extended
+#: view:refuse.amendment:0
+#: view:sale.make.contract:0
 #: view:sale.make.mro:0
 msgid "or"
 msgstr "ou"
 
 #. module: mro_extended
+#: field:account.analytic.account,week_list:0
+msgid "Weekday"
+msgstr "Jours de la semaine"
+
+#. module: mro_extended
 #: help:mro.tools,image_small:0
 msgid "Small-sized image of the tool. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
 msgstr "L'image de petite taille de l'outil. Il est automatiquement redimensionnée comme une image 64x64px, avec un rapport d'aspect préservé. Utilisez ce champ où une petite image est nécessaire."
+
+#. module: mro_extended
+#: field:mro.tools,date_validity_begin:0
+msgid "Validity date begin"
+msgstr "Date de début de validité"
+
+#. module: mro_extended
+#: field:account.analytic.account,fr:0
+msgid "Fri"
+msgstr "Ven"
+
+#. module: mro_extended
+#: field:account.analytic.account,rrule:0
+msgid "Recurrent Rule"
+msgstr "Règle de récurrence"
+
+#. module: mro_extended
+#: sql_constraint:product.serial:0
+msgid "Le numéro de série doit être unique"
+msgstr "Le numéro de série doit être unique"
+
+#. module: mro_extended
+#: selection:account.analytic.amendments,state:0
+msgid "Draft"
+msgstr "Brouillon"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
@@ -308,9 +568,20 @@ msgid "Maintenance"
 msgstr "Maintenance"
 
 #. module: mro_extended
+#: field:account.analytic.account,date_refused:0
+#: field:refuse.amendment,date_refused:0
+msgid "Refused Date"
+msgstr "Date de résiliation"
+
+#. module: mro_extended
 #: field:account.analytic.assets,date_previous:0
 msgid "Previous maintenance date"
 msgstr "Date de dernière maintenance"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "The"
+msgstr "Le"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
@@ -318,14 +589,45 @@ msgid "Pending"
 msgstr "En suspend"
 
 #. module: mro_extended
-#: field:mro.order,order_id:0
-msgid "Order"
-msgstr "Intervention"
+#: field:account.analytic.amendments,state:0
+msgid "Status"
+msgstr "Statut"
 
 #. module: mro_extended
-#: view:account.analytic.account:0
-msgid "Calculate dates"
-msgstr "Calcul des dates"
+#: field:account.analytic.account,count:0
+msgid "Repeat"
+msgstr "Répète"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "August"
+msgstr "Août"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Monday"
+msgstr "Lundi"
+
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Third"
+msgstr "Troisième"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "June"
+msgstr "Juin"
+
+#. module: mro_extended
+#: selection:account.analytic.account,end_type:0
+msgid "Number of repetitions"
+msgstr "Nombre de répétions"
+
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:81
+#, python-format
+msgid "%s [Subcontract: %s]"
+msgstr "%s [Sous-traitant: %s]"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
@@ -347,13 +649,33 @@ msgid "Is a Follower"
 msgstr "Est un abonné"
 
 #. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "November"
+msgstr "Novembre"
+
+#. module: mro_extended
 #: field:mro.tools,manufacturer:0
 msgid "Manufacturer"
 msgstr "Fabricant"
 
 #. module: mro_extended
-#: code:addons/mro_extended/wizard/sale_make_mro.py:136
-#: code:addons/mro_extended/wizard/sale_make_mro.py:147
+#: view:account.analytic.account:0
+msgid "Analytic Accounts"
+msgstr "Comptes analytiques"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "October"
+msgstr "Octobre"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "January"
+msgstr "Janvier"
+
+#. module: mro_extended
+#: code:addons/mro_extended/wizard/sale_make_mro.py:134
+#: code:addons/mro_extended/wizard/sale_make_mro.py:145
 #: model:ir.model,name:mro_extended.model_mro_order
 #, python-format
 msgid "Maintenance Order"
@@ -365,10 +687,13 @@ msgid "Planned Parts"
 msgstr "Pièces planifiées"
 
 #. module: mro_extended
+#: field:account.analytic.amendments,contract_id:0
 #: field:account.analytic.assets,contract_id:0
 #: field:account.analytic.services,contract_id:0
+#: code:addons/mro_extended/wizard/refuse_amendment.py:63
 #: field:mro.order,contract_id:0
 #: field:sale.make.mro,contract_id:0
+#, python-format
 msgid "Contract"
 msgstr "Contrat"
 
@@ -378,34 +703,24 @@ msgid "Summary"
 msgstr "Résumé"
 
 #. module: mro_extended
+#: field:account.analytic.amendments,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: mro_extended
 #: field:mro.order,partner_id:0
 msgid "Client"
 msgstr "Client"
 
 #. module: mro_extended
-#: view:mro.tools:0
-msgid "Model:"
-msgstr "Modèle:"
+#: view:account.analytic.account:0
+msgid "Amendments not accepted"
+msgstr "Avenants en attente"
 
 #. module: mro_extended
-#: view:mro.order:0
-msgid "Done"
-msgstr "Terminée"
-
-#. module: mro_extended
-#: view:mro.order:0
-msgid "All Day?"
-msgstr "Journée entière?"
-
-#. module: mro_extended
-#: view:sale.make.mro:0
-msgid "Cancel"
-msgstr "Annuler"
-
-#. module: mro_extended
-#: view:sale.order:0
-msgid "Add Maintenance Order"
-msgstr "Ajouter une intervention"
+#: selection:account.analytic.account,end_type:0
+msgid "End date"
+msgstr "Date de fin"
 
 #. module: mro_extended
 #: help:product.product,property_stock_asset:0
@@ -413,9 +728,61 @@ msgid "This location will be used as the destination location for installed part
 msgstr "Cet emplacement sera utilisé comme emplacement de destination pour les pièces installées au cours de la vie de l'actif."
 
 #. module: mro_extended
-#: field:mro.tools,date_validity_begin:0
-msgid "Validity date begin"
-msgstr "Date de début de validité"
+#: field:account.analytic.account,end_type:0
+msgid "Recurrence Termination"
+msgstr "Fin de récurrence"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Update maintenance orders"
+msgstr "Mise à jour des interventions"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Re-open project"
+msgstr "Rouvrir le projet"
+
+#. module: mro_extended
+#: selection:account.analytic.account,select1:0
+msgid "Day of month"
+msgstr "Jour du mois"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Done"
+msgstr "Terminée"
+
+#. module: mro_extended
+#: help:account.analytic.account,interval:0
+msgid "Repeat every (Days/Week/Month/Year)"
+msgstr "Répéter chaque (Jour/Semaine/Mois/Année)"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "All Day?"
+msgstr "Journée entière?"
+
+#. module: mro_extended
+#: view:refuse.amendment:0
+#: view:sale.make.contract:0
+#: view:sale.make.mro:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.action_sale_make_contract
+msgid "Make Contract"
+msgstr "Créer un contrat"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Open"
+msgstr "Ouverte"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Tuesday"
+msgstr "Mardi"
 
 #. module: mro_extended
 #: help:mro.tools,image:0
@@ -423,14 +790,61 @@ msgid "This field holds the image used as image for the tool, limited to 1024x10
 msgstr "Ce champ contient l'image utilisée comme image pour l'outil, limité à 1024x1024px."
 
 #. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Select Weekdays"
+msgstr "Sélectionner les jours de la semaine"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_make_mro
+msgid "Make mro orders"
+msgstr "Créer une intervention"
+
+#. module: mro_extended
+#: field:account.analytic.account,recurrency:0
+#: help:account.analytic.account,recurrency:0
 #: field:account.analytic.account,rrule_type:0
 msgid "Recurrency"
 msgstr "Récurrence"
 
 #. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Thursday"
+msgstr "Jeudi"
+
+#. module: mro_extended
+#: field:account.analytic.account,exrule:0
+msgid "Exception Rule"
+msgstr "Règle d'exception"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_make_mro_assets
+msgid "Sale Make MRO Order Assets"
+msgstr "Sale Make MRO Order Assets"
+
+#. module: mro_extended
 #: view:mro.order:0
 msgid "Parts"
 msgstr "Pièces détachées"
+
+#. module: mro_extended
+#: view:refuse.amendment:0
+msgid "_Confirm"
+msgstr "_Confirmer"
+
+#. module: mro_extended
+#: help:account.analytic.account,exdate:0
+msgid "This property         defines the list of date/time exceptions for a recurring calendar component."
+msgstr "This property         defines the list of date/time exceptions for a recurring calendar component."
+
+#. module: mro_extended
+#: field:mro.tools,serial:0
+msgid "Serial no."
+msgstr "N° de série"
+
+#. module: mro_extended
+#: view:refuse.amendment:0
+msgid "Refuse the amendment will terminate the contract. Are you sure?"
+msgstr "Refuser l'avenant résiliera le contrat. Continuer?"
 
 #. module: mro_extended
 #: selection:account.analytic.account,rrule_type:0
@@ -443,11 +857,18 @@ msgid "Product"
 msgstr "Article"
 
 #. module: mro_extended
+#: field:account.analytic.amendments,name:0
 #: field:account.analytic.assets,name:0
 #: field:account.analytic.services,name:0
+#: field:sale.make.contract,description:0
 #: field:sale.make.mro,description:0
 msgid "Description"
 msgstr "Description"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "May"
+msgstr "Mai"
 
 #. module: mro_extended
 #: field:account.analytic.services,price:0
@@ -455,10 +876,20 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: mro_extended
-#: field:account.analytic.services,service_id:0
-#: field:product.template,contract:0
-msgid "Contract service"
-msgstr "Prestation"
+#: field:mro.order,subcontractor_id:0
+msgid "Subcontractor"
+msgstr "Sous-traitant"
+
+#. module: mro_extended
+#: help:account.analytic.account,exrule:0
+msgid "Defines a         rule or repeating pattern of time to exclude from the recurring rule."
+msgstr "Defines a         rule or repeating pattern of time to exclude from the recurring rule."
+
+#. module: mro_extended
+#: code:addons/mro_extended/wizard/sale_make_contract.py:118
+#, python-format
+msgid "<em>%s</em> has been <b>created</b>."
+msgstr "<em>%s</em> a été <b>créé</b>."
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -466,6 +897,19 @@ msgid "Assets involved"
 msgstr "Équipements concernés"
 
 #. module: mro_extended
+#: view:account.analytic.account:0
+msgid "{'required': [('type','=','contract')]}"
+msgstr "{'required': [('type','=','contract')]}"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.action_refuse_amendment
+#: model:ir.model,name:mro_extended.model_refuse_amendment
+#: view:refuse.amendment:0
+msgid "Refuse Amendment"
+msgstr "Refuser l'avenant"
+
+#. module: mro_extended
+#: field:sale.make.contract,partner_id:0
 #: field:sale.make.mro,partner_id:0
 msgid "Customer"
 msgstr "Client"
@@ -476,14 +920,55 @@ msgid "End Date"
 msgstr "Date de fin"
 
 #. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "February"
+msgstr "Février"
+
+#. module: mro_extended
+#: field:account.analytic.account,exdate:0
+msgid "Exception Date/Times"
+msgstr "Exception Date/Times"
+
+#. module: mro_extended
 #: field:mro.tools,message_ids:0
 msgid "Messages"
 msgstr "Messages"
 
 #. module: mro_extended
-#: model:ir.model,name:mro_extended.model_product_template
-msgid "Product Template"
-msgstr "Modèle d'article"
+#: field:account.analytic.account,th:0
+msgid "Thu"
+msgstr "Jeu"
+
+#. module: mro_extended
+#: field:account.analytic.account,maintenance_date_end:0
+msgid "Maintenance date end"
+msgstr "Date de fin"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+msgid "April"
+msgstr "Avril"
+
+#. module: mro_extended
+#: field:mro.order,subcontract:0
+msgid "Subcontract?"
+msgstr "Sous-traitance?"
+
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:89
+#, python-format
+msgid "Interval cannot be negative."
+msgstr "L'interval ne peut être négatif."
+
+#. module: mro_extended
+#: field:account.analytic.account,byday:0
+msgid "By day"
+msgstr "Par jour"
 
 #. module: mro_extended
 #: field:mro.tools,model:0
@@ -506,9 +991,25 @@ msgid "Maintenance date start"
 msgstr "Date de début"
 
 #. module: mro_extended
+#: view:product.product:0
+msgid "Serial numbers"
+msgstr "Numéros de série"
+
+#. module: mro_extended
 #: help:mro.tools,image_medium:0
 msgid "Medium-sized image of the tool. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
 msgstr "Image de taille moyenne de l'outil. Il est automatiquement redimensionnée comme une image 128x128px, avec un rapport d'aspect préservé, seulement lorsque l'image est supérieure à un de ces formats. Utilisez ce domaine en vue de formulaire ou certaines vues kanban."
+
+#. module: mro_extended
+#: selection:mro.order,place:0
+msgid "Worskhop"
+msgstr "Atelier"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: selection:account.analytic.amendments,state:0
+msgid "Refused"
+msgstr "Refusé"
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -516,13 +1017,35 @@ msgid "Meeting fixed"
 msgstr "RDV fixé"
 
 #. module: mro_extended
-#: code:addons/mro_extended/wizard/sale_make_mro.py:124
+#: code:addons/mro_extended/wizard/sale_make_mro.py:122
 #, python-format
 msgid "Maintenance Order <em>%s</em> has been <b>created</b>."
 msgstr "L'intervention <em>%s</em> a été <b>créée</b>."
 
 #. module: mro_extended
+#: selection:mro.order,place:0
+msgid "Site"
+msgstr "Sur site"
+
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Second"
+msgstr "Second"
+
+#. module: mro_extended
+#: field:account.analytic.amendments,data:0
+#: field:mro.tools,data:0
+msgid "File"
+msgstr "Fichier"
+
+#. module: mro_extended
+#: field:mro.tools,image_small:0
+msgid "Small-sized image"
+msgstr "Image de petite taille"
+
+#. module: mro_extended
 #: field:mro.order,duration:0
+#: field:sale.make.contract,duration:0
 #: field:sale.make.mro,duration:0
 msgid "Duration"
 msgstr "Durée"
@@ -536,4 +1059,14 @@ msgstr "Durée"
 #: view:mro.tools:0
 msgid "Tools"
 msgstr "Outils"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Saturday"
+msgstr "Samedi"
+
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Fifth"
+msgstr "Cinquième"
 

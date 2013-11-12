@@ -62,6 +62,28 @@ class mro_order(osv.osv):
         partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
         return {'value': {'technician': partner.technician.id}}
         
+    def onchange_technician(self, cr, uid, ids, technician, partner_id):
+        """
+        onchange handler of technician.
+        """
+        value={}
+        if partner_id:
+            partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
+            if technician and not partner.technician :
+                self.pool.get('res.partner').write(cr,uid,partner.id,{'technician':technician})
+        return value
+        
+    def onchange_subcontractor(self, cr, uid, ids, description, subcontract, subcontractor_id):
+        value={}
+        print description.split('[Subcontract'),description.split('Subcontract]')
+        if subcontract and subcontractor_id:
+            subcontractor = self.pool.get('res.partner').browse(cr, uid, subcontractor_id)
+            value['description']=_('%s [Subcontract: %s]') % (description.split(' [Subcontract') and description.split(' [Subcontract')[0] or '' +description.split('Subcontract]') and description.split('Subcontract]')[1] or '',subcontractor.name)
+        else:
+            value['description']='%s' % (description.split(' [Subcontract') and description.split(' [Subcontract')[0] or '' +description.split('Subcontract]') and description.split('Subcontract]')[1] or '')
+        print 'value',value
+        return {'value':value}
+        
     def onchange_dates(self, cr, uid, ids, start_date, duration=False, end_date=False, allday=False, date_type=False, context=None):
         """Returns duration and/or end date based on values passed
         @param self: The object pointer
@@ -125,9 +147,12 @@ class mro_order(osv.osv):
         'asset_id': fields.many2one('asset.asset', 'Asset', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         'asset_ids': fields.many2many('product.product', string='Assets', required=True),
         'partner_id': fields.many2one('res.partner','Client'),
+        'subcontract': fields.boolean('Subcontract?'),
+        'subcontractor_id': fields.many2one('res.partner','Subcontractor'),
         'contract_id': fields.many2one('account.analytic.account','Contract'),
-        'technician': fields.many2one('hr.employee','Technician'),
+        'technician': fields.many2one('hr.employee','Technician',required=True),
         'order_id': fields.many2one('sale.order','Order'),
+        'place': fields.selection([('site','Site'),('workshop','Worskhop')],'Place'),
         'state': fields.selection(STATE_SELECTION, 'Status', readonly=True,
             help="When the maintenance order is created the status is set to 'Draft'.\n\
             If the order is confirmed the status is set to 'Waiting Parts'.\n\
@@ -176,6 +201,8 @@ class mro_order(osv.osv):
         })
         order.write({'parts_move_lines': [(4, move_id)]}, context=context)
         return move_id
+        
+
     
     
 class mro_tools(osv.osv):

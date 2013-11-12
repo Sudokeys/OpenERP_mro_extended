@@ -41,6 +41,7 @@ Required modules:
         'security/ir.model.access.csv',
         'wizard/sale_make_mro_view.xml',
         'wizard/sale_make_contract_view.xml',
+        'wizard/refuse_amendment_view.xml',
         'mro_extended_view.xml',
         'mro_extended_workflow.xml',
         'res_partner_view.xml',

@@ -21,13 +21,20 @@
                         <button name="set_open" string="Open" type="object" states="draft"/>
                         <button name="set_cancel" string="Terminate" type="object" states="open"/>
                         <button name="set_close" string="Contract Finished" attrs="{'invisible': [('state','!=','open')]}" type="object"  />
-                        <button name="get_recurrency" string="Calculate maintenance dates" type="object" states="open"  groups="mro.group_mro_user"/>
+                        <button name="get_recurrency" string="Update maintenance orders" confirm="The maintenance orders 'Draft' will be replaced." type="object" states="open"  groups="mro.group_mro_user"/>
+                        <label for="date_refused" class="oe_line" states="cancelled"/>
+                        <div>
+                            <field name="date_refused" states="cancelled" class="oe_line"/>
+                        </div>
                         <field name="state" readonly="1" widget="statusbar"
                             statusbar_visible="draft,open,close" statusbar_colors='{"cancelled":"red", "open":"blue"}'/>
                     </header>
                 </header>
                 <field name="date" position="replace">
                     <field name="date" on_change="on_change_end_date(date)" class="oe_inline"/>
+                </field>
+                <field name="partner_id" position="attributes">
+                    <attribute name="attrs">{'required': [('type','=','contract')]}</attribute>
                 </field>
                 <group name="contract" position="after">
                     <group string="Maintenance" name="maintenance" groups="mro.group_mro_user">
@@ -80,7 +87,7 @@
                 </group>
                 <notebook position="inside">
                     <page string="Contract amendments" name="amendment_page" attrs="{'invisible':[('type','not in',['contract'])]}">
-                        <field name="amendment"/>
+                        <field name="amendment" invisible="1"/>
                         <field name="amendment_ids">
                             <tree editable="top">
                                 <field name="name"/>
@@ -89,6 +96,7 @@
                                 <field name="state"/>
                                 <button name="button_draft" string="Back to draft" type="object" icon="gtk-cancel" states="accepted" />
                                 <button name="button_accepted" string="Accepted" type="object" icon="gtk-apply" states="draft" />
+                                <button name="%(action_refuse_amendment)d" string="Refused" type="action" icon="gtk-cancel" states="draft" />
                             </tree>
                         </field>
                     </page>
@@ -106,17 +114,68 @@
                             <tree editable="top">
                                 <field name="asset_id" on_change="onchange_asset(asset_id)" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
                                 <field name="name"/>
+                                <field name="serial_id" domain="[('parent_id','=',asset_id)]"/>
                                 <field name="date_previous"/>
                                 <field name="date_next"/>
                             </tree>
                         </field>
                     </page>
                     <page string="Maintenance Orders" name="mro_order_page" groups="mro.group_mro_user" attrs="{'invisible':[('type','not in',['contract'])]}">
-                        <field name="mro_order_ids"/>
+                        <field name="mro_order_ids">
+                            <tree>
+                                <field name="message_unread" invisible="1"/>
+                                <field name="name"/>
+                                <field name="date_execution" string="Order Date" widget="date"/>
+                                <field name="maintenance_type"/>
+                                <field name="origin"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
                     </page>
                 </notebook>
             </field>
         </record>
+        
+        <record id="view_account_analytic_account_tree_c2c_3" model="ir.ui.view">
+            <field name="name">account.analytic.account.list.contract</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account_analytic_analysis.view_account_analytic_account_tree_c2c_3"/>
+            <field name="arch" type="xml">
+                <tree position="replace">
+                <tree toolbar="1" colors="red:amendment==True;grey:state in ('cancelled','close');blue:type=='view'" string="Analytic Accounts">
+                    <field name="complete_name"/>
+                    <field name="partner_id"/>
+                    <field name="code"/>
+                    <field name="last_invoice_date"/>
+                    <field name="toinvoice_total"/>
+                    <field name="remaining_hours"/>
+                    <field name="pricelist_id" invisible="1"/>
+                    <field name="date_start"/>
+                    <field name="date"/>
+                    <field name="user_id" invisible="1"/>
+                    <field name="manager_id"/>
+                    <field name="parent_id" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="template_id" invisible="1"/>
+                    <field name="amendment" invisible="1"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+                </tree>
+            </field>
+        </record>
+<!--
+        <record id="view_account_analytic_account_tree_c2c_3" model="ir.ui.view">
+            <field name="name">account.analytic.account.list.contract</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account_analytic_analysis.view_account_analytic_account_tree_c2c_3"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="colors">"red:state=='pending';grey:state in ('cancelled','close');blue:type=='view'"</attribute>
+                </tree>
+            </field>
+        </record>
+-->
         
         <record id="view_account_analytic_account_overdue_search" model="ir.ui.view">
             <field name="name">account.analytic.account.search</field>

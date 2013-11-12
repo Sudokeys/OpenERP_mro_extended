@@ -91,7 +91,6 @@ class sale_make_contract(osv.osv_memory):
                     'type': 'contract',
                     'partner_id': make.partner_id.id,
                     'manager_id': make.partner_id.user_id and make.partner_id.user_id.id or False,
-                    #~ 'duration': make.duration,
                 }
                 
                 new_id = contract_obj.create(cr, uid, vals, context=context)

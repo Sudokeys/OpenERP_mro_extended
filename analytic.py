@@ -143,6 +143,7 @@ class account_analytic_account(osv.osv):
         'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Contract services'),
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
         'date_today': fields.date('date_today'),
+        'date_refused': fields.date('Refused Date'),
         'maintenance_date_start': fields.datetime('Maintenance date start'),
         'maintenance_date_end': fields.datetime('Maintenance date end'),
         'exdate': fields.text('Exception Date/Times', help="This property \
@@ -232,6 +233,10 @@ class account_analytic_account(osv.osv):
         res={}
         contracts=self.browse(cr,uid,ids,context)
         #~ for data in self.read(cr, uid, ids, ['rrule', 'exdate', 'exrule', 'date_start'], context=context):
+        for c in contracts:
+            if c.state=='draft':
+                mro_obj.unlink(cr,uid,[x.id for x in c.mro_order_ids],context=context)
+            
         for data in contracts:
             if not data.rrule:
                 result.append(data.id)
@@ -260,7 +265,6 @@ class account_analytic_account(osv.osv):
             new_rrule_str = ';'.join(new_rrule_str)
             rdates = get_recurrent_dates(str(new_rrule_str), exdate, event_date, data.exrule)
             for r_date in rdates:
-                print 'r_date.strftime("%Y-%m-%d %H:%M:%S")',r_date.strftime("%Y-%m-%d %H:%M:%S")
                 vals = {
                     #~ 'origin': sale.name,
                     #~ 'order_id': sale.id,
@@ -275,7 +279,9 @@ class account_analytic_account(osv.osv):
                     'date_execution': r_date.strftime("%Y-%m-%d %H:%M:%S"),
                     #~ 'duration': make.duration,
                 }
-                mro_obj.create(cr, uid, vals, context=context)
+                mro_id=mro_obj.create(cr, uid, vals, context=context)
+                mro_read=mro_obj.read(cr,uid,mro_id,['name'],context=context)
+                mro_obj.write(cr,uid,mro_id,{'description': '%s - %s' % (data.name or '',mro_read['name'])},context=context)
         return res
     
     def compute_rule_string(self, data):
@@ -396,6 +402,7 @@ class account_analytic_assets(osv.osv):
         'date_next': fields.datetime('Next maintenance date',required=True),
         'asset_id': fields.many2one('product.product', 'Asset', required=True),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
+        'serial_id': fields.many2one('product.serial', 'Serial #'),
     }
     
     _defaults = {
@@ -405,8 +412,8 @@ class account_analytic_assets(osv.osv):
         context = context or {}
         result = {}
         product_obj = self.pool.get('product.product')
-        product_obj = product_obj.browse(cr, uid, product, context=context)
-        result['name'] = self.pool.get('product.product').name_get(cr, uid, [product_obj.id], context=context)[0][1]
+        prod = product_obj.browse(cr, uid, product, context=context)
+        result['name'] = self.pool.get('product.product').name_get(cr, uid, [prod.id], context=context)[0][1]
         return {'value': result}
         
     
@@ -438,7 +445,7 @@ class account_analytic_amendments(osv.osv):
         'name': fields.char('Description', size=128),
         'date': fields.date('Date'),
         'data': fields.binary('File'),
-        'state': fields.selection([('draft','Draft'),('accepted','Accepted')],'Status'),
+        'state': fields.selection([('draft','Draft'),('accepted','Accepted'),('refused','Refused')],'Status'),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
     }
     
@@ -452,4 +459,7 @@ class account_analytic_amendments(osv.osv):
     def button_accepted(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'accepted'}, context=context)
         
+    #~ def button_refused(self, cr, uid, ids, context=None):
+        #~ return self.write(cr, uid, ids, {'state': 'refused'}, context=context)
+        #~ 
     

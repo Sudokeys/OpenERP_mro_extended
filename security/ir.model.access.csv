@@ -4,3 +4,4 @@ access_account_analytic_assets,access_account_analytic_assets,model_account_anal
 access_account_analytic_services,access_account_analytic_services,model_account_analytic_services,,1,1,1,1
 access_account_analytic_amendments,access_account_analytic_amendments,model_account_analytic_amendments,,1,1,1,1
 access_mro_order_salesman,mro_order salesman,mro.model_mro_order,base.group_sale_salesman,1,1,1,0
+access_product_serial,access_product_serial,model_product_serial,,1,1,1,1

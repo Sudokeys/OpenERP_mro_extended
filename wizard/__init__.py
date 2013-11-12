@@ -21,5 +21,6 @@
 
 import sale_make_mro
 import sale_make_contract
+import refuse_amendment
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

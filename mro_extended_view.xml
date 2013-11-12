@@ -24,7 +24,9 @@
                         <field name="description"/>
                     </group>
                     <group>
-                        <field name="technician"/>
+                        <field name="technician" on_change="onchange_technician(technician,partner_id)"/>
+                        <field name="subcontract" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)"/>
+                        <field name="subcontractor_id" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)" attrs="{'invisible':[('subcontract','=',False)]}"/>
                         <field name="maintenance_type"/>
                         <field name="origin"/>
                         <field name="task_id" invisible="True"/>
@@ -44,6 +46,7 @@
                         <field name="date_deadline" invisible="True"/>
                     </group>
                     <group>
+                        <field name="place"/>
                         <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                     </group>
                 </group>
@@ -108,6 +111,7 @@
             <field name="arch" type="xml">
                 <field name="asset_id" position="replace">
                     <field name="asset_id" invisible="1"/>
+                    <field name="place"/>
                 </field>
             </field>
         </record>

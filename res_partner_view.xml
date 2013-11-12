@@ -11,10 +11,10 @@
                     <page string="Maintenance" groups="mro.group_mro_user">
                         <group>
                             <field name="technician"/>
-                            <field name="asset_ids" nolabel="0" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]">
-                                <tree>
+                            <field name="asset_ids" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]" nolabel="0" >
+                                <tree editable="top">
                                     <field name="default_code"/>
-                                    <field name="name"/>
+                                    <field name="name" />
                                 </tree>
                             </field>
                         </group>
