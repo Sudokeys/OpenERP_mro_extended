@@ -41,7 +41,7 @@ class product_product(osv.osv):
           string="Asset Location",
           view_load=True,
           help="This location will be used as the destination location for installed parts during asset life."),
-        'childs_serial': fields.one2many('product.serial','parent_id', 'Serials #'),
+        'childs_serial': fields.one2many('product.serial','product_id', 'Serials #'),
     }
     
     def copy(self, cr, uid, id, default=None, context=None):
@@ -67,9 +67,7 @@ class product_serial(osv.osv):
 
     _columns = {
         'name': fields.char('Serial #', size=255),
-        'parent_id': fields.many2one('product.product', 'Parent product'),
-        #~ 'picking_in_id': fields.many2one('stock.picking', 'Réception associée'),
-        #~ 'picking_out_id': fields.many2one('stock.picking', 'Livraison associée'),
+        'product_id': fields.many2one('product.product', 'Parent product', select=True),
     }
 
     _defaults = {
@@ -77,6 +75,8 @@ class product_serial(osv.osv):
     
     _sql_constraints = [
                      ('name_unique', 
-                      'unique(name)',
-                      u'Le numéro de série doit être unique')
+                      'unique(name,product_id)',
+                      'Serial number must be unique per product')
     ]
+    
+

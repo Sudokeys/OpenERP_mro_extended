@@ -53,7 +53,6 @@ class sale_make_contract(osv.osv_memory):
                 return res['partner_id'][0]
             if dtype=='name':
                 partner = self.pool.get('res.partner').browse(cr,uid,res['partner_id'][0],context)
-                print partner
                 res = _('Contract: ') + partner.name
                 return res
         return _getPartner
@@ -99,10 +98,10 @@ class sale_make_contract(osv.osv_memory):
                     vals = {
                         'name': line.name,
                         'asset_id': line.id,
-                        'date_next': time.strftime('%Y-%m-%d'),
                         'contract_id': new_id,
+                        'partner_id': partner.id,
                     }
-                    self.pool.get('account.analytic.assets').create(cr,uid,vals,context=context)
+                    self.pool.get('generic.assets').create(cr,uid,vals,context=context)
                     
                 for line in make.service_ids:
                     vals = {

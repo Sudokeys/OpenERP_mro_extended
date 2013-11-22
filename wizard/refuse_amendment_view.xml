@@ -7,15 +7,6 @@
           <field name="model">refuse.amendment</field>
           <field name="arch" type="xml">
             <form string="Refuse Amendment"  version="7.0">
-                    
-<!--
-                    <field name="partner_id" required="1"/>
-                    <field name="description"/>
-                    <field name="asset_ids" widget="many2many_tags" domain="[('mro_type','=','asset')]"/>
-                    <field name="maintenance_type"/>
-                    <field name="date_planned"/>
-                    <field name="duration"/>
--->
                     <div><label string="Refuse the amendment will terminate the contract. Are you sure?" /></div>
                     <group>
                         <field name="date_refused"/>

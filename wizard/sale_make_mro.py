@@ -93,7 +93,7 @@ class sale_make_mro(osv.osv_memory):
                     'partner_id': partner.id,
                     'description': make.description,
                     #~ 'asset_id': make.asset_id.id,
-                    'asset_ids': [(6,0,[x.id for x in make.asset_ids])],
+                    #~ 'asset_ids': [(6,0,[x.id for x in make.asset_ids])],
                     'maintenance_type': make.maintenance_type,
                     'date_planned': make.date_planned,
                     'date_scheduled': make.date_planned,
@@ -103,7 +103,13 @@ class sale_make_mro(osv.osv_memory):
                 if partner.id:
                     vals['technician'] = partner.technician and partner.technician.id or False
                 new_id = mro_obj.create(cr, uid, vals, context=context)
-                
+                for line in make.asset_ids:
+                    vals = {
+                        'name': line.id,
+                        'mro_id': new_id,
+                        'partner_id': partner.id
+                    }
+                    self.pool.get('generic.assets').create(cr,uid,vals,context=context)
                 for line in sale.order_line:
                     if line.product_id.mro_type=='part':
                         vals = {

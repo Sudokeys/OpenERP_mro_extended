@@ -46,7 +46,6 @@ class refuse_amendment(osv.osv_memory):
         amendment_obj = self.pool.get('account.analytic.amendments')
         data = context and context.get('active_ids', []) or []
         wiz = self.browse(cr,uid,ids,context=context)
-        print 'data',data
         #~ for contract in contract_obj.browse(cr, uid, data, context=context):
         if data:
             amendment_obj.write(cr,uid,data,{'state':'refused'},context=context)

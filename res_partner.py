@@ -28,17 +28,6 @@ class res_partner(osv.osv):
     
     _columns = {
         'technician': fields.many2one('hr.employee','Technician'),
-        'asset_ids': fields.many2many('product.product', string='Assets'),
-        #~ 'asset_ids': fields.one2many('res.partner.assets','partner_id', string='Assets'),
-    }
-    
-class res_partner_assets(osv.osv):
-    _name = 'res.partner.assets'
-    _description = 'Partner Assets'
-    
-    _columns = {
-        'name': fields.many2one('product.product', 'Asset', required=True),
-        'default_code': fields.related('name','default_code', string='Reference',type='char', readonly=True),
-        'partner_id': fields.many2one('res.partner', 'Partner', select=True),
-        'serial_id': fields.many2one('product.serial', 'Serial #', domain="[('parent_id','=',name)]"),
+        #~ 'asset_ids': fields.many2many('product.product', string='Assets'),
+        'asset_ids': fields.one2many('generic.assets','partner_id', string='Assets'),
     }

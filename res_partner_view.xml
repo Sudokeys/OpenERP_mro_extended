@@ -11,15 +11,34 @@
                     <page string="Maintenance" groups="mro.group_mro_user">
                         <group>
                             <field name="technician"/>
-                            <field name="asset_ids" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]" nolabel="0" >
+                            <field name="asset_ids" readonly="1" nolabel="0" >
                                 <tree editable="top">
                                     <field name="default_code"/>
-                                    <field name="name" />
+                                    <field name="asset_id"/>
+                                    <field name="serial_id"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
                                 </tree>
                             </field>
                         </group>
                     </page>
                 </notebook>
+            </field>
+        </record>
+        
+        <record id="view_res_partner_filter" model="ir.ui.view">
+            <field name="name">res.partner.select</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field eval="50" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="category_id" position="after">
+                    <field name="asset_ids" string="Asset Serial #" filter_domain="[('asset_ids.serial_id','ilike', self)]"/>
+                </field>
+                <field name="name" position="replace">
+                    <field name="name"
+                           filter_domain="['|','|',('name','ilike',self),('parent_id','ilike',self),('ref','ilike',self)]"/>
+                </field>
             </field>
         </record>
     

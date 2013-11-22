@@ -75,13 +75,11 @@ class mro_order(osv.osv):
         
     def onchange_subcontractor(self, cr, uid, ids, description, subcontract, subcontractor_id):
         value={}
-        print description.split('[Subcontract'),description.split('Subcontract]')
         if subcontract and subcontractor_id:
             subcontractor = self.pool.get('res.partner').browse(cr, uid, subcontractor_id)
             value['description']=_('%s [Subcontract: %s]') % (description.split(' [Subcontract') and description.split(' [Subcontract')[0] or '' +description.split('Subcontract]') and description.split('Subcontract]')[1] or '',subcontractor.name)
         else:
             value['description']='%s' % (description.split(' [Subcontract') and description.split(' [Subcontract')[0] or '' +description.split('Subcontract]') and description.split('Subcontract]')[1] or '')
-        print 'value',value
         return {'value':value}
         
     def onchange_dates(self, cr, uid, ids, start_date, duration=False, end_date=False, allday=False, date_type=False, context=None):
@@ -145,7 +143,8 @@ class mro_order(osv.osv):
     
     _columns = {
         'asset_id': fields.many2one('asset.asset', 'Asset', required=False, readonly=True, states={'draft': [('readonly', False)]}),
-        'asset_ids': fields.many2many('product.product', string='Assets', required=True),
+        #~ 'asset_ids': fields.many2many('product.product', string='Assets', required=True),
+        'asset_ids': fields.one2many('generic.assets', 'mro_id', string='Assets', required=True),
         'partner_id': fields.many2one('res.partner','Client'),
         'subcontract': fields.boolean('Subcontract?'),
         'subcontractor_id': fields.many2one('res.partner','Subcontractor'),
@@ -188,6 +187,10 @@ class mro_order(osv.osv):
         # Internal shipment is created for Stockable and Consumer Products
         if parts_line.parts_id.type not in ('product', 'consu'):
             return False
+        if not order.asset_ids[0].name.property_stock_asset:
+            raise osv.except_osv(
+                _('Cannot consume parts!'),
+                _('You must first assign a location for the parts in the asset.'))
         move_id = stock_move.create(cr, uid, {
             'name': order.name,
             'date': order.date_planned,
@@ -195,7 +198,7 @@ class mro_order(osv.osv):
             'product_qty': parts_line.parts_qty,
             'product_uom': parts_line.parts_uom.id,
             'location_id': order.parts_location_id.id,
-            'location_dest_id': order.asset_ids[0].property_stock_asset.id,
+            'location_dest_id': order.asset_ids[0].name.property_stock_asset.id,
             'state': 'waiting',
             'company_id': order.company_id.id,
         })
@@ -256,3 +259,5 @@ class mro_tools(osv.osv):
     _defaults = {
         'active': True,
     }
+    
+

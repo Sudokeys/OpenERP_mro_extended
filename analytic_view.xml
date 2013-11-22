@@ -110,18 +110,21 @@
                         </field>
                     </page>
                     <page string="Assets" name="asset_page" attrs="{'invisible':[('type','not in',['contract'])]}">
-                        <field name="asset_ids">
+                        <field name="asset_ids" context="{'default_partner_id':partner_id,'default_date_start':date_start,'default_date_end':date}">
                             <tree editable="top">
                                 <field name="asset_id" on_change="onchange_asset(asset_id)" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
                                 <field name="name"/>
-                                <field name="serial_id" domain="[('parent_id','=',asset_id)]"/>
+                                <field name="serial_id" context="{'default_product_id':asset_id}" domain="[('product_id','=',asset_id)]"/>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
                                 <field name="date_previous"/>
                                 <field name="date_next"/>
+                                <field name="partner_id" invisible="1"/>
                             </tree>
                         </field>
                     </page>
                     <page string="Maintenance Orders" name="mro_order_page" groups="mro.group_mro_user" attrs="{'invisible':[('type','not in',['contract'])]}">
-                        <field name="mro_order_ids">
+                        <field name="mro_order_ids" context="{'default_asset_ids':asset_ids,'default_partner_id':partner_id,'default_contract_id':active_id}">
                             <tree>
                                 <field name="message_unread" invisible="1"/>
                                 <field name="name"/>
@@ -183,6 +186,7 @@
             <field name="inherit_id" ref="account_analytic_analysis.view_account_analytic_account_overdue_search" />
             <field name="arch" type="xml">
                 <filter string="Contracts not assigned" position="after" >
+                    <field name="asset_ids" string="Asset Serial #" filter_domain="[('asset_ids.serial_id','ilike', self)]"/>
                     <separator/>
                     <filter string="Amendments not accepted" domain="[('amendment', '=', True)]"/>
                 </filter>

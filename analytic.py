@@ -116,13 +116,10 @@ class account_analytic_account(osv.osv):
         for id in ids:
             #read these fields as SUPERUSER because if the record is private a normal search could return False and raise an error
             data = self.read(cr, SUPERUSER_ID, id, ['amendment_ids'], context=context)
-            print 'data',data
             result[id]=False
             if data.get('amendment_ids', False):
                 for amendment in data['amendment_ids']:
-                    print 'amendment',amendment
                     amend_data = self.pool.get('account.analytic.amendments').read(cr,uid,amendment,['state'],context=context)
-                    print 'amedn_data',amend_data
                     if amend_data['state'] == 'draft':
                         result[id]=True
         return result
@@ -138,7 +135,7 @@ class account_analytic_account(osv.osv):
     
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
-        'asset_ids': fields.one2many('account.analytic.assets','contract_id','Assets'),
+        'asset_ids': fields.one2many('generic.assets','contract_id','Assets'),
         'service_ids': fields.one2many('account.analytic.services','contract_id','Contract services'),
         'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Contract services'),
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
@@ -215,10 +212,10 @@ class account_analytic_account(osv.osv):
             res['asset_ids']=[]
             for asset in partner.asset_ids:
                 if ids:
-                    exist_ids=self.pool.get('account.analytic.assets').search(cr,uid,[('asset_id','=',asset.id),('contract_id','=',ids[0])])
+                    exist_ids=self.pool.get('generic.assets').search(cr,uid,[('asset_id','=',asset.id),('contract_id','=',ids[0])])
                     if exist_ids:
-                        self.pool.get('account.analytic.assets').unlink(cr,uid,exist_ids)
-                res['asset_ids'].append(self.pool.get('account.analytic.assets').create(cr,uid,{'asset_id':asset.id}))
+                        self.pool.get('generic.assets').unlink(cr,uid,exist_ids)
+                res['asset_ids'].append(self.pool.get('generic.assets').create(cr,uid,{'asset_id':asset.id}))
         return {'value': res}
         
     def on_change_end_date(self, cr, uid, ids,date, context={}):
@@ -270,6 +267,7 @@ class account_analytic_account(osv.osv):
                     #~ 'order_id': sale.id,
                     'contract_id': data.id,
                     'partner_id': data.partner_id.id,
+                    'technician': data.partner_id.technician and data.partner_id.technician.id or False,
                     'description': '',
                     'origin': data.code,
                     'asset_ids': [(6,0,[x.asset_id.id for x in data.asset_ids])],
@@ -391,22 +389,74 @@ class account_analytic_account(osv.osv):
             data['end_type'] = 'end_date'
         return data
     
-class account_analytic_assets(osv.osv):
-    _name = 'account.analytic.assets'
-    _description = 'Contract Assets'
+class generic_assets(osv.osv):
+    _name = 'generic.assets'
+    _description = 'Generic Assets'
     
+    def _get_date(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        done=[]
+        other=[]
+        for id in ids:
+            res[id] = {'date_previous': False, 'date_next': False}
+        if not ids:
+            return res
+        assets = self.browse(cr,uid,ids,context=context)
+        for asset in assets:
+            if asset.contract_id.mro_order_ids:
+                for order in asset.contract_id.mro_order_ids:
+                    if order.state == 'done':
+                        done.append(order.date_execution)
+                    else:
+                        other.append(order.date_execution)
+                if done:
+                    res[asset.id]['date_previous'] = done[-1]
+                if other:
+                    res[asset.id]['date_next'] = other[0]
+        return res
     
     _columns = {
         'name': fields.char('Description', size=128),
-        'date_previous': fields.datetime('Previous maintenance date'),
-        'date_next': fields.datetime('Next maintenance date',required=True),
+        'date_start': fields.date('Date start'),
+        'date_end': fields.date('Date end'),
+        'date_previous': fields.function(_get_date, string='Previous maintenance date', type='datetime',multi="previous_next_date"),
+        'date_next': fields.function(_get_date, string='Next maintenance date', type='datetime',multi="previous_next_date"),
         'asset_id': fields.many2one('product.product', 'Asset', required=True),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
-        'serial_id': fields.many2one('product.serial', 'Serial #'),
+        'partner_id': fields.many2one('res.partner', 'Partner', select=True),
+        'mro_id': fields.many2one('mro.order', 'MRO Order', select=True),
+        'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
+        'default_code': fields.related('asset_id','default_code',string='Reference',type='char',readonly=True),
     }
     
     _defaults = {
     }
+    
+    _sql_constraints = [
+                     ('name_unique', 
+                      'unique(asset_id,serial_id,partner_id)',
+                      'Serial number must be unique per product and per partner')
+    ]
+    
+    def _check_date(self, cr, uid, ids, context=None):
+        for asset in self.browse(cr,uid,ids,context=context):
+            cr.execute('select id,partner_id,date_start,date_end from generic_assets \
+                        where asset_id=%s \
+                        and serial_id=%s \
+                        and (%s between date_start and date_end or %s between date_start and date_end)',(asset.asset_id.id,asset.serial_id.id,asset.date_start,asset.date_end))
+            fetchall = cr.fetchall()
+            partner_ids = filter(None, map(lambda x:x[1], fetchall))
+            dates = [(x[2], x[3]) for x in fetchall]
+            if len(partner_ids)>1:
+                partner_name=self.pool.get('res.partner').read(cr,uid,partner_ids[0],['name'])
+                raise osv.except_osv(_('Error!'),
+                    _("This asset already belongs to this partner for this period: %s. \n From %s to %s") % \
+                        (partner_name['name'],dates[0][0],dates[0][1]) )
+        return True
+
+    _constraints = [
+        (_check_date, 'Check assets dates.', ['date_start','date_end']),
+    ]
     
     def onchange_asset(self, cr, uid, ids, product, context=None):
         context = context or {}
