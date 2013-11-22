@@ -139,7 +139,6 @@ class account_analytic_account(osv.osv):
         'service_ids': fields.one2many('account.analytic.services','contract_id','Contract services'),
         'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Contract services'),
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
-        'date_today': fields.date('date_today'),
         'date_refused': fields.date('Refused Date'),
         'maintenance_date_start': fields.datetime('Maintenance date start'),
         'maintenance_date_end': fields.datetime('Maintenance date end'),
@@ -187,6 +186,7 @@ class account_analytic_account(osv.osv):
         'month_list': fields.selection(months.items(), 'Month'),
         'end_date': fields.date('Repeat Until'),
         'recurrency': fields.boolean('Recurrency', help="Recurrency"),
+        'loan': fields.boolean('Loan'),
         #~ 'state': fields.selection([('template', 'Template'),('draft','New'),('open','In Progress'),('pending','To Renew'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
     }
     
@@ -427,6 +427,7 @@ class generic_assets(osv.osv):
         'mro_id': fields.many2one('mro.order', 'MRO Order', select=True),
         'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
         'default_code': fields.related('asset_id','default_code',string='Reference',type='char',readonly=True),
+        'loan': fields.boolean('Loan'),
     }
     
     _defaults = {
@@ -439,19 +440,21 @@ class generic_assets(osv.osv):
     ]
     
     def _check_date(self, cr, uid, ids, context=None):
+        
         for asset in self.browse(cr,uid,ids,context=context):
-            cr.execute('select id,partner_id,date_start,date_end from generic_assets \
-                        where asset_id=%s \
-                        and serial_id=%s \
-                        and (%s between date_start and date_end or %s between date_start and date_end)',(asset.asset_id.id,asset.serial_id.id,asset.date_start,asset.date_end))
-            fetchall = cr.fetchall()
-            partner_ids = filter(None, map(lambda x:x[1], fetchall))
-            dates = [(x[2], x[3]) for x in fetchall]
-            if len(partner_ids)>1:
-                partner_name=self.pool.get('res.partner').read(cr,uid,partner_ids[0],['name'])
-                raise osv.except_osv(_('Error!'),
-                    _("This asset already belongs to this partner for this period: %s. \n From %s to %s") % \
-                        (partner_name['name'],dates[0][0],dates[0][1]) )
+            if asset.serial_id and asset.date_start and asset.date_end:
+                cr.execute('select id,partner_id,date_start,date_end from generic_assets \
+                            where asset_id=%s \
+                            and serial_id=%s \
+                            and (%s between date_start and date_end or %s between date_start and date_end)',(asset.asset_id.id,asset.serial_id.id,asset.date_start,asset.date_end))
+                fetchall = cr.fetchall()
+                partner_ids = filter(None, map(lambda x:x[1], fetchall))
+                dates = [(x[2], x[3]) for x in fetchall]
+                if len(partner_ids)>1:
+                    partner_name=self.pool.get('res.partner').read(cr,uid,partner_ids[0],['name'])
+                    raise osv.except_osv(_('Error!'),
+                        _("This asset already belongs to this partner for this period: %s. \n From %s to %s") % \
+                            (partner_name['name'],dates[0][0],dates[0][1]) )
         return True
 
     _constraints = [

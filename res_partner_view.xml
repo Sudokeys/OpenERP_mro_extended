@@ -18,6 +18,7 @@
                                     <field name="serial_id"/>
                                     <field name="date_start"/>
                                     <field name="date_end"/>
+                                    <field name="loan"/>
                                 </tree>
                             </field>
                         </group>
