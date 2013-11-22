@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mro_order_form_view" model="ir.ui.view">
+            <field name="name">mro.order.form</field>
+            <field name="model">mro.order</field>
+            <field name="inherit_id" ref="mro.mro_order_form_view" />
+            <field eval="20" name="priority"/>
+            <field name="arch" type="xml">
+                <button name="button_done" position="replace">
+                    <button name="button_meeting" states="ready" string="Meeting fixed" class="oe_highlight"/>
+                    <button name="button_progress" states="meeting" string="In progress" class="oe_highlight"/>
+                    <button name="button_done" states="progress" string="Done" class="oe_highlight"/>
+                </button>
+                
+                
+                <xpath expr="/form/sheet/group" position="replace">
+                <group>
+                    <group>
+                        <field name="partner_id" on_change="onchange_partner(partner_id)"/>
+                        <field name="contract_id" attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
+                        <field name="order_id"/>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="technician" on_change="onchange_technician(technician,partner_id)"/>
+                        <field name="subcontract" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)"/>
+                        <field name="subcontractor_id" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)" attrs="{'invisible':[('subcontract','=',False)]}"/>
+                        <field name="maintenance_type"/>
+                        <field name="origin"/>
+                        <field name="task_id" invisible="True"/>
+                    </group>
+                    <group >
+                        <field name="date_planned" on_change="onchange_dates(date_planned, duration, False, allday,'date_planned')"/>
+                        <field name="date_scheduled" on_change="onchange_dates(date_scheduled, duration, False, allday,'date_scheduled')"/>
+                        <field name="date_execution" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"/>
+                        <label for="duration"/>
+                        <div>
+                            <field name="duration" widget="float_time" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"
+                                class="oe_inline" attrs="{'invisible': [('allday','=',True)]}"/>
+                            <label string="hours" attrs="{'invisible': [('allday','=',True)]}"/>
+                            (<field name="allday" on_change="onchange_dates(date_execution, False, False, allday,'date_execution')" class="oe_inline"/>
+                            <label for="allday" string="All Day?"/>)
+                        </div>
+                        <field name="date_deadline" invisible="True"/>
+                    </group>
+                    <group>
+                        <field name="place"/>
+                        <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                    </group>
+                </group>
+                </xpath>
+
+
+                <field name="tools_description" position="replace">
+                    <field name="tools_ids"/>
+                </field>
+                
+                <page string="Parts" position="before">
+                    <page string="Assets" autofocus="True">
+                        <group string="Assets involved">
+                            <field name="asset_ids" nolabel="1" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]">
+                                <tree>
+                                    <field name="default_code"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+<!--
+                <group string="Planned Parts" position="attributes">
+                     <attribute name="states">"draft,released,meeting,progress,done,parts_except,cancel"</attribute>
+                </group>
+-->
+                <group string="Planned Parts" position="replace">
+                    <group string="Planned Parts" states="draft,released,meeting,progress,done,parts_except,cancel">
+                        <field name="parts_lines" nolabel="1">
+                            <tree string="Planned Parts" editable="bottom">
+                                <field name="parts_id" on_change="onchange_parts(parts_id)"/>
+                                <field name="parts_qty"/>
+                                <field name="parts_uom" groups="product.group_uom"/>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+                <field name="parts_lines" position="before">
+                    <group colspan="4">
+                        <field name="parts_location_id" domain="[('usage','=','internal')]" groups="stock.group_locations"/>
+                    </group>
+                </field>
+                
+                <field name="parts_id" position="replace">
+                    <field name="parts_id" domain="[('mro_type','=','part')]" context="{'default_mro_type':'part'}" on_change="onchange_parts(parts_id)"/>
+                </field>
+                
+<!--
+                <field name="problem_description" position="replace">
+                    <field name="problem_description" colspan="4" nolabel="1" widget="html"/>
+                </field>
+-->
+            </field>
+        </record>
+        
+        <record id="mro_order_tree_view" model="ir.ui.view">
+            <field name="name">mro.order.tree</field>
+            <field name="model">mro.order</field>
+            <field name="inherit_id" ref="mro.mro_order_tree_view" />
+            <field name="arch" type="xml">
+                <field name="asset_id" position="replace">
+                    <field name="asset_id" invisible="1"/>
+                    <field name="place"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="mro_order_calendar_view" model="ir.ui.view">
+            <field name="name">mro.order.calendar</field>
+            <field name="model">mro.order</field>
+            <field name="inherit_id" ref="mro.mro_order_calendar_view" />
+            <field name="arch" type="xml">
+                <calendar string="Maintenance Orders" position="replace">
+                    <calendar color="technician" date_start="date_execution" date_delay="duration" string="Maintenance Orders">
+                        <field name="name"/>
+                        <field name="description"/>
+                    </calendar>
+                </calendar>
+            </field>
+        </record>
+            
+        <record id="mro_tools_tree_view" model="ir.ui.view">
+            <field name="name">mro.tools.tree</field>
+            <field name="model">mro.tools</field>
+            <field name="arch" type="xml">
+                <tree string="Tools">
+                    <field name="name"/>
+                    <field name="model"/>
+                    <field name="manufacturer"/>
+                    <field name="serial"/>
+                    <field name="date_validity_begin"/>
+                    <field name="date_validity_end"/>
+                    <field name="data"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="mro_tools_form_view" model="ir.ui.view">
+            <field name="name">mro.tools.form</field>
+            <field name="model">mro.tools</field>
+            <field name="arch" type="xml">
+                <form string="Tools" version="7.0">
+                    <header>
+                    </header>
+                    <sheet>
+                        <field name="image_medium" widget="image" class="oe_avatar oe_left"/>
+                        <div class="oe_title">
+                            <h1>Tool Name <field name="name" class="oe_inline"/></h1>
+                        </div>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                        <notebook>
+                            <page string="Info">
+                                <group>
+                                    <group>
+                                        <field name="model"/>
+                                        <field name="manufacturer"/>
+                                        <field name="serial"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_validity_begin"/>
+                                        <field name="date_validity_end"/>
+                                        <field name="data"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                     </sheet>
+                     <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Tool Kanban View  -->
+        <record model="ir.ui.view" id="mro_tools_kanban_view">
+            <field name="name">Tool Kanban</field>
+            <field name="model">mro.tools</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette">
+                                <a type="open"><img t-att-src="kanban_image('mro.tools', 'image_small', record.id.value)" class="oe_kanban_image"/></a>
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>Model: <field name="model"></field></li>
+                                        <li>Manufacturer: <field name="manufacturer"></field></li>
+                                        <li>Serial No: <field name="serial"></field></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+            
+        <record id="action_mro_tools" model="ir.actions.act_window">
+            <field name="name">Tools</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mro.tools</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+            
+        <!-- Tool menu -->
+        <menuitem name="Tools"
+            id="menu_maintenance_tools"
+            parent="base.menu_mro_root"
+            sequence="9"/>
+            
+        <menuitem name="Tools"
+            action="action_mro_tools"
+            id="menu_maintenance_mro_tools"
+            parent="menu_maintenance_tools"
+            sequence="100"/>
+            
+        
+        <record id="action_assets" model="ir.actions.act_window">
+            <field name="name">Assets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('mro_type','=','asset')]</field>
+            <field name="context">{'default_mro_type':'asset'}</field>
+        </record>
+        
+        <delete model="ir.ui.menu" search="[('name', '=', 'Assets')]"/>
+        <menuitem name="Assets"
+            id="menu_maintenance_assets"
+            parent="base.menu_mro_root"
+            sequence="9"/>
+        <menuitem name="Assets"
+            action="action_assets"
+            id="menu_maintenance_assets_assets"
+            parent="menu_maintenance_assets"
+            sequence="100"/>
+        <menuitem name="Meters Logs"
+            action="mro_pm.action_meters_logs"
+            id="menu_meters_logs"
+            parent="menu_maintenance_assets"
+            groups="mro.group_mro_user"
+            sequence="100"/>
+    
+    </data>
+</openerp>

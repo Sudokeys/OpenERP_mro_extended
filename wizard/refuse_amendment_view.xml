@@ -1,0 +1,43 @@
+<openerp>
+   <data>
+
+
+       <record id="view_refuse_amendment" model="ir.ui.view">
+          <field name="name">refuse.amendment.form</field>
+          <field name="model">refuse.amendment</field>
+          <field name="arch" type="xml">
+            <form string="Refuse Amendment"  version="7.0">
+                    
+<!--
+                    <field name="partner_id" required="1"/>
+                    <field name="description"/>
+                    <field name="asset_ids" widget="many2many_tags" domain="[('mro_type','=','asset')]"/>
+                    <field name="maintenance_type"/>
+                    <field name="date_planned"/>
+                    <field name="duration"/>
+-->
+                    <div><label string="Refuse the amendment will terminate the contract. Are you sure?" /></div>
+                    <group>
+                        <field name="date_refused"/>
+                    </group>
+                <footer>
+                    <button name="confirm" string="_Confirm" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+          </field>
+       </record>
+
+
+       <record id="action_refuse_amendment" model="ir.actions.act_window">
+          <field name="name">Refuse Amendment</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">refuse.amendment</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+   </data>
+</openerp>

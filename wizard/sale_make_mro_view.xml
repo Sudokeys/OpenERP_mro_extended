@@ -1,0 +1,41 @@
+<openerp>
+   <data>
+
+        <!-- sale make mro's view -->
+
+       <record id="view_sale_make_mro" model="ir.ui.view">
+          <field name="name">sale.make.mro.form</field>
+          <field name="model">sale.make.mro</field>
+          <field name="arch" type="xml">
+            <form string="Add a Maintenance Order"  version="7.0">
+                <group col="4">
+                    <field name="partner_id" required="1"/>
+                    <field name="contract_id" domain="[('partner_id','=',partner_id)]"/> <!--domain="[('partner_id','=',partner_id)]"-->
+                    <field name="description"/>
+                    <field name="asset_ids" widget="many2many_tags" domain="[('mro_type','=','asset')]"/>
+                    <field name="maintenance_type"/>
+                    <field name="date_planned"/>
+                    <field name="duration"/>
+                </group>
+                <footer>
+                    <button name="makeOrder" string="_Create" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+          </field>
+       </record>
+
+       <!-- sale make mro's  action -->
+
+       <record id="action_sale_make_mro" model="ir.actions.act_window">
+          <field name="name">Make Maintenance Order</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sale.make.mro</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+   </data>
+</openerp>

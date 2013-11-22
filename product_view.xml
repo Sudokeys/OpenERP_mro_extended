@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.normal.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <div name="options" position="inside">
+                    <field name="contract"/>
+                    <label for="contract"/>
+                    <label string=" "/>
+                </div>
+                <notebook position="inside">
+                    <page string="Maintenance" groups="mro.group_mro_user">
+                        <group>
+                            <group>
+                                <field name="mro_type"/>
+                                <field name="property_stock_asset" domain="[('usage','=','asset')]"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </page>
+                </notebook>
+                <field name="description" position="after">
+                    <group string="Serial numbers">
+                        <field name="childs_serial" nolabel="1" colspan="4">
+                            <tree editable="top">
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </field>
+            </field>
+        </record>
+        
+        
+    
+    </data>
+</openerp>

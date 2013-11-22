@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!--
+    Resource: product.uom.categ
+    -->
+        <record id="uom_categ_ctime" model="product.uom.categ">
+            <field name="name">Contract Time</field>
+        </record>
+
+        <!--
+            Resource: product.uom
+        -->
+        <record id="product_uom_month" model="product.uom">
+            <field name="name">Month(s)</field>
+            <field eval="uom_categ_ctime" name="category_id"/>
+            <field name="factor" eval="1.0"/>
+        </record>
+        
+    </data>
+</openerp>
