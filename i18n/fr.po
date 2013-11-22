@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130714-231029\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-22 16:48+0000\n"
-"PO-Revision-Date: 2013-11-22 17:58+0100\n"
+"PO-Revision-Date: 2013-11-22 18:12+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -806,7 +806,7 @@ msgstr "Cet emplacement sera utilisé comme emplacement de destination pour les 
 #: field:account.analytic.account,loan:0
 #: field:generic.assets,loan:0
 msgid "Loan"
-msgstr "Loan"
+msgstr "Prêt"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
