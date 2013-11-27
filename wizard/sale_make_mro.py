@@ -105,8 +105,8 @@ class sale_make_mro(osv.osv_memory):
                 new_id = mro_obj.create(cr, uid, vals, context=context)
                 for line in make.asset_ids:
                     vals = {
-                        'name': line.id,
-                        'mro_id': new_id,
+                        'asset_id': line.id,
+                        'mro_id': [(6,0,[new_id])],
                         'partner_id': partner.id
                     }
                     self.pool.get('generic.assets').create(cr,uid,vals,context=context)

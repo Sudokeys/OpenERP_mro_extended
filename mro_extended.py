@@ -144,7 +144,7 @@ class mro_order(osv.osv):
     _columns = {
         'asset_id': fields.many2one('asset.asset', 'Asset', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         #~ 'asset_ids': fields.many2many('product.product', string='Assets', required=True),
-        'asset_ids': fields.one2many('generic.assets', 'mro_id', string='Assets', required=True),
+        'asset_ids': fields.many2many('generic.assets', string='Assets', required=True),
         'partner_id': fields.many2one('res.partner','Client'),
         'subcontract': fields.boolean('Subcontract?'),
         'subcontractor_id': fields.many2one('res.partner','Subcontractor'),

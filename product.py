@@ -44,6 +44,7 @@ class product_product(osv.osv):
         'childs_serial': fields.one2many('product.serial','product_id', 'Serials #'),
     }
     
+        
     def copy(self, cr, uid, id, default=None, context=None):
         if context is None:
             context={}
@@ -72,6 +73,7 @@ class product_serial(osv.osv):
 
     _defaults = {
     }
+    
     
     _sql_constraints = [
                      ('name_unique', 

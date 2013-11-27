@@ -60,7 +60,7 @@
                 <page string="Parts" position="before">
                     <page string="Assets" autofocus="True">
                         <group string="Assets involved">
-                            <field name="asset_ids" context="{'default_partner_id':partner_id}" nolabel="1" >
+                            <field name="asset_ids" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id':partner_id}" nolabel="1" >
                                 <tree editable="top">
                                     <field name="default_code"/>
                                     <field name="asset_id" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>

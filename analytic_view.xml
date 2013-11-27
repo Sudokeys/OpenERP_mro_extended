@@ -200,5 +200,44 @@
             </field>
         </record>
         
+        <record id="generic_assets_tree_view" model="ir.ui.view">
+            <field name="name">generic.assets.tree</field>
+            <field name="model">generic.assets</field>
+            <field name="arch" type="xml">
+                <tree string="Assets">
+                    <field name="asset_id"/>
+                    <field name="name"/>
+                    <field name="serial_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="loan"/>
+<!--
+                    <field name="date_previous"/>
+                    <field name="date_next"/>
+-->
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="generic_assets_form_view" model="ir.ui.view">
+            <field name="name">generic.assets.form</field>
+            <field name="model">generic.assets</field>
+            <field name="arch" type="xml">
+                <form string="Assets">
+                    <field name="asset_id"/>
+                    <field name="name"/>
+                    <field name="serial_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="loan"/>
+<!--
+                    <field name="date_previous"/>
+                    <field name="date_next"/>
+-->
+                    <field name="partner_id" readonly="1"/>
+                </form>
+            </field>
+        </record>
+        
      </data>
 </openerp>

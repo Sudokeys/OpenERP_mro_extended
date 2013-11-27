@@ -210,12 +210,14 @@ class account_analytic_account(osv.osv):
             if not name:
                 res['name'] = _('Contract: ') + partner.name
             res['asset_ids']=[]
-            for asset in partner.asset_ids:
-                if ids:
-                    exist_ids=self.pool.get('generic.assets').search(cr,uid,[('asset_id','=',asset.id),('contract_id','=',ids[0])])
-                    if exist_ids:
-                        self.pool.get('generic.assets').unlink(cr,uid,exist_ids)
-                res['asset_ids'].append(self.pool.get('generic.assets').create(cr,uid,{'asset_id':asset.id}))
+            #~ for asset in partner.asset_ids:
+                #~ if ids:
+                    #~ print 'ids',ids
+                    #~ exist_ids=self.pool.get('generic.assets').search(cr,uid,[('asset_id','=',asset.id),('contract_id','=',ids[0])])
+                    #~ if exist_ids:
+                        #~ continue
+                #~ res['asset_ids'].append(self.pool.get('generic.assets').create(cr,uid,{'asset_id':asset.id}))
+                
         return {'value': res}
         
     def on_change_end_date(self, cr, uid, ids,date, context={}):
@@ -231,8 +233,7 @@ class account_analytic_account(osv.osv):
         contracts=self.browse(cr,uid,ids,context)
         #~ for data in self.read(cr, uid, ids, ['rrule', 'exdate', 'exrule', 'date_start'], context=context):
         for c in contracts:
-            if c.state=='draft':
-                mro_obj.unlink(cr,uid,[x.id for x in c.mro_order_ids],context=context)
+            mro_obj.unlink(cr,uid,[x.id for x in c.mro_order_ids if x.state == 'draft'],context=context)
             
         for data in contracts:
             if not data.rrule:
@@ -270,7 +271,7 @@ class account_analytic_account(osv.osv):
                     'technician': data.partner_id.technician and data.partner_id.technician.id or False,
                     'description': '',
                     'origin': data.code,
-                    'asset_ids': [(6,0,[x.asset_id.id for x in data.asset_ids])],
+                    'asset_ids': [(6,0,[x.id for x in data.asset_ids])],
                     'maintenance_type': 'pm',
                     'date_planned': r_date.strftime("%Y-%m-%d %H:%M:%S"),
                     'date_scheduled': r_date.strftime("%Y-%m-%d %H:%M:%S"),
@@ -421,10 +422,10 @@ class generic_assets(osv.osv):
         'date_end': fields.date('Date end'),
         'date_previous': fields.function(_get_date, string='Previous maintenance date', type='datetime',multi="previous_next_date"),
         'date_next': fields.function(_get_date, string='Next maintenance date', type='datetime',multi="previous_next_date"),
-        'asset_id': fields.many2one('product.product', 'Asset', required=True),
-        'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
-        'partner_id': fields.many2one('res.partner', 'Partner', select=True),
-        'mro_id': fields.many2one('mro.order', 'MRO Order', select=True),
+        'asset_id': fields.many2one('product.product', 'Asset', required=True, ondelete='set null'),
+        'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True, ondelete='set null'),
+        'partner_id': fields.many2one('res.partner', 'Partner', select=True, ondelete='set null'),
+        'mro_id': fields.many2many('mro.order', string='MRO Order'),
         'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
         'default_code': fields.related('asset_id','default_code',string='Reference',type='char',readonly=True),
         'loan': fields.boolean('Loan'),

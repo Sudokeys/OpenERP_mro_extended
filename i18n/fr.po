@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130714-231029\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-22 16:48+0000\n"
-"PO-Revision-Date: 2013-11-22 18:12+0100\n"
+"POT-Creation-Date: 2013-11-26 13:39+0000\n"
+"PO-Revision-Date: 2013-11-26 14:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid "Make Maintenance Order"
 msgstr "Créer une intervention"
 
 #. module: mro_extended
-#: code:addons/mro_extended/analytic.py:212
+#: code:addons/mro_extended/analytic.py:211
 #: code:addons/mro_extended/wizard/sale_make_contract.py:56
 #, python-format
 msgid "Contract: "
@@ -138,6 +138,7 @@ msgstr "Dernier"
 #. module: mro_extended
 #: view:account.analytic.account:0
 #: field:account.analytic.account,asset_ids:0
+#: view:generic.assets:0
 #: model:ir.actions.act_window,name:mro_extended.action_assets
 #: model:ir.ui.menu,name:mro_extended.menu_maintenance_assets
 #: model:ir.ui.menu,name:mro_extended.menu_maintenance_assets_assets
@@ -300,7 +301,7 @@ msgstr "Dim"
 #: code:addons/mro_extended/mro_extended.py:193
 #, python-format
 msgid "You must first assign a location for the parts in the asset."
-msgstr "Vous devez d'abord assigner un emplacement pour les pièces détachés dans la fiche de l'équipement."
+msgstr "Vous devez d'abord assigner un emplacement pour les pièces détachées dans la fiche de l'équipement."
 
 #. module: mro_extended
 #: view:sale.make.contract:0
@@ -341,11 +342,6 @@ msgstr "Prestations contractuelle"
 #: model:ir.model,name:mro_extended.model_account_analytic_account
 msgid "Analytic Account"
 msgstr "Compte analytique"
-
-#. module: mro_extended
-#: field:account.analytic.account,date_today:0
-msgid "date_today"
-msgstr "date_today"
 
 #. module: mro_extended
 #: field:account.analytic.account,select1:0
@@ -720,7 +716,7 @@ msgstr "Comptes analytiques"
 #. module: mro_extended
 #: field:generic.assets,date_end:0
 msgid "Date end"
-msgstr "Date end"
+msgstr "Date de fin"
 
 #. module: mro_extended
 #: code:addons/mro_extended/analytic.py:457
