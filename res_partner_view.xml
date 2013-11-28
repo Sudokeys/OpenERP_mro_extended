@@ -36,10 +36,6 @@
                 <field name="category_id" position="after">
                     <field name="asset_ids" string="Asset Serial #" filter_domain="[('asset_ids.serial_id','ilike', self)]"/>
                 </field>
-                <field name="name" position="replace">
-                    <field name="name"
-                           filter_domain="['|','|',('name','ilike',self),('parent_id','ilike',self),('ref','ilike',self)]"/>
-                </field>
             </field>
         </record>
     
