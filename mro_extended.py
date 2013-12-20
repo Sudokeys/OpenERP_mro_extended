@@ -30,30 +30,31 @@ import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 from openerp import netsvc
 
-class mro_order(osv.osv):
-    """
-    Maintenance Orders
-    """
-    _inherit = 'mro.order'
-    
-    MAINTENANCE_TYPE_SELECTION = [
+MAINTENANCE_TYPE_SELECTION = [
         #~ ('bm', 'Breakdown'),
         ('cm', 'Corrective'),
         ('pm', 'Preventive'),
         ('im', 'Implementation'),
         ('mm', 'Metrology')
     ]
-    
-    STATE_SELECTION = [
+
+STATE_SELECTION = [
         ('draft', 'Draft'),
         ('released', 'Waiting parts'),
         ('ready', 'Ready to maintenance'),
         ('parts_except', 'Parts exception'),
         ('meeting', 'Meeting fixed'),
         ('progress', 'In progress'),
+        ('invoicing', 'Invoicing'),
         ('done', 'Done'),
         ('cancel', 'Canceled')
     ]
+
+class mro_order(osv.osv):
+    """
+    Maintenance Orders
+    """
+    _inherit = 'mro.order'
     
     def onchange_partner(self, cr, uid, ids, partner_id):
         """
@@ -179,6 +180,10 @@ class mro_order(osv.osv):
     
     def action_progress(self, cr, uid, ids):
         self.write(cr, uid, ids, {'state': 'progress'})
+        return True
+        
+    def action_invoicing(self, cr, uid, ids):
+        self.write(cr, uid, ids, {'state': 'invoicing'})
         return True
     
     def _make_consume_parts_line(self, cr, uid, parts_line, context=None):

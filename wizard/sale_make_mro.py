@@ -22,6 +22,7 @@
 import time
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
+from mro_extended import mro_extended
 
 
 class sale_make_mro(osv.osv_memory):
@@ -30,13 +31,13 @@ class sale_make_mro(osv.osv_memory):
     _name = "sale.make.mro"
     _description = "Make mro orders"
     
-    MAINTENANCE_TYPE_SELECTION = [
-        #~ ('bm', 'Breakdown'),
-        ('cm', 'Corrective'),
-        ('pm', 'Preventive'),
-        ('im', 'Implementation'),
-        ('mm', 'Metrology')
-    ]
+    
+    #~ MAINTENANCE_TYPE_SELECTION = [
+        #~ ('cm', 'Corrective'),
+        #~ ('pm', 'Preventive'),
+        #~ ('im', 'Implementation'),
+        #~ ('mm', 'Metrology')
+    #~ ]
 
     def _selectPartner(self, cr, uid, context=None):
         """
@@ -184,7 +185,7 @@ class sale_make_mro(osv.osv_memory):
         'partner_id': fields.many2one('res.partner', 'Customer', required=True, domain=[('customer','=',True)]),
         'description': fields.char('Description', size=64, required=True),
         'asset_ids': fields.many2many('product.product', string='Assets', required=True),
-        'maintenance_type': fields.selection(MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=True),
+        'maintenance_type': fields.selection(mro_extended.MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=True),
         'date_planned': fields.datetime('Planned Date', required=True),
         'duration': fields.float('Duration'),
     }

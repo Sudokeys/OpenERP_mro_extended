@@ -140,6 +140,7 @@ class account_analytic_account(osv.osv):
         'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Contract services'),
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
         'date_refused': fields.date('Refused Date'),
+        'date_wished': fields.date('Wished Date'),
         'maintenance_date_start': fields.datetime('Maintenance date start'),
         'maintenance_date_end': fields.datetime('Maintenance date end'),
         'exdate': fields.text('Exception Date/Times', help="This property \
@@ -196,9 +197,10 @@ class account_analytic_account(osv.osv):
         'end_date': lambda *a: (datetime.strptime(time.strftime('%Y-%m-%d'),'%Y-%m-%d')+relativedelta(years=1)).strftime('%Y-%m-%d'),
         'end_type': 'end_date',
         'count': 1,
-        'rrule_type': False,
+        'rrule_type': 'yearly',
         'select1': 'date',
         'interval': 1,
+        'recurrency': True,
     }
     
     def on_change_partner_id(self, cr, uid, ids,partner_id, name, context={}):
@@ -212,7 +214,6 @@ class account_analytic_account(osv.osv):
             res['asset_ids']=[]
             #~ for asset in partner.asset_ids:
                 #~ if ids:
-                    #~ print 'ids',ids
                     #~ exist_ids=self.pool.get('generic.assets').search(cr,uid,[('asset_id','=',asset.id),('contract_id','=',ids[0])])
                     #~ if exist_ids:
                         #~ continue
@@ -239,7 +240,11 @@ class account_analytic_account(osv.osv):
             if not data.rrule:
                 result.append(data.id)
                 continue
-            event_date = datetime.strptime(data.date_start, "%Y-%m-%d")
+            if data.date_wished:
+                event_date = datetime.strptime(data.date_wished, "%Y-%m-%d")
+            else:
+                event_date = datetime.strptime(data.date_start, "%Y-%m-%d")
+            
 
             # TOCHECK: the start date should be replaced by event date; the event date will be changed by that of calendar code
 

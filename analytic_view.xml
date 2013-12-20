@@ -50,6 +50,7 @@
                             <field name="maintenance_date_end" attrs="{'invisible': [('date', '&lt;', maintenance_date_start)]}"/>
 -->
                             <field name="recurrency"/>
+                            <field name="date_wished"/>
                         </group>
                         <group attrs="{'invisible': [('recurrency','=',False)]}">
                             <label for="interval"/>

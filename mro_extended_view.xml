@@ -11,7 +11,8 @@
                 <button name="button_done" position="replace">
                     <button name="button_meeting" states="ready" string="Meeting fixed" class="oe_highlight"/>
                     <button name="button_progress" states="meeting" string="In progress" class="oe_highlight"/>
-                    <button name="button_done" states="progress" string="Done" class="oe_highlight"/>
+                    <button name="button_invoicing" states="progress" string="Invoicing" class="oe_highlight"/>
+                    <button name="button_done" states="invoicing" string="Done" class="oe_highlight"/>
                 </button>
                 
                 
@@ -31,7 +32,7 @@
                         <field name="origin"/>
                         <field name="task_id" invisible="True"/>
                     </group>
-                    <group >
+                    <group name="planning">
                         <field name="date_planned" on_change="onchange_dates(date_planned, duration, False, allday,'date_planned')"/>
                         <field name="date_scheduled" on_change="onchange_dates(date_scheduled, duration, False, allday,'date_scheduled')"/>
                         <field name="date_execution" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"/>

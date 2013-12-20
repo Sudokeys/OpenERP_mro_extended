@@ -17,6 +17,13 @@
             <field name="action">action_progress()</field>            
         </record>
         
+        <record id="act_invoicing" model="workflow.activity">
+            <field name="wkf_id" ref="mro.maintenance_order"/>
+            <field name="name">invoicing</field>
+            <field name="kind">function</field>
+            <field name="action">action_invoicing()</field>            
+        </record>
+        
         <record id="trans_ready_meeting" model="workflow.transition">
             <field name="act_from" ref="mro.act_ready"/>
             <field name="act_to" ref="act_meeting"/>
@@ -27,8 +34,13 @@
             <field name="act_to" ref="act_progress"/>
             <field name="signal">button_progress</field>
         </record>
-        <record id="trans_progress_done" model="workflow.transition">
+        <record id="trans_progress_invoicing" model="workflow.transition">
             <field name="act_from" ref="act_progress"/>
+            <field name="act_to" ref="act_invoicing"/>
+            <field name="signal">button_invoicing</field>
+        </record>
+        <record id="trans_invoicing_done" model="workflow.transition">
+            <field name="act_from" ref="act_invoicing"/>
             <field name="act_to" ref="mro.act_done"/>
             <field name="signal">button_done</field>
         </record>
