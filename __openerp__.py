@@ -42,7 +42,7 @@ Required modules:
         'wizard/sale_make_mro_view.xml',
         'wizard/sale_make_contract_view.xml',
         'wizard/refuse_amendment_view.xml',
-        'wizard/tools_planning_wiz_view.xml',
+        
         'report/tools_planning_print.xml',
         'mro_extended_view.xml',
         'mro_extended_workflow.xml',
@@ -51,6 +51,8 @@ Required modules:
         'analytic_view.xml',
         'product_view.xml',
         'product_data.xml',
+        'wizard/tools_planning_wiz_view.xml',
+
     ],
     'application': True,
 }

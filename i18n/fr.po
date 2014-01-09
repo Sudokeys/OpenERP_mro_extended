@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130911-231052\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-09 13:34+0000\n"
-"PO-Revision-Date: 2014-01-09 14:36+0100\n"
+"POT-Creation-Date: 2014-01-09 16:32+0000\n"
+"PO-Revision-Date: 2014-01-09 17:37+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -205,7 +205,6 @@ msgid "Serial #"
 msgstr "N° de série"
 
 #. module: mro_extended
-#: selection:mro.order,maintenance_type:0
 #: selection:sale.make.mro,maintenance_type:0
 msgid "Preventive"
 msgstr "Préventive"
@@ -213,7 +212,7 @@ msgstr "Préventive"
 #. module: mro_extended
 #: selection:mro.tools,tools_place:0
 msgid "Fixed"
-msgstr "Fixed"
+msgstr "Fixe"
 
 #. module: mro_extended
 #: help:mro.tools,message_unread:0 help:mro.tools.booking,message_unread:0
@@ -221,7 +220,7 @@ msgid "If checked new messages require your attention."
 msgstr "Si elle est cochée, les nouveaux messages nécessitent votre attention."
 
 #. module: mro_extended
-#: field:mro.order,maintenance_type:0 field:sale.make.mro,maintenance_type:0
+#: field:sale.make.mro,maintenance_type:0
 msgid "Maintenance Type"
 msgstr "Type d'intervention"
 
@@ -236,7 +235,7 @@ msgid "Add a Maintenance Order"
 msgstr "Ajouter une intervention"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:296
+#: code:addons/mro_extended/mro_extended.py:297
 #, python-format
 msgid "IN CALIBRATION"
 msgstr "En étalonnage"
@@ -335,9 +334,19 @@ msgid "End of validity in 3 months"
 msgstr "Fin de validité sur 3 mois"
 
 #. module: mro_extended
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Metrology"
+msgstr "Métrologie"
+
+#. module: mro_extended
 #: field:generic.assets,mro_id:0
 msgid "MRO Order"
-msgstr "MRO Order"
+msgstr "Ordre MRO"
+
+#. module: mro_extended
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Implementation"
+msgstr "Implémentation"
 
 #. module: mro_extended
 #: field:account.analytic.account,su:0
@@ -429,6 +438,11 @@ msgstr "Mois"
 #: field:sale.make.contract,date_planned:0 field:sale.make.mro,date_planned:0
 msgid "Planned Date"
 msgstr "Date planifiée"
+
+#. module: mro_extended
+#: field:mro.tools,inventory_num:0
+msgid "Inventory number"
+msgstr "N° Inventaire"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
@@ -551,7 +565,7 @@ msgstr "Premier"
 #. module: mro_extended
 #: view:mro.tools.booking:0 field:mro.tools.booking,booking_comment:0
 msgid "Comment"
-msgstr "Comment"
+msgstr "Commentaire"
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -564,7 +578,6 @@ msgid "Planning of tools booking"
 msgstr "Planning des outils réservés"
 
 #. module: mro_extended
-#: selection:mro.order,maintenance_type:0
 #: selection:sale.make.mro,maintenance_type:0
 msgid "Corrective"
 msgstr "Corrective"
@@ -616,11 +629,6 @@ msgstr "Groupé par..."
 #: field:mro.tools,image_medium:0
 msgid "Medium-sized image"
 msgstr "Image de taille moyenne"
-
-#. module: mro_extended
-#: model:ir.model,name:mro_extended.model_res_partner_assets
-msgid "Partner Assets"
-msgstr "Équipements"
 
 #. module: mro_extended
 #: model:ir.model,name:mro_extended.model_tools_planning_wiz
@@ -1091,7 +1099,7 @@ msgstr ""
 #. module: mro_extended
 #: selection:mro.tools,tools_place:0
 msgid "Movable"
-msgstr "Movable"
+msgstr "Mobile"
 
 #. module: mro_extended
 #: help:account.analytic.account,exrule:0
@@ -1227,11 +1235,6 @@ msgstr "Date de début"
 #: help:mro.tools,message_ids:0 help:mro.tools.booking,message_ids:0
 msgid "Messages and communication history"
 msgstr "Messages et historique de communication"
-
-#. module: mro_extended
-#: model:ir.model,name:mro_extended.model_account_analytic_assets
-msgid "Contract Assets"
-msgstr "Équipements du contrat"
 
 #. module: mro_extended
 #: view:mro.order:0

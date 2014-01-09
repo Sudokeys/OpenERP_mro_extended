@@ -19,9 +19,10 @@
 #
 ##############################################################################
 
-import wizard
+
 import report
 import mro_extended
+import wizard
 import res_partner
 import sale
 import analytic

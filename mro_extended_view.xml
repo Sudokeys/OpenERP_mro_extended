@@ -182,6 +182,7 @@
                             <page string="Info">
                                 <group>
                                     <group>
+                                        <field name="inventory_num"/>
                                         <field name="model"/>
                                         <field name="manufacturer"/>
                                         <field name="serial"/>

@@ -222,6 +222,14 @@ class mro_tools(osv.osv):
     _description = 'Tools'
     _inherit = ['mail.thread']
     
+    def name_get(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        if not ids:
+            return []
+        res = [(r['id'], r['name']+(r['model'] and ' '+r['model'] or '')  or r['name']  ) for r in self.read(cr, uid, ids, ['model','name'], context)]
+
+        return res
     def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
         if context is None:
             context={}
@@ -271,6 +279,7 @@ class mro_tools(osv.osv):
         'purchase_value':fields.float('Purchase value',digits_compute=dp.get_precision('Product Price')),
         'tools_place':fields.selection(selection=TOOLS_PLACE,string='Place'),
         'booking_ids':fields.one2many('mro.tools.booking','tools_id',string='Booking'),
+        'inventory_num':fields.char(u'Inventory number')
 
     }
 
