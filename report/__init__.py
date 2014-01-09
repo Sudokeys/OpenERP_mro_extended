@@ -18,40 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import tools_planning_print
 
-{
-    'name': 'MRO Extended',
-    'version': '1.0',
-    'summary': 'Asset Maintenance, Repair and Operation with added features',
-    'description': """
-Added Features
--------------
-    
-
-Required modules:
-    * mro
-    """,
-    'author': 'ADN France',
-    'website': 'http://adn-france.com',
-    'category': 'Enterprise Asset Management',
-    'sequence': 150,
-    'depends': ['mro','mro_pm','hr','account_analytic_analysis'],
-    'demo': [],
-    'data': [
-        'security/ir.model.access.csv',
-        'wizard/sale_make_mro_view.xml',
-        'wizard/sale_make_contract_view.xml',
-        'wizard/refuse_amendment_view.xml',
-        'wizard/tools_planning_wiz_view.xml',
-        'report/tools_planning_print.xml',
-        'mro_extended_view.xml',
-        'mro_extended_workflow.xml',
-        'res_partner_view.xml',
-        'sale_view.xml',
-        'analytic_view.xml',
-        'product_view.xml',
-        'product_data.xml',
-    ],
-    'application': True,
-}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

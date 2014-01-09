@@ -29,7 +29,7 @@ from openerp.osv import fields, osv
 import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 from openerp import netsvc
-
+from openerp import tools
 MAINTENANCE_TYPE_SELECTION = [
         #~ ('bm', 'Breakdown'),
         ('cm', 'Corrective'),
@@ -49,6 +49,7 @@ STATE_SELECTION = [
         ('done', 'Done'),
         ('cancel', 'Canceled')
     ]
+TOOLS_PLACE=[('fixed','Fixed'),('movable','Movable')]
 
 class mro_order(osv.osv):
     """
@@ -221,6 +222,14 @@ class mro_tools(osv.osv):
     _description = 'Tools'
     _inherit = ['mail.thread']
     
+    def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
+        if context is None:
+            context={}
+        if 'order' in context and context['order']:
+            order=context['order']
+
+        return super(mro_tools, self).search(cr, uid, args, offset, limit, order, context, count)
+
     def _get_image(self, cr, uid, ids, name, args, context=None):
         result = dict.fromkeys(ids, False)
         for obj in self.browse(cr, uid, ids, context=context):
@@ -259,10 +268,88 @@ class mro_tools(osv.osv):
                  "Use this field anywhere a small image is required."),
         'date_validity_begin': fields.date('Validity date begin'),
         'date_validity_end': fields.date('Validity date end'),
+        'purchase_value':fields.float('Purchase value',digits_compute=dp.get_precision('Product Price')),
+        'tools_place':fields.selection(selection=TOOLS_PLACE,string='Place'),
+        'booking_ids':fields.one2many('mro.tools.booking','tools_id',string='Booking'),
+
     }
-    
+
+    _order='name asc'
     _defaults = {
         'active': True,
+        'tools_place':'movable',
     }
     
 
+class mro_tools_booking(osv.osv):
+    _name='mro.tools.booking'
+    _description = 'Booking for tools'
+    _inherit = ['mail.thread']
+
+
+
+    def get_tech_name(self,cr,uid,ids,field_name,arg,context=None):
+        res={}
+        for o in self.browse(cr,uid,ids,context):
+            res[o.id]='N/A'
+            if o.calibration_booking:
+                res[o.id]=_('IN CALIBRATION')
+            elif o.technician_id:
+                res[o.id]=o.technician_id.name
+        return res
+
+    _columns={
+        'name':fields.function(get_tech_name,type='char',string='Name'),
+        'tools_id':fields.many2one('mro.tools','Tool',select=True),
+        'technician_id': fields.many2one('hr.employee','Technician',select=True),
+        'calibration_booking':fields.boolean('Calibration booking'),
+        'date_booking_begin':fields.date('Booking date begin'),
+        'date_booking_end':fields.date('Booking date end'),
+        'booking_comment':fields.text('Comment'),
+    }
+    def check_tools_available(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
+        if tools_id and date_booking_begin and date_booking_end:
+            plus=''
+            if id:
+                plus="AND id<>%s" % (id[0])
+            cr.execute("""
+                SELECT id 
+                FROM   mro_tools_booking
+                WHERE tools_id=%s and (date_booking_begin, date_booking_end) OVERLAPS (TIMESTAMP '%s', TIMESTAMP '%s')
+                 %s
+            """ %(tools_id,date_booking_begin,date_booking_end,plus))
+            res=cr.fetchall()
+            if res and len(res)>0:
+                return False
+        return True
+    ############################################################################
+    # on_change
+    ############################################################################
+    def onchange_tools_id(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
+        value={}
+        warning={}
+        if tools_id and date_booking_begin and date_booking_end:
+            #check if tools is available betwen date begin and date end
+            res=self.check_tools_available(cr,uid,id,tools_id,date_booking_begin,date_booking_end,context)
+            if not res:
+                warning={'title':u'Warning !!','message':u'Tools not available for this dates'}
+                value={'tools_id':False}
+
+        return {'value':value,'warning':warning}
+    def onchange_booking_begin(self,cr,uid,id,date_booking_begin,context=None):
+        value={'date_booking_end':False}
+        if date_booking_begin:
+            dt=datetime.strptime(date_booking_begin, '%Y-%m-%d')+relativedelta(days=4)
+            value['date_booking_end']=dt.strftime('%Y-%m-%d')
+        return {'value':value}
+    def onchange_booking(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
+        value={}
+        warning={}
+        if tools_id and date_booking_begin and date_booking_end:
+            #check if tools is available betwen date begin and date end
+            res=self.check_tools_available(cr,uid,id,tools_id,date_booking_begin,date_booking_end,context)
+            if not res:
+                warning={'title':u'Warning !!','message':u'Tools not available for this dates'}
+                value={'date_booking_begin':False,'date_booking_end':False}
+
+        return {'value':value,'warning':warning}

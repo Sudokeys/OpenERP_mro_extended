@@ -1,0 +1,46 @@
+<openerp>
+   <data>
+
+
+       <record id="tools_planning_wiz_form" model="ir.ui.view">
+          <field name="name">tools.planning.wiz.form</field>
+          <field name="model">tools.planning.wiz</field>
+          <field name="arch" type="xml">
+            <form string="Print planning for tools"  version="7.0">
+                <group colspan="4" col="4">
+                    <group colspan="2" col="2">
+                        <field name="type"/>
+                        <field name="months" attrs="{'invisible':[('type','!=','monthly')],'required':[('type','=','monthly')]}"/>
+                        <field name="year"/>
+                    </group>
+                    <group colspan="2" col="2">
+                        <field name="tools_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="do_print" string="_Print" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+          </field>
+       </record>
+
+
+       <record id="tools_planning_wiz_action" model="ir.actions.act_window">
+          <field name="name">Print planning for tools</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">tools.planning.wiz</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+        <menuitem name="Booking tools planning"
+            action="tools_planning_wiz_action"
+            id="tools_planning_wiz_menu"
+            parent="menu_maintenance_tools"
+            sequence="130"/>
+
+
+   </data>
+</openerp>

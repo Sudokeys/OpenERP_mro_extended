@@ -185,13 +185,28 @@
                                         <field name="model"/>
                                         <field name="manufacturer"/>
                                         <field name="serial"/>
+                                        <field name="purchase_value"/>
                                     </group>
                                     <group>
                                         <field name="date_validity_begin"/>
                                         <field name="date_validity_end"/>
+                                        <field name="tools_place"/>
                                         <field name="data"/>
                                     </group>
                                 </group>
+                            </page>
+                            <page string="Bookings" >
+                                <field name="id" invisible="1"/>
+                                <separator string="Bookings" colspan="4"/>
+                                <field name="booking_ids" colspan="4" nolabel="1"
+                                context="{'default_tools_id':id}">
+                                    <tree string="Booking tools">
+                                        <field name="technician_id"/>
+                                        <field name="date_booking_begin"/>
+                                        <field name="date_booking_end"/>
+                                        <field name="calibration_booking"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                      </sheet>
@@ -238,6 +253,17 @@
             <field name="view_mode">tree,form</field>
         </record>
             
+        <record id="action_mro_tools_3months" model="ir.actions.act_window">
+            <field name="name">End of validity in 3 months</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mro.tools</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">List of validity's end of tools in 3 months from today </field>
+            <field name="domain">[('date_validity_end','&lt;=',(context_today()+relativedelta(months=3)).strftime('%Y-%m-%d'))]</field>
+            <field name="context">{'order':'date_validity_end asc'}</field>
+        </record>
+
         <!-- Tool menu -->
         <menuitem name="Tools"
             id="menu_maintenance_tools"
@@ -250,6 +276,136 @@
             parent="menu_maintenance_tools"
             sequence="100"/>
             
+        <menuitem name="End of validity in 3 months"
+            action="action_mro_tools_3months"
+            id="menu_maintenance_mro_tools_3months"
+            parent="menu_maintenance_tools"
+            sequence="110"/>
+        
+        <!-- Booking tools -->
+        <record id="mro_booking_tools_search_view" model="ir.ui.view">
+            <field name="name">mro.booking.tools.search</field>
+            <field name="model">mro.tools.booking</field>
+            <field name="arch" type="xml">
+                <search string="Booking tools">
+                   <field name="tools_id"/>
+                   <field name="technician_id"/>
+                   <field name="calibration_booking"/>
+                   <filter name="calibration_booking" string="Calibration booking" icon="terp-accessories-archiver" domain="[('calibration_booking','=',True)]"/>
+                   <separator/>
+                   <group  expand='1' string='Group by...'>
+                       <filter string='Tools' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'tools_id'}"/>
+                       <filter string='Technician' icon="terp-mrp" domain="[]" context="{'group_by' : 'technician_id'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+        <record id="mro_booking_tools_tree_view" model="ir.ui.view">
+            <field name="name">mro.booking.tools.tree</field>
+            <field name="model">mro.tools.booking</field>
+            <field name="arch" type="xml">
+                <tree string="Booking tools">
+                    <field name="tools_id"/>
+                    <field name="technician_id"/>
+                    <field name="date_booking_begin"/>
+                    <field name="date_booking_end"/>
+                    <field name="calibration_booking"/>
+                </tree>
+            </field>
+        </record>
+        <record id="mro_booking_tools_form_view" model="ir.ui.view">
+            <field name="name">mro.booking.tools.form</field>
+            <field name="model">mro.tools.booking</field>
+            <field name="arch" type="xml">
+                <form string="Booking Tools" version="7.0">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group name="gb1" colspan="4" col="4">
+                            <group name="gb11" colspan="2" col="2">
+                                <field name="tools_id" on_change="onchange_tools_id(tools_id,date_booking_begin,date_booking_end,context)"/>
+                                <field name="calibration_booking"/>
+                                <field name="technician_id" attrs="{'required':[('calibration_booking','=',False)]}"/>
+                            </group>
+                            <group name="gb12" colspan="2" col="2">
+                                <field name="date_booking_begin" required="1" on_change="onchange_booking_begin(date_booking_begin,context)"/>
+                                <field name="date_booking_end" required="1" on_change="onchange_booking(tools_id,date_booking_begin,date_booking_end,context)"/>
+                                <separator string="Comment" colspan="2"/>
+                                <field name="booking_comment" nolabel="1" colspan="2"/>
+                            </group>
+                        </group>
+                     </sheet>
+                     <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="mro_booking_tools_calendar_view" model="ir.ui.view">
+            <field name="name">mro.booking.tools.calendar.view</field>
+            <field name="model">mro.tools.booking</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Bookings" date_start="date_booking_begin" color="tools_id" date_stop="date_booking_end">
+                    <field name="tools_id"/>
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="mro_booking_tools_gantt_view" model="ir.ui.view">
+            <field name="name">mro.booking.tools.gantt.view</field>
+            <field name="model">mro.tools.booking</field>
+            <field name="arch" type="xml">
+                <gantt date_start="date_booking_begin" date_stop="date_booking_end" string="Bookings">
+                    <field name="tools_id"/>
+                    <field name="name"/>
+                </gantt>
+            </field>
+        </record>
+        <record id="action_mro_booking_tools" model="ir.actions.act_window">
+            <field name="name">Booking tools</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mro.tools.booking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">calendar,tree,form,gantt</field>
+            <field name="help">List of booking for tools</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to schedule a new booking.
+              </p>
+            </field>
+
+        </record>
+        
+        <menuitem name="Booking tools"
+            action="action_mro_booking_tools"
+            id="menu_maintenance_mro_booking_tools"
+            parent="menu_maintenance_tools"
+            sequence="120"/>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         <record id="action_assets" model="ir.actions.act_window">
             <field name="name">Assets</field>

@@ -20,6 +20,7 @@
 ##############################################################################
 
 import wizard
+import report
 import mro_extended
 import res_partner
 import sale
