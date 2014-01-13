@@ -147,17 +147,38 @@
             </field>
         </record>
             
+
+        <!--MRO TOOLS-->
+
+        <record id="mro_tools_search" model="ir.ui.view">
+            <field name="name">mro.tools.search</field>
+            <field name="model">mro.tools</field>
+            
+            <field name="arch" type="xml">
+                <search string="Tools">
+                   <field name="name"/>
+                   <field name="model"/>
+                   <separator/>
+                   <group  expand='1' string='Group by...'>
+                       <filter string='Tools' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'name'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
         <record id="mro_tools_tree_view" model="ir.ui.view">
             <field name="name">mro.tools.tree</field>
             <field name="model">mro.tools</field>
             <field name="arch" type="xml">
-                <tree string="Tools">
+                <tree string="Tools"
+                colors="red:date_validity_3m;">
                     <field name="name"/>
                     <field name="model"/>
                     <field name="manufacturer"/>
                     <field name="serial"/>
-                    <field name="date_validity_begin"/>
+                    <!--<field name="date_validity_begin"/>-->
                     <field name="date_validity_end"/>
+                    <field name="date_validity_3m" invisible="1"/>
                     <field name="data"/>
                 </tree>
             </field>

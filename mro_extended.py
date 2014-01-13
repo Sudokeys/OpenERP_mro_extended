@@ -230,6 +230,16 @@ class mro_tools(osv.osv):
         res = [(r['id'], r['name']+(r['model'] and ' '+r['model'] or '')  or r['name']  ) for r in self.read(cr, uid, ids, ['model','name'], context)]
 
         return res
+
+    def name_search(self, cr, user, name='', args=None, operator='ilike',context=None, limit=100):
+        if not args:
+            args=[]
+        if not context:
+            context={}
+        ids=[]
+        ids = self.search(cr, user, ['|',('name', operator, name),('model', operator, name)] + args,limit=limit, context=context)
+        return self.name_get(cr, user, ids, context)
+
     def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
         if context is None:
             context={}
@@ -247,6 +257,13 @@ class mro_tools(osv.osv):
     def _set_image(self, cr, uid, id, name, value, args, context=None):
         return self.write(cr, uid, [id], {'image': tools.image_resize_image_big(value)}, context=context)
 
+    def _get_validity_3m(self,cr,uid,ids,field_name,arg,context=None):
+        res={}
+        for o in self.browse(cr,uid,ids,context):
+            res[o.id]=False
+            if o.date_validity_end and datetime.strptime(o.date_validity_end,'%Y-%m-%d')<=datetime.today()+relativedelta(months=3):
+                res[o.id]=True
+        return res
 
     _columns = {
         'name': fields.char('Tool Name', size=128, required=True),
@@ -276,6 +293,7 @@ class mro_tools(osv.osv):
                  "Use this field anywhere a small image is required."),
         'date_validity_begin': fields.date('Validity date begin'),
         'date_validity_end': fields.date('Validity date end'),
+        'date_validity_3m':fields.function(_get_validity_3m,type='boolean',string='Validity end in 3 months'),
         'purchase_value':fields.float('Purchase value',digits_compute=dp.get_precision('Product Price')),
         'tools_place':fields.selection(selection=TOOLS_PLACE,string='Place'),
         'booking_ids':fields.one2many('mro.tools.booking','tools_id',string='Booking'),
