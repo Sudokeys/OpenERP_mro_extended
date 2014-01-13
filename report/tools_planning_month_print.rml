@@ -179,6 +179,7 @@
   <images/>
   <story>
    <pto>
+    <para style="terp_default_8">[[ setLang(user.lang) ]]</para>
     <pto_header>
         <para style="terp_default_Centre_8">[[ set_weeks(data['form']) ]]</para>
 
@@ -259,7 +260,6 @@
     <!--<para style="terp_default_Centre_8">[[ set_months() ]]</para>-->
     <para style="terp_default_Centre_8">[[ set_weeks(data['form']) ]]</para>
     <para style="terp_default_Centre_8">[[ set_planning(data['form']) ]]</para>
-    <para style="terp_default_8">[[ setLang(user.lang) ]]</para>
     <blockTable colWidths="482.0" style="Table1">
       <tr>
         <td>
