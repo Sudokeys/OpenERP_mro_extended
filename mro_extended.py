@@ -226,45 +226,6 @@ class mro_order(osv.osv):
             'user_id': uid,
         }
         return invoice_vals
-
-################################################################################
-# DO invoice
-################################################################################    
-    def _prepare_invoice(self, cr, uid, order, lines, context=None):
-        """Prepare the dict of values to create the new invoice for a
-           mro order. This method may be overridden to implement custom
-           invoice generation (making sure to call super() to establish
-           a clean extension chain).
-
-           :param browse_record order: mro.order record to invoice
-           :return: dict of value to create() the invoice
-        """
-        if context is None:
-            context = {}
-        journal_ids = self.pool.get('account.journal').search(cr, uid,
-            [('type', '=', 'sale'), ('company_id', '=', order.company_id.id)],
-            limit=1)
-        if not journal_ids:
-            raise osv.except_osv(_('Error!'),
-                _('Please define sales journal for this company: "%s" (id:%d).') % (order.company_id.name, order.company_id.id))
-        invoice_vals = {
-            'name': order.description or '',
-            'origin': order.name,
-            'type': 'out_invoice',
-            'reference': order.name,
-            'account_id': order.partner_id.property_account_receivable.id,
-            'partner_id': order.partner_id.id,
-            'journal_id': journal_ids[0],
-            #'invoice_line': [(6, 0, lines)],
-            'currency_id': order.company_id.currency_id.id,
-            'comment': order.operations_description or '',
-            'payment_term': False,
-            'fiscal_position': order.partner_id.property_account_position and order.partner_id.property_account_position.id or False,
-            #'date_invoice': context.get('date_invoice', False),
-            'company_id': order.company_id.id,
-            'user_id': uid,
-        }
-        return invoice_vals
     
     def _invoice_line(self, cr, uid,invoice_id, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
         invoice_line_obj = self.pool.get('account.invoice.line')
@@ -288,84 +249,6 @@ class mro_order(osv.osv):
         invoice_line_id = invoice_line_obj.create(cr, uid, line_value, context=context)
         return invoice_line_id
     
-    
-    
-    
-    
-    
-    def _invoice_line(self, cr, uid,invoice_id, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
-        invoice_line_obj = self.pool.get('account.invoice.line')
-        line_value =  {
-            'product_id': product_id,
-        }
-
-        line_dict = invoice_line_obj.product_id_change(cr, uid, {},
-                        product_id, False, quantity, '', 'out_invoice', partner_id, fpos_id, amount, False, context, False)
-                        #product, uom_id, qty=0, name='', type='out_invoice', partner_id=False, fposition_id=False, price_unit=False, currency_id=False, context=None, company_id=None):
-        #print 'line_dict: ',line_dict
-        line_value.update(line_dict['value'])
-
-        line_value['price_unit'] = amount
-        line_value['invoice_id']= invoice_id
-        line_value['quantity']=quantity
-        if line_value.get('invoice_line_tax_id', False):
-            tax_tab = [(6, 0, line_value['invoice_line_tax_id'])]
-            line_value['invoice_line_tax_id'] = tax_tab
-        print 'line_value: ', line_value
-        invoice_line_id = invoice_line_obj.create(cr, uid, line_value, context=context)
-        return invoice_line_id
-    
-    
-    
-    
-    
-    
-    def action_do_invoice(self, cr, uid, ids,context=False):
-        inv_obj=self.pool.get('account.invoice')
-        invline_obj=self.pool.get('account.invoice.line')
-        #we search if there is an contrat first
-        for interv in self.browse(cr,uid,ids,context):
-            lines=[]
-            # first product in contrat
-            if interv.contract_id:
-                for serv in interv.contract_id.service_ids:
-                    if serv.service_id:
-                        lines.append({
-                            'product_id':serv.service_id.id,
-                            'price':serv.price,
-                            'qty':1,
-                        })
-            print 'lines: ',lines
-            #second parts line
-            for part in interv.parts_lines:
-                lines.append({
-                    'product_id':part.parts_id.id,
-                    'price':part.parts_id.list_price,
-                    'qty':part.parts_qty,
-                })
-
-            print 'lines: ',lines
-            if len(lines)>0:
-                #make invoice
-                inv_vals=self._prepare_invoice(cr, uid, interv, False, context)
-                if inv_vals:
-                    inv_id=inv_obj.create(cr,uid,inv_vals)
-                    if inv_id:
-                        #invoice line
-                        for line in lines:
-                            self._invoice_line(cr,uid,inv_id, line['product_id'], False, line['qty'], '', 'out_invoice',
-                            interv.partner_id.id, interv.partner_id.property_account_receivable,
-                            line['price'],context=None)
-
-
-
-
-
-        #raise osv.except_osv(_('Error!'),_('voulue'))
-
-        self.write(cr, uid, ids, {'state': 'invoiced'})
-        return True
-
     def action_do_invoice(self, cr, uid, ids,context=False):
         inv_obj=self.pool.get('account.invoice')
         invline_obj=self.pool.get('account.invoice.line')
