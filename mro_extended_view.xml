@@ -23,6 +23,7 @@
                         <field name="partner_id" on_change="onchange_partner(partner_id)"/>
                         <field name="contract_id" attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
                         <field name="order_id"/>
+                        <field name="invoice_id"/>
                         <field name="description"/>
                     </group>
                     <group name="details">

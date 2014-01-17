@@ -167,6 +167,7 @@ class mro_order(osv.osv):
         'date_deadline': fields.datetime('End Date', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'duration': fields.float('Duration', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'allday': fields.boolean('All Day', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
+        'invoice_id':fields.many2one('account.invoice',u'Invoice',readonly=True),
     }
     
     _defaults = {
@@ -252,19 +253,30 @@ class mro_order(osv.osv):
     def action_do_invoice(self, cr, uid, ids,context=False):
         inv_obj=self.pool.get('account.invoice')
         invline_obj=self.pool.get('account.invoice.line')
+        accanalserv_obj=self.pool.get('account.analytic.services')
         #we search if there is an contrat first
         for interv in self.browse(cr,uid,ids,context):
             lines=[]
             # first product in contrat
-            if interv.contract_id:
+            if interv.asset_ids and interv.contract_id:
+                interv_asset_liste=[x.id for x in interv.asset_ids]
+                print 'interv_asset_liste: ', interv_asset_liste
                 for serv in interv.contract_id.service_ids:
-                    if serv.service_id:
+                    if serv.service_id and serv.asset_id and serv.asset_id.id in interv_asset_liste :
                         lines.append({
                             'product_id':serv.service_id.id,
                             'price':serv.price,
                             'qty':1,
                         })
-            print 'lines: ',lines
+                    if serv.asset_id==False and serv.service_id:
+                        raise osv.except_osv(_('Error!'),
+                        _('Please define asset for Contract service %s in contract: %s' ) % (serv.service_id.name,interv.contract_id.name))
+
+                print 'len(lines)',len(lines)
+                if len(lines)<=0:
+                    raise osv.except_osv(_('Error!'),
+                    _('Please define asset for Contract service in contract: %s' ) % (interv.contract_id.name))
+
             #second parts line
             for part in interv.parts_lines:
                 lines.append({
@@ -273,7 +285,6 @@ class mro_order(osv.osv):
                     'qty':part.parts_qty,
                 })
 
-            print 'lines: ',lines
             if len(lines)>0:
                 #make invoice
                 inv_vals=self._prepare_invoice(cr, uid, interv, False, context)
@@ -285,15 +296,16 @@ class mro_order(osv.osv):
                             self._invoice_line(cr,uid,inv_id, line['product_id'], False, line['qty'], '', 'out_invoice',
                             interv.partner_id.id, interv.partner_id.property_account_receivable,
                             line['price'],context=None)
-
+                self.write(cr, uid, ids, {'state': 'invoiced','invoice_id':inv_id})
 
 
 
 
         #raise osv.except_osv(_('Error!'),_('voulue'))
 
-        self.write(cr, uid, ids, {'state': 'invoiced'})
+        
         return True
+
 
     def _make_consume_parts_line(self, cr, uid, parts_line, context=None):
         stock_move = self.pool.get('stock.move')
