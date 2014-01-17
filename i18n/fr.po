@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130911-231052\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-09 16:32+0000\n"
-"PO-Revision-Date: 2014-01-09 17:37+0100\n"
+"POT-Creation-Date: 2014-01-16 15:52+0000\n"
+"PO-Revision-Date: 2014-01-16 16:59+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -195,6 +195,7 @@ msgstr "Année(s)"
 #. module: mro_extended
 #: code:addons/mro_extended/analytic.py:309
 #: code:addons/mro_extended/analytic.py:461
+#: code:addons/mro_extended/mro_extended.py:209
 #, python-format
 msgid "Error!"
 msgstr "Erreur!"
@@ -235,7 +236,7 @@ msgid "Add a Maintenance Order"
 msgstr "Ajouter une intervention"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:297
+#: code:addons/mro_extended/mro_extended.py:436
 #, python-format
 msgid "IN CALIBRATION"
 msgstr "En étalonnage"
@@ -302,6 +303,12 @@ msgid "_Print"
 msgstr "_Print"
 
 #. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:210
+#, python-format
+msgid "Please define sales journal for this company: \"%s\" (id:%d)."
+msgstr "Configurez un journale de vente pour cette compagnie: \"%s\" (id:%d)."
+
+#. module: mro_extended
 #: field:generic.assets,partner_id:0
 #: model:ir.model,name:mro_extended.model_res_partner
 msgid "Partner"
@@ -341,7 +348,7 @@ msgstr "Métrologie"
 #. module: mro_extended
 #: field:generic.assets,mro_id:0
 msgid "MRO Order"
-msgstr "Ordre MRO"
+msgstr "MRO Order"
 
 #. module: mro_extended
 #: selection:sale.make.mro,maintenance_type:0
@@ -354,7 +361,7 @@ msgid "Sun"
 msgstr "Dim"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:199
+#: code:addons/mro_extended/mro_extended.py:312
 #, python-format
 msgid "You must first assign a location for the parts in the asset."
 msgstr ""
@@ -488,6 +495,11 @@ msgid "Tue"
 msgstr "Mar"
 
 #. module: mro_extended
+#: field:mro.tools,date_validity_3m:0
+msgid "Validity end in 3 months"
+msgstr "Validity end in 3 months"
+
+#. module: mro_extended
 #: view:mro.tools:0
 msgid "Info"
 msgstr "Info"
@@ -565,7 +577,7 @@ msgstr "Premier"
 #. module: mro_extended
 #: view:mro.tools.booking:0 field:mro.tools.booking,booking_comment:0
 msgid "Comment"
-msgstr "Commentaire"
+msgstr "Comment"
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -621,7 +633,7 @@ msgid "Month"
 msgstr "Mois"
 
 #. module: mro_extended
-#: view:mro.tools.booking:0
+#: view:mro.tools:0 view:mro.tools.booking:0
 msgid "Group by..."
 msgstr "Groupé par..."
 
@@ -779,7 +791,7 @@ msgid "The"
 msgstr "Le"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:82
+#: code:addons/mro_extended/mro_extended.py:83
 #, python-format
 msgid "%s [Subcontract: %s]"
 msgstr "%s [Sous-traitant: %s]"
@@ -897,7 +909,7 @@ msgid "Thursday"
 msgstr "Jeudi"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:198
+#: code:addons/mro_extended/mro_extended.py:311
 #, python-format
 msgid "Cannot consume parts!"
 msgstr "Impossible de consommer les pièces!"
@@ -1280,6 +1292,11 @@ msgstr "RDV fixé"
 #, python-format
 msgid "Maintenance Order <em>%s</em> has been <b>created</b>."
 msgstr "L'intervention <em>%s</em> a été <b>créée</b>."
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Do invoice"
+msgstr "Créer la facture"
 
 #. module: mro_extended
 #: selection:mro.order,place:0

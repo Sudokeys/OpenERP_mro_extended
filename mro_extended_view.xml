@@ -12,7 +12,8 @@
                     <button name="button_meeting" states="ready" string="Meeting fixed" class="oe_highlight"/>
                     <button name="button_progress" states="meeting" string="In progress" class="oe_highlight"/>
                     <button name="button_invoicing" states="progress" string="Invoicing" class="oe_highlight"/>
-                    <button name="button_done" states="invoicing" string="Done" class="oe_highlight"/>
+                    <button name="button_do_invoice" states="invoicing" string="Do invoice" class="oe_highlight"/>
+                    <button name="button_done" states="invoiced" string="Done" class="oe_highlight"/>
                 </button>
                 
                 
@@ -81,7 +82,7 @@
                 </group>
 -->
                 <group string="Planned Parts" position="replace">
-                    <group string="Planned Parts" states="draft,released,meeting,progress,done,parts_except,cancel">
+                    <group string="Planned Parts" states="draft,released,meeting,progress,done,parts_except,cancel,invoicing,invoiced">
                         <field name="parts_lines" nolabel="1">
                             <tree string="Planned Parts" editable="bottom">
                                 <field name="parts_id" on_change="onchange_parts(parts_id)"/>
