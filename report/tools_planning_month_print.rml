@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<document filename="test.pdf">
-  <template pageSize="(842.0,595.0)" title="Test" author="Martin Simon" allowSplitting="20">
+<document filename="tools_planning_month.pdf">
+  <template pageSize="(842.0,595.0)" title="tools_planning_month" author="Sudokeys" allowSplitting="20">
     <pageTemplate id="first">
       <frame id="first" x1="10.0" y1="10.0" width="800" height="550"/>
     </pageTemplate>

@@ -12,8 +12,8 @@
                     <field name="partner_id" required="1"/>
                     <field name="description"/>
                     <field name="duration"/>
-                    <field name="asset_ids" widget="many2many_tags"/>
-                    <field name="service_ids" widget="many2many_tags"/>
+                    <field name="asset_ids" widget="many2many_tags" domain="[('mro_type','=','asset')]"/>
+                    <field name="service_ids" widget="many2many_tags" domain="[('product_id.contract','=',True)]"/>
                 </group>
                 <footer>
                     <button name="makeContract" string="_Create" type="object" class="oe_highlight"/>

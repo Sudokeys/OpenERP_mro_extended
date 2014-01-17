@@ -226,6 +226,45 @@ class mro_order(osv.osv):
             'user_id': uid,
         }
         return invoice_vals
+
+################################################################################
+# DO invoice
+################################################################################    
+    def _prepare_invoice(self, cr, uid, order, lines, context=None):
+        """Prepare the dict of values to create the new invoice for a
+           mro order. This method may be overridden to implement custom
+           invoice generation (making sure to call super() to establish
+           a clean extension chain).
+
+           :param browse_record order: mro.order record to invoice
+           :return: dict of value to create() the invoice
+        """
+        if context is None:
+            context = {}
+        journal_ids = self.pool.get('account.journal').search(cr, uid,
+            [('type', '=', 'sale'), ('company_id', '=', order.company_id.id)],
+            limit=1)
+        if not journal_ids:
+            raise osv.except_osv(_('Error!'),
+                _('Please define sales journal for this company: "%s" (id:%d).') % (order.company_id.name, order.company_id.id))
+        invoice_vals = {
+            'name': order.description or '',
+            'origin': order.name,
+            'type': 'out_invoice',
+            'reference': order.name,
+            'account_id': order.partner_id.property_account_receivable.id,
+            'partner_id': order.partner_id.id,
+            'journal_id': journal_ids[0],
+            #'invoice_line': [(6, 0, lines)],
+            'currency_id': order.company_id.currency_id.id,
+            'comment': order.operations_description or '',
+            'payment_term': False,
+            'fiscal_position': order.partner_id.property_account_position and order.partner_id.property_account_position.id or False,
+            #'date_invoice': context.get('date_invoice', False),
+            'company_id': order.company_id.id,
+            'user_id': uid,
+        }
+        return invoice_vals
     
     def _invoice_line(self, cr, uid,invoice_id, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
         invoice_line_obj = self.pool.get('account.invoice.line')
@@ -254,6 +293,79 @@ class mro_order(osv.osv):
     
     
     
+    def _invoice_line(self, cr, uid,invoice_id, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
+        invoice_line_obj = self.pool.get('account.invoice.line')
+        line_value =  {
+            'product_id': product_id,
+        }
+
+        line_dict = invoice_line_obj.product_id_change(cr, uid, {},
+                        product_id, False, quantity, '', 'out_invoice', partner_id, fpos_id, amount, False, context, False)
+                        #product, uom_id, qty=0, name='', type='out_invoice', partner_id=False, fposition_id=False, price_unit=False, currency_id=False, context=None, company_id=None):
+        #print 'line_dict: ',line_dict
+        line_value.update(line_dict['value'])
+
+        line_value['price_unit'] = amount
+        line_value['invoice_id']= invoice_id
+        line_value['quantity']=quantity
+        if line_value.get('invoice_line_tax_id', False):
+            tax_tab = [(6, 0, line_value['invoice_line_tax_id'])]
+            line_value['invoice_line_tax_id'] = tax_tab
+        print 'line_value: ', line_value
+        invoice_line_id = invoice_line_obj.create(cr, uid, line_value, context=context)
+        return invoice_line_id
+    
+    
+    
+    
+    
+    
+    def action_do_invoice(self, cr, uid, ids,context=False):
+        inv_obj=self.pool.get('account.invoice')
+        invline_obj=self.pool.get('account.invoice.line')
+        #we search if there is an contrat first
+        for interv in self.browse(cr,uid,ids,context):
+            lines=[]
+            # first product in contrat
+            if interv.contract_id:
+                for serv in interv.contract_id.service_ids:
+                    if serv.service_id:
+                        lines.append({
+                            'product_id':serv.service_id.id,
+                            'price':serv.price,
+                            'qty':1,
+                        })
+            print 'lines: ',lines
+            #second parts line
+            for part in interv.parts_lines:
+                lines.append({
+                    'product_id':part.parts_id.id,
+                    'price':part.parts_id.list_price,
+                    'qty':part.parts_qty,
+                })
+
+            print 'lines: ',lines
+            if len(lines)>0:
+                #make invoice
+                inv_vals=self._prepare_invoice(cr, uid, interv, False, context)
+                if inv_vals:
+                    inv_id=inv_obj.create(cr,uid,inv_vals)
+                    if inv_id:
+                        #invoice line
+                        for line in lines:
+                            self._invoice_line(cr,uid,inv_id, line['product_id'], False, line['qty'], '', 'out_invoice',
+                            interv.partner_id.id, interv.partner_id.property_account_receivable,
+                            line['price'],context=None)
+
+
+
+
+
+        #raise osv.except_osv(_('Error!'),_('voulue'))
+
+        self.write(cr, uid, ids, {'state': 'invoiced'})
+        return True
+
     def action_do_invoice(self, cr, uid, ids,context=False):
         inv_obj=self.pool.get('account.invoice')
         invline_obj=self.pool.get('account.invoice.line')
@@ -420,7 +532,86 @@ class mro_tools(osv.osv):
         'tools_place':'movable',
     }
     
+class generic_assets(osv.osv):
+    _name = 'generic.assets'
+    _description = 'Generic Assets'
+    
+    def _get_date(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        done=[]
+        other=[]
+        for id in ids:
+            res[id] = {'date_previous': False, 'date_next': False}
+        if not ids:
+            return res
+        assets = self.browse(cr,uid,ids,context=context)
+        for asset in assets:
+            if asset.contract_id.mro_order_ids:
+                for order in asset.contract_id.mro_order_ids:
+                    if order.state == 'done':
+                        done.append(order.date_execution)
+                    else:
+                        other.append(order.date_execution)
+                if done:
+                    res[asset.id]['date_previous'] = done[-1]
+                if other:
+                    res[asset.id]['date_next'] = other[0]
+        return res
+    
+    _columns = {
+        'name': fields.char('Description', size=128),
+        'date_start': fields.date('Date start'),
+        'date_end': fields.date('Date end'),
+        'date_previous': fields.function(_get_date, string='Previous maintenance date', type='datetime',multi="previous_next_date"),
+        'date_next': fields.function(_get_date, string='Next maintenance date', type='datetime',multi="previous_next_date"),
+        'asset_id': fields.many2one('product.product', 'Asset', required=True, ondelete='set null'),
+        'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True, ondelete='set null'),
+        'partner_id': fields.many2one('res.partner', 'Partner', select=True, ondelete='set null'),
+        'service_id': fields.many2one('account.analytic.services', 'Contract service', select=True),
+        'mro_id': fields.many2many('mro.order', string='MRO Order'),
+        'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
+        'default_code': fields.related('asset_id','default_code',string='Reference',type='char',readonly=True),
+        'loan': fields.boolean('Loan'),
+    }
+    
+    _defaults = {
+    }
+    
+    _sql_constraints = [
+                     ('name_unique', 
+                      'unique(asset_id,serial_id,partner_id)',
+                      'Serial number must be unique per product and per partner')
+    ]
+    
+    def _check_date(self, cr, uid, ids, context=None):
+        
+        for asset in self.browse(cr,uid,ids,context=context):
+            if asset.serial_id and asset.date_start and asset.date_end:
+                cr.execute('select id,partner_id,date_start,date_end from generic_assets \
+                            where asset_id=%s \
+                            and serial_id=%s \
+                            and (%s between date_start and date_end or %s between date_start and date_end)',(asset.asset_id.id,asset.serial_id.id,asset.date_start,asset.date_end))
+                fetchall = cr.fetchall()
+                partner_ids = filter(None, map(lambda x:x[1], fetchall))
+                dates = [(x[2], x[3]) for x in fetchall]
+                if len(partner_ids)>1:
+                    partner_name=self.pool.get('res.partner').read(cr,uid,partner_ids[0],['name'])
+                    raise osv.except_osv(_('Error!'),
+                        _("This asset already belongs to this partner for this period: %s. \n From %s to %s") % \
+                            (partner_name['name'],dates[0][0],dates[0][1]) )
+        return True
 
+    _constraints = [
+        (_check_date, 'Check assets dates.', ['date_start','date_end']),
+    ]
+    
+    def onchange_asset(self, cr, uid, ids, product, context=None):
+        context = context or {}
+        result = {}
+        product_obj = self.pool.get('product.product')
+        prod = product_obj.browse(cr, uid, product, context=context)
+        result['name'] = self.pool.get('product.product').name_get(cr, uid, [prod.id], context=context)[0][1]
+        return {'value': result}
 class mro_tools_booking(osv.osv):
     _name='mro.tools.booking'
     _description = 'Booking for tools'

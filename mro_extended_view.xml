@@ -19,13 +19,13 @@
                 
                 <xpath expr="/form/sheet/group" position="replace">
                 <group>
-                    <group>
+                    <group name="partner">
                         <field name="partner_id" on_change="onchange_partner(partner_id)"/>
                         <field name="contract_id" attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
                         <field name="order_id"/>
                         <field name="description"/>
                     </group>
-                    <group>
+                    <group name="details">
                         <field name="technician" on_change="onchange_technician(technician,partner_id)"/>
                         <field name="subcontract" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)"/>
                         <field name="subcontractor_id" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)" attrs="{'invisible':[('subcontract','=',False)]}"/>
@@ -47,7 +47,7 @@
                         </div>
                         <field name="date_deadline" invisible="True"/>
                     </group>
-                    <group>
+                    <group name="type">
                         <field name="place"/>
                         <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                     </group>
@@ -56,6 +56,7 @@
 
 
                 <field name="tools_description" position="replace">
+                    <field name="tools_description" invisible="True"/>
                     <field name="tools_ids"/>
                 </field>
                 
@@ -76,13 +77,11 @@
                         </group>
                     </page>
                 </page>
-<!--
-                <group string="Planned Parts" position="attributes">
-                     <attribute name="states">"draft,released,meeting,progress,done,parts_except,cancel"</attribute>
+                <group string="Parts to Consume" position="attributes">
+                     <attribute name="states">released,meeting,progress,invoicing</attribute>
                 </group>
--->
                 <group string="Planned Parts" position="replace">
-                    <group string="Planned Parts" states="draft,released,meeting,progress,done,parts_except,cancel,invoicing,invoiced">
+                    <group string="Planned Parts" states="draft,released,meeting,progress,invoicing,done,parts_except,cancel">
                         <field name="parts_lines" nolabel="1">
                             <tree string="Planned Parts" editable="bottom">
                                 <field name="parts_id" on_change="onchange_parts(parts_id)"/>
@@ -408,27 +407,6 @@
             id="menu_maintenance_mro_booking_tools"
             parent="menu_maintenance_tools"
             sequence="120"/>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         <record id="action_assets" model="ir.actions.act_window">
             <field name="name">Assets</field>

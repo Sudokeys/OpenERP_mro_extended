@@ -1,0 +1,70 @@
+<openerp>
+   <data>
+
+
+       <record id="view_create_amendment" model="ir.ui.view">
+          <field name="name">create.amendment.form</field>
+          <field name="model">create.amendment</field>
+          <field name="arch" type="xml">
+            <form string="Create Amendment"  version="7.0">
+                <group>
+                    <field name="name"/>
+                    <field name="date"/>
+                </group>
+                <div>
+                    <label for="date_begin" string="New contract dates"/>
+                    <field name="date_begin" class="oe_inline"/> - <field name="date_end" class="oe_inline"/>
+                    (<field name="renewal" class="oe_inline"/>
+                    <label for="renewal" string="Renewal?"/>)
+                </div>
+                <group>
+                    <field name="price_rise"/>
+                    <field name="contract_id" invisible="1"/>
+                    <separator string="Existing contract services and assets" colspan="4"/>
+                    <field name="service_asset_ids_old" nolabel="1" colspan="4">
+                        <tree editable="top">
+                            <field name="service_id" context="{'default_contract':True}" domain="[('contract','=',True)]"/>
+                            <field name="asset_id" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
+                            <field name="serial_id" context="{'default_product_id':asset_id}" domain="[('product_id','=',asset_id)]"/>
+                            <field name="price"/>
+                        </tree>
+                    </field>
+                    <separator string="Add contract services and assets" colspan="4"/>
+                    <field name="service_asset_ids_new" nolabel="1" colspan="4">
+                        <tree editable="top">
+                            <field name="service_id" context="{'default_contract':True}" domain="[('contract','=',True)]"/>
+                            <field name="asset_id" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
+                            <field name="serial_id" context="{'default_product_id':asset_id}" domain="[('product_id','=',asset_id)]"/>
+                            <field name="price"/>
+                        </tree>
+                    </field>
+                    <separator string="Remove contract services and assets" colspan="4"/>
+                    <field name="service_asset_ids_remove" nolabel="1" colspan="4" domain="[('contract_id','=',contract_id)]">
+                        <tree>
+                            <field name="service_id"/>
+                            <field name="price" />
+                            <field name="asset_id" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="confirm" string="_Confirm" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+          </field>
+       </record>
+
+
+       <record id="action_create_amendment" model="ir.actions.act_window">
+          <field name="name">Create Amendment</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">create.amendment</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+   </data>
+</openerp>

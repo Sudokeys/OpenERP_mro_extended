@@ -395,85 +395,7 @@ class account_analytic_account(osv.osv):
             data['end_type'] = 'end_date'
         return data
     
-class generic_assets(osv.osv):
-    _name = 'generic.assets'
-    _description = 'Generic Assets'
-    
-    def _get_date(self, cr, uid, ids, field_name, arg, context=None):
-        res = {}
-        done=[]
-        other=[]
-        for id in ids:
-            res[id] = {'date_previous': False, 'date_next': False}
-        if not ids:
-            return res
-        assets = self.browse(cr,uid,ids,context=context)
-        for asset in assets:
-            if asset.contract_id.mro_order_ids:
-                for order in asset.contract_id.mro_order_ids:
-                    if order.state == 'done':
-                        done.append(order.date_execution)
-                    else:
-                        other.append(order.date_execution)
-                if done:
-                    res[asset.id]['date_previous'] = done[-1]
-                if other:
-                    res[asset.id]['date_next'] = other[0]
-        return res
-    
-    _columns = {
-        'name': fields.char('Description', size=128),
-        'date_start': fields.date('Date start'),
-        'date_end': fields.date('Date end'),
-        'date_previous': fields.function(_get_date, string='Previous maintenance date', type='datetime',multi="previous_next_date"),
-        'date_next': fields.function(_get_date, string='Next maintenance date', type='datetime',multi="previous_next_date"),
-        'asset_id': fields.many2one('product.product', 'Asset', required=True, ondelete='set null'),
-        'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True, ondelete='set null'),
-        'partner_id': fields.many2one('res.partner', 'Partner', select=True, ondelete='set null'),
-        'mro_id': fields.many2many('mro.order', string='MRO Order'),
-        'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
-        'default_code': fields.related('asset_id','default_code',string='Reference',type='char',readonly=True),
-        'loan': fields.boolean('Loan'),
-    }
-    
-    _defaults = {
-    }
-    
-    _sql_constraints = [
-                     ('name_unique', 
-                      'unique(asset_id,serial_id,partner_id)',
-                      'Serial number must be unique per product and per partner')
-    ]
-    
-    def _check_date(self, cr, uid, ids, context=None):
-        
-        for asset in self.browse(cr,uid,ids,context=context):
-            if asset.serial_id and asset.date_start and asset.date_end:
-                cr.execute('select id,partner_id,date_start,date_end from generic_assets \
-                            where asset_id=%s \
-                            and serial_id=%s \
-                            and (%s between date_start and date_end or %s between date_start and date_end)',(asset.asset_id.id,asset.serial_id.id,asset.date_start,asset.date_end))
-                fetchall = cr.fetchall()
-                partner_ids = filter(None, map(lambda x:x[1], fetchall))
-                dates = [(x[2], x[3]) for x in fetchall]
-                if len(partner_ids)>1:
-                    partner_name=self.pool.get('res.partner').read(cr,uid,partner_ids[0],['name'])
-                    raise osv.except_osv(_('Error!'),
-                        _("This asset already belongs to this partner for this period: %s. \n From %s to %s") % \
-                            (partner_name['name'],dates[0][0],dates[0][1]) )
-        return True
 
-    _constraints = [
-        (_check_date, 'Check assets dates.', ['date_start','date_end']),
-    ]
-    
-    def onchange_asset(self, cr, uid, ids, product, context=None):
-        context = context or {}
-        result = {}
-        product_obj = self.pool.get('product.product')
-        prod = product_obj.browse(cr, uid, product, context=context)
-        result['name'] = self.pool.get('product.product').name_get(cr, uid, [prod.id], context=context)[0][1]
-        return {'value': result}
         
     
 class account_analytic_services(osv.osv):
@@ -484,6 +406,7 @@ class account_analytic_services(osv.osv):
         'price': fields.float('Price'),
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
+        'asset_id': fields.many2one('generic.assets','Asset', select=True),
     }
     
     _defaults = {
@@ -496,6 +419,49 @@ class account_analytic_services(osv.osv):
         product_obj = product_obj.browse(cr, uid, product, context=context)
         result['name'] = self.pool.get('product.product').name_get(cr, uid, [product_obj.id], context=context)[0][1]
         return {'value': result}
+    
+    def create(self, cr, uid, vals, context=None):
+        service_id = super(account_analytic_services, self).create(cr, uid, vals, context)
+        if 'asset_id' in vals:
+            asset_obj = self.pool.get('generic.assets')
+            if vals['asset_id']:
+                asset_obj.write(cr,uid,vals['asset_id'],{'service_id':service_id})
+            else:
+                asset_ids = asset_obj.search(cr,uid,[('service_id','=',service_id)])
+                for asset_id in asset_ids:
+                    asset_obj.write(cr,uid,vals['asset_id'],{'service_id':False})
+        return service_id
+        
+    def onchange_asset(self, cr, uid, ids, asset, context=None):
+        context = context or {}
+        result = {}
+        asset_obj = self.pool.get('generic.assets')
+        print 'ids',ids
+        if ids:
+            if asset:
+                asset_obj.write(cr,uid,asset,{'service_id':ids[0]})
+            else:
+                asset_ids = asset_obj.search(cr,uid,[('service_id','=',ids[0])])
+                print 'asset_ids',asset_ids
+                for asset_id in asset_ids:
+                    asset_obj.write(cr,uid,asset_id,{'service_id':False})
+        return {'value': result}
+    
+class services_assets(osv.osv):
+
+    _name = "services.assets"
+    _description = "Contract services / Assets"
+    
+    _columns = {
+        'service_id': fields.many2one('product.product', 'Contract service', required=True),
+        'asset_id': fields.many2one('product.product', 'Asset', required=True),
+        'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
+        'price': fields.float('Price'),
+        'amendment_id': fields.many2one('account.analytic.amendments', 'Amendment'),
+        'move_type': fields.selection([('add','Add'),('remove','Remove'),('remain','Remain')],'Move type'),
+    }
+    
+    
         
 class account_analytic_amendments(osv.osv):
     _name = 'account.analytic.amendments'
@@ -506,11 +472,14 @@ class account_analytic_amendments(osv.osv):
         'data': fields.binary('File'),
         'state': fields.selection([('draft','Draft'),('accepted','Accepted'),('refused','Refused')],'Status'),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
+        'service_asset_ids': fields.one2many('services.assets','amendment_id','Contract services / Assets',readonly=True),
     }
     
     _defaults = {
         'state': 'draft',
     }
+    
+    _order = 'id desc'
     
     def button_draft(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)

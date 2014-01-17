@@ -42,6 +42,7 @@ Required modules:
         'wizard/sale_make_mro_view.xml',
         'wizard/sale_make_contract_view.xml',
         'wizard/refuse_amendment_view.xml',
+        'wizard/create_amendment_view.xml',
         
         'report/tools_planning_print.xml',
         'mro_extended_view.xml',

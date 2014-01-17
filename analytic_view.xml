@@ -94,9 +94,30 @@
                 </group>
                 <notebook position="inside">
                     <page string="Contract amendments" name="amendment_page" attrs="{'invisible':[('type','not in',['contract'])]}">
+                        <button name="%(action_create_amendment)d" string="Create Amendment" type="action" states="draft,open,pending" />
                         <field name="amendment" invisible="1"/>
                         <field name="amendment_ids">
+                            <form>
+                                <field name="name"/>
+                                <field name="date"/>
+<!--
+                                <field name="data"/>
+-->
+                                <field name="state"/>
+                                <field name="service_asset_ids" colspan="4">
+                                    <tree>
+                                        <field name="service_id"/>
+                                        <field name="asset_id"/>
+                                        <field name="serial_id"/>
+                                        <field name="price"/>
+                                        <field name="move_type"/>
+                                    </tree>
+                                </field>
+                            </form>
+<!--
                             <tree editable="top">
+-->
+                            <tree>
                                 <field name="name"/>
                                 <field name="date"/>
                                 <field name="data"/>
@@ -113,6 +134,7 @@
                                 <field name="service_id" on_change="onchange_service(service_id)" context="{'default_contract':True}" domain="[('contract','=',True)]"/>
                                 <field name="name"/>
                                 <field name="price"/>
+                                <field name="asset_id" on_change="onchange_asset(asset_id)" domain="[('contract_id','=',parent.id),('service_id','=',False)]"/>
                             </tree>
                         </field>
                     </page>
@@ -127,6 +149,7 @@
                                 <field name="loan"/>
                                 <field name="date_previous"/>
                                 <field name="date_next"/>
+                                <field name="service_id"/>
                                 <field name="partner_id" invisible="1"/>
                             </tree>
                         </field>
@@ -198,6 +221,18 @@
                     <separator/>
                     <filter string="Amendments not accepted" domain="[('amendment', '=', True)]"/>
                 </filter>
+            </field>
+        </record>
+        
+        <record id="account_analytic_services_tree_view" model="ir.ui.view">
+            <field name="name">account.analytic.services.tree</field>
+            <field name="model">account.analytic.services</field>
+            <field name="arch" type="xml">
+                <tree string="Contract services">
+                    <field name="service_id"/>
+                    <field name="price" />
+                    <field name="asset_id" />
+                </tree>
             </field>
         </record>
         

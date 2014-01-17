@@ -30,15 +30,6 @@ class refuse_amendment(osv.osv_memory):
     _description = "Refuse Amendment"
     
     def confirm(self, cr, uid, ids, context=None):
-        """
-        This function  create Maintenance Order on given case.
-        @param self: The object pointer
-        @param cr: the current row, from the database cursor,
-        @param uid: the current user’s ID for security checks,
-        @param ids: List of sale make mro' ids
-        @param context: A standard dictionary for contextual values
-        @return: Dictionary value of created mro order.
-        """
         if context is None:
             context = {}
         
