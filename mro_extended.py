@@ -165,7 +165,7 @@ class mro_order(osv.osv):
         'maintenance_type': fields.selection(MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'tools_ids': fields.many2many('mro.tools',string='Tools'),
         'date_deadline': fields.datetime('End Date', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
-        'duration': fields.float('Duration', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
+        'duration': fields.float('Duration (h)', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'allday': fields.boolean('All Day', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'invoice_id':fields.many2one('account.invoice',u'Invoice',readonly=True),
     }
@@ -185,8 +185,14 @@ class mro_order(osv.osv):
         self.write(cr, uid, ids, {'state': 'progress'})
         return True
         
-    def action_invoicing(self, cr, uid, ids):
-        self.write(cr, uid, ids, {'state': 'invoicing'})
+    def action_invoicing(self, cr, uid, ids, context=None):
+        for order in self.browse(cr, uid, ids, context=context):
+            self.pool.get('stock.move').action_done(cr, uid, [x.id for x in order.parts_move_lines])
+        self.write(cr, uid, ids, {'state': 'invoicing', 'date_execution': time.strftime('%Y-%m-%d %H:%M:%S')})
+        return True
+        
+    def action_done(self, cr, uid, ids, context=None):
+        self.write(cr, uid, ids, {'state': 'done'})
         return True
 
 ################################################################################
@@ -498,6 +504,7 @@ class generic_assets(osv.osv):
         prod = product_obj.browse(cr, uid, product, context=context)
         result['name'] = self.pool.get('product.product').name_get(cr, uid, [prod.id], context=context)[0][1]
         return {'value': result}
+        
 class mro_tools_booking(osv.osv):
     _name='mro.tools.booking'
     _description = 'Booking for tools'

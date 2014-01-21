@@ -32,6 +32,7 @@ class services_assets_wizard(osv.osv_memory):
     
     _columns = {
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
+        'service_real_id': fields.many2one('account.analytic.services', 'Contract service real id'),
         'asset_id': fields.many2one('product.product', 'Asset', required=True),
         'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
         'price': fields.float('Price'),
@@ -57,6 +58,7 @@ class create_amendment(osv.osv_memory):
         for service in contract.service_ids:
             if service.asset_id:
                 service_asset_ids.append({'service_id':service.service_id.id,
+                                        'service_real_id':service.id or False,
                                         'asset_id':service.asset_id.asset_id.id or False,
                                         'serial_id':service.asset_id.serial_id and service.asset_id.serial_id.id or False,
                                         'price':service.price,
@@ -75,34 +77,41 @@ class create_amendment(osv.osv_memory):
         asset_obj = self.pool.get('generic.assets')
         contract_id = context and context.get('active_id', False) or False
         wiz = self.browse(cr,uid,ids,context=context)[0]
-        amendment_id=amendment_obj.create(cr,uid,{'name':wiz.name,'date':wiz.date,'contract_id':contract_id})
+        amendment_id=amendment_obj.create(cr,uid,{'name':wiz.name,'date':wiz.date,'contract_id':contract_id,'price_rise':wiz.price_rise})
         if wiz.renewal:
-            contract_obj.write(cr,uid,[contract_id],{'date_start':wiz.date_begin,'date':wiz.date_end})
+            amendment_obj.write(cr,uid,amendment_id,{'new_date_begin':wiz.date_begin,'new_date_end':wiz.date_end})
+            #~ contract_obj.write(cr,uid,[contract_id],{'date_start':wiz.date_begin,'date':wiz.date_end})
         if amendment_id:
             amendment=amendment_obj.browse(cr,uid,amendment_id,context=context)
-            for s in amendment.service_ids:
-                service_obj.write(cr,uid,s.id,{'price':s.price + (s.price*wiz.price_rise)/100})
+            #~ for s in amendment.contract_id.service_ids:
+                #~ service_obj.write(cr,uid,s.id,{'price':s.price + (s.price*wiz.price_rise)/100})
+            service_removed_ids=[]
+            asset_removed_ids=[]
             #REMOVE
             for sa_remove in wiz.service_asset_ids_remove:
                 service_asset_obj.create(cr,uid,{'service_id':sa_remove.service_id.id,
+                                                'service_real_id':sa_remove.id,
                                                 'asset_id':sa_remove.asset_id.asset_id.id,
                                                 'serial_id':sa_remove.asset_id.serial_id and sa_remove.asset_id.serial_id.id or False,
                                                 'price':sa_remove.price,
                                                 'amendment_id':amendment_id,
                                                 'move_type':'remove',
                                                 })
-                service_obj.unlink(cr,uid,sa_remove.id)
-                asset_obj.unlink(cr,uid,sa_remove.asset_id.id)
-                #REMAIN
-                for sa_old in wiz.service_asset_ids_old:
-                    if sa_old.service_id.id!=sa_remove.service_id.id and sa_old.asset_id.id!=sa_remove.asset_id.asset_id.id:
-                        service_asset_obj.create(cr,uid,{'service_id':sa_old.service_id.id,
-                                                        'asset_id':sa_old.asset_id.id,
-                                                        'serial_id':sa_old.serial_id and sa_old.serial_id.id or False,
-                                                        'price':sa_old.price + (sa_old.price*wiz.price_rise)/100,
-                                                        'amendment_id':amendment_id,
-                                                        'move_type':'remain',
-                                                        })
+                service_removed_ids.append(sa_remove.id)
+                asset_removed_ids.append(sa_remove.asset_id.asset_id.id)
+                #~ service_obj.unlink(cr,uid,sa_remove.id)
+                #~ asset_obj.unlink(cr,uid,sa_remove.asset_id.id)
+            #REMAIN
+            for sa_old in wiz.service_asset_ids_old:
+                if sa_old.service_real_id.id not in service_removed_ids and sa_old.asset_id.id not in asset_removed_ids:
+                    service_asset_obj.create(cr,uid,{'service_id':sa_old.service_id.id,
+                                                    'service_real_id':sa_old.service_real_id.id,
+                                                    'asset_id':sa_old.asset_id.id,
+                                                    'serial_id':sa_old.serial_id and sa_old.serial_id.id or False,
+                                                    'price':sa_old.price + (sa_old.price*wiz.price_rise)/100,
+                                                    'amendment_id':amendment_id,
+                                                    'move_type':'remain',
+                                                    })
             #ADD
             for sa_new in wiz.service_asset_ids_new:
                 service_asset_obj.create(cr,uid,{'service_id':sa_new.service_id.id,
@@ -112,18 +121,18 @@ class create_amendment(osv.osv_memory):
                                                 'amendment_id':amendment_id,
                                                 'move_type':'add',
                                                 })
-                service_id=service_obj.create(cr,uid,{'service_id':sa_new.service_id.id,
-                                                'name':sa_new.service_id.name,
-                                                'price':sa_new.price,
-                                                'contract_id':contract_id,
-                                                })
-                asset_id=asset_obj.create(cr,uid,{'service_id':service_id,
-                                                'asset_id':sa_new.asset_id.id,
-                                                'name':sa_new.asset_id.name,
-                                                'serial_id':sa_new.serial_id and sa_new.serial_id.id or False,
-                                                'contract_id':contract_id,
-                                                })
-                service_obj.write(cr,uid,service_id,{'asset_id':asset_id})
+                #~ service_id=service_obj.create(cr,uid,{'service_id':sa_new.service_id.id,
+                                                #~ 'name':sa_new.service_id.name,
+                                                #~ 'price':sa_new.price,
+                                                #~ 'contract_id':contract_id,
+                                                #~ })
+                #~ asset_id=asset_obj.create(cr,uid,{'service_id':service_id,
+                                                #~ 'asset_id':sa_new.asset_id.id,
+                                                #~ 'name':sa_new.asset_id.name,
+                                                #~ 'serial_id':sa_new.serial_id and sa_new.serial_id.id or False,
+                                                #~ 'contract_id':contract_id,
+                                                #~ })
+                #~ service_obj.write(cr,uid,service_id,{'asset_id':asset_id})
         
         return {'type': 'ir.actions.act_window_close'}
 

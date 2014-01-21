@@ -8,6 +8,9 @@
             <field name="inherit_id" ref="mro.mro_order_form_view" />
             <field eval="20" name="priority"/>
             <field name="arch" type="xml">
+                <button name="force_done" position="replace">
+                    <button name="force_done" states="released" string="Done" class="oe_highlight" type="object" invisible="1"/>
+                </button>
                 <button name="button_done" position="replace">
                     <button name="button_meeting" states="ready" string="Meeting fixed" class="oe_highlight"/>
                     <button name="button_progress" states="meeting" string="In progress" class="oe_highlight"/>
@@ -42,9 +45,11 @@
                         <div>
                             <field name="duration" widget="float_time" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"
                                 class="oe_inline" attrs="{'invisible': [('allday','=',True)]}"/>
+<!--
                             <label string="hours" attrs="{'invisible': [('allday','=',True)]}"/>
-                            (<field name="allday" on_change="onchange_dates(date_execution, False, False, allday,'date_execution')" class="oe_inline"/>
-                            <label for="allday" string="All Day?"/>)
+-->
+                            <field name="allday" on_change="onchange_dates(date_execution, False, False, allday,'date_execution')" class="oe_inline"/>
+                            <label for="allday" string="All Day?"/>
                         </div>
                         <field name="date_deadline" invisible="True"/>
                     </group>
@@ -79,10 +84,13 @@
                     </page>
                 </page>
                 <group string="Parts to Consume" position="attributes">
-                     <attribute name="states">released,meeting,progress,invoicing</attribute>
+                     <attribute name="states">ready,meeting,progress</attribute>
+                </group>
+                <group string="Consumed Parts" position="attributes">
+                     <attribute name="states">ready,meeting,progress,invoicing,invoiced,done</attribute>
                 </group>
                 <group string="Planned Parts" position="replace">
-                    <group string="Planned Parts" states="draft,released,meeting,progress,invoicing,done,parts_except,cancel">
+                    <group string="Planned Parts" states="draft,done,parts_except,cancel">
                         <field name="parts_lines" nolabel="1">
                             <tree string="Planned Parts" editable="bottom">
                                 <field name="parts_id" on_change="onchange_parts(parts_id)"/>

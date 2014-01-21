@@ -97,16 +97,22 @@
                         <button name="%(action_create_amendment)d" string="Create Amendment" type="action" states="draft,open,pending" />
                         <field name="amendment" invisible="1"/>
                         <field name="amendment_ids">
-                            <form>
-                                <field name="name"/>
-                                <field name="date"/>
-<!--
-                                <field name="data"/>
--->
-                                <field name="state"/>
-                                <field name="service_asset_ids" colspan="4">
+                            <form version="7.0">
+                                <group col="4">
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                </group>
+                                <div attrs="{'invisible':[('new_date_begin','=',False)]}" >
+                                <label for="new_date_begin" string="New contract dates"/>
+                                <field name="new_date_begin" class="oe_inline"/> - <field name="new_date_end" class="oe_inline"/>
+                                </div>
+                                <group>
+                                    <field name="price_rise"/>
+                                </group>
+                                <field name="service_asset_ids" nolabel="1" colspan="4">
                                     <tree>
                                         <field name="service_id"/>
+                                        <field name="service_real_id" invisible="1"/>
                                         <field name="asset_id"/>
                                         <field name="serial_id"/>
                                         <field name="price"/>
@@ -114,13 +120,9 @@
                                     </tree>
                                 </field>
                             </form>
-<!--
-                            <tree editable="top">
--->
                             <tree>
                                 <field name="name"/>
                                 <field name="date"/>
-                                <field name="data"/>
                                 <field name="state"/>
                                 <button name="button_draft" string="Back to draft" type="object" icon="gtk-cancel" states="accepted" />
                                 <button name="button_accepted" string="Accepted" type="object" icon="gtk-apply" states="draft" />
@@ -149,7 +151,7 @@
                                 <field name="loan"/>
                                 <field name="date_previous"/>
                                 <field name="date_next"/>
-                                <field name="service_id"/>
+                                <field name="service_id" invisible="1"/>
                                 <field name="partner_id" invisible="1"/>
                             </tree>
                         </field>

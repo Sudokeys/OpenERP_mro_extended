@@ -137,7 +137,7 @@ class account_analytic_account(osv.osv):
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
         'asset_ids': fields.one2many('generic.assets','contract_id','Assets'),
         'service_ids': fields.one2many('account.analytic.services','contract_id','Contract services'),
-        'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Contract services'),
+        'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Amendments'),
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
         'date_refused': fields.date('Refused Date'),
         'date_wished': fields.date('Wished Date'),
@@ -436,13 +436,11 @@ class account_analytic_services(osv.osv):
         context = context or {}
         result = {}
         asset_obj = self.pool.get('generic.assets')
-        print 'ids',ids
         if ids:
             if asset:
                 asset_obj.write(cr,uid,asset,{'service_id':ids[0]})
             else:
                 asset_ids = asset_obj.search(cr,uid,[('service_id','=',ids[0])])
-                print 'asset_ids',asset_ids
                 for asset_id in asset_ids:
                     asset_obj.write(cr,uid,asset_id,{'service_id':False})
         return {'value': result}
@@ -454,6 +452,7 @@ class services_assets(osv.osv):
     
     _columns = {
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
+        'service_real_id': fields.many2one('account.analytic.services', 'Contract service real id'),
         'asset_id': fields.many2one('product.product', 'Asset', required=True),
         'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
         'price': fields.float('Price'),
@@ -469,7 +468,9 @@ class account_analytic_amendments(osv.osv):
     _columns = {
         'name': fields.char('Description', size=128),
         'date': fields.date('Date'),
-        'data': fields.binary('File'),
+        'new_date_begin': fields.date('Date',readonly=True),
+        'new_date_end': fields.date('Date',readonly=True),
+        'price_rise': fields.float('Price Rise (%)'),
         'state': fields.selection([('draft','Draft'),('accepted','Accepted'),('refused','Refused')],'Status'),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
         'service_asset_ids': fields.one2many('services.assets','amendment_id','Contract services / Assets',readonly=True),
@@ -477,6 +478,7 @@ class account_analytic_amendments(osv.osv):
     
     _defaults = {
         'state': 'draft',
+        'date': fields.date.context_today,
     }
     
     _order = 'id desc'
@@ -485,9 +487,33 @@ class account_analytic_amendments(osv.osv):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
         
     def button_accepted(self, cr, uid, ids, context=None):
+        print 'context',context,ids
+        contract_obj = self.pool.get('account.analytic.account')
+        amendment_obj = self.pool.get('account.analytic.amendments')
+        service_asset_obj = self.pool.get('services.assets')
+        service_obj = self.pool.get('account.analytic.services')
+        asset_obj = self.pool.get('generic.assets')
+        amendments=amendment_obj.browse(cr,uid,ids,context=context)
+        for amend in amendments:
+            contract_obj.write(cr,uid,amend.contract_id.id,{'date_start':amend.new_date_begin,'date':amend.new_date_end})
+            for s in amend.contract_id.service_ids:
+                service_obj.write(cr,uid,s.id,{'price':s.price + (s.price*amend.price_rise)/100})
+            for sa in amend.service_asset_ids:
+                if sa.move_type=='remove':
+                    service_obj.unlink(cr,uid,sa.service_real_id.id)
+                    asset_obj.unlink(cr,uid,sa.service_real_id.asset_id.id)
+                if sa.move_type=='add':
+                    service_id=service_obj.create(cr,uid,{'service_id':sa.service_id.id,
+                                                'name':sa.service_id.name,
+                                                'price':sa.price,
+                                                'contract_id':amend.contract_id.id,
+                                                })
+                    asset_id=asset_obj.create(cr,uid,{'service_id':service_id,
+                                                'asset_id':sa.asset_id.id,
+                                                'name':sa.asset_id.name,
+                                                'serial_id':sa.serial_id and sa.serial_id.id or False,
+                                                'contract_id':amend.contract_id.id,
+                                                })
+                    service_obj.write(cr,uid,service_id,{'asset_id':asset_id})
         return self.write(cr, uid, ids, {'state': 'accepted'}, context=context)
-        
-    #~ def button_refused(self, cr, uid, ids, context=None):
-        #~ return self.write(cr, uid, ids, {'state': 'refused'}, context=context)
-        #~ 
     
