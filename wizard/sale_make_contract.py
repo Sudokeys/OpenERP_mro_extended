@@ -76,6 +76,9 @@ class sale_make_contract(osv.osv_memory):
         contract_obj = self.pool.get('account.analytic.account')
         sale_obj = self.pool.get('sale.order')
         partner_obj = self.pool.get('res.partner')
+        geneasset_obj=self.pool.get('generic.assets')
+        analserv_obj=self.pool.get('account.analytic.services')
+
         data = context and context.get('active_ids', []) or []
 
         for make in self.browse(cr, uid, ids, context=context):
@@ -94,24 +97,50 @@ class sale_make_contract(osv.osv_memory):
                 
                 new_id = contract_obj.create(cr, uid, vals, context=context)
                 sale_obj.write(cr,uid,sale.id,{'project_id':new_id},context)
-                for line in make.asset_ids:
-                    vals = {
-                        'name': line.name,
-                        'asset_id': line.id,
-                        'contract_id': new_id,
-                        'partner_id': partner.id,
-                    }
-                    self.pool.get('generic.assets').create(cr,uid,vals,context=context)
-                    
-                for line in make.service_ids:
-                    vals = {
+
+                for line in sale.order_line:
+                    vals1 = {
                         'name': line.name,
                         'service_id': line.product_id.id,
                         'price': line.price_subtotal,
                         'contract_id': new_id,
                     }
-                    self.pool.get('account.analytic.services').create(cr,uid,vals,context=context)
-                    
+
+                    if line.assets_ids:
+                        for asset in line.assets_ids:
+                            serv_id=analserv_obj.create(cr,uid,vals1,context=context)
+                            vals = {
+                                'name': asset.name,
+                                'asset_id': asset.id,
+                                'contract_id': new_id,
+                                'partner_id': partner.id,
+                                'service_id':serv_id,
+                                }
+                            ass_id=geneasset_obj.create(cr,uid,vals,context=context)
+                            analserv_obj.write(cr,uid,serv_id,{'asset_id':ass_id},context=context)
+                    else:
+                        serv_id=analserv_obj.create(cr,uid,vals1,context=context)
+
+
+
+#                for line in make.asset_ids:
+#                    vals = {
+#                        'name': line.name,
+#                        'asset_id': line.id,
+#                        'contract_id': new_id,
+#                        'partner_id': partner.id,
+#                    }
+#                    self.pool.get('generic.assets').create(cr,uid,vals,context=context)
+#
+#                for line in make.service_ids:
+#                    vals = {
+#                        'name': line.name,
+#                        'service_id': line.product_id.id,
+#                        'price': line.price_subtotal,
+#                        'contract_id': new_id,
+#                    }
+#                    self.pool.get('account.analytic.services').create(cr,uid,vals,context=context)
+#
                 contract = contract_obj.browse(cr, uid, new_id, context=context)
                 new_ids.append(new_id)
                 message = _("<em>%s</em> has been <b>created</b>.") % (contract.name)

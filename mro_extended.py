@@ -237,7 +237,6 @@ class mro_order(osv.osv):
         line_dict = invoice_line_obj.product_id_change(cr, uid, {},
                         product_id, False, quantity, '', 'out_invoice', partner_id, fpos_id, amount, False, context, False)
                         #product, uom_id, qty=0, name='', type='out_invoice', partner_id=False, fposition_id=False, price_unit=False, currency_id=False, context=None, company_id=None):
-        #print 'line_dict: ',line_dict
         line_value.update(line_dict['value'])
 
         line_value['price_unit'] = amount
@@ -246,7 +245,6 @@ class mro_order(osv.osv):
         if line_value.get('invoice_line_tax_id', False):
             tax_tab = [(6, 0, line_value['invoice_line_tax_id'])]
             line_value['invoice_line_tax_id'] = tax_tab
-        print 'line_value: ', line_value
         invoice_line_id = invoice_line_obj.create(cr, uid, line_value, context=context)
         return invoice_line_id
     
@@ -260,7 +258,7 @@ class mro_order(osv.osv):
             # first product in contrat
             if interv.asset_ids and interv.contract_id:
                 interv_asset_liste=[x.id for x in interv.asset_ids]
-                print 'interv_asset_liste: ', interv_asset_liste
+                
                 for serv in interv.contract_id.service_ids:
                     if serv.service_id and serv.asset_id and serv.asset_id.id in interv_asset_liste :
                         lines.append({
@@ -272,7 +270,7 @@ class mro_order(osv.osv):
                         raise osv.except_osv(_('Error!'),
                         _('Please define asset for Contract service %s in contract: %s' ) % (serv.service_id.name,interv.contract_id.name))
 
-                print 'len(lines)',len(lines)
+                
                 if len(lines)<=0:
                     raise osv.except_osv(_('Error!'),
                     _('Please define asset for Contract service in contract: %s' ) % (interv.contract_id.name))
@@ -297,13 +295,6 @@ class mro_order(osv.osv):
                             interv.partner_id.id, interv.partner_id.property_account_receivable,
                             line['price'],context=None)
                 self.write(cr, uid, ids, {'state': 'invoiced','invoice_id':inv_id})
-
-
-
-
-        #raise osv.except_osv(_('Error!'),_('voulue'))
-
-        
         return True
 
 
