@@ -29,3 +29,24 @@ class sale_order(osv.osv):
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','order_id','Maintenance Orders'),
     }
+class sale_order_line(osv.osv):
+    _inherit='sale.order.line'
+
+    _columns={
+        'assets_ids':fields.many2many('product.product','sale_order_line_assets_rel','order_line_id','asset_id',u'Assets'),
+        'is_contract':fields.boolean(u'Is contratct'),
+    }
+
+    def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
+            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+            lang=False, update_tax=True, date_order=False, packaging=False, fiscal_position=False, flag=False, context=None):
+        context = context or {}
+        res=super(sale_order_line,self).product_id_change(cr, uid, ids, pricelist, product, qty,
+            uom, qty_uos, uos, name, partner_id, lang, update_tax, date_order, packaging, fiscal_position, flag, context)
+
+        
+        if product:
+            prod=self.pool.get('product.product').browse(cr,uid,product,context)
+            if prod and prod.contract:
+                res['value']['is_contract']=True
+        return res

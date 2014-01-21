@@ -6,6 +6,7 @@
             <field name="name">sale.order.form</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="priority" eval="50"/>
             <field name="arch" type="xml">
                 <field name="project_id" position="replace">
                     <field name="project_id" context="{'partner_id':partner_invoice_id, 'default_pricelist_id':pricelist_id, 'default_name':name, 'default_type': 'contract'}" groups="sale.group_analytic_accounting" domain="[('type','in',['contract'])]"/>
@@ -17,6 +18,14 @@
                         <field name="mro_order_ids"  readonly="True"/>
                     </page>
                 </notebook>
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/form/field[@name='name']" position="after">
+                    <group name="add_assets" colspan="4" col="4"  attrs="{'invisible':[('is_contract','!=',True)]}">
+                        <separator string="Add assets" colspan="4"/>
+                        <field name="is_contract" invisible="1"/>
+                        <field name="assets_ids" nolabel="1" attrs="{'invisible':[('is_contract','!=',True)]}" domain="[('mro_type','=','asset')]"/>
+                    </group>
+                </xpath>
+                
             </field>
         </record>
             

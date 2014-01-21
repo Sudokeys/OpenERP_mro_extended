@@ -178,8 +178,11 @@ class sale_make_contract(osv.osv_memory):
         assets = []
         for sale in sale_obj.browse(cr, uid, [active_id], context=context):
             for line in sale.order_line:
-                if line.product_id.mro_type=='asset':
-                    assets.append(line.product_id.id)
+#                if line.product_id.mro_type=='asset':
+#                    assets.append(line.product_id.id)
+                if line.assets_ids:
+                    for ass in line.assets_ids:
+                        assets.append(ass.id)
         return assets
         
     def _get_services(self, cr, uid, context=None):
