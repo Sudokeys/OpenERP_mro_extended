@@ -102,7 +102,7 @@ class sale_make_contract(osv.osv_memory):
                     vals1 = {
                         'name': line.name,
                         'service_id': line.product_id.id,
-                        'price': line.price_subtotal,
+                        'price': line.price_unit,
                         'contract_id': new_id,
                     }
 
