@@ -119,6 +119,10 @@
                                         <field name="move_type"/>
                                     </tree>
                                 </field>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="service_asset_total">
+                                    <field name="amount_service"/>
+                                </group>
+                                <div class="oe_clear"/>
                             </form>
                             <tree>
                                 <field name="name"/>
@@ -139,6 +143,10 @@
                                 <field name="asset_id" on_change="onchange_asset(asset_id)" domain="[('contract_id','=',parent.id),('service_id','=',False)]"/>
                             </tree>
                         </field>
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="service_total">
+                            <field name="amount_service"/>
+                        </group>
+                        <div class="oe_clear"/>
                     </page>
                     <page string="Assets" name="asset_page" attrs="{'invisible':[('type','not in',['contract'])]}">
                         <field name="asset_ids" context="{'default_partner_id':partner_id,'default_date_start':date_start,'default_date_end':date,'default_loan':loan}">

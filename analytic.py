@@ -133,6 +133,22 @@ class account_analytic_account(osv.osv):
                     res.append(contract.id)
         return [('id','in',res)]
     
+    def _amount_service(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        for contract in self.browse(cr, uid, ids, context=context):
+            res[contract.id] = 0.0
+            val = 0.0
+            for line in contract.service_ids:
+                val += line.price
+            res[contract.id] = val
+        return res
+    
+    def _get_contract(self, cr, uid, ids, context=None):
+        result = {}
+        for line in self.pool.get('account.analytic.services').browse(cr, uid, ids, context=context):
+            result[line.contract_id.id] = True
+        return result.keys()
+    
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
         'asset_ids': fields.one2many('generic.assets','contract_id','Assets'),
@@ -188,6 +204,12 @@ class account_analytic_account(osv.osv):
         'end_date': fields.date('Repeat Until'),
         'recurrency': fields.boolean('Recurrency', help="Recurrency"),
         'loan': fields.boolean('Loan'),
+        'amount_service': fields.function(_amount_service, digits_compute=dp.get_precision('Account'), string='Montant total',
+            store={
+                'account.analytic.account': (lambda self, cr, uid, ids, c={}: ids, ['service_ids'], 10),
+                'account.analytic.services': (_get_contract, ['price'], 10),
+            },
+            type='float',track_visibility='always'), 
         #~ 'state': fields.selection([('template', 'Template'),('draft','New'),('open','In Progress'),('pending','To Renew'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
     }
     
@@ -401,6 +423,7 @@ class account_analytic_account(osv.osv):
 class account_analytic_services(osv.osv):
     _name = 'account.analytic.services'
     _description = 'Contract services'
+    
     _columns = {
         'name': fields.char('Description', size=128),
         'price': fields.float('Price'),
@@ -450,6 +473,8 @@ class services_assets(osv.osv):
     _name = "services.assets"
     _description = "Contract services / Assets"
     
+    
+    
     _columns = {
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
         'service_real_id': fields.many2one('account.analytic.services', 'Contract service real id'),
@@ -458,6 +483,7 @@ class services_assets(osv.osv):
         'price': fields.float('Price'),
         'amendment_id': fields.many2one('account.analytic.amendments', 'Amendment'),
         'move_type': fields.selection([('add','Add'),('remove','Remove'),('remain','Remain')],'Move type'),
+        
     }
     
     
@@ -465,6 +491,18 @@ class services_assets(osv.osv):
 class account_analytic_amendments(osv.osv):
     _name = 'account.analytic.amendments'
     _description = 'Contract amendments'
+    
+    def _amount_service(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        for amend in self.browse(cr, uid, ids, context=context):
+            res[amend.id] = 0.0
+            val = 0.0
+            for line in amend.service_asset_ids:
+                val += line.price
+            res[amend.id] = val
+        return res
+    
+    
     _columns = {
         'name': fields.char('Description', size=128),
         'date': fields.date('Date'),
@@ -474,6 +512,7 @@ class account_analytic_amendments(osv.osv):
         'state': fields.selection([('draft','Draft'),('accepted','Accepted'),('refused','Refused')],'Status'),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
         'service_asset_ids': fields.one2many('services.assets','amendment_id','Contract services / Assets',readonly=True),
+        'amount_service': fields.function(_amount_service, digits_compute=dp.get_precision('Account'), string='Montant total',type='float'), 
     }
     
     _defaults = {
@@ -495,7 +534,8 @@ class account_analytic_amendments(osv.osv):
         asset_obj = self.pool.get('generic.assets')
         amendments=amendment_obj.browse(cr,uid,ids,context=context)
         for amend in amendments:
-            contract_obj.write(cr,uid,amend.contract_id.id,{'date_start':amend.new_date_begin,'date':amend.new_date_end})
+            if amend.new_date_begin and amend.new_date_end:
+                contract_obj.write(cr,uid,amend.contract_id.id,{'date_start':amend.new_date_begin,'date':amend.new_date_end})
             for s in amend.contract_id.service_ids:
                 service_obj.write(cr,uid,s.id,{'price':s.price + (s.price*amend.price_rise)/100})
             for sa in amend.service_asset_ids:

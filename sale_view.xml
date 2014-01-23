@@ -10,7 +10,7 @@
             <field name="arch" type="xml">
                 <field name="project_id" position="replace">
                     <field name="project_id" context="{'partner_id':partner_invoice_id, 'default_pricelist_id':pricelist_id, 'default_name':name, 'default_type': 'contract'}" groups="sale.group_analytic_accounting" domain="[('type','in',['contract'])]"/>
-                    <button string="Add Maintenance Contract" name="%(action_sale_make_contract)d" attrs="{'invisible':['|',('project_id','!=',False),('state','in',('manual','done'))]}" type="action" class="oe_link" />
+                    <button string="Add Maintenance Contract" name="%(action_sale_make_contract)d" attrs="{'invisible':['|',('project_id','!=',False),('state','in',('done'))]}" type="action" class="oe_link" />
                 </field>
                 <notebook position="inside">
                     <page string="Maintenance Orders" groups="mro.group_mro_user" name="mro_order_page">

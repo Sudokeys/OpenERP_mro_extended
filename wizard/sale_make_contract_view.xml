@@ -11,7 +11,9 @@
                 <group col="4">
                     <field name="partner_id" required="1"/>
                     <field name="description"/>
+<!--
                     <field name="duration"/>
+-->
                     <field name="asset_ids" widget="many2many_tags" domain="[('mro_type','=','asset')]" readonly="1"/>
                     <field name="service_ids" widget="many2many_tags" domain="[('product_id.contract','=',True)]" readonly="1"/>
                 </group>
