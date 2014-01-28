@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-	<data>
+    <data>
         <!-- month -->
-		<report id="tools_planning_month_print"
-			string="Monthly planning for tools"
-			model="mro.tools.booking"
-			name="tools_planning_month_print"
+        <report id="tools_planning_month_print"
+            string="Monthly planning for tools"
+            model="mro.tools.booking"
+            name="tools_planning_month_print"
                   
-			rml="mro_extended/report/tools_planning_month_print.rml"
-			auto="False"
-			menu="True"
+            rml="sudokeys_mro_extended/report/tools_planning_month_print.rml"
+            auto="False"
+            menu="True"
             header="False"
          />
         <!-- Year 
-		<report id="tools_planning_year_print"
-			string="Annual planning for tools"
-			model="mro.tools.booking"
-			name="tools_planning_year_print"
-			rml="mro_extended/report/tools_planning_year_print.rml"
-			auto="False"
-			menu="False"
+        <report id="tools_planning_year_print"
+            string="Annual planning for tools"
+            model="mro.tools.booking"
+            name="tools_planning_year_print"
+            rml="sudokeys_mro_extended/report/tools_planning_year_print.rml"
+            auto="False"
+            menu="False"
             header="False"
          />-->
 
-	</data>
+    </data>
 </openerp>

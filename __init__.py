@@ -21,7 +21,7 @@
 
 
 import report
-import mro_extended
+import sudokeys_mro_extended
 import wizard
 import res_partner
 import sale

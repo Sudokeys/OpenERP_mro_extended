@@ -22,7 +22,7 @@
 import time
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
-from mro_extended import mro_extended
+from sudokeys_mro_extended import mro_extended
 
 
 class sale_make_mro(osv.osv_memory):
@@ -185,7 +185,7 @@ class sale_make_mro(osv.osv_memory):
         'partner_id': fields.many2one('res.partner', 'Customer', required=True, domain=[('customer','=',True)]),
         'description': fields.char('Description', size=64, required=True),
         'asset_ids': fields.many2many('product.product', string='Assets', required=True),
-        'maintenance_type': fields.selection(mro_extended.MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=True),
+        'maintenance_type': fields.selection(sudokeys_mro_extended.MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=True),
         'date_planned': fields.datetime('Planned Date', required=True),
         'duration': fields.float('Duration'),
     }
