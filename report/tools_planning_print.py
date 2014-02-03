@@ -130,7 +130,7 @@ class tools_planning_month_print(report_sxw.rml_parse):
 
 report_sxw.report_sxw('report.tools_planning_month_print',
     'mro.tools.booking',
-    'addons/sudokeys_mro_extended/report/tools_planning_month.rml',
+    'addons/mro_extended/report/tools_planning_month.rml',
     parser=tools_planning_month_print) #,header=''
 
 

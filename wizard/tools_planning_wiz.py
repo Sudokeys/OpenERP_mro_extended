@@ -22,7 +22,7 @@ import time
 import datetime
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
-from sudokeys_mro_extended import analytic
+from mro_extended import analytic
 
 class tools_planning_wiz(osv.osv_memory):
     _name='tools.planning.wiz'

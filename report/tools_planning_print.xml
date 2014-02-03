@@ -7,7 +7,7 @@
             model="mro.tools.booking"
             name="tools_planning_month_print"
                   
-            rml="sudokeys_mro_extended/report/tools_planning_month_print.rml"
+            rml="mro_extended/report/tools_planning_month_print.rml"
             auto="False"
             menu="True"
             header="False"
@@ -17,7 +17,7 @@
             string="Annual planning for tools"
             model="mro.tools.booking"
             name="tools_planning_year_print"
-            rml="sudokeys_mro_extended/report/tools_planning_year_print.rml"
+            rml="mro_extended/report/tools_planning_year_print.rml"
             auto="False"
             menu="False"
             header="False"
