@@ -4,3 +4,4 @@ encoding//wizard/sale_make_mro.py=utf-8
 encoding/__init__.py=utf-8
 encoding/__openerp__.py=utf-8
 encoding/mro_extended.py=utf-8
+encoding/product.py=utf-8

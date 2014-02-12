@@ -16,6 +16,7 @@
                                     <field name="default_code"/>
                                     <field name="asset_id"/>
                                     <field name="serial_id"/>
+                                    <field name="contract_id"/>
                                     <field name="date_start"/>
                                     <field name="date_end"/>
                                     <field name="loan"/>
