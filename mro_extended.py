@@ -177,6 +177,8 @@ class mro_order(osv.osv):
         'maintenance_type': lambda *a: 'cm',
     }
     
+    _order = 'date_execution desc'
+    
     def action_meeting(self, cr, uid, ids):
         self.write(cr, uid, ids, {'state': 'meeting'})
         return True

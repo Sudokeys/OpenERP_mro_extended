@@ -68,6 +68,20 @@ def get_recurrent_dates(rrulestring, exdate, startdate=None, exrule=None):
 class account_analytic_account(osv.osv):
     _inherit = 'account.analytic.account'
     
+    def name_get(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        if not ids:
+            return []
+        if context.get('show_ref'):
+            rec_name = 'ref'
+        else:
+            rec_name = 'name'
+
+        res = [(r['id'], r[rec_name]+(r['code'] and ' '+r['code'] or '')  or r[rec_name]  ) for r in self.read(cr, uid, ids, ['code',rec_name], context)]
+
+        return res
+    
     def _get_rulestring(self, cr, uid, ids, name, arg, context=None):
         """
         Gets Recurrence rule string according to value type RECUR of iCalendar from the values given.
