@@ -149,7 +149,6 @@
                         <div class="oe_clear"/>
                     </page>
                     <page string="Assets" name="asset_page" attrs="{'invisible':[('type','not in',['contract'])]}">
-                    <field name="id" />  
                         <field name="asset_ids" context="{'default_partner_id':partner_id,'default_date_start':date_start,'default_date_end':date,'default_loan':loan}">
                             <tree editable="top">
                                 <field name="asset_id" on_change="onchange_asset(asset_id)" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
