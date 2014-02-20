@@ -38,10 +38,12 @@
                     <div>
                         <field name="loan" class="oe_inline"/>
                     </div>
+
                 </group>
                 <field name="partner_id" position="attributes">
                     <attribute name="attrs">{'required': [('type','=','contract')]}</attribute>
                 </field>
+                  
                 <group name="contract" position="after">
                     <group string="Maintenance" name="maintenance" groups="mro.group_mro_user">
                         <group>
@@ -90,7 +92,9 @@
                             </div>
 
                         </group>
+
                     </group>
+
                 </group>
                 <notebook position="inside">
                     <page string="Contract amendments" name="amendment_page" attrs="{'invisible':[('type','not in',['contract'])]}">
