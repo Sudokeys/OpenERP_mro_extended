@@ -163,6 +163,25 @@ class account_analytic_account(osv.osv):
             result[line.contract_id.id] = True
         return result.keys()
     
+    def _amount_marge(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        _oproduct=self.pool.get('product.product')
+        for contract in self.browse(cr, uid, ids, context=context):
+            remise=contract.remise/100
+            res[contract.id] = 0.0
+            val = 0.0
+            i=0
+            for line in contract.service_ids:
+                p=_oproduct.read(cr,uid,[line.service_id.id],['standard_price'])[0]['standard_price']
+                if p>0 and line.price>0:
+                    pv = line.price-(line.price*remise)
+                    d=(pv-p)/p
+                    val += d
+                    i+=1
+            if i>0 : res[contract.id] = (val/i)*100
+            else : 0.0
+        return res    
+    
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
         'asset_ids': fields.one2many('generic.assets','contract_id','Assets'),
@@ -226,7 +245,8 @@ class account_analytic_account(osv.osv):
             type='float',track_visibility='always'), 
         #~ 'state': fields.selection([('template', 'Template'),('draft','New'),('open','In Progress'),('pending','To Renew'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
         'remise': fields.float('Remise en %'),
-        'marge': fields.float('Marge en %'),
+        'marge': fields.function(_amount_marge, digits_compute=dp.get_precision('Account'), string='Marge en %',
+            type='float',track_visibility='always'), 
     }
     
     _defaults = {
@@ -240,7 +260,13 @@ class account_analytic_account(osv.osv):
         'interval': 1,
         'recurrency': True,
     }
-    
+
+    def search(self,cr,uid, args, offset=0, limit=0, order=None, context=None, count=False):
+        if context:
+            if 'order' in context.keys():
+                order=context.get('order')
+        return super(account_analytic_account, self).search(cr, uid, args, offset, limit, order, context, count=False)
+        
     def on_change_partner_id(self, cr, uid, ids,partner_id, name, context={}):
         res={}
         if partner_id:
