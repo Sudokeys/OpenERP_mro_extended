@@ -225,6 +225,8 @@ class account_analytic_account(osv.osv):
             },
             type='float',track_visibility='always'), 
         #~ 'state': fields.selection([('template', 'Template'),('draft','New'),('open','In Progress'),('pending','To Renew'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
+        'remise': fields.float('Remise en %'),
+        'marge': fields.float('Marge en %'),
     }
     
     _defaults = {

@@ -94,6 +94,10 @@
                         </group>
 
                     </group>
+                	<group string="Ratios" name="ratios"  >
+	                     <field name="remise"/>
+	                    <field name="marge"/>
+                    </group>
 
                 </group>
                 <notebook position="inside">

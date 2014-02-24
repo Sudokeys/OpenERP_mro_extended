@@ -236,7 +236,7 @@ class mro_order(osv.osv):
         }
         return invoice_vals
     
-    def _invoice_line(self, cr, uid,invoice_id, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
+    def _invoice_line(self, cr, uid,invoice_id,remise, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
         invoice_line_obj = self.pool.get('account.invoice.line')
         line_value =  {
             'product_id': product_id,
@@ -250,6 +250,7 @@ class mro_order(osv.osv):
         line_value['price_unit'] = amount
         line_value['invoice_id']= invoice_id
         line_value['quantity']=quantity
+        line_value['discount']=remise
         if line_value.get('invoice_line_tax_id', False):
             tax_tab = [(6, 0, line_value['invoice_line_tax_id'])]
             line_value['invoice_line_tax_id'] = tax_tab
@@ -266,6 +267,7 @@ class mro_order(osv.osv):
             # first product in contrat
             if interv.asset_ids and interv.contract_id:
                 interv_asset_liste=[x.id for x in interv.asset_ids]
+                remise=interv.contract_id.remise or 0.0
                 
                 for serv in interv.contract_id.service_ids:
                     if serv.service_id and serv.asset_id and serv.asset_id.id in interv_asset_liste :
@@ -273,6 +275,7 @@ class mro_order(osv.osv):
                             'product_id':serv.service_id.id,
                             'price':serv.price,
                             'qty':1,
+                            'discount':remise,
                         })
                     if serv.asset_id==False and serv.service_id:
                         raise osv.except_osv(_('Error!'),
@@ -289,6 +292,7 @@ class mro_order(osv.osv):
                     'product_id':part.parts_id.id,
                     'price':part.parts_id.list_price,
                     'qty':part.parts_qty,
+                    'discount':0.0,
                 })
 
             if len(lines)>0:
@@ -299,7 +303,7 @@ class mro_order(osv.osv):
                     if inv_id:
                         #invoice line
                         for line in lines:
-                            self._invoice_line(cr,uid,inv_id, line['product_id'], False, line['qty'], '', 'out_invoice',
+                            self._invoice_line(cr,uid,inv_id,line['discount'], line['product_id'], False, line['qty'], '', 'out_invoice',
                             interv.partner_id.id, interv.partner_id.property_account_receivable,
                             line['price'],context=None)
                 self.write(cr, uid, ids, {'state': 'invoiced','invoice_id':inv_id})
