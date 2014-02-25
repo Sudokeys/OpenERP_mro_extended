@@ -170,15 +170,20 @@ class account_analytic_account(osv.osv):
             remise=contract.remise/100
             res[contract.id] = 0.0
             val = 0.0
+            tpv=0.0
+            tp=0.0
             i=0
             for line in contract.service_ids:
                 p=_oproduct.read(cr,uid,[line.service_id.id],['standard_price'])[0]['standard_price']
                 if p>0 and line.price>0:
                     pv = line.price-(line.price*remise)
-                    d=(pv-p)/p
-                    val += d
+                    #if line.service_id.id==34054 : p=100.00
+                    tpv +=pv
+                    tp +=p
                     i+=1
-            if i>0 : res[contract.id] = (val/i)*100
+            if i>0 :
+                val=(tpv-tp)/tp
+                res[contract.id] = val*100
             else : 0.0
         return res    
     
