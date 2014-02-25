@@ -1,0 +1,35 @@
+<openerp>
+   <data>
+
+
+       <record id="view_cancelled_contract" model="ir.ui.view">
+          <field name="name">cancelled.contract.form</field>
+          <field name="model">cancelled.contract</field>
+          <field name="arch" type="xml">
+            <form string="Cancelled Contract"  version="7.0">
+            		<field name="id" invisible="1"/>
+                    <div><label string="Cancelled the Contract will terminate the contract. Are you sure?" /></div>
+                    <group>
+                        <field name="date_refused"/>
+                    </group>
+                <footer>
+                    <button name="confirm" string="_Confirm" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+          </field>
+       </record>
+
+
+       <record id="action_cancelled_contract" model="ir.actions.act_window">
+          <field name="name">Refuse Amendment</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">cancelled.contract</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+   </data>
+</openerp>

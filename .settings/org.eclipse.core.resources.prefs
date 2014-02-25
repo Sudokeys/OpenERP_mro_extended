@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//wizard/__init__.py=utf-8
+encoding//wizard/cancelled_contract.py=utf-8
+encoding//wizard/refuse_amendment.py=utf-8
 encoding//wizard/sale_make_mro.py=utf-8
 encoding/__init__.py=utf-8
 encoding/__openerp__.py=utf-8

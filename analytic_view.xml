@@ -19,7 +19,10 @@
                     </header>
                     <header attrs="{'invisible':[('type','not in',['contract'])]}">
                         <button name="set_open" string="Open" type="object" states="draft"/>
-                        <button name="set_cancel" string="Terminate" type="object" states="open"/>
+                        
+                        <!-- button name="set_cancel" string="Terminate" type="object" states="open"/-->
+                        <button name="%(action_cancelled_contract)d" string="Terminate" type="action" icon="gtk-cancel" states="open" />
+
                         <button name="set_close" string="Contract Finished" attrs="{'invisible': [('state','!=','open')]}" type="object"  />
                         <button name="get_recurrency" string="Update maintenance orders" confirm="The maintenance orders 'Draft' will be replaced." type="object" states="open"  groups="mro.group_mro_user"/>
                         <label for="date_refused" class="oe_line" states="cancelled"/>
@@ -238,6 +241,9 @@
                     <field name="asset_ids" string="Asset Serial #" filter_domain="[('asset_ids.serial_id','ilike', self)]"/>
                     <separator/>
                     <filter string="Amendments not accepted" domain="[('amendment', '=', True)]"/>
+                </filter>
+                <filter name="cancelled" string="Cancelled" position="replace" >
+                <filter name="cancelled" string="Cancelled" domain="[('state','=','cancelled')]" help="Cancelled contracts"/>
                 </filter>
             </field>
         </record>
