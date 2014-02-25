@@ -1,3887 +1,1585 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* opencml
+# 	* mro_extended
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0-20131031-002505\n"
+"Project-Id-Version: OpenERP Server 7.0-20130911-231052\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-25 15:02+0000\n"
-"PO-Revision-Date: 2014-02-25 16:12+0100\n"
+"POT-Creation-Date: 2014-02-25 14:40+0000\n"
+"PO-Revision-Date: 2014-02-25 17:48+0100\n"
 "Last-Translator: CBN <jl@adn-france.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 1.5.7\n"
 
-#. module: opencml
-#: view:product.ask:0
-msgid "Accepter la demande"
-msgstr "Accepter la demande"
-
-#. module: opencml
-#: help:product.ask,appro_nbj_conserve:0
-msgid "SLDY"
-msgstr "SLDY"
-
-#. module: opencml
-#: view:imp.part.add.wiz:0
-#: model:ir.actions.act_window,name:opencml.product_ask_normal_action
-#: model:ir.model,name:opencml.model_product_ask
-#: view:product.ask:0
-msgid "Demande de création de produit"
-msgstr "Demande de création de produit"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Chacune des parties s'interdit expressément de solliciter en vue d'une embauche ou d'embaucher directement ou indirectement tout membre du personnel de l'autre partie."
-msgstr "Chacune des parties s'interdit expressément de solliciter en vue d'une embauche ou d'embaucher directement ou indirectement tout membre du personnel de l'autre partie."
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "N° Inv. / Type"
-msgstr "N° Inv. / Type"
-
-#. module: opencml
-#: field:product.ask,phone:0
-msgid "Tél"
-msgstr "Tél"
-
-#. module: opencml
-#: field:wiz.assets,asset_id:0
-msgid "Asset"
-msgstr "Asset"
-
-#. module: opencml
-#: help:product.ask,appro_agent_planning:0
-msgid "MBRESP"
-msgstr "MBRESP"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "N° Intervention"
-msgstr "N° Intervention"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Afin de permettre l'entretien ou l'intervention que doit assurer le Prestataire, le Client s'engage à laisser le libre accès à l'Équipement concerné suivant les normes de sécurité applicables et selon les horaires définis dans l'Article “ Définitions ”."
-msgstr "Afin de permettre l'entretien ou l'intervention que doit assurer le Prestataire, le Client s'engage à laisser le libre accès à l'Équipement concerné suivant les normes de sécurité applicables et selon les horaires définis dans l'Article “ Définitions ”."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Acceptation de l'offre par le client"
-msgstr "Acceptation de l'offre par le client"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "TOUT LITIGE RELATIF A LA CONCLUSION, L'INTERPRETATION, L'EXECUTION OU LA CESSATION DU PRESENT CONTRAT SERA SOUMIS AU TRIBUNAL DU SIEGE SOCIAL DU PRESTATAIRE EXCLUSIVEMENT COMPETENT, Y COMPRIS EN REFERE, NONOBSTANT L'APPEL EN GARANTIE OU LA PLURALITE DE DEFENDEURS."
-msgstr "TOUT LITIGE RELATIF A LA CONCLUSION, L'INTERPRETATION, L'EXECUTION OU LA CESSATION DU PRESENT CONTRAT SERA SOUMIS AU TRIBUNAL DU SIEGE SOCIAL DU PRESTATAIRE EXCLUSIVEMENT COMPETENT, Y COMPRIS EN REFERE, NONOBSTANT L'APPEL EN GARANTIE OU LA PLURALITE DE DEFENDEURS."
-
-#. module: opencml
-#: selection:imp.categ.wiz,separator:0
-#: selection:imp.contrat.wiz,separator:0
-#: selection:imp.equipement.wiz,separator:0
-#: selection:imp.fourni.wiz,separator:0
-#: selection:imp.part.add.wiz,separator:0
-#: selection:imp.product.wiz,separator:0
-msgid "Tabulation"
-msgstr "Tabulation"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 2 - DOCUMENTS CONTRACTUELS"
-msgstr "ARTICLE 2 - DOCUMENTS CONTRACTUELS"
-
-#. module: opencml
-#: field:wiz.assets,date_end:0
-msgid "Date end"
-msgstr "Date de fin"
-
-#. module: opencml
-#: field:product.ask,mark_um_base_id:0
-msgid "UM de base"
-msgstr "UM de base"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Les documents contractuels sont dans l'ordre de priorité décroissant :"
-msgstr "Les documents contractuels sont dans l'ordre de priorité décroissant :"
-
-#. module: opencml
-#: selection:product.ask,mark_type_article:0
-msgid "Standard"
-msgstr "Standard"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Nos Références"
-msgstr "Nos Références"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Pour l'exécution des présentes ainsi que de leurs suites, les parties font respectivement élection de domicile en leurs sièges sociaux ou adresses indiqués en tête des présentes."
-msgstr "Pour l'exécution des présentes ainsi que de leurs suites, les parties font respectivement élection de domicile en leurs sièges sociaux ou adresses indiqués en tête des présentes."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Il s'engage à assurer la présence de cette personne au cours et pendant toute la durée de chacune des interventions de maintenance sur le site."
-msgstr "Il s'engage à assurer la présence de cette personne au cours et pendant toute la durée de chacune des interventions de maintenance sur le site."
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Tél :"
-msgstr "Tél :"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Chacune des parties se porte fort de l'application de cette interdiction aux autres sociétés du Groupe auquel elle appartient."
-msgstr "Chacune des parties se porte fort de l'application de cette interdiction aux autres sociétés du Groupe auquel elle appartient."
-
-#. module: opencml
-#: field:product.ask,appro_methode:0
-msgid "Méthode"
-msgstr "Méthode"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Bon de commande N° :"
-msgstr "Bon de commande N° :"
-
-#. module: opencml
-#: selection:product.ask,state:0
-#: selection:sale.order.line,state_ddv:0
-msgid "Nouvelle demande"
-msgstr "Nouvelle demande"
-
-#. module: opencml
-#: selection:product.ask,mark_met_gest_lot:0
-msgid "Pas de lot"
-msgstr "Pas de lot"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Ce délai s'entend comme le temps exprimé en heures ouvrées qui s'écoule entre le jour et l'heure d'appel du responsable utilisateur et le jour et l'heure du constat de bon fonctionnement de l'équipement sur le site utilisateur."
-msgstr "Ce délai s'entend comme le temps exprimé en heures ouvrées qui s'écoule entre le jour et l'heure d'appel du responsable utilisateur et le jour et l'heure du constat de bon fonctionnement de l'équipement sur le site utilisateur."
-
-#. module: opencml
-#: field:product.ask,mark_fiche_tech:0
-msgid "Fiche technique et échantillonnable"
-msgstr "Fiche technique et échantillonnable"
-
-#. module: opencml
-#: help:product.ask,mark_um_prix_vte_fd:0
-msgid "SPUC"
-msgstr "SPUC"
-
-#. module: opencml
-#: field:product.ask,mark_usage_unique:0
-msgid "Usage unique"
-msgstr "Usage unique"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_create_assets
-msgid "Ajout equipements"
-msgstr "Ajout equipements"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "12 mois"
-msgstr "12 mois"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Afin de fournir au technicien tous renseignements nécessaires aux circonstances de l'anomalie, le Client autorise le Prestataire à interroger le personnel habitué à utiliser ledit matériel."
-msgstr "Afin de fournir au technicien tous renseignements nécessaires aux circonstances de l'anomalie, le Client autorise le Prestataire à interroger le personnel habitué à utiliser ledit matériel."
-
-#. module: opencml
-#: field:imp.contrat.wiz,prefix_ref_client:0
-#: field:imp.equipement.wiz,prefix_ref_client:0
-msgid "Prefix réf. client"
-msgstr "Prefix réf. client"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_imp_part_add_wiz
-msgid "Wizard importation des partner et adresse de facturation"
-msgstr "Wizard importation des partner et adresse de facturation"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Tél:"
-msgstr "Tél:"
-
-#. module: opencml
-#: field:product.ask,mark_hauteur:0
-msgid "Hauteur cm"
-msgstr "Hauteur cm"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "2 ses annexes."
-msgstr "2 ses annexes."
-
-#. module: opencml
-#: selection:product.ask,mark_groupe_prod:0
-msgid "Non géré"
-msgstr "Non géré"
-
-#. module: opencml
-#: field:product.ask,appro_poli_planif:0
-#: field:product.ask,appro_poli_planif2:0
-msgid "Poli. Planif"
-msgstr "Poli. Planif"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Il est précisé que le prix de la prestation de maintenance s'entend hors taxes et comprend toute prestation de main d'oeuvre ainsi que les frais de déplacement du technicien, les fournitures courantes de l'équipement concerné restant à la charge du Client, et ce même lors des différentes interventions du Prestataire."
-msgstr "Il est précisé que le prix de la prestation de maintenance s'entend hors taxes et comprend toute prestation de main d'oeuvre ainsi que les frais de déplacement du technicien, les fournitures courantes de l'équipement concerné restant à la charge du Client, et ce même lors des différentes interventions du Prestataire."
-
-#. module: opencml
-#: code:addons/opencml/product_ask.py:450
-#, python-format
-msgid "Client Email"
-msgstr "Client Email"
-
-#. module: opencml
-#: field:product.ask,achat_par_comb_pa:0
-msgid "Par combien du PA"
-msgstr "Par combien du PA"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_account_analytic_account
-msgid "Analytic Account"
-msgstr "Compte analytique"
-
-#. module: opencml
-#: help:product.ask,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_res_partner
+#. module: mro_extended
 #: view:mro.order:0
-msgid "Partner"
-msgstr "Partenaire"
+msgid "ready,meeting,progress,invoicing,invoiced,done"
+msgstr "ready,meeting,progress,invoicing,invoiced,done"
 
-#. module: opencml
-#: field:product.ask,mark_assort:0
-#: field:product.ask,mark_assort1:0
-msgid "Assortiment"
-msgstr "Assortiment"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Tout dysfonctionnement ne permettant qu’un fonctionnement partiel de l'équipement."
-msgstr "Tout dysfonctionnement ne permettant qu’un fonctionnement partiel de l'équipement."
-
-#. module: opencml
-#: selection:product.ask,mark_type_article:0
-msgid "CML"
-msgstr "CML"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Les temps facturés sont calculés en heures complètes, toute heure commencée est"
-msgstr "Les temps facturés sont calculés en heures complètes, toute heure commencée est"
-
-#. module: opencml
-#: model:ir.actions.act_window,help:opencml.mro_protocoles_action_tree
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"            Click here to create a crm protocole.\n"
-"        </p>\n"
-"    "
-msgstr ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"            Click here to create a crm protocole.\n"
-"        </p>\n"
-"    "
-
-#. module: opencml
-#: field:product.ask,mark_groupe_appro:0
-msgid "Groupe appro=stockage"
-msgstr "Groupe appro=stockage"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "La redevance pour la nouvelle période s'élève à :"
-msgstr "La redevance pour la nouvelle période s'élève à :"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Demande de produit"
-msgstr "Demande de produit"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Heure de départ"
-msgstr "Heure de départ"
-
-#. module: opencml
-#: field:product.ask,message_unread:0
-msgid "Unread Messages"
-msgstr "Unread Messages"
-
-#. module: opencml
-#: help:product.ask,achat_cdt:0
-msgid "IFPACT"
-msgstr "IFPACT"
-
-#. module: opencml
-#: field:product.ask,appro_code_aqui:0
-msgid "Code aquisition"
-msgstr "Code aquisition"
-
-#. module: opencml
-#: field:product.ask,achat_aprobation:0
-msgid "Aprobation"
-msgstr "Aprobation"
-
-#. module: opencml
-#: view:product.product:0
-#: field:product.product,ddv:0
-msgid "Virtuel"
-msgstr "Virtuel"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "1 le contrat et ses avenants ;"
-msgstr "1 le contrat et ses avenants ;"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_mail_wizard_invite
-msgid "Invite wizard"
-msgstr "Assistant d'invitation"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Montant TTC"
-msgstr "Montant TTC"
-
-#. module: opencml
-#: view:wiz.assets:0
-msgid "Dates"
-msgstr "Dates"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "N° client :"
-msgstr "N° client :"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Adresse :"
-msgstr "Adresse :"
-
-#. module: opencml
-#: model:mail.message.subtype,name:opencml.product_ask_cdg
-msgid "Transmition CDG"
-msgstr "Transmition CDG"
-
-#. module: opencml
-#: field:res.users,section_ids:0
-msgid "Team Trade"
-msgstr "Team Trade"
-
-#. module: opencml
-#: report:amendment_print:0
-#: report:contrat.maintenance:0
-msgid "Désignation / Marque"
-msgstr "Désignation / Marque"
-
-#. module: opencml
-#: field:product.ask,contact_id:0
-msgid "Contact"
-msgstr "Contact"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Le Client,"
-msgstr "Le Client,"
-
-#. module: opencml
-#: field:product.ask,sale_order_line_id:0
-msgid "Ligne du Bdc"
-msgstr "Ligne du Bdc"
-
-#. module: opencml
-#: view:res.partner:0
-msgid "Group By technician"
-msgstr "Group By technician"
-
-#. module: opencml
-#: help:product.ask,mark_assort:0
-msgid "MMACHK"
-msgstr "MMACHK"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid ", le"
-msgstr ", le"
-
-#. module: opencml
-#: help:product.ask,mark_groupe:0
-msgid "ITGR"
-msgstr "ITGR"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Offre émise le"
-msgstr "Offre émise le"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Anomalie :"
-msgstr "Anomalie :"
-
-#. module: opencml
-#: view:imp.categ.wiz:0
-msgid "Catégorie Générale:"
-msgstr "Catégorie Générale:"
-
-#. module: opencml
-#: view:project.project:0
-msgid "Parent :"
-msgstr "Parent :"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Toutes les clauses restant inchangées."
-msgstr "Toutes les clauses restant inchangées."
-
-#. module: opencml
-#: view:product.ask:0
-#: field:product.ask,user_id:0
-msgid "Origine demande"
-msgstr "Origine demande"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "N° :"
-msgstr "N° :"
-
-#. module: opencml
-#: help:product.ask,mark_groupe_appro:0
-#: help:product.ask,mark_groupe_appro_code:0
-msgid "PRGP"
-msgstr "PRGP"
-
-#. module: opencml
-#: field:product.ask,mark_reglem:0
-msgid "Réglementation"
-msgstr "Réglementation"
-
-#. module: opencml
-#: field:imp.categ.wiz,separator:0
-#: field:imp.contrat.wiz,separator:0
-#: field:imp.equipement.wiz,separator:0
-#: field:imp.fourni.wiz,separator:0
-#: field:imp.part.add.wiz,separator:0
-#: field:imp.product.wiz,separator:0
-msgid "Séparateur"
-msgstr "Séparateur"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "4 Le déplacement défectueux d'un appareil ;"
-msgstr "4 Le déplacement défectueux d'un appareil ;"
-
-#. module: opencml
-#: selection:product.ask,achat_depot_princ:0
-msgid "Lyon"
-msgstr "Lyon"
-
-#. module: opencml
-#: field:product.ask,code_client:0
-msgid "Code client"
-msgstr "Code client"
-
-#. module: opencml
-#: field:product.ask,sale_delay:0
-msgid "Delai appro."
-msgstr "Delai appro."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "En cas de contradiction entre les différents documents, le document de niveau supérieur prévaudra pour l’obligation en cause."
-msgstr "En cas de contradiction entre les différents documents, le document de niveau supérieur prévaudra pour l’obligation en cause."
-
-#. module: opencml
-#: selection:product.ask,mark_type_article:0
-msgid "REP"
-msgstr "REP"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Client doit maintenir les installations normalement prévues, sans addition ou connexion ne présentant pas la compatibilité, l'interopérabilité ou la conformité exigée par la documentation technique de l'Équipement objet de la prestation."
-msgstr "Le Client doit maintenir les installations normalement prévues, sans addition ou connexion ne présentant pas la compatibilité, l'interopérabilité ou la conformité exigée par la documentation technique de l'Équipement objet de la prestation."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Prix HT"
-msgstr "Prix HT"
-
-#. module: opencml
-#: view:board.board:0
-msgid "Tableau de bord"
-msgstr "Tableau de bord"
-
-#. module: opencml
-#: field:product.ask,achat_classe_qualite:0
-msgid "Classe qualité"
-msgstr "Classe qualité"
-
-#. module: opencml
-#: field:product.category,id_pimcore_parent:0
-msgid "ID Pimcore parent"
-msgstr "ID Pimcore parent"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Raison social :"
-msgstr "Raison social :"
-
-#. module: opencml
-#: field:product.ask,mark_msg_dem_sortie:0
-msgid "Msg demande sortie"
-msgstr "Msg demande sortie"
-
-#. module: opencml
-#: field:product.ask,mark_unr:0
-msgid "UnR"
-msgstr "UnR"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 4 - MODALITÉS D'EXÉCUTION"
-msgstr "ARTICLE 4 - MODALITÉS D'EXÉCUTION"
-
-#. module: opencml
-#: field:product.ask,order_id:0
-msgid "Devis"
-msgstr "Devis"
-
-#. module: opencml
-#: model:ir.ui.menu,name:opencml.menu_mro_protocoles
-#: view:mro.order:0
-#: field:mro.order,protocoles_ids:0
-#: view:mro.protocoles:0
-msgid "Protocoles"
-msgstr "Protocoles"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Cachet de l'entreprise"
-msgstr "Cachet de l'entreprise"
-
-#. module: opencml
-#: field:product.ask,mark_longueur:0
-msgid "Longueur cm"
-msgstr "Longueur cm"
-
-#. module: opencml
-#: model:mail.message.subtype,name:opencml.product_ask_appros
-msgid "Appros."
-msgstr "Appros."
-
-#. module: opencml
-#: sql_constraint:mro.protocoles:0
-msgid "This issue already exists in this table. Issue's code must be unique!"
-msgstr "This issue already exists in this table. Issue's code must be unique!"
-
-#. module: opencml
-#: field:product.ask,appro_statut:0
-#: field:product.ask,mark_statut:0
-msgid "Statut"
-msgstr "Statut"
-
-#. module: opencml
-#: view:board.board:0
-msgid "Les avenants M-3"
-msgstr "Les avenants M-3"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Client Adresse de facturation"
-msgstr "Client Adresse de facturation"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Intervention:"
-msgstr "Intervention:"
-
-#. module: opencml
-#: selection:product.ask,state:0
-#: selection:sale.order.line,state_ddv:0
-msgid "Refusé"
-msgstr "Refusé"
-
-#. module: opencml
-#: field:product.ask,new_partner:0
-msgid "Nouveau client"
-msgstr "Nouveau client"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Paiement à"
-msgstr "Paiement à"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "Terminée"
-msgstr "Terminée"
-
-#. module: opencml
-#: model:mail.message.subtype,description:opencml.product_ask_new
-#: model:mail.message.subtype,name:opencml.product_ask_new
-msgid "Nouvelle demande de produit"
-msgstr "Nouvelle demande de produit"
-
-#. module: opencml
-#. openerp-web
-#: code:addons/opencml/static/src/xml/message_contrat.xml:6
-#, python-format
-msgid "Le client séléctionné possède un contrat !"
-msgstr "Le client séléctionné possède un contrat !"
-
-#. module: opencml
-#: selection:product.ask,mark_groupe_prod:0
-msgid "Matière réglementée transport"
-msgstr "Matière réglementée transport"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Code Client Facturé"
-msgstr "Code Client Facturé"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 17 - TOLÉRANCES"
-msgstr "ARTICLE 17 - TOLÉRANCES"
-
-#. module: opencml
-#: help:product.ask,achat_product_id:0
-msgid "SITE"
-msgstr "SITE"
-
-#. module: opencml
-#: field:product.ask,mark_sterile:0
-msgid "Stérile"
-msgstr "Stérile"
-
-#. module: opencml
-#: field:product.ask,mark_condt_achat:0
-msgid "Condt achat"
-msgstr "Condt achat"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_import_prestation_wiz
-msgid "Wizard importation des préstations"
-msgstr "Wizard importation des préstations"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Référence Fournisseur"
-msgstr "Référence Fournisseur"
-
-#. module: opencml
-#: help:product.ask,mark_latex:0
-#: help:product.ask,mark_lib_cond_iso:0
-#: help:product.ask,mark_lib_unite_iso:0
-#: help:product.ask,mark_oxyde:0
-#: help:product.ask,mark_radioactif:0
-#: help:product.ask,mark_sterile:0
-#: help:product.ask,mark_usage_unique:0
-msgid "INFOS AO CFMW"
-msgstr "INFOS AO CFMW"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Si le Prestataire devait confier le recouvrement de sa créance à un tiers, le Client serait redevable, outre de cet intérêt de retard, du remboursement des frais et honoraires engagés."
-msgstr "Si le Prestataire devait confier le recouvrement de sa créance à un tiers, le Client serait redevable, outre de cet intérêt de retard, du remboursement des frais et honoraires engagés."
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Quantity"
-msgstr "Quantity"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Cet avenant porte exclusivement sur"
-msgstr "Cet avenant porte exclusivement sur"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_crm_claim
-msgid "Claim"
-msgstr "Réclamation"
-
-#. module: opencml
-#: help:product.ask,chef_product_id:0
-msgid "MMRESP"
-msgstr "MMRESP"
-
-#. module: opencml
-#: help:product.ask,achat_pa:0
-msgid "AJPUPR"
-msgstr "AJPUPR"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Prix"
-msgstr "Prix"
-
-#. module: opencml
-#: view:product.ask:0
-#: selection:product.ask,state:0
-#: selection:sale.order.line,state_ddv:0
-msgid "Service Appro."
-msgstr "Service Appro."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 20 - DIFFÉRENTS"
-msgstr "ARTICLE 20 - DIFFÉRENTS"
-
-#. module: opencml
-#: field:product.ask,chef_product_id:0
-msgid "Chef produit"
-msgstr "Chef produit"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "PT.HT"
-msgstr "PT.HT"
-
-#. module: opencml
-#: help:product.ask,appro_type_ordre:0
-msgid "MMS00201"
-msgstr "MMS00201"
-
-#. module: opencml
-#: help:product.ask,appro_statut:0
-msgid "MMS00203"
-msgstr "MMS00203"
-
-#. module: opencml
-#: field:product.ask,ref_fab:0
-#: report:rapport.intervention:0
-msgid "Référence"
-msgstr "Référence"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Contrat N° :"
-msgstr "Contrat N° :"
-
-#. module: opencml
-#: help:product.ask,mark_groupe_prod:0
-msgid "ITCL"
-msgstr "ITCL"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le"
-msgstr "Le"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "VENDREDI"
-msgstr "VENDREDI"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "D'autre part,"
-msgstr "D'autre part,"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire décline toute responsabilité dans les cas précisés ci-après et tous les frais occasionnés par la remise en état de l'Équipement seront facturés en totalité au Client suivant le tarif en vigueur au jour de l'intervention :"
-msgstr "Le Prestataire décline toute responsabilité dans les cas précisés ci-après et tous les frais occasionnés par la remise en état de l'Équipement seront facturés en totalité au Client suivant le tarif en vigueur au jour de l'intervention :"
-
-#. module: opencml
-#: field:mro.protocoles,id_habilitation:0
-#: field:mro.tech_proto_hab,id_habilitation:0
-msgid "Habilitation"
-msgstr "Habilitation"
-
-#. module: opencml
-#: selection:cert.consta,name:0
-msgid "Certificat d'étalonnage"
-msgstr "Certificat d'étalonnage"
-
-#. module: opencml
-#: model:mail.message.subtype,name:opencml.product_ask_marketing
-msgid "Transmition marketing"
-msgstr "Transmition marketing"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Service M&M"
-msgstr "Service M&M"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Modalité de facturation"
-msgstr "Modalité de facturation"
-
-#. module: opencml
-#: help:product.ask,achat_met_gest_compt:0
-msgid "VAMT"
-msgstr "VAMT"
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Scheduled Date"
-msgstr "Scheduled Date"
-
-#. module: opencml
-#: model:mail.message.subtype,description:opencml.product_ask_marketing
-msgid "Demande de produit pour le service MARKETING"
-msgstr "Demande de produit pour le service MARKETING"
-
-#. module: opencml
-#: view:imp.fourni.wiz:0
-#: model:ir.actions.act_window,name:opencml.imp_fourni_wiz_action
-#: model:ir.ui.menu,name:opencml.imp_fourni_wiz_menu
-msgid "Import Fournisseur"
-msgstr "Import Fournisseur"
-
-#. module: opencml
-#: field:product.ask,appro_acheteur:0
-msgid "Acheteur (= Approvisionneur)"
-msgstr "Acheteur (= Approvisionneur)"
-
-#. module: opencml
-#: field:imp.categ.wiz,journal:0
-#: field:imp.contrat.wiz,journal:0
-#: field:imp.equipement.wiz,journal:0
-#: field:imp.fourni.wiz,journal:0
-#: field:imp.part.add.wiz,journal:0
-#: field:imp.product.wiz,journal:0
-#: report:stock.preparation.list.out:0
-msgid "Journal"
-msgstr "Journal"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "et définit la liste du parc en annexe 1."
-msgstr "et définit la liste du parc en annexe 1."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 1 - DÉFINITIONS"
-msgstr "ARTICLE 1 - DÉFINITIONS"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "DETAILS MAIN D'OEUVRE"
-msgstr "DETAILS MAIN D'OEUVRE"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "CECI EXPOSE, IL A ETE CONVENU ET ARRETE CE QUI SUIT."
-msgstr "CECI EXPOSE, IL A ETE CONVENU ET ARRETE CE QUI SUIT."
-
-#. module: opencml
-#: field:generic.assets,code_asset_type:0
-#: field:product.product,code_asset_type:0
-msgid "Type d'équipement"
-msgstr "Type d'équipement"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Tout dysfonctionnement, qui bien que permettant la poursuite de l'exploitation complète de l'équipement, relève d'une procédure inhabituelle."
-msgstr "Tout dysfonctionnement, qui bien que permettant la poursuite de l'exploitation complète de l'équipement, relève d'une procédure inhabituelle."
-
-#. module: opencml
-#: field:product.ask,achat_code_douane:0
-msgid "No Stat. Douane"
-msgstr "No Stat. Douane"
-
-#. module: opencml
-#: field:sale.order.line,state_ddv:0
-msgid "Etat demande"
-msgstr "Etat demande"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Il est expressément entendu que cette résiliation aura lieu de plein droit huit jours après l'envoi d'une mise en demeure de s'exécuter, restée, en tout ou partie, sans effet. La mise en demeure contenant l'intention d'appliquer la présente clause pourra être notifiée par lettre recommandée avec demande d'avis de réception ou tout acte extrajudiciaire."
-msgstr "Il est expressément entendu que cette résiliation aura lieu de plein droit huit jours après l'envoi d'une mise en demeure de s'exécuter, restée, en tout ou partie, sans effet. La mise en demeure contenant l'intention d'appliquer la présente clause pourra être notifiée par lettre recommandée avec demande d'avis de réception ou tout acte extrajudiciaire."
-
-#. module: opencml
-#: field:wiz.assets,date_start:0
-msgid "Date start"
-msgstr "Date start"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Valider la demande"
-msgstr "Valider la demande"
-
-#. module: opencml
-#: view:cert.consta:0
-#: view:create.assets:0
-msgid "ou"
-msgstr "ou"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Contrat ou offre de service"
-msgstr "Contrat ou offre de service"
-
-#. module: opencml
-#: help:product.ask,appro_code_aqui:0
-msgid "PUIT"
-msgstr "PUIT"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Ils sont révisés chaque année au moment de la reconduction du contrat en fonction des prix de revient du “Prestataire”. Toutefois, si l’augmentation des prix dépassait de plus de 5 % le prix de l’année précédente, à prestation égale, et à défaut d’accord avec le Prestataire, le contrat pourrait être dénoncé par le “Client” au moyen d’une lettre"
-msgstr "Ils sont révisés chaque année au moment de la reconduction du contrat en fonction des prix de revient du “Prestataire”. Toutefois, si l’augmentation des prix dépassait de plus de 5 % le prix de l’année précédente, à prestation égale, et à défaut d’accord avec le Prestataire, le contrat pourrait être dénoncé par le “Client” au moyen d’une lettre"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "RDV fixé"
-msgstr "RDV fixé"
-
-#. module: opencml
-#: help:product.ask,appro_multiple_sortie:0
-#: help:product.ask,appro_nbj_vte:0
-msgid "TOMU"
-msgstr "TOMU"
-
-#. module: opencml
-#: field:product.ask,mark_lib_cond_iso:0
-msgid "Libellé condt CODE ISO"
-msgstr "Libellé condt CODE ISO"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Ci-après dénommée “ le Client ”,"
-msgstr "Ci-après dénommée “ le Client ”,"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "Facturation"
-msgstr "Facturation"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Dans le cadre de cet entretien régulier, les visites par le technicien du Prestataire sont destinées à prévenir les anomalies. Elles consisteront donc en des opérations de nettoyage, de vérifications, de réglages, de tests, etc., c'est-à-dire toutes opérations jugées utiles par le Prestataire pour optimiser la durée d'utilisation de l'équipement sans défaillance."
-msgstr "Dans le cadre de cet entretien régulier, les visites par le technicien du Prestataire sont destinées à prévenir les anomalies. Elles consisteront donc en des opérations de nettoyage, de vérifications, de réglages, de tests, etc., c'est-à-dire toutes opérations jugées utiles par le Prestataire pour optimiser la durée d'utilisation de l'équipement sans défaillance."
-
-#. module: opencml
-#: help:product.ask,mark_pcb_vte:0
-msgid "SACD"
-msgstr "SACD"
-
-#. module: opencml
-#: help:product.ask,mark_tun:0
-msgid "AUTP"
-msgstr "AUTP"
-
-#. module: opencml
-#: help:product.ask,mark_nb_cap_libre:0
-msgid "MMFCU1"
-msgstr "MMFCU1"
-
-#. module: opencml
-#: help:product.ask,mark_unm_std:0
-msgid "AUS9"
-msgstr "AUS9"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire garantit au Client qu'il met à sa disposition un personnel compétent qui effectuera des prestations de qualité avec des technologies constamment actualisées."
-msgstr "Le Prestataire garantit au Client qu'il met à sa disposition un personnel compétent qui effectuera des prestations de qualité avec des technologies constamment actualisées."
-
-#. module: opencml
-#: view:sale.order:0
-msgid "Pour accéder à une DDV vous devez remplir la quantité, le prix unitaire et la description"
-msgstr "Pour accéder à une DDV vous devez remplir la quantité, le prix unitaire et la description"
-
-#. module: opencml
-#: selection:product.ask,mark_type_article:0
-msgid "Divers"
-msgstr "Divers"
-
-#. module: opencml
-#: selection:product.ask,mark_type_article:0
-msgid "Personnalisé"
-msgstr "Personnalisé"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Demande de création pour catalogue"
-msgstr "Demande de création pour catalogue"
-
-#. module: opencml
-#: help:product.ask,mark_unr:0
-msgid "ALUN"
-msgstr "ALUN"
-
-#. module: opencml
-#: view:product.ask:0
-#: selection:product.ask,state:0
-#: selection:sale.order.line,state_ddv:0
-msgid "Service Achat"
-msgstr "Service Achat"
-
-#. module: opencml
-#: view:account.analytic.account:0
-#: model:ir.actions.report.xml,name:opencml.amendment_print
-msgid "Avenant au contrat"
-msgstr "Avenant au contrat"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_cert_consta
-msgid "cert.consta"
-msgstr "cert.consta"
-
-#. module: opencml
-#: help:product.ask,mark_unite_remp_util:0
-msgid "ALUC"
-msgstr "ALUC"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "TRANSPORTS GLS"
-msgstr "TRANSPORTS GLS"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "En outre, le Prestataire pourra se prévaloir des dispositions de la clause “ Résiliation pour manquement d'une partie à ses obligations ”."
-msgstr "En outre, le Prestataire pourra se prévaloir des dispositions de la clause “ Résiliation pour manquement d'une partie à ses obligations ”."
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "N° BL"
-msgstr "N° BL"
-
-#. module: opencml
-#: selection:product.ask,dem_motif:0
-msgid "Remplacement"
-msgstr "Remplacement"
-
-#. module: opencml
-#. openerp-web
-#: code:addons/opencml/static/src/js/message_contrat.js:55
-#, python-format
-msgid "Notification"
-msgstr "Notification"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_sudokeys_cid_name
-msgid "pj mail liaison cid name"
-msgstr "pj mail liaison cid name"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_imp_product_wiz
-msgid "Wizard importation des produits"
-msgstr "Wizard importation des produits"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "PREVENTIF"
-msgstr "PREVENTIF"
-
-#. module: opencml
-#: report:amendment_print:0
-#: report:contrat.maintenance:0
-msgid "Prestation"
-msgstr "Prestation"
-
-#. module: opencml
-#: help:product.ask,mark_met_gest_lot:0
-#: help:product.ask,mark_met_gest_lot_code:0
-msgid "MMINDI"
-msgstr "MMINDI"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Les parties entendent par ce terme les matériels et appareils objets de la présente prestation de maintenance."
-msgstr "Les parties entendent par ce terme les matériels et appareils objets de la présente prestation de maintenance."
-
-#. module: opencml
-#: view:product.ask:0
-msgid "En attente d'acceptation"
-msgstr "En attente d'acceptation"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_project_task
-msgid "Task"
-msgstr "Tâche"
-
-#. module: opencml
-#: field:product.ask,mark_groupe:0
-msgid "Groupe art=code fou"
-msgstr "Groupe art=code fou"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "N° CLient :"
-msgstr "N° CLient :"
-
-#. module: opencml
-#: help:product.ask,mark_Volume:0
-msgid "MMVOL3"
-msgstr "MMVOL3"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "6 Et de façon générale, toute intervention non conforme aux normes de l'installation ou contraire aux précautions nécessaires."
-msgstr "6 Et de façon générale, toute intervention non conforme aux normes de l'installation ou contraire aux précautions nécessaires."
-
-#. module: opencml
-#: field:project.task,claim_ids:0
-msgid "Not a Template Task"
-msgstr "Not a Template Task"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Un procès-verbal est établi à chaque intervention de dépannage. Il est signé par le technicien du Prestataire et le responsable utilisateur."
-msgstr "Un procès-verbal est établi à chaque intervention de dépannage. Il est signé par le technicien du Prestataire et le responsable utilisateur."
-
-#. module: opencml
-#: view:hr.employee:0
-msgid "Protocoles Parts"
-msgstr "Protocoles Parts"
-
-#. module: opencml
-#: field:wiz.assets,serial_id:0
-msgid "Serial #"
-msgstr "Serial #"
-
-#. module: opencml
-#: help:product.ask,appro_poli_planif2:0
-msgid "CPCD"
-msgstr "CPCD"
-
-#. module: opencml
-#: report:amendment_print:0
-#: report:contrat.maintenance:0
-msgid "\"le Client\""
-msgstr "\"le Client\""
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Maintenance préventive et vérification."
-msgstr "Maintenance préventive et vérification."
-
-#. module: opencml
-#: field:product.ask,achat_product_id:0
-msgid "Code article fournisseur"
-msgstr "Code article fournisseur"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Appros"
-msgstr "Appros"
-
-#. module: opencml
-#: view:mro.order:0
-#: field:mro.order,mro_type_metrology:0
-msgid "Métrologie"
-msgstr "Métrologie"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "En dehors des conditions particulières prèvues dans un marché, le paiementsera assuré par virement à 30 jours."
-msgstr "En dehors des conditions particulières prèvues dans un marché, le paiementsera assuré par virement à 30 jours."
-
-#. module: opencml
-#: field:product.ask,appro_multiple_sortie:0
-msgid "Multiple de sortie"
-msgstr "Multiple de sortie"
-
-#. module: opencml
-#: field:product.ask,marque:0
-#: field:product.product,marque:0
-#: report:rapport.intervention:0
-msgid "Marque"
-msgstr "Marque"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "A planifier"
-msgstr "A planifier"
-
-#. module: opencml
-#: view:imp.categ.wiz:0
-#: view:imp.fourni.wiz:0
-#: view:imp.part.add.wiz:0
-#: view:imp.product.wiz:0
-#: view:product.categ.wiz:0
-msgid "_Cancel"
-msgstr "_Cancel"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Client/prospect"
-msgstr "Client/prospect"
-
-#. module: opencml
-#: field:product.ask,mark_unm_std:0
-msgid "UnM std-PxVt"
-msgstr "UnM std-PxVt"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Ligne de commandes de vente"
-
-#. module: opencml
-#: selection:product.ask,mark_met_dte_peremp:0
-msgid "Avec date péremp."
-msgstr "Avec date péremp."
-
-#. module: opencml
-#: help:product.ask,achat_aprobation:0
-msgid "STAP"
-msgstr "STAP"
-
-#. module: opencml
-#: view:wiz.assets:0
-msgid "Equipement"
-msgstr "Equipement"
-
-#. module: opencml
-#: report:amendment_print:0
-#: report:contrat.maintenance:0
-msgid "Fait en autant d'exemplaires que de parties,"
-msgstr "Fait en autant d'exemplaires que de parties,"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "CONTRAT DE MAINTENANCE ET METROLOGIE"
-msgstr "CONTRAT DE MAINTENANCE ET METROLOGIE"
-
-#. module: opencml
-#: field:product.ask,product_ddv_id:0
-msgid "Produit Virtuel"
-msgstr "Produit Virtuel"
-
-#. module: opencml
-#: field:product.ask,achat_pcb_arti:0
-msgid "PCB article (unité du PR)"
-msgstr "PCB article (unité du PR)"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_imp_equipement_wiz
-msgid "Wizard importation des équipements"
-msgstr "Wizard importation des équipements"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "En cours"
-msgstr "En cours"
-
-#. module: opencml
-#: field:imp.part.add.wiz,type:0
-#: view:project.task:0
-#: report:rapport.intervention:0
-msgid "Type"
-msgstr "Type"
-
-#. module: opencml
-#: field:imp.contrat.wiz,company_id:0
-#: field:imp.equipement.wiz,company_id:0
-msgid "Compagnie"
-msgstr "Compagnie"
-
-#. module: opencml
-#: field:product.ask,mark_groupe_envrt:0
-msgid "Groupe envrt=gestion catalogue"
-msgstr "Groupe envrt=gestion catalogue"
-
-#. module: opencml
-#: field:sale.order,margin_percent:0
-#: field:sale.order.line,margin_percent:0
-msgid "Marge (%)"
-msgstr "Marge (%)"
-
-#. module: opencml
-#: view:mro.order:0
-#: field:mro.order,mro_type_calibration:0
-msgid "Étalonnage"
-msgstr "Étalonnage"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "VERIFICATION"
-msgstr "VERIFICATION"
-
-#. module: opencml
-#: view:hr.employee:0
-msgid "Habilitations"
-msgstr "Habilitations"
-
-#. module: opencml
-#: help:product.ask,mark_ref_dsl:0
-msgid "LNCD"
-msgstr "LNCD"
-
-#. module: opencml
-#: help:product.ask,mark_pcb_vte2:0
-msgid "ODSACD"
-msgstr "ODSACD"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.mro_protocoles_action_tree
-#: view:mro.protocoles:0
-msgid "mro_protocoles"
-msgstr "mro_protocoles"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "3 L'utilisation des appareils non conforme aux prescriptions du constructeur ou du distributeur"
-msgstr "3 L'utilisation des appareils non conforme aux prescriptions du constructeur ou du distributeur"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 21 - ÉLECTION DE DOMICILE"
-msgstr "ARTICLE 21 - ÉLECTION DE DOMICILE"
-
-#. module: opencml
-#: report:amendment_print:0
-#: report:contrat.maintenance:0
-msgid "Ci-après dénommée"
-msgstr "Ci-après dénommée"
-
-#. module: opencml
-#: help:product.ask,achat_classe_qualite:0
-msgid "QUCL"
-msgstr "QUCL"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Demande Catalogue"
-msgstr "Demande Catalogue"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.open_board_sales_stock
-#: model:ir.ui.menu,name:opencml.menu_dashboard_sales_stock
-msgid "En cours commerciaux"
-msgstr "En cours commerciaux"
-
-#. module: opencml
-#: model:ir.actions.report.xml,name:opencml.report_preparation_list_out
-msgid "Bon de préparation"
-msgstr "Bon de préparation"
-
-#. module: opencml
-#: field:product.ask,mark_category_id:0
-msgid "Catégorie"
-msgstr "Catégorie"
-
-#. module: opencml
-#: help:product.ask,achat_depot_princ:0
-msgid "REWH"
-msgstr "REWH"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Durée de validité de l'offre :"
-msgstr "Durée de validité de l'offre :"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "N° de commande :"
-msgstr "N° de commande :"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Dans le cas contraire, n’hésitez pas à appeler votre Assistante commerciale."
-msgstr "Dans le cas contraire, n’hésitez pas à appeler votre Assistante commerciale."
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Vos Références"
-msgstr "Vos Références"
-
-#. module: opencml
-#: field:cert.consta,date:0
-msgid "Date d'émission"
-msgstr "Date d'émission"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Heures ouvrées"
-msgstr "Heures ouvrées"
-
-#. module: opencml
-#: help:product.ask,mark_secteur_activite:0
-msgid "BUAR"
-msgstr "BUAR"
-
-#. module: opencml
-#: help:product.ask,mark_type_article:0
-#: help:product.ask,mark_type_article_code:0
-msgid "ITTY"
-msgstr "ITTY"
-
-#. module: opencml
-#: help:product.ask,mark_fabricant_id:0
-msgid "PROD"
-msgstr "PROD"
-
-#. module: opencml
-#: view:imp.categ.wiz:0
-msgid "La catégorie parente générale doit existée avec comme ID pimcore: 80164"
-msgstr "La catégorie parente générale doit existée avec comme ID pimcore: 80164"
-
-#. module: opencml
-#: help:product.ask,mark_ftr_ajust:0
-msgid "PCOF"
-msgstr "PCOF"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "DETAILS FOURNITURES"
-msgstr "DETAILS FOURNITURES"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Siège Social :"
-msgstr "Siège Social :"
-
-#. module: opencml
-#: selection:imp.part.add.wiz,type:0
-msgid "Adresse"
-msgstr "Adresse"
-
-#. module: opencml
-#: field:res.partner,cml_num_client:0
-msgid "N° client ELVETEC"
-msgstr "N° client ELVETEC"
-
-#. module: opencml
-#: field:product.ask,date_demande:0
-msgid "Date de la demande"
-msgstr "Date de la demande"
-
-#. module: opencml
-#: view:imp.part.add.wiz:0
-msgid "Import client"
-msgstr "Import client"
-
-#. module: opencml
-#: field:product.ask,achat_qty_mini_cmd:0
-msgid "Quantité mini. cde"
-msgstr "Quantité mini. cde"
-
-#. module: opencml
-#: selection:mro.protocoles,id_habilitation:0
-#: selection:mro.tech_proto_hab,id_habilitation:0
-msgid "non habilité"
-msgstr "non habilité"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Toute modification du siège social ou de l'adresse de l'une des parties ne sera opposable à l'autre partie que huit jours calendaires après lui avoir été dûment notifiée par lettre recommandée avec avis de réception."
-msgstr "Toute modification du siège social ou de l'adresse de l'une des parties ne sera opposable à l'autre partie que huit jours calendaires après lui avoir été dûment notifiée par lettre recommandée avec avis de réception."
-
-#. module: opencml
-#: field:product.ask,type_demande:0
-msgid "Type de demande"
-msgstr "Type de demande"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 9 - ASSURANCES"
-msgstr "ARTICLE 9 - ASSURANCES"
-
-#. module: opencml
-#: view:sale.order:0
-msgid "Puis cliquez sur le libellé \"Demande de produit virtuel\""
-msgstr "Puis cliquez sur le libellé \"Demande de produit virtuel\""
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Nos réparations sont garantie 3 mois (pièces et main d'oeuvres), ors usage non-conforme ou préconisations constructeurs et/ou panne du à un autre élément en défaut(vice cachés)"
-msgstr "Nos réparations sont garantie 3 mois (pièces et main d'oeuvres), ors usage non-conforme ou préconisations constructeurs et/ou panne du à un autre élément en défaut(vice cachés)"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Responsable utilisateur"
-msgstr "Responsable utilisateur"
-
-#. module: opencml
-#: field:product.ask,dem_nature:0
-msgid "Nature"
-msgstr "Nature"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.action_account_analytic_overdue_all
-#: model:ir.ui.menu,name:opencml.menu_action_account_analytic_overdue_all
-msgid "Contracts"
-msgstr "Contrats"
-
-#. module: opencml
-#: field:hr.employee,tech_proto_hab_ids:0
-msgid "unknown"
-msgstr "unknown"
-
-#. module: opencml
-#: help:product.ask,mark_spe_ref:0
-msgid "SPE2(reflet PPS040)"
-msgstr "SPE2(reflet PPS040)"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Il se renouvellera ensuite par reconduction express par périodes successives identiques à la période initiale, sauf dénonciation de l'une des partiesadressée à l'autre par lettre recommandée avec demande d'avis de réception ou tout acte extrajudiciaire au moins UN MOIS avant l'échéance de la période actuelle en cours."
-msgstr "Il se renouvellera ensuite par reconduction express par périodes successives identiques à la période initiale, sauf dénonciation de l'une des partiesadressée à l'autre par lettre recommandée avec demande d'avis de réception ou tout acte extrajudiciaire au moins UN MOIS avant l'échéance de la période actuelle en cours."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Anomalie semi-bloquante"
-msgstr "Anomalie semi-bloquante"
-
-#. module: opencml
-#: field:product.ask,ddv_parent_id:0
-msgid "DDV parent"
-msgstr "DDV parent"
-
-#. module: opencml
-#: view:mro.order:0
-#: field:mro.order,mro_type_fitting:0
-msgid "Ajustage"
-msgstr "Ajustage"
-
-#. module: opencml
-#: field:generic.assets,num_contrat_maint:0
-msgid "N° contrat de maintenance"
-msgstr "N° contrat de maintenance"
-
-#. module: opencml
-#: field:product.ask,message_is_follower:0
-msgid "Is a Follower"
-msgstr "Is a Follower"
-
-#. module: opencml
-#: model:ir.actions.report.xml,name:opencml.report_rapport_intervention
-msgid "Rapport d'intervention"
-msgstr "Rapport d'intervention"
-
-#. module: opencml
-#: help:product.ask,mark_met_dte_peremp:0
-msgid "EXPD"
-msgstr "EXPD"
-
-#. module: opencml
-#: view:imp.product.wiz:0
-#: model:ir.actions.act_window,name:opencml.imp_product_wiz_action
-#: model:ir.ui.menu,name:opencml.imp_product_wiz_menu
-msgid "Import Produit"
-msgstr "Import Produit"
-
-#. module: opencml
-#: field:product.ask,mark_poids_net:0
-msgid "Poids net"
-msgstr "Poids net"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.action_avenant_m3
-msgid "Les avenants à M-3"
-msgstr "Les avenants à M-3"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Facturable"
-msgstr "Facturable"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_res_company
-msgid "Companies"
-msgstr "Sociétés"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_mro_tech_proto_hab
-msgid "table de liaisons thecnicien, protocole et habilitation"
-msgstr "table de liaisons thecnicien, protocole et habilitation"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.action_encours_commerciaux_sale
-msgid "Les devis en attente d'acceptation"
-msgstr "Les devis en attente d'acceptation"
-
-#. module: opencml
-#: view:product.category:0
-msgid "Pimcore"
-msgstr "Pimcore"
-
-#. module: opencml
-#: selection:product.ask,dem_motif:0
-msgid "Sourcing MKG"
-msgstr "Sourcing MKG"
-
-#. module: opencml
-#: field:product.ask,mark_met_gest_lot_code:0
-msgid "Code (Met gestion lot)"
-msgstr "Code (Met gestion lot)"
-
-#. module: opencml
-#: code:addons/opencml/product_ask.py:448
-#: report:contrat.maintenance:0
-#: selection:imp.part.add.wiz,type:0
-#: report:rapport.intervention:0
-#: field:wiz.assets,partner_id:0
-#, python-format
-msgid "Client"
-msgstr "Client"
-
-#. module: opencml
-#: field:account.analytic.account,remise:0
-msgid "Remise en %"
-msgstr "Remise en %"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Demande de création"
-msgstr "Demande de création"
-
-#. module: opencml
-#: field:mro.protocoles,code:0
-msgid "Code"
-msgstr "Code"
-
-#. module: opencml
-#: field:cert.consta,name:0
-msgid "Type de Rapport"
-msgstr "Type de Rapport"
-
-#. module: opencml
-#: field:product.ask,mark_unite_remp_util:0
-msgid "Unité remp. utile"
-msgstr "Unité remp. utile"
-
-#. module: opencml
-#: view:mro.order:0
-#: report:stock.preparation.list.out:0
-msgid "State"
-msgstr "State"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "MISE EN SERVICE"
-msgstr "MISE EN SERVICE"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Euros HT"
-msgstr "Euros HT"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Date (s) d'intervention"
-msgstr "Date (s) d'intervention"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "LUNDI"
-msgstr "LUNDI"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 14- DURÉE"
-msgstr "ARTICLE 14- DURÉE"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Date :"
-msgstr "Date :"
-
-#. module: opencml
-#: field:product.category,code_hierarchie:0
-#: field:product.product,code_hierarchie:0
-msgid "Code hiérarchie"
-msgstr "Code hiérarchie"
-
-#. module: opencml
-#: field:product.ask,qty_mini_vte:0
-msgid "Qte Mini vente"
-msgstr "Qte Mini vente"
-
-#. module: opencml
-#: field:product.ask,appro_multiple_cmd:0
-msgid "Multiple de commande"
-msgstr "Multiple de commande"
-
-#. module: opencml
-#: selection:product.ask,mark_met_gest_lot:0
-msgid "N° de série"
-msgstr "N° de série"
-
-#. module: opencml
-#: field:product.ask,achat_met_gest_compt:0
-msgid "Mét.Gst compt"
-msgstr "Mét.Gst compt"
-
-#. module: opencml
-#: field:product.ask,mark_assort2:0
-msgid "Assort."
-msgstr "Assort."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "5 L'intervention d'un tiers sur l'installation que ce soit de façon occasionnelle, ponctuelle ou permanente pour une quelconque opération de maintenance au sens du présent contrat sans accord préalable du Prestataire"
-msgstr "5 L'intervention d'un tiers sur l'installation que ce soit de façon occasionnelle, ponctuelle ou permanente pour une quelconque opération de maintenance au sens du présent contrat sans accord préalable du Prestataire"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Se référer aux annexes techniques pour le descriptif des prestations réalisées."
-msgstr "Se référer aux annexes techniques pour le descriptif des prestations réalisées."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Anomalie non bloquante"
-msgstr "Anomalie non bloquante"
-
-#. module: opencml
-#: field:sudokeys.cid_name,msg_id:0
-msgid "msg_id"
-msgstr "msg_id"
-
-#. module: opencml
-#: field:product.ask,mark_Volume:0
-msgid "Volume"
-msgstr "Volume"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.action_cert_consta
-msgid "Certificat et constat"
-msgstr "Certificat et constat"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_res_users
-msgid "Users"
-msgstr "Utilisateurs"
-
-#. module: opencml
-#: report:bon.livraison:0
-#: field:product.ask,qty:0
-msgid "Quantité"
-msgstr "Quantité"
-
-#. module: opencml
-#: model:mail.message.subtype,description:opencml.product_ask_canceled
-#: model:mail.message.subtype,name:opencml.product_ask_canceled
-msgid "Demande annulée"
-msgstr "Demande annulée"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Lieux de d'exécution de la prestation :"
-msgstr "Lieux de d'exécution de la prestation :"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "{'default_partner_id':partner_id,'default_mro_id':active_id,'default_tools_ids_f':tools_ids}"
-msgstr "{'default_partner_id':partner_id,'default_mro_id':active_id,'default_tools_ids_f':tools_ids}"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire s'engage à intervenir dans les délais stipulés et selon les modalités définies ci-dessus. Si le Prestataire se trouvait dans l'impossibilité d'intervenir du fait du personnel du Client ou de ce dernier, les heures perdues seraient facturées au Client."
-msgstr "Le Prestataire s'engage à intervenir dans les délais stipulés et selon les modalités définies ci-dessus. Si le Prestataire se trouvait dans l'impossibilité d'intervenir du fait du personnel du Client ou de ce dernier, les heures perdues seraient facturées au Client."
-
-#. module: opencml
-#. openerp-web
-#: code:addons/opencml/static/src/xml/mail.xml:22
-#, python-format
-msgid "Envoyer un email"
-msgstr "Envoyer un email"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 19 - DROIT APPLICABLE"
-msgstr "ARTICLE 19 - DROIT APPLICABLE"
-
-#. module: opencml
-#: field:mro.tech_proto_hab,id_technicien:0
-#: report:rapport.intervention:0
-msgid "Technicien"
-msgstr "Technicien"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Du"
-msgstr "Du"
-
-#. module: opencml
-#: field:product.ask,achat_ratio_mini:0
-msgid "Ratio marge mini"
-msgstr "Ratio marge mini"
-
-#. module: opencml
-#: field:cert.consta,mro_id:0
-msgid "MRO Order"
-msgstr "MRO Order"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Temps d'intervention (main) d'oeuvre"
-msgstr "Temps d'intervention (main) d'oeuvre"
-
-#. module: opencml
-#: field:product.ask,mark_profondeur:0
-msgid "Profondeur cm"
-msgstr "Profondeur cm"
-
-#. module: opencml
-#: field:mro.protocoles,name:0
-msgid "Name"
-msgstr "Name"
-
-#. module: opencml
-#: field:product.ask,section_id:0
-msgid "Equipe co."
-msgstr "Equipe co."
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Supplier Address :"
-msgstr "Supplier Address :"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Les factures de maintenance sont payables, sans escompte, dans un délai de 30 jours à réception de facture."
-msgstr "Les factures de maintenance sont payables, sans escompte, dans un délai de 30 jours à réception de facture."
-
-#. module: opencml
-#: view:res.partner:0
-msgid "Ajouter"
-msgstr "Ajouter"
-
-#. module: opencml
-#: field:product.ask,mark_met_dte_peremp:0
-msgid "Met date péremption"
-msgstr "Met date péremption"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Prix U."
-msgstr "Prix U."
-
-#. module: opencml
-#: field:product.ask,achat_remise_3:0
-msgid "Remise 3"
-msgstr "Remise 3"
-
-#. module: opencml
-#: field:product.ask,appro_agent_planning:0
-msgid "Agent Planning (= Approvisionneur)"
-msgstr "Agent Planning (= Approvisionneur)"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "Contract"
-msgstr "Contrat"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "N° Identifiant TVA /"
-msgstr "N° Identifiant TVA /"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire s'engage à maintenir ces garanties pendant toute la durée du présent contrat et à en apporter la preuve sur demande du Client."
-msgstr "Le Prestataire s'engage à maintenir ces garanties pendant toute la durée du présent contrat et à en apporter la preuve sur demande du Client."
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_imp_contrat_wiz
-msgid "Wizard importation des contrats"
-msgstr "Wizard importation des contrats"
-
-#. module: opencml
-#: selection:mro.protocoles,id_habilitation:0
-#: selection:mro.tech_proto_hab,id_habilitation:0
-msgid "habilité"
-msgstr "habilité"
-
-#. module: opencml
-#: help:product.ask,achat_etab:0
-msgid "FACI"
-msgstr "FACI"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Heure d'arrivée"
-msgstr "Heure d'arrivée"
-
-#. module: opencml
-#: field:imp.categ.wiz,date_import:0
-#: field:imp.contrat.wiz,date_import:0
-#: field:imp.equipement.wiz,date_import:0
-#: field:imp.fourni.wiz,date_import:0
-#: field:imp.part.add.wiz,date_import:0
-#: field:imp.product.wiz,date_import:0
-msgid "Date import"
-msgstr "Date import"
-
-#. module: opencml
-#: model:mail.message.subtype,description:opencml.product_ask_refused
-#: model:mail.message.subtype,name:opencml.product_ask_refused
-msgid "Demande Refusée"
-msgstr "Demande Refusée"
-
-#. module: opencml
-#: selection:imp.categ.wiz,separator:0
-#: selection:imp.contrat.wiz,separator:0
-#: selection:imp.equipement.wiz,separator:0
-#: selection:imp.fourni.wiz,separator:0
-#: selection:imp.part.add.wiz,separator:0
-#: selection:imp.product.wiz,separator:0
-msgid "Virgule ,"
-msgstr "Virgule ,"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_mail_thread
-msgid "Email Thread"
-msgstr "Discussion par courriel"
-
-#. module: opencml
-#: selection:product.ask,mark_type_article:0
-msgid "Evernew"
-msgstr "Evernew"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Cette garantie ne porte que sur les pièces et ne peut en aucun cas être appliquée aux pièces et accessoires qui n'ont pas fait l'objet d'un échange"
-msgstr "Cette garantie ne porte que sur les pièces et ne peut en aucun cas être appliquée aux pièces et accessoires qui n'ont pas fait l'objet d'un échange"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Article créé"
-msgstr "Article créé"
-
-#. module: opencml
-#: help:product.ask,mark_id_ref:0
-msgid "RIDE"
-msgstr "RIDE"
-
-#. module: opencml
-#: report:bon.livraison:0
-#: field:product.ask,designation:0
-#: report:rapport.intervention:0
-msgid "Désignation"
-msgstr "Désignation"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Refusée"
-msgstr "Refusée"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire se porte fort, au sens de l'Article 1120 du Code civil, du respect par ses préposés, mandataires ou sous-traitants dûment autorisés, de l'engagement de confidentialité exposé ci-dessus."
-msgstr "Le Prestataire se porte fort, au sens de l'Article 1120 du Code civil, du respect par ses préposés, mandataires ou sous-traitants dûment autorisés, de l'engagement de confidentialité exposé ci-dessus."
-
-#. module: opencml
-#: help:product.ask,achat_code_douane:0
-msgid "CSNO (code douanier)"
-msgstr "CSNO (code douanier)"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Si au terme d'un délai de quinze jours, les parties n'arrivaient pas à se mettre d'accord sur un compromis ou une solution, le litige serait alors soumis à la compétence"
-msgstr "Si au terme d'un délai de quinze jours, les parties n'arrivaient pas à se mettre d'accord sur un compromis ou une solution, le litige serait alors soumis à la compétence"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "IL A TOUT D’ABORD ETE EXPOSE CE QUI SUIT."
-msgstr "IL A TOUT D’ABORD ETE EXPOSE CE QUI SUIT."
-
-#. module: opencml
-#: help:product.ask,mark_spe_poids:0
-msgid "SPE1"
-msgstr "SPE1"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "Group By..."
-msgstr "Group By..."
-
-#. module: opencml
-#: field:product.ask,prx_souhaite:0
-msgid "Prix de vente souhaité"
-msgstr "Prix de vente souhaité"
-
-#. module: opencml
-#: view:imp.part.add.wiz:0
-msgid "Import fichier "
-msgstr "Import fichier "
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le délai d'intervention correspond au temps exprimé en heures ouvrées qui s'écoule entre le jour et l'heure d'appel du responsable utilisateur et le jour et l'heure d'arrivée du technicien du Prestataire sur le site utilisateur."
-msgstr "Le délai d'intervention correspond au temps exprimé en heures ouvrées qui s'écoule entre le jour et l'heure d'appel du responsable utilisateur et le jour et l'heure d'arrivée du technicien du Prestataire sur le site utilisateur."
-
-#. module: opencml
-#: selection:cert.consta,name:0
-msgid "Constat de vérification"
-msgstr "Constat de vérification"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Visite technique"
-msgstr "Visite technique"
-
-#. module: opencml
-#: help:product.ask,mark_assort1:0
-#: help:product.ask,mark_assort2:0
-msgid "ASCD"
-msgstr "ASCD"
-
-#. module: opencml
-#: selection:product.ask,mark_type_article:0
-msgid "Document"
-msgstr "Document"
-
-#. module: opencml
-#: field:product.ask,achat_pays_id:0
-msgid "Pays d'origine"
-msgstr "Pays d'origine"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Il est expressément convenu que la responsabilité du Prestataire sera limitée à un montant maximum au plus égal à une année de maintenance."
-msgstr "Il est expressément convenu que la responsabilité du Prestataire sera limitée à un montant maximum au plus égal à une année de maintenance."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 8 - EXCLUSIONS"
-msgstr "ARTICLE 8 - EXCLUSIONS"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Mail:"
-msgstr "Mail:"
-
-#. module: opencml
-#: field:product.ask,mark_met_num_lot:0
-msgid "Met. N° lot"
-msgstr "Met. N° lot"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "30 jours à réception de facture"
-msgstr "30 jours à réception de facture"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Livraison Du"
-msgstr "Livraison Du"
-
-#. module: opencml
-#: selection:imp.categ.wiz,separator:0
-#: selection:imp.contrat.wiz,separator:0
-#: selection:imp.equipement.wiz,separator:0
-#: selection:imp.fourni.wiz,separator:0
-#: selection:imp.part.add.wiz,separator:0
-#: selection:imp.product.wiz,separator:0
-msgid "Point-virgule ;"
-msgstr "Point-virgule ;"
-
-#. module: opencml
-#: field:product.ask,achat_pa:0
-msgid "PA"
-msgstr "PA"
-
-#. module: opencml
-#: field:product.ask,name:0
-msgid "Référence de la demande"
-msgstr "Référence de la demande"
-
-#. module: opencml
-#: help:product.ask,mark_category_id:0
-msgid "HIE1->HIE5"
-msgstr "HIE1->HIE5"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Cette visite a pour objet de définir l'acceptation par le Prestataire d'assurer la prestation de service de l'équipement du Client. Elle est effectuée par un technicien qualifié du Prestataire et par le responsable utilisateur désigné."
-msgstr "Cette visite a pour objet de définir l'acceptation par le Prestataire d'assurer la prestation de service de l'équipement du Client. Elle est effectuée par un technicien qualifié du Prestataire et par le responsable utilisateur désigné."
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "AVENANT AU CONTRAT"
-msgstr "AVENANT AU CONTRAT"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.open_board_invenant_m3
-#: model:ir.ui.menu,name:opencml.menu_dashboard_invenant_m3
-msgid "Contrats à reconduire"
-msgstr "Contrats à reconduire"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_imp_fourni_wiz
-msgid "Wizard importation des fournisseurs"
-msgstr "Wizard importation des fournisseurs"
-
-#. module: opencml
-#: help:product.ask,mark_taxes_id:0
-msgid "VTCS"
-msgstr "VTCS"
-
-#. module: opencml
-#: help:product.ask,mark_supplier_taxes_id:0
-msgid "VTCP"
-msgstr "VTCP"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-#: report:rapport.intervention:0
-msgid "Nom :"
-msgstr "Nom :"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Veuillez trouver ci-après, notre meilleure offre de prix concernant les prestations de maintenance ci-dessous"
-msgstr "Veuillez trouver ci-après, notre meilleure offre de prix concernant les prestations de maintenance ci-dessous"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le présent contrat est soumis au droit français, à l'exclusion de toute autre législation."
-msgstr "Le présent contrat est soumis au droit français, à l'exclusion de toute autre législation."
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "N° Série"
-msgstr "N° Série"
-
-#. module: opencml
-#: help:product.ask,appro_poli_planif:0
-msgid "PLCD"
-msgstr "PLCD"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 16 - MODIFICATION - INTÉGRALITÉ"
-msgstr "ARTICLE 16 - MODIFICATION - INTÉGRALITÉ"
-
-#. module: opencml
-#: field:sudokeys.cid_name,cid:0
-msgid "cid"
-msgstr "cid"
-
-#. module: opencml
-#: help:product.ask,appro_methode:0
-msgid "ALMT"
-msgstr "ALMT"
-
-#. module: opencml
-#: help:product.ask,achat_remise_3:0
-msgid "AJDIP3"
-msgstr "AJDIP3"
-
-#. module: opencml
-#: sql_constraint:mro.tech_proto_hab:0
-msgid "This key already exists in this table. relation's name must be unique!"
-msgstr "This key already exists in this table. relation's name must be unique!"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Validation CDG"
-msgstr "Validation CDG"
-
-#. module: opencml
-#: help:product.ask,mark_facteur_conv:0
-msgid "COFA"
-msgstr "COFA"
-
-#. module: opencml
-#: selection:product.ask,mark_type_article:0
-msgid "Echantillon"
-msgstr "Echantillon"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Attente service Achat"
-msgstr "Attente service Achat"
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Partenaire:"
-msgstr "Partenaire:"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Conditions financières (cf Article 10):"
-msgstr "Conditions financières (cf Article 10):"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Toute indisponibilité temporaire de l'équipement."
-msgstr "Toute indisponibilité temporaire de l'équipement."
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Compte rendu de l'intervention :"
-msgstr "Compte rendu de l'intervention :"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Par ce titre, il faut entendre la personne désignée par le Client comme étant l'interlocuteur privilégié du Prestataire sur les problèmes de fonctionnement de l'équipement et seul autorisé à formuler une demande d'intervention."
-msgstr "Par ce titre, il faut entendre la personne désignée par le Client comme étant l'interlocuteur privilégié du Prestataire sur les problèmes de fonctionnement de l'équipement et seul autorisé à formuler une demande d'intervention."
-
-#. module: opencml
-#: field:imp.categ.wiz,source:0
-#: field:imp.contrat.wiz,source:0
-#: field:imp.equipement.wiz,source:0
-#: field:imp.fourni.wiz,source:0
-#: field:imp.part.add.wiz,source:0
-#: field:imp.product.wiz,source:0
-msgid "Source"
-msgstr "Source"
-
-#. module: opencml
-#: field:product.ask,message_follower_ids:0
-msgid "Followers"
-msgstr "Followers"
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Location"
-msgstr "Location"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "CORRECTIF"
-msgstr "CORRECTIF"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Code Client Livré"
-msgstr "Code Client Livré"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Fax:"
-msgstr "Fax:"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Votre signature sur ce bon de visite vaut acceptation des travaux réalisés ainsi que leurs réglements."
-msgstr "Votre signature sur ce bon de visite vaut acceptation des travaux réalisés ainsi que leurs réglements."
-
-#. module: opencml
-#: field:create.assets,asset_ids_new:0
-#: view:res.partner:0
-msgid "Equipements"
-msgstr "Equipements"
-
-#. module: opencml
-#: field:product.ask,standard_price:0
-msgid "PR"
-msgstr "PR"
-
-#. module: opencml
-#: selection:mro.protocoles,id_habilitation:0
-#: selection:mro.tech_proto_hab,id_habilitation:0
-msgid "expert"
-msgstr "expert"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "D'un commun accord, les deux parties ont convenu que l'Équipement défini dans la première page devra faire l'objet d'un entretien régulier selon le planning défini dans la même annexe."
-msgstr "D'un commun accord, les deux parties ont convenu que l'Équipement défini dans la première page devra faire l'objet d'un entretien régulier selon le planning défini dans la même annexe."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "En cas d'infraction à la présente interdiction, la partie défaillante sera tenue de payer immédiatement à l'autre partie, à titre de clause pénale, une indemnité forfaitaire d'un montant égal à six mois du dernier salaire brut mensuel de la personne sollicitée ou embauchée, majorée de tous les frais de recrutement d'un remplaçant."
-msgstr "En cas d'infraction à la présente interdiction, la partie défaillante sera tenue de payer immédiatement à l'autre partie, à titre de clause pénale, une indemnité forfaitaire d'un montant égal à six mois du dernier salaire brut mensuel de la personne sollicitée ou embauchée, majorée de tous les frais de recrutement d'un remplaçant."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "De même, le Prestataire pourra suspendre de plein droit, toutes les prestations en cours et ce quelles que soient leur nature et leur niveau d'avancement. Cependant, cette suspension ne pourra pas être considérée comme une résiliation du contrat du fait du Prestataire, ni ouvrir un quelconque droit à indemnité pour le Client."
-msgstr "De même, le Prestataire pourra suspendre de plein droit, toutes les prestations en cours et ce quelles que soient leur nature et leur niveau d'avancement. Cependant, cette suspension ne pourra pas être considérée comme une résiliation du contrat du fait du Prestataire, ni ouvrir un quelconque droit à indemnité pour le Client."
-
-#. module: opencml
-#: help:product.ask,message_unread:0
-msgid "If checked new messages require your attention."
-msgstr "De nouveaux messages vérifiés ont besoin de votre attention."
-
-#. module: opencml
-#: field:sudokeys.cid_name,filename:0
-msgid "filename"
-msgstr "filename"
-
-#. module: opencml
-#: field:imp.categ.wiz,ligne:0
-#: field:imp.contrat.wiz,ligne:0
-#: field:imp.equipement.wiz,ligne:0
-#: field:imp.fourni.wiz,ligne:0
-#: field:imp.part.add.wiz,ligne:0
-#: field:imp.product.wiz,ligne:0
-msgid "Ligne entête"
-msgstr "Ligne entête"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "MERCREDI"
-msgstr "MERCREDI"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "En cas de non-respect par l'une ou l'autre des parties de ses obligations au titre du présent contrat, celui-ci pourra être résilié au gré de la partie lésée."
-msgstr "En cas de non-respect par l'une ou l'autre des parties de ses obligations au titre du présent contrat, celui-ci pourra être résilié au gré de la partie lésée."
-
-#. module: opencml
-#: view:res.partner:0
-msgid "Technician"
-msgstr "Technician"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Au Réel / bon d'intervention"
-msgstr "Au Réel / bon d'intervention"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "La somme forfaitaire - CONDITIONS FINANCIERES"
-msgstr "La somme forfaitaire - CONDITIONS FINANCIERES"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Il est formellement convenu que toute tolérance ou renonciation d'une des parties, dans l'application de tout ou partie des engagements prévus au présent contrat, quelles qu'en aient pu être la fréquence et la durée, ne saurait valoir modification du présent contrat, ni générer un droit quelconque."
-msgstr "Il est formellement convenu que toute tolérance ou renonciation d'une des parties, dans l'application de tout ou partie des engagements prévus au présent contrat, quelles qu'en aient pu être la fréquence et la durée, ne saurait valoir modification du présent contrat, ni générer un droit quelconque."
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Montant Total"
-msgstr "Montant Total"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "1 La détérioration de l'Équipement due à des actes de sabotage du fait de grèves, émeutes ou guerre ;"
-msgstr "1 La détérioration de l'Équipement due à des actes de sabotage du fait de grèves, émeutes ou guerre ;"
-
-#. module: opencml
-#: field:mro.tech_proto_hab,id_protocole:0
-msgid "Protocole"
-msgstr "Protocole"
-
-#. module: opencml
-#: view:mail.compose.message:0
-msgid ""
-"$(document).ready(function(){\n"
-"		      	var largeur_fenetre = $(window).width()-30;\n"
-"				var hauteur_fenetre = $(window).height();\n"
-"				$('.ui-dialog').css({'width': largeur_fenetre+'px','left':'10px'});\n"
-"				$('.oe_form_sheet_width').css({'MAXwidth': largeur_fenetre+'px'});\n"
-"			   });"
-msgstr ""
-"$(document).ready(function(){\n"
-"		      	var largeur_fenetre = $(window).width()-30;\n"
-"				var hauteur_fenetre = $(window).height();\n"
-"				$('.ui-dialog').css({'width': largeur_fenetre+'px','left':'10px'});\n"
-"				$('.oe_form_sheet_width').css({'MAXwidth': largeur_fenetre+'px'});\n"
-"			   });"
-
-#. module: opencml
-#: view:imp.product.wiz:0
-msgid "Import Produit "
-msgstr "Import Produit "
-
-#. module: opencml
-#: selection:product.ask,type_demande:0
-#: field:sale.order.line,ddv_id:0
-msgid "DDV"
-msgstr "DDV"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "À PUSIGNAN, le"
-msgstr "À PUSIGNAN, le"
-
-#. module: opencml
-#: field:product.ask,mark_prx_vte:0
-msgid "Prix de vente"
-msgstr "Prix de vente"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Qte"
-msgstr "Qte"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_crm_claim_report
-msgid "CRM Claim Report"
-msgstr "Rapport des demandes (CRM)"
-
-#. module: opencml
-#: help:product.ask,achat_qty_mini_cmd:0
-msgid "LOQT"
-msgstr "LOQT"
-
-#. module: opencml
-#: field:product.ask,mark_facteur_conv:0
-msgid "Facteur conv= nbre de pieces par condt"
-msgstr "Facteur conv= nbre de pieces par condt"
-
-#. module: opencml
-#: field:product.ask,mark_article_vte:0
-msgid "Article vente"
-msgstr "Article vente"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 13 - NON-SOLLICITATION DU PERSONNEL"
-msgstr "ARTICLE 13 - NON-SOLLICITATION DU PERSONNEL"
-
-#. module: opencml
-#: help:product.ask,mark_groupe_envrt:0
-msgid "EVGR"
-msgstr "EVGR"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Anomalie bloquante"
-msgstr "Anomalie bloquante"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Client – Adresse de livraison"
-msgstr "Client – Adresse de livraison"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Le Prestataire,"
-msgstr "Le Prestataire,"
-
-#. module: opencml
-#: help:product.ask,mark_code_fab_achat:0
-msgid "MABU"
-msgstr "MABU"
-
-#. module: opencml
-#: field:imp.categ.wiz,user_id:0
-#: field:imp.contrat.wiz,user_id:0
-#: field:imp.equipement.wiz,user_id:0
-#: field:imp.fourni.wiz,user_id:0
-#: field:imp.part.add.wiz,user_id:0
-#: field:imp.product.wiz,user_id:0
-#: report:rapport.intervention:0
-msgid "Utilisateur"
-msgstr "Utilisateur"
-
-#. module: opencml
-#: field:product.ask,date_limite:0
-msgid "Dead line réponse"
-msgstr "Dead line réponse"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Ville :"
-msgstr "Ville :"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_wiz_assets
-msgid "wiz.assets"
-msgstr "wiz.assets"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Etablissement d'une commande pour les prestations ci-dessus"
-msgstr "Etablissement d'une commande pour les prestations ci-dessus"
-
-#. module: opencml
-#: field:product.ask,mark_radioactif:0
-msgid "Radioactif"
-msgstr "Radioactif"
-
-#. module: opencml
-#: field:product.product,code_pimcore:0
-msgid "Code article Movex"
-msgstr "Code article Movex"
-
-#. module: opencml
-#: field:product.ask,achat_depot_princ:0
-msgid "Dépôt principal"
-msgstr "Dépôt principal"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 10 - CONDITIONS FINANCIÈRES"
-msgstr "ARTICLE 10 - CONDITIONS FINANCIÈRES"
-
-#. module: opencml
-#: view:imp.fourni.wiz:0
-msgid "Import Fournisseur "
-msgstr "Import Fournisseur "
-
-#. module: opencml
-#: field:product.ask,appro_fournisseur_id:0
-msgid "Code fournisseur"
-msgstr "Code fournisseur"
-
-#. module: opencml
-#: field:product.ask,default_code:0
-msgid "Réf. Article pour devis"
-msgstr "Réf. Article pour devis"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Nouvelle Demande"
-msgstr "Nouvelle Demande"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Les modalités de cette prestation de service sont les suivantes :"
-msgstr "Les modalités de cette prestation de service sont les suivantes :"
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Contact Address :"
-msgstr "Contact Address :"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.product_categ_wiz_action
-#: model:ir.ui.menu,name:opencml.product_categ_wiz_menu
-#: view:product.categ.wiz:0
-msgid "Liaison catégorie produit"
-msgstr "Liaison catégorie produit"
-
-#. module: opencml
-#: help:product.ask,mark_longueur:0
-msgid "DIM2"
-msgstr "DIM2"
-
-#. module: opencml
-#: help:product.ask,mark_profondeur:0
-msgid "DIM3"
-msgstr "DIM3"
-
-#. module: opencml
-#: help:product.ask,achat_pcb_arti:0
-msgid "COCD"
-msgstr "COCD"
-
-#. module: opencml
-#: help:product.ask,mark_poids_brut:0
-msgid "MMGRWE"
-msgstr "MMGRWE"
-
-#. module: opencml
-#: help:product.ask,mark_pcb_vte_mini:0
-msgid "FRE3"
-msgstr "FRE3"
-
-#. module: opencml
-#: field:product.ask,mark_supplier_taxes_id:0
-msgid "TVA Achat"
-msgstr "TVA Achat"
-
-#. module: opencml
-#: help:product.ask,mark_condt_achat:0
-msgid "FRE4"
-msgstr "FRE4"
-
-#. module: opencml
-#: view:imp.categ.wiz:0
-#: model:ir.actions.act_window,name:opencml.imp_categ_wiz_action
-msgid "Import catégorie"
-msgstr "Import catégorie"
-
-#. module: opencml
-#: field:product.ask,descriptif:0
-msgid "Descriptif"
-msgstr "Descriptif"
-
-#. module: opencml
-#: field:product.ask,achat_etab:0
-msgid "Etablissement"
-msgstr "Etablissement"
-
-#. module: opencml
-#: field:product.ask,mark_groupe_prod:0
-msgid "Groupe produit"
-msgstr "Groupe produit"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_mro_protocoles
-msgid "protocole de maintenance et de vérification"
-msgstr "protocole de maintenance et de vérification"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_product_categ_wiz
-msgid "Wizard de liaison produit catégorie"
-msgstr "Wizard de liaison produit catégorie"
-
-#. module: opencml
-#: view:project.task:0
-msgid "Claims"
-msgstr "Claims"
-
-#. module: opencml
-#: field:product.ask,mark_nb_mois_vie:0
-msgid "Durée de vie en mois"
-msgstr "Durée de vie en mois"
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "BORDEREAU DE LIVRAISON"
-msgstr "BORDEREAU DE LIVRAISON"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "MARDI"
-msgstr "MARDI"
-
-#. module: opencml
-#: field:product.ask,dem_motif:0
-msgid "Motif"
-msgstr "Motif"
-
-#. module: opencml
-#: field:product.ask,mark_poids_brut:0
-msgid "Poids brut"
-msgstr "Poids brut"
-
-#. module: opencml
-#: field:product.ask,mark_pcb_vte_mini:0
-msgid "PCB vente mini"
-msgstr "PCB vente mini"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 3 - OBJET"
-msgstr "ARTICLE 3 - OBJET"
-
-#. module: opencml
-#: field:product.ask,achat_cdt:0
-msgid "CDT"
-msgstr "CDT"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "En tout état de cause, la partie lésée pourra demander en justice l'octroi de dommages et intérêts, sans préjudice de l'application des pénalités prévues à l'Article “ Pénalités de retard de paiement ”."
-msgstr "En tout état de cause, la partie lésée pourra demander en justice l'octroi de dommages et intérêts, sans préjudice de l'application des pénalités prévues à l'Article “ Pénalités de retard de paiement ”."
-
-#. module: opencml
-#: view:mro.order:0
-msgid "Maintenance Preventive"
-msgstr "Maintenance Preventive"
-
-#. module: opencml
+#. module: mro_extended
 #: field:account.analytic.account,marge:0
 msgid "Marge en %"
 msgstr "Marge en %"
 
-#. module: opencml
-#: view:cert.consta:0
-#: field:cert.consta,tools_ids:0
-msgid "Les outils"
-msgstr "Les outils"
+#. module: mro_extended
+#: field:account.analytic.account,we:0
+msgid "Wed"
+msgstr "Mer"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Délai d'intervention"
-msgstr "Délai d'intervention"
+#. module: mro_extended
+#: selection:tools.planning.wiz,type:0
+msgid "Monthly"
+msgstr "Mensuel"
 
-#. module: opencml
-#: field:product.ask,mark_type_article:0
-msgid "Type d'article"
-msgstr "Type d'article"
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Sunday"
+msgstr "Dimanche"
 
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Code postal :"
-msgstr "Code postal :"
+#. module: mro_extended
+#: field:product.serial,product_id:0
+msgid "Parent product"
+msgstr "Produit parent"
 
-#. module: opencml
-#: field:product.ask,mark_taxes_id:0
-msgid "TVA Vente"
-msgstr "TVA Vente"
+#. module: mro_extended
+#: field:services.assets,service_real_id:0
+#: field:services.assets.wizard,service_real_id:0
+msgid "Contract service real id"
+msgstr "Contract service real id"
 
-#. module: opencml
-#: view:cert.consta:0
-#: view:create.assets:0
-#: view:product.ask:0
-msgid "Annuler"
-msgstr "Annuler"
+#. module: mro_extended
+#: selection:product.product,mro_type:0
+msgid "Labor"
+msgstr "Main d'oeuvre"
 
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Rapport d'intervention N° :"
-msgstr "Rapport d'intervention N° :"
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.action_sale_make_mro
+msgid "Make Maintenance Order"
+msgstr "Créer une intervention"
 
-#. module: opencml
-#: help:product.ask,appro_acheteur:0
-msgid "BUYE"
-msgstr "BUYE"
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:282
+#: code:addons/mro_extended/wizard/sale_make_contract.py:56
+#, python-format
+msgid "Contract: "
+msgstr "Contrat: "
 
-#. module: opencml
-#: model:ir.model,name:opencml.model_product_product
-msgid "Product"
-msgstr "Article"
-
-#. module: opencml
-#: help:product.ask,designation:0
-msgid "FUDS"
-msgstr "FUDS"
-
-#. module: opencml
-#: help:product.ask,mark_prx_vte:0
-msgid "ODSAPR"
-msgstr "ODSAPR"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "La nullité ou l'inapplicabilité de l'une quelconque des stipulations du présent contrat n'emportera pas nullité des autres stipulations qui conserveront toute leur force et leur portée."
-msgstr "La nullité ou l'inapplicabilité de l'une quelconque des stipulations du présent contrat n'emportera pas nullité des autres stipulations qui conserveront toute leur force et leur portée."
-
-#. module: opencml
-#: field:product.ask,mark_spe_ref:0
-msgid "Spécification 2= Ref Fournisseur"
-msgstr "Spécification 2= Ref Fournisseur"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Qté"
-msgstr "Qté"
-
-#. module: opencml
-#: field:product.ask,appro_nbj_vte:0
-msgid "Durée limite de vente (en jour)"
-msgstr "Durée limite de vente (en jour)"
-
-#. module: opencml
-#: field:product.ask,mark_secteur_activite:0
-msgid "Secteur activité"
-msgstr "Secteur activité"
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Ordre de préparation :"
-msgstr "Ordre de préparation :"
-
-#. module: opencml
-#: field:product.ask,appro_type_ordre:0
-msgid "Type ordre"
-msgstr "Type ordre"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Demandeur"
-msgstr "Demandeur"
-
-#. module: opencml
-#: field:product.ask,fabricant_id:0
-msgid "Fabricant"
-msgstr "Fabricant"
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Order(Origin)"
-msgstr "Order(Origin)"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Tout dysfonctionnement rendant impossible l'utilisation de la totalité des fonctionnalités de l'équipement."
-msgstr "Tout dysfonctionnement rendant impossible l'utilisation de la totalité des fonctionnalités de l'équipement."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "En contrepartie de la prestation de maintenance, le Client s'engage à verser au Prestataire la somme définit sur la première page l'an, payable en une seule fois à la signature du présent contrat et à chacun de ses renouvellements."
-msgstr "En contrepartie de la prestation de maintenance, le Client s'engage à verser au Prestataire la somme définit sur la première page l'an, payable en une seule fois à la signature du présent contrat et à chacun de ses renouvellements."
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Groupé par..."
-msgstr "Groupé par..."
-
-#. module: opencml
-#: field:product.ask,message_ids:0
-msgid "Messages"
-msgstr "Messages"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 12 - CONFIDENTIALITÉ"
-msgstr "ARTICLE 12 - CONFIDENTIALITÉ"
-
-#. module: opencml
-#: report:amendment_print:0
-msgid "Tel:"
-msgstr "Tel:"
-
-#. module: opencml
-#: help:product.ask,mark_um_base_id:0
-msgid "UNMS"
-msgstr "UNMS"
-
-#. module: opencml
-#: model:ir.actions.act_window,help:opencml.imp_categ_wiz_action
-#: model:ir.actions.act_window,help:opencml.imp_fourni_wiz_action
-#: model:ir.actions.act_window,help:opencml.imp_part_add_wiz_action
-#: model:ir.actions.act_window,help:opencml.imp_product_wiz_action
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                Cliquez pour créer un nouvel import\n"
-"              </p>\n"
-"            "
-msgstr ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                Cliquez pour créer un nouvel import\n"
-"              </p>\n"
-"            "
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Équipement"
+#. module: mro_extended
+#: field:account.analytic.services,asset_id:0
+#: field:generic.assets,asset_id:0
+#: selection:product.product,mro_type:0
+#: field:services.assets,asset_id:0
+#: field:services.assets.wizard,asset_id:0
+msgid "Asset"
 msgstr "Équipement"
 
-#. module: opencml
-#: help:product.ask,appro_multiple_cmd:0
-msgid "UNMO"
-msgstr "UNMO"
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Fourth"
+msgstr "Quatrième"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le client tient à la disposition du prestataire, pendant toute la durée du présent contrat, toute documentation afférente à l’équipement."
-msgstr "Le client tient à la disposition du prestataire, pendant toute la durée du présent contrat, toute documentation afférente à l’équipement."
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_make_contract
+msgid "Make contract"
+msgstr "Créer un contrat"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-#: report:rapport.intervention:0
-msgid "Signature :"
-msgstr "Signature :"
+#. module: mro_extended
+#: field:account.analytic.services,service_id:0
+#: field:generic.assets,service_id:0
+#: field:product.template,contract:0
+#: field:services.assets,service_id:0
+#: field:services.assets.wizard,service_id:0
+msgid "Contract service"
+msgstr "Prestation contractuelle"
 
-#. module: opencml
-#: model:mail.message.subtype,name:opencml.product_ask_achat
-msgid "Demande acceptée"
-msgstr "Demande acceptée"
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Back to draft"
+msgstr "Remettre en brouillon"
 
-#. module: opencml
-#: help:product.ask,achat_dep_region:0
-msgid "ECAR"
-msgstr "ECAR"
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Until"
+msgstr "Jusqu'à"
 
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Votre marchandise a été confiée à notre Transporteur ce jour. Sa livraison sera effectuée d’ici 1 à 4 jours ouvrés."
-msgstr "Votre marchandise a été confiée à notre Transporteur ce jour. Sa livraison sera effectuée d’ici 1 à 4 jours ouvrés."
+#. module: mro_extended
+#: field:mro.tools,date_validity_end:0
+msgid "Validity date end"
+msgstr "Date de fin de validité"
 
-#. module: opencml
-#: field:product.ask,mark_fabricant_id:0
-msgid "Fabricant si dif. de fournisseur"
-msgstr "Fabricant si dif. de fournisseur"
+#. module: mro_extended
+#: help:account.analytic.account,count:0
+msgid "Repeat x times"
+msgstr "Répéter x fois"
 
-#. module: opencml
-#: model:ir.model,name:opencml.model_imp_categ_wiz
-msgid "Wizard importation des Categories"
-msgstr "Wizard importation des Categories"
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "March"
+msgstr "Mars"
 
-#. module: opencml
-#: field:account.analytic.account,amount_service:0
-msgid "Montant total"
-msgstr "Montant total"
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: model:ir.model,name:mro_extended.model_account_analytic_amendments
+msgid "Contract amendments"
+msgstr "Avenants"
 
-#. module: opencml
-#: selection:product.ask,mark_met_dte_peremp:0
-msgid "Sans date péremp."
-msgstr "Sans date péremp."
+#. module: mro_extended
+#: field:account.analytic.account,amendment:0
+msgid "Amendment not accepted"
+msgstr "Avenants en attente"
 
-#. module: opencml
-#: field:product.ask,mark_oxyde:0
-msgid "Oxyde d'éthylène"
-msgstr "Oxyde d'éthylène"
+#. module: mro_extended
+#: field:mro.tools,message_unread:0
+#: field:mro.tools.booking,message_unread:0
+msgid "Unread Messages"
+msgstr "Messages non lus"
 
-#. module: opencml
-#: help:product.ask,achat_ratio_mini:0
-msgid "LAMA"
-msgstr "LAMA"
+#. module: mro_extended
+#: field:account.analytic.account,maintenance_date_start:0
+msgid "Maintenance date start"
+msgstr "Date de début"
 
-#. module: opencml
-#: selection:product.ask,mark_groupe_appro:0
-msgid "Non stocké"
-msgstr "Non stocké"
+#. module: mro_extended
+#: field:account.analytic.amendments,price_rise:0
+#: field:create.amendment,price_rise:0
+msgid "Price Rise (%)"
+msgstr "Augmentation (%)"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Les parties conviennent que ce taux est calculé prorata temporis par période d'un mois calendaire et que chaque mois entamé est comptabilisé comme mois entier."
-msgstr "Les parties conviennent que ce taux est calculé prorata temporis par période d'un mois calendaire et que chaque mois entamé est comptabilisé comme mois entier."
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Friday"
+msgstr "Vendredi"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "recommandée avec avis de réception adressée au Prestataire dans les quinze jours suivant son renouvellement. Passé ce délai, l’exécution du contrat sera poursuivie et la redevance sera due par le Client pour la totalité de la nouvelle période."
-msgstr "recommandée avec avis de réception adressée au Prestataire dans les quinze jours suivant son renouvellement. Passé ce délai, l’exécution du contrat sera poursuivie et la redevance sera due par le Client pour la totalité de la nouvelle période."
+#. module: mro_extended
+#: field:mro.order,allday:0
+msgid "All Day"
+msgstr "Journée entière"
 
-#. module: opencml
-#: field:cert.consta,tools_ids_f:0
+#. module: mro_extended
+#: field:account.analytic.account,select1:0
+msgid "Option"
+msgstr "Option"
+
+#. module: mro_extended
+#: field:create.amendment,date_begin:0
+msgid "Date Begin"
+msgstr "Date de début"
+
+#. module: mro_extended
+#: selection:product.product,mro_type:0
+msgid "Part"
+msgstr "Pièce détachée"
+
+#. module: mro_extended
+#: field:account.analytic.account,mo:0
+msgid "Mon"
+msgstr "Lun"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Ratios"
+msgstr "Ratios"
+
+#. module: mro_extended
+#: view:create.amendment:0
+msgid "Renewal?"
+msgstr "Renouvellement?"
+
+#. module: mro_extended
 #: view:mro.order:0
-msgid "Tools"
-msgstr "Outils"
+msgid "Planned Parts"
+msgstr "Pièces planifiées"
 
-#. module: opencml
-#: field:product.ask,mark_met_gest_lot:0
-msgid "Met gestion lot"
-msgstr "Met gestion lot"
+#. module: mro_extended
+#: field:account.analytic.amendments,service_asset_ids:0
+#: field:create.amendment,service_asset_ids_new:0
+#: field:create.amendment,service_asset_ids_old:0
+#: field:create.amendment,service_asset_ids_remove:0
+#: model:ir.model,name:mro_extended.model_services_assets
+#: model:ir.model,name:mro_extended.model_services_assets_wizard
+msgid "Contract services / Assets"
+msgstr "Prestations contactuelles / Equipements"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "N°INV. / Type"
-msgstr "N°INV. / Type"
+#. module: mro_extended
+#: field:account.analytic.account,date_wished:0
+msgid "Wished Date"
+msgstr "Date souhaitée"
 
-#. module: opencml
-#: help:product.ask,mark_met_num_lot:0
-msgid "BACD"
-msgstr "BACD"
+#. module: mro_extended
+#: view:sale.order:0
+msgid "Add Maintenance Contract"
+msgstr "Ajouter un contrat de maintenance"
 
-#. module: opencml
-#: view:project.project:0
-msgid "Projet parent"
-msgstr "Projet parent"
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Last"
+msgstr "Dernier"
 
-#. module: opencml
-#: field:product.ask,achat_plus:0
-msgid "Plus basniv ct autor"
-msgstr "Plus basniv ct autor"
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: field:account.analytic.account,asset_ids:0
+#: view:generic.assets:0
+#: model:ir.actions.act_window,name:mro_extended.action_assets
+#: model:ir.ui.menu,name:mro_extended.menu_maintenance_assets
+#: model:ir.ui.menu,name:mro_extended.menu_maintenance_assets_assets
+#: view:mro.order:0
+#: field:mro.order,asset_ids:0
+#: field:res.partner,asset_ids:0
+#: field:sale.make.contract,asset_ids:0
+#: field:sale.make.mro,asset_ids:0
+#: field:sale.order.line,assets_ids:0
+msgid "Assets"
+msgstr "Équipements"
 
-#. module: opencml
-#: view:imp.categ.wiz:0
-msgid "Prérequis"
-msgstr "Prérequis"
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Model:"
+msgstr "Modèle:"
 
-#. module: opencml
-#: field:product.ask,unite_vente:0
-msgid "Unité de vente"
-msgstr "Unité de vente"
+#. module: mro_extended
+#: model:product.uom.categ,name:mro_extended.uom_categ_ctime
+msgid "Contract Time"
+msgstr "Durée contractuelle"
 
-#. module: opencml
-#: field:product.ask,partner_id:0
-msgid "Client/Prospect"
-msgstr "Client/Prospect"
+#. module: mro_extended
+#: selection:tools.planning.wiz,type:0
+msgid "Annual"
+msgstr "Annuel"
 
-#. module: opencml
-#: code:addons/opencml/product_ask.py:323
+#. module: mro_extended
+#: field:product.product,mro_type:0
+msgid "Maintenance product type"
+msgstr "Type de produit pour la maintenance"
+
+#. module: mro_extended
+#: view:sale.make.mro:0
+msgid "Add a Maintenance Order"
+msgstr "Ajouter une intervention"
+
+#. module: mro_extended
+#: selection:account.analytic.account,rrule_type:0
+msgid "Year(s)"
+msgstr "Année(s)"
+
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:378
+#: code:addons/mro_extended/mro_extended.py:218
+#: code:addons/mro_extended/mro_extended.py:281
+#: code:addons/mro_extended/mro_extended.py:286
+#: code:addons/mro_extended/mro_extended.py:497
 #, python-format
-msgid "La demande : %s %s."
-msgstr "La demande : %s %s."
+msgid "Error!"
+msgstr "Erreur!"
 
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Référence ELVETEC"
-msgstr "Référence ELVETEC"
+#. module: mro_extended
+#: field:generic.assets,serial_id:0
+#: field:product.serial,name:0
+#: field:services.assets,serial_id:0
+#: field:services.assets.wizard,serial_id:0
+msgid "Serial #"
+msgstr "N° de série"
 
-#. module: opencml
-#: field:product.ask,mark_tun:0
-msgid "Tun"
-msgstr "Tun"
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Cancelled"
+msgstr "Cancelled"
 
-#. module: opencml
-#: report:amendment_print:0
-msgid "N° Client:"
-msgstr "N° Client:"
+#. module: mro_extended
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Preventive"
+msgstr "Préventive"
 
-#. module: opencml
-#: field:product.ask,company_id:0
-msgid "Company"
-msgstr "Company"
+#. module: mro_extended
+#: selection:mro.tools,tools_place:0
+msgid "Fixed"
+msgstr "Fixe"
 
-#. module: opencml
-#: help:product.ask,four_ref:0
-msgid "ITDS"
-msgstr "ITDS"
+#. module: mro_extended
+#: help:mro.tools,message_unread:0
+#: help:mro.tools.booking,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Si elle est cochée, les nouveaux messages nécessitent votre attention."
 
-#. module: opencml
+#. module: mro_extended
+#: field:sale.make.mro,maintenance_type:0
+msgid "Maintenance Type"
+msgstr "Type d'intervention"
+
+#. module: mro_extended
+#: field:services.assets,amendment_id:0
+msgid "Amendment"
+msgstr "Avenant"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
 #: view:mro.order:0
-#: field:mro.order,mro_type_implement:0
-msgid "Mise en service"
-msgstr "Mise en service"
+#: view:res.partner:0
+msgid "Asset Serial #"
+msgstr "N° de série équipement"
 
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Serial Number"
-msgstr "Serial Number"
+#. module: mro_extended
+#: field:create.amendment,renewal:0
+msgid "Contract Renewal"
+msgstr "Renouvellement du contrat"
 
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Fax :"
-msgstr "Fax :"
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:526
+#, python-format
+msgid "IN CALIBRATION"
+msgstr "En étalonnage"
 
-#. module: opencml
-#: field:product.ask,achat_fournisseur_id:0
-msgid "Code Fournisseur"
-msgstr "Code Fournisseur"
+#. module: mro_extended
+#: model:ir.actions.report.xml,name:mro_extended.tools_planning_month_print
+msgid "Monthly planning for tools"
+msgstr "Planning mensuel des outils"
 
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.product_ask2_normal_action
-#: view:product.ask:0
-msgid "Demande de création de produit en catalogue"
-msgstr "Demande de création de produit en catalogue"
+#. module: mro_extended
+#: field:generic.assets,default_code:0
+msgid "Reference"
+msgstr "Référence"
 
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "OBSERVATIONS"
-msgstr "OBSERVATIONS"
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Cancel Contract"
+msgstr "Annuler le contrat"
 
-#. module: opencml
-#: view:imp.categ.wiz:0
-#: view:imp.fourni.wiz:0
-#: view:imp.part.add.wiz:0
-#: view:imp.product.wiz:0
-#: view:product.categ.wiz:0
-msgid "Ok"
-msgstr "Ok"
+#. module: mro_extended
+#: field:account.analytic.account,rrule:0
+msgid "Recurrent Rule"
+msgstr "Règle de récurrence"
 
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Sous-garantie Elvetec"
-msgstr "Sous-garantie Elvetec"
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Manufacturer:"
+msgstr "Fabricant:"
 
-#. module: opencml
-#: field:product.ask,four_ref:0
-msgid "Réf four."
-msgstr "Réf four."
-
-#. module: opencml
-#: field:product.ask,dem_ingenieur:0
-msgid "Ingénieur d'affaire"
-msgstr "Ingénieur d'affaire"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_project_project
-msgid "Project"
-msgstr "Projet"
-
-#. module: opencml
-#: field:product.ask,mark_nb_cap_libre:0
-msgid "Nb un cap libre"
-msgstr "Nb un cap libre"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "La prestation de service que doit assurer le Prestataire, est acceptée à l'issue d'une visite technique préalable de l'Équipement faisant l'objet de la maintenance."
-msgstr "La prestation de service que doit assurer le Prestataire, est acceptée à l'issue d'une visite technique préalable de l'Équipement faisant l'objet de la maintenance."
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_mail_compose_message
-msgid "Email composition wizard"
-msgstr "Assistant de composition de courriel"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Aucun escompte accordé pour un règlement anticipé."
-msgstr "Aucun escompte accordé pour un règlement anticipé."
-
-#. module: opencml
+#. module: mro_extended
 #: view:mro.order:0
-#: field:mro.order,mro_type_elvetec_warranty:0
-msgid "Sous garantie Elvetec"
-msgstr "Sous garantie Elvetec"
+msgid "Parts to Consume"
+msgstr "Pièces consommables"
 
-#. module: opencml
-#: model:ir.ui.menu,name:opencml.product_ask2_menu
-msgid "Demandes de création"
-msgstr "Demandes de création"
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Contracts not assigned"
+msgstr "Liste des contrats non assignés"
 
-#. module: opencml
-#: field:product.ask,achat_dep_region:0
-msgid "Départ région"
-msgstr "Départ région"
+#. module: mro_extended
+#: field:account.analytic.account,end_date:0
+msgid "Repeat Until"
+msgstr "Répéter jusqu'à"
 
-#. module: opencml
-#: field:product.ask,acheteur:0
-msgid "Acheteur"
-msgstr "Acheteur"
+#. module: mro_extended
+#: help:mro.tools,message_summary:0
+#: help:mro.tools.booking,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Résumé Chatter (nombre de messages, ...). Ce résumé est directement en format html pour être inséré dans une vue kanban."
 
-#. module: opencml
-#: view:product.product:0
-msgid "Info. avancées"
-msgstr "Info. avancées"
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_mro_tools_booking
+msgid "Booking for tools"
+msgstr "Réservation des outils"
 
-#. module: opencml
-#: field:product.ask,mark_spe_poids:0
-msgid "Spécification 1= Poids en Kg/ PCB"
-msgstr "Spécification 1= Poids en Kg/ PCB"
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:103
+#: code:addons/mro_extended/analytic.py:105
+#, python-format
+msgid "Warning!"
+msgstr "Attention!"
 
-#. module: opencml
-#: view:product.ask:0
-msgid "Délai appro."
-msgstr "Délai appro."
+#. module: mro_extended
+#: view:tools.planning.wiz:0
+msgid "_Print"
+msgstr "_Print"
 
-#. module: opencml
-#: model:ir.model,name:opencml.model_sale_order
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:219
+#, python-format
+msgid "Please define sales journal for this company: \"%s\" (id:%d)."
+msgstr "Configurez un journal de vente pour cette compagnie: \"%s\" (id:%d)."
+
+#. module: mro_extended
+#: field:generic.assets,partner_id:0
+#: model:ir.model,name:mro_extended.model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire est responsable de tous dommages causés par son personnel dans l'entreprise du Client."
-msgstr "Le Prestataire est responsable de tous dommages causés par son personnel dans l'entreprise du Client."
+#. module: mro_extended
+#: field:account.analytic.account,end_type:0
+msgid "Recurrence Termination"
+msgstr "Fin de récurrence"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Sauf report sollicité à temps et accordé par le Prestataire, tout retard de paiement, de tout ou partie d'une somme due à son échéance, portera conventionnellement intérêts à son profit, au taux d'intérêt légal augmenté de 1,5 points."
-msgstr "Sauf report sollicité à temps et accordé par le Prestataire, tout retard de paiement, de tout ou partie d'une somme due à son échéance, portera conventionnellement intérêts à son profit, au taux d'intérêt légal augmenté de 1,5 points."
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
 
-#. module: opencml
-#: view:product.ask:0
-#: selection:product.ask,state:0
-#: selection:sale.order.line,state_ddv:0
-msgid "Service Marketing"
-msgstr "Service Marketing"
+#. module: mro_extended
+#: field:account.analytic.account,sa:0
+msgid "Sat"
+msgstr "Sam"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Client utilisant de tels matériels et appareils les soumet à l’expertise d’ELVETEC afin de lui en confier l’entretien et le contrôle."
-msgstr "Le Client utilisant de tels matériels et appareils les soumet à l’expertise d’ELVETEC afin de lui en confier l’entretien et le contrôle."
+#. module: mro_extended
+#: report:tools_planning_month_print:0
+msgid "Printing date"
+msgstr "Imprimé le"
 
-#. module: opencml
-#: view:sale.order:0
-msgid "red:margin_percent<20;"
-msgstr "red:margin_percent<20;"
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.action_mro_tools_3months
+#: model:ir.ui.menu,name:mro_extended.menu_maintenance_mro_tools_3months
+msgid "End of validity in 3 months"
+msgstr "Fin de validité sur 3 mois"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le personnel du Prestataire affecté à l'exécution de celle-ci demeurera sous la responsabilité entière et exclusive du Prestataire, qui est seul habilité à lui adresser des directives et instructions."
-msgstr "Le personnel du Prestataire affecté à l'exécution de celle-ci demeurera sous la responsabilité entière et exclusive du Prestataire, qui est seul habilité à lui adresser des directives et instructions."
+#. module: mro_extended
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Metrology"
+msgstr "Métrologie"
 
-#. module: opencml
-#: selection:product.ask,mark_met_gest_lot:0
-msgid "Lot"
-msgstr "Lot"
+#. module: mro_extended
+#: field:generic.assets,mro_id:0
+msgid "MRO Order"
+msgstr "MRO Order"
 
-#. module: opencml
-#: view:board.board:0
-#: model:ir.actions.act_window,name:opencml.action_encours_commerciaux_stock
-msgid "Les livraisons en attente de pièces"
-msgstr "Les livraisons en attente de pièces"
+#. module: mro_extended
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Implementation"
+msgstr "Implémentation"
 
-#. module: opencml
-#: view:product.categ.wiz:0
-msgid "Ce wizard permet de relier les produits à sa catégorie par le Code hiérarchie"
-msgstr "Ce wizard permet de relier les produits à sa catégorie par le Code hiérarchie"
+#. module: mro_extended
+#: field:account.analytic.account,su:0
+msgid "Sun"
+msgstr "Dim"
 
-#. module: opencml
-#: field:product.ask,appro_fournisseur_id2:0
-#: field:product.ask,fournisseur_id:0
-msgid "Fournisseur"
-msgstr "Fournisseur"
+#. module: mro_extended
+#: field:account.analytic.amendments,state:0
+msgid "Status"
+msgstr "Statut"
 
-#. module: opencml
-#: selection:product.ask,state:0
-#: selection:sale.order.line,state_ddv:0
-msgid "Validé"
-msgstr "Validé"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "La présente interdiction s'applique pendant toute la durée du présent contrat majorée de 6 mois."
-msgstr "La présente interdiction s'applique pendant toute la durée du présent contrat majorée de 6 mois."
-
-#. module: opencml
-#: view:create.assets:0
-msgid "Confirmer"
-msgstr "Confirmer"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "CONSTR"
-msgstr "CONSTR"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_hr_employee
-msgid "Employee"
-msgstr "Employé"
-
-#. module: opencml
-#: help:product.ask,mark_reglem:0
-msgid "CFI1"
-msgstr "CFI1"
-
-#. module: opencml
-#: help:product.ask,mark_nb_mois_vie:0
-msgid "CFI2"
-msgstr "CFI2"
-
-#. module: opencml
-#: help:product.ask,mark_page_cml:0
-msgid "CFI3"
-msgstr "CFI3"
-
-#. module: opencml
-#: help:product.ask,mark_fiche_tech:0
-msgid "CFI5"
-msgstr "CFI5"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_product_category
-msgid "Product Category"
-msgstr "Catégorie d'articles"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "Rapport Constat/certificat"
-msgstr "Rapport Constat/certificat"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 5 - OBLIGATIONS DU PRESTATAIRE"
-msgstr "ARTICLE 5 - OBLIGATIONS DU PRESTATAIRE"
-
-#. module: opencml
-#: field:product.ask,list_price:0
-msgid "Prix de vente en UNV"
-msgstr "Prix de vente en UNV"
-
-#. module: opencml
-#: model:ir.actions.act_window,name:opencml.imp_part_add_wiz_action
-#: model:ir.ui.menu,name:opencml.imp_part_add_wiz_menu
-msgid "Import Client"
-msgstr "Import Client"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_sale_make_mro
-msgid "Make mro orders"
-msgstr "Créer une intervention"
-
-#. module: opencml
-#: help:product.ask,new_partner:0
-msgid "Cochez la case dans le cas d'un nouveau client"
-msgstr "Cochez la case dans le cas d'un nouveau client"
-
-#. module: opencml
-#: model:ir.actions.report.xml,name:opencml.report_bon_livraison
-msgid "Bon de livraison CML"
-msgstr "Bon de livraison CML"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 15 - RÉSILIATION POUR MANQUEMENT D'UNE PARTIE À SES OBLIGATIONS"
-msgstr "ARTICLE 15 - RÉSILIATION POUR MANQUEMENT D'UNE PARTIE À SES OBLIGATIONS"
-
-#. module: opencml
-#: field:product.ask,appro_nbj_conserve:0
-msgid "Durée de conservation(en jour)"
-msgstr "Durée de conservation(en jour)"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Signature"
-msgstr "Signature"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Montant H.T."
-msgstr "Montant H.T."
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Motif de l'intervention :"
-msgstr "Motif de l'intervention :"
-
-#. module: opencml
-#: selection:product.ask,state:0
-#: selection:sale.order.line,state_ddv:0
-msgid "Annulé"
-msgstr "Annulé"
-
-#. module: opencml
-#: field:product.ask,mark_ftr_ajust:0
-msgid "ftr ajust prix"
-msgstr "ftr ajust prix"
-
-#. module: opencml
-#: view:mro.order:0
-#: field:mro.order,mro_type_supplier_warranty:0
-msgid "Sous garantie fournisseur"
-msgstr "Sous garantie fournisseur"
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Weight"
-msgstr "Weight"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Facturation en 3 exemplaires des travaux réalisés – TVA 19.6 %"
-msgstr "Facturation en 3 exemplaires des travaux réalisés – TVA 19.6 %"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 11 - PÉNALITÉS DE RETARD DE PAIEMENT"
-msgstr "ARTICLE 11 - PÉNALITÉS DE RETARD DE PAIEMENT"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Durée"
-msgstr "Durée"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 6 - OBLIGATIONS DU CLIENT"
-msgstr "ARTICLE 6 - OBLIGATIONS DU CLIENT"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Distance de déplacement(km)"
-msgstr "Distance de déplacement(km)"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire s'engage à apporter tous les soins nécessaires à l'exécution de sa prestation de maintenance conformément aux règles de l'art."
-msgstr "Le Prestataire s'engage à apporter tous les soins nécessaires à l'exécution de sa prestation de maintenance conformément aux règles de l'art."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le présent contrat définit les conditions selon lesquelles le Client confie au Prestataire qui l'accepte, l'entretien et la réparation de son équipement, dont les caractéristiques sont mentionnées à la première page et ci-après dénommé Équipement."
-msgstr "Le présent contrat définit les conditions selon lesquelles le Client confie au Prestataire qui l'accepte, l'entretien et la réparation de son équipement, dont les caractéristiques sont mentionnées à la première page et ci-après dénommé Équipement."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Cette visite d'un technicien qualifié du Prestataire fait suite à une demande d'intervention émanant du responsable utilisateur et a pour objet le dépannage de l'équipement concerné."
-msgstr "Cette visite d'un technicien qualifié du Prestataire fait suite à une demande d'intervention émanant du responsable utilisateur et a pour objet le dépannage de l'équipement concerné."
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_mail_mail
-msgid "Outgoing Mails"
-msgstr "Courriels à envoyer"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_mail_message
-msgid "Message"
-msgstr "Message"
-
-#. module: opencml
-#. openerp-web
-#: code:addons/opencml/static/src/xml/mail.xml:23
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:322
 #, python-format
-msgid "or"
-msgstr "or"
+msgid "You must first assign a location for the parts in the asset."
+msgstr "Vous devez d'abord assigner un emplacement pour les pièces détachées dans la fiche de l'équipement."
 
-#. module: opencml
-#: help:product.ask,achat_fournisseur_id:0
-msgid "SUNO"
-msgstr "SUNO"
+#. module: mro_extended
+#: view:sale.make.contract:0
+msgid "Add a Maintenance Contract"
+msgstr "Ajouter un contrat de maintenance"
 
-#. module: opencml
-#: help:product.ask,mark_msg_dem_sortie:0
-msgid "MMAUTC"
-msgstr "MMAUTC"
+#. module: mro_extended
+#: field:mro.tools,message_follower_ids:0
+#: field:mro.tools.booking,message_follower_ids:0
+msgid "Followers"
+msgstr "Abonnés"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Toute modification à l’initiative du Client du parc matériel cité dans la liste des matériels devra être signalée au prestataire par le Client et fera l’objet d’un avenant signé par les parties."
-msgstr "Toute modification à l’initiative du Client du parc matériel cité dans la liste des matériels devra être signalée au prestataire par le Client et fera l’objet d’un avenant signé par les parties."
+#. module: mro_extended
+#: view:mro.tools:0
+#: field:mro.tools,name:0
+msgid "Tool Name"
+msgstr "Nom de l'outils"
 
-#. module: opencml
-#: help:product.ask,achat_par_comb_pa:0
-msgid "PUCD"
-msgstr "PUCD"
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Serial No:"
+msgstr "N° de série:"
 
-#. module: opencml
-#: selection:product.ask,dem_motif:0
-msgid "Commande Client"
-msgstr "Commande Client"
+#. module: mro_extended
+#: field:tools.planning.wiz,type:0
+#: report:tools_planning_month_print:0
+msgid "Type"
+msgstr "Type"
 
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "N° Interne Elvetec"
-msgstr "N° Interne Elvetec"
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: field:account.analytic.account,service_ids:0
+#: view:account.analytic.services:0
+#: model:ir.model,name:mro_extended.model_account_analytic_services
+#: field:sale.make.contract,service_ids:0
+msgid "Contract services"
+msgstr "Prestations contractuelle"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "2 Les dégâts provoqués par l'eau, le feu et tout événement de force majeure ;"
-msgstr "2 Les dégâts provoqués par l'eau, le feu et tout événement de force majeure ;"
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Compte analytique"
 
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Customer Address :"
-msgstr "Customer Address :"
+#. module: mro_extended
+#: field:mro.order,duration:0
+msgid "Duration (h)"
+msgstr "Duration (h)"
 
-#. module: opencml
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:105
+#, python-format
+msgid "Count cannot be negative or 0."
+msgstr "Nombre de répétitions ne peut être négatif ou 0."
+
+#. module: mro_extended
+#: field:account.analytic.account,interval:0
+msgid "Repeat Every"
+msgstr "Répéter tous les"
+
+#. module: mro_extended
+#: field:account.analytic.account,day:0
+#: selection:account.analytic.account,select1:0
+msgid "Date of month"
+msgstr "Date dans le mois"
+
+#. module: mro_extended
+#: field:mro.tools.booking,tools_id:0
+msgid "Tool"
+msgstr "Outils"
+
+#. module: mro_extended
+#: field:services.assets.wizard,create_amendment_id_new:0
+msgid "Amendment creation new"
+msgstr "Nouvel avenant"
+
+#. module: mro_extended
+#: selection:account.analytic.account,rrule_type:0
+#: model:product.uom,name:mro_extended.product_uom_month
+msgid "Month(s)"
+msgstr "Mois"
+
+#. module: mro_extended
+#: view:sale.order:0
+msgid "Add assets"
+msgstr "Add assets"
+
+#. module: mro_extended
+#: field:mro.tools,inventory_num:0
+msgid "Inventory number"
+msgstr "N° Inventaire"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Day of Month"
+msgstr "Jour du mois"
+
+#. module: mro_extended
+#: field:product.product,childs_serial:0
+msgid "Serials #"
+msgstr "N° de série"
+
+#. module: mro_extended
+#: view:mro.tools.booking:0
+#: field:mro.tools.booking,calibration_booking:0
+msgid "Calibration booking"
+msgstr "Réservé pour étalonnage"
+
+#. module: mro_extended
+#: field:mro.order,technician:0
+#: view:mro.tools.booking:0
+#: field:mro.tools.booking,technician_id:0
+#: field:res.partner,technician:0
+msgid "Technician"
+msgstr "Technicien"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Contract Finished"
+msgstr "Contrat terminé"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "July"
+msgstr "Juillet"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: selection:account.analytic.amendments,state:0
+msgid "Accepted"
+msgstr "Accepté"
+
+#. module: mro_extended
+#: field:account.analytic.account,tu:0
+msgid "Tue"
+msgstr "Mar"
+
+#. module: mro_extended
+#: field:mro.tools,date_validity_3m:0
+msgid "Validity end in 3 months"
+msgstr "Fin de validité de trois mois"
+
+#. module: mro_extended
+#: view:mro.tools:0
+msgid "Info"
+msgstr "Info"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.tools_planning_wiz_action
+#: view:tools.planning.wiz:0
+msgid "Print planning for tools"
+msgstr "Edition du planning des outils"
+
+#. module: mro_extended
+#: sql_constraint:generic.assets:0
+msgid "Serial number must be unique per product and per partner"
+msgstr "Le numéro de série doit être unique par produit et par partenaire"
+
+#. module: mro_extended
+#: field:product.product,property_stock_asset:0
+msgid "Asset Location"
+msgstr "Emplacement de destination des pièces détachées"
+
+#. module: mro_extended
+#: field:mro.tools,purchase_value:0
+msgid "Purchase value"
+msgstr "Valeur d'achat"
+
+#. module: mro_extended
+#: field:mro.order,invoice_id:0
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Order Date"
+msgstr "Date d'éxécution"
+
+#. module: mro_extended
+#: field:sale.make.contract,date_planned:0
+#: field:sale.make.mro,date_planned:0
+msgid "Planned Date"
+msgstr "Date planifiée"
+
+#. module: mro_extended
+#: constraint:generic.assets:0
+msgid "Check assets dates."
+msgstr "Vérifie les dates d'équipement."
+
+#. module: mro_extended
+#: selection:services.assets,move_type:0
+msgid "Remain"
+msgstr "Reste"
+
+#. module: mro_extended
+#: selection:account.analytic.account,rrule_type:0
+msgid "Week(s)"
+msgstr "Semaine(s)"
+
+#. module: mro_extended
+#: help:account.analytic.account,rrule_type:0
+msgid "Let the event automatically repeat at that interval"
+msgstr "Laisser l'événement se répéter automatiquement à chaque intervalle"
+
+#. module: mro_extended
+#: selection:services.assets,move_type:0
+msgid "Remove"
+msgstr "Supprimer"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,help:mro_extended.action_mro_tools_3months
+msgid "List of validity's end of tools in 3 months from today "
+msgstr "Liste des outils dont la validité se termine dans 3 mois"
+
+#. module: mro_extended
+#: field:mro.order,order_id:0
+msgid "Order"
+msgstr "Bon de commande"
+
+#. module: mro_extended
+#: view:create.amendment:0
+msgid "Add contract services and assets"
+msgstr "Ajout de préstations et équipements"
+
+#. module: mro_extended
+#: field:services.assets,move_type:0
+msgid "Move type"
+msgstr "Type de mobilité"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: view:create.amendment:0
+msgid "New contract dates"
+msgstr "Nouvelles dates du contrat"
+
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "First"
+msgstr "Premier"
+
+#. module: mro_extended
+#: view:mro.tools.booking:0
+#: field:mro.tools.booking,booking_comment:0
+msgid "Comment"
+msgstr "Comment"
+
+#. module: mro_extended
 #: view:mro.order:0
+msgid "In progress"
+msgstr "En cours"
+
+#. module: mro_extended
+#: report:tools_planning_month_print:0
+msgid "Planning of tools booking"
+msgstr "Planning des outils réservés"
+
+#. module: mro_extended
+#: selection:sale.make.mro,maintenance_type:0
+msgid "Corrective"
+msgstr "Corrective"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "September"
+msgstr "Septembre"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "December"
+msgstr "Décembre"
+
+#. module: mro_extended
+#: field:mro.tools,image:0
+msgid "Image"
+msgstr "Image"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Terminate"
+msgstr "Résiliation"
+
+#. module: mro_extended
+#: model:ir.ui.menu,name:mro_extended.tools_planning_wiz_menu
+msgid "Booking tools planning"
+msgstr "Planning de réservation des outils"
+
+#. module: mro_extended
+#: field:account.analytic.account,month_list:0
+#: field:tools.planning.wiz,months:0
+msgid "Month"
+msgstr "Mois"
+
+#. module: mro_extended
+#: view:mro.tools:0
+#: view:mro.tools.booking:0
+msgid "Group by..."
+msgstr "Groupé par..."
+
+#. module: mro_extended
+#: field:mro.tools,image_medium:0
+msgid "Medium-sized image"
+msgstr "Image de taille moyenne"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_tools_planning_wiz
+msgid "Wizard for printing tools booking planning "
+msgstr "Wizard pour l'édition du planning des outils"
+
+#. module: mro_extended
+#: field:mro.order,place:0
+#: field:mro.tools,tools_place:0
+msgid "Place"
+msgstr "Lieu"
+
+#. module: mro_extended
+#: field:generic.assets,date_next:0
+msgid "Next maintenance date"
+msgstr "Prochaine date de maintenance"
+
+#. module: mro_extended
+#: view:cancelled.contract:0
+#: view:create.amendment:0
+#: view:refuse.amendment:0
+#: view:sale.make.contract:0
+#: view:sale.make.mro:0
+#: view:tools.planning.wiz:0
+msgid "or"
+msgstr "ou"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "The maintenance orders 'Draft' will be replaced."
+msgstr "Les interventions \"À planifier\" seront remplacées."
+
+#. module: mro_extended
+#: field:account.analytic.account,amendment_ids:0
+msgid "Amendments"
+msgstr "Amendments"
+
+#. module: mro_extended
+#: help:mro.tools,image_small:0
+msgid "Small-sized image of the tool. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr "L'image de petite taille de l'outil. Il est automatiquement redimensionnée comme une image 64x64px, avec un rapport d'aspect préservé. Utilisez ce champ où une petite image est nécessaire."
+
+#. module: mro_extended
+#: field:mro.tools,date_validity_begin:0
+msgid "Validity date begin"
+msgstr "Date de début de validité"
+
+#. module: mro_extended
+#: field:account.analytic.account,fr:0
+msgid "Fri"
+msgstr "Ven"
+
+#. module: mro_extended
+#: model:ir.ui.menu,name:mro_extended.mro_menu_maintenance_parts
+#: model:ir.ui.menu,name:mro_extended.mro_menu_maintenance_parts_parts
+#: view:mro.order:0
+msgid "Parts"
+msgstr "Pièces détachées"
+
+#. module: mro_extended
+#: field:services.assets.wizard,create_amendment_id_old:0
+msgid "Amendment creation old"
+msgstr "Ancienne création de l'amendement"
+
+#. module: mro_extended
+#: selection:services.assets,move_type:0
+msgid "Add"
+msgstr "Ajout"
+
+#. module: mro_extended
+#: selection:account.analytic.amendments,state:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: view:product.product:0
+#: view:res.partner:0
 msgid "Maintenance"
 msgstr "Maintenance"
 
-#. module: opencml
-#: report:rapport.intervention:0
-#: report:stock.preparation.list.out:0
-msgid "........."
-msgstr "........."
+#. module: mro_extended
+#: field:account.analytic.account,date_refused:0
+#: field:cancelled.contract,date_refused:0
+#: field:refuse.amendment,date_refused:0
+msgid "Refused Date"
+msgstr "Date de résiliation"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "En vue de trouver ensemble une solution à tout litige qui surviendrait dans l’interprétation et/ou l'exécution du présent contrat, les contractants conviennent de se réunir dans les huit jours à compter de la réception d'une lettre recommandée avec demande d'avis de réception, notifiée par l'une des deux parties à l’autre."
-msgstr "En vue de trouver ensemble une solution à tout litige qui surviendrait dans l’interprétation et/ou l'exécution du présent contrat, les contractants conviennent de se réunir dans les huit jours à compter de la réception d'une lettre recommandée avec demande d'avis de réception, notifiée par l'une des deux parties à l’autre."
+#. module: mro_extended
+#: field:generic.assets,date_previous:0
+msgid "Previous maintenance date"
+msgstr "Dernière date de maintenance"
 
-#. module: opencml
-#: field:product.ask,mark_type_article_code:0
-msgid "Code (Type article)"
-msgstr "Code (Type article)"
+#. module: mro_extended
+#: field:mro.tools.booking,date_booking_end:0
+msgid "Booking date end"
+msgstr "Réservation date de fin"
 
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Facturation et règlement :"
-msgstr "Facturation et règlement :"
+#. module: mro_extended
+#: field:mro.tools,model:0
+msgid "Model"
+msgstr "Modèle"
 
-#. module: opencml
-#: model:ir.ui.menu,name:opencml.imp_categ_wiz_menu
-msgid "Import Catégorie"
-msgstr "Import Catégorie"
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Pending"
+msgstr "En suspend"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Délai d'indisponibilité"
-msgstr "Délai d'indisponibilité"
+#. module: mro_extended
+#: view:create.amendment:0
+msgid "Existing contract services and assets"
+msgstr "Prestations et equipements existants"
 
-#. module: opencml
-#: field:product.category,id_pimcore:0
-#: field:product.product,id_pimcore:0
-msgid "ID Pimcore"
-msgstr "ID Pimcore"
+#. module: mro_extended
+#: field:account.analytic.account,count:0
+msgid "Repeat"
+msgstr "Répète"
 
-#. module: opencml
-#: help:product.ask,mark_article_vte:0
-msgid "SALE"
-msgstr "SALE"
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "August"
+msgstr "Août"
 
-#. module: opencml
-#: model:ir.model,name:opencml.model_email_template
-msgid "Email Templates"
-msgstr "Modèles de courriels"
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Monday"
+msgstr "Lundi"
 
-#. module: opencml
-#: help:product.ask,message_ids:0
-msgid "Messages and communication history"
-msgstr "Messages and communication history"
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Third"
+msgstr "Troisième"
 
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Localisation"
-msgstr "Localisation"
+#. module: mro_extended
+#: field:account.analytic.account,week_list:0
+msgid "Weekday"
+msgstr "Jours de la semaine"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 18 - INVALIDITÉ PARTIELLE"
-msgstr "ARTICLE 18 - INVALIDITÉ PARTIELLE"
+#. module: mro_extended
+#: field:mro.tools.booking,date_booking_begin:0
+msgid "Booking date begin"
+msgstr "Réservation date de début"
 
-#. module: opencml
-#: help:product.ask,mark_hauteur:0
-msgid "DIM1"
-msgstr "DIM1"
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "June"
+msgstr "Juin"
 
-#. module: opencml
-#: help:product.ask,mark_statut:0
-msgid "MMSTAT"
-msgstr "MMSTAT"
+#. module: mro_extended
+#: view:mro.tools.booking:0
+msgid "Booking Tools"
+msgstr "Réservation des outils"
 
-#. module: opencml
-#: help:product.ask,mark_poids_net:0
-msgid "MMNEWE"
-msgstr "MMNEWE"
+#. module: mro_extended
+#: view:cancelled.contract:0
+msgid "Cancelled the Contract will terminate the contract. Are you sure?"
+msgstr "Cancelled the Contract will terminate the contract. Are you sure?"
 
-#. module: opencml
-#: model:ir.model,name:opencml.model_generic_assets
+#. module: mro_extended
+#: selection:account.analytic.account,end_type:0
+msgid "Number of repetitions"
+msgstr "Nombre de répétions"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "The"
+msgstr "Le"
+
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:83
+#, python-format
+msgid "%s [Subcontract: %s]"
+msgstr "%s [Sous-traitant: %s]"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: field:account.analytic.account,mro_order_ids:0
+#: view:mro.order:0
+#: view:sale.order:0
+#: field:sale.order,mro_order_ids:0
+msgid "Maintenance Orders"
+msgstr "Interventions"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Cancelled contracts"
+msgstr "Contrats annulés"
+
+#. module: mro_extended
+#: field:account.analytic.amendments,date:0
+#: field:account.analytic.amendments,new_date_begin:0
+#: field:account.analytic.amendments,new_date_end:0
+#: field:create.amendment,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: mro_extended
+#: field:mro.tools,message_is_follower:0
+#: field:mro.tools.booking,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Est un abonné"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "November"
+msgstr "Novembre"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_generic_assets
 msgid "Generic Assets"
 msgstr "Équipements génériques"
 
-#. module: opencml
-#: report:amendment_print:0
-#: report:contrat.maintenance:0
-msgid "\"le Prestataire\""
-msgstr "\"le Prestataire\""
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Consumed Parts"
+msgstr "Pièces consommés"
 
-#. module: opencml
-#: field:product.ask,mark_pcb_vte:0
-#: field:product.ask,mark_pcb_vte2:0
-msgid "PCB vente"
-msgstr "PCB vente"
+#. module: mro_extended
+#: field:mro.tools,manufacturer:0
+msgid "Manufacturer"
+msgstr "Fabricant"
 
-#. module: opencml
-#: field:product.ask,mark_ref_dsl:0
-msgid "REF DSL ET ANGLAISES"
-msgstr "REF DSL ET ANGLAISES"
+#. module: mro_extended
+#: field:sale.order.line,is_contract:0
+msgid "Is contratct"
+msgstr "est-contrat"
 
-#. module: opencml
-#: selection:product.ask,mark_groupe_appro:0
-msgid "Stocké"
-msgstr "Stocké"
+#. module: mro_extended
+#: model:ir.ui.menu,name:mro_extended.menu_meters_logs
+msgid "Meters Logs"
+msgstr "Logs de mesure"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "La détermination du prix s'effectue selon la liste des interventions fixées en première page."
-msgstr "La détermination du prix s'effectue selon la liste des interventions fixées en première page."
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Analytic Accounts"
+msgstr "Comptes analytiques"
 
-#. module: opencml
-#: model:ir.model,name:opencml.model_mro_order
+#. module: mro_extended
+#: field:generic.assets,date_end:0
+msgid "Date end"
+msgstr "Date de fin"
+
+#. module: mro_extended
+#: help:mro.tools,image_medium:0
+msgid "Medium-sized image of the tool. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
+msgstr "Image de taille moyenne de l'outil. Il est automatiquement redimensionnée comme une image 128x128px, avec un rapport d'aspect préservé, seulement lorsque l'image est supérieure à un de ces formats. Utilisez ce domaine en vue de formulaire ou certaines vues kanban."
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "January"
+msgstr "Janvier"
+
+#. module: mro_extended
+#: code:addons/mro_extended/wizard/sale_make_mro.py:141
+#: code:addons/mro_extended/wizard/sale_make_mro.py:152
+#: model:ir.model,name:mro_extended.model_mro_order
+#, python-format
 msgid "Maintenance Order"
 msgstr "Intervention"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "ARTICLE 7 - RESPONSABILITÉ"
-msgstr "ARTICLE 7 - RESPONSABILITÉ"
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.action_mro_booking_tools
+#: model:ir.ui.menu,name:mro_extended.menu_maintenance_mro_booking_tools
+#: view:mro.tools:0
+#: view:mro.tools.booking:0
+msgid "Booking tools"
+msgstr "Réservation des outils"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Contrat valable dans la limite des marques connues de nos services."
-msgstr "Contrat valable dans la limite des marques connues de nos services."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le présent contrat est conclu pour une durée déterminée de 36 mois entiers et consécutifs et prend effet à compter du premier jour du mois suivant sa signature par les parties."
-msgstr "Le présent contrat est conclu pour une durée déterminée de 36 mois entiers et consécutifs et prend effet à compter du premier jour du mois suivant sa signature par les parties."
-
-#. module: opencml
-#: report:bon.livraison:0
-msgid "Commande"
-msgstr "Commande"
-
-#. module: opencml
-#: help:product.ask,appro_fournisseur_id:0
-msgid "MBSUNO"
-msgstr "MBSUNO"
-
-#. module: opencml
-#: selection:product.ask,achat_depot_princ:0
-msgid "Nemours"
-msgstr "Nemours"
-
-#. module: opencml
-#: view:hr.employee:0
-msgid "HR Settings"
-msgstr "Paramètres RH"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Attente service Marketing"
-msgstr "Attente service Marketing"
-
-#. module: opencml
-#: view:product.ask:0
-#: field:product.ask,state:0
-msgid "Etape"
-msgstr "Etape"
-
-#. module: opencml
-#: view:product.ask:0
-msgid "Annulée"
-msgstr "Annulée"
-
-#. module: opencml
-#: view:product.categ.wiz:0
-msgid "Info."
-msgstr "Info."
-
-#. module: opencml
-#: field:wiz.assets,loan:0
-msgid "Loan"
-msgstr "Loan"
-
-#. module: opencml
-#: model:ir.actions.act_window,help:opencml.action_account_analytic_overdue_all
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                    Click to create a new contract.\n"
-"                </p><p>\n"
-"                    Use contracts to follow tasks, issues, timesheets or invoicing based on\n"
-"                    work done, expenses and/or sales orders. OpenERP will automatically manage\n"
-"                    the alerts for the renewal of the contracts to the right salesperson.\n"
-"                </p>\n"
-"            "
-msgstr ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                    Cliquez pour créer un nouveau contract.\n"
-"                </p><p>\n"
-"                   Utilisez les contrats pour suivre les tâches, les incidents, les feuilles de temps ou la facturation basée sur le travail réalisé, les dépenses et/ou les commandes de vente. OpenERP gérera automatiquement les alertes de renouvellement des contrats pour le bon vendeur.\n"
-"                </p>\n"
-"            "
-
-#. module: opencml
-#: field:product.ask,mark_groupe_appro_code:0
-msgid "Code (Groupe appro)"
-msgstr "Code (Groupe appro)"
-
-#. module: opencml
-#: field:generic.assets,code_index:0
-#: field:product.product,code_index:0
-msgid "Numéro d'index"
-msgstr "Numéro d'index"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Si un appareil devait être déconnecté ou ajouté en cours de période, la redevance totale pour la période en cours devra en tenir compte."
-msgstr "Si un appareil devait être déconnecté ou ajouté en cours de période, la redevance totale pour la période en cours devra en tenir compte."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le présent contrat ne pourra être modifié que par voie d'avenant signé des deux parties. Il représente l'intégralité des engagements existant entre les parties. Il remplace et annule tout engagement oral ou écrit antérieur relatif à l'objet du présent contrat."
-msgstr "Le présent contrat ne pourra être modifié que par voie d'avenant signé des deux parties. Il représente l'intégralité des engagements existant entre les parties. Il remplace et annule tout engagement oral ou écrit antérieur relatif à l'objet du présent contrat."
-
-#. module: opencml
-#: help:product.ask,achat_plus:0
-msgid "LCLV"
-msgstr "LCLV"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Les frais de déplacement sont à la charge du client,"
-msgstr "Les frais de déplacement sont à la charge du client,"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Les horaires contractuels sont de 8 heures 30 à 12 heures, puis de 13 à 17 heures du lundi au vendredi inclus, à l'exclusion des jours fériés légaux."
-msgstr "Les horaires contractuels sont de 8 heures 30 à 12 heures, puis de 13 à 17 heures du lundi au vendredi inclus, à l'exclusion des jours fériés légaux."
-
-#. module: opencml
-#: view:board.board:0
-msgid "Les devis en attente d'acceptation "
-msgstr "Les devis en attente d'acceptation "
-
-#. module: opencml
-#: field:generic.assets,code_inventory:0
-#: field:product.product,code_inventory:0
-msgid "Numéro d'inventaire"
-msgstr "Numéro d'inventaire"
-
-#. module: opencml
-#: view:cert.consta:0
-msgid "Type de rapport"
-msgstr "Type de rapport"
-
-#. module: opencml
-#: model:ir.ui.menu,name:opencml.product_ask_menu
-msgid "Demandes de divers"
-msgstr "Demandes de divers"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Procès-verbal technique"
-msgstr "Procès-verbal technique"
-
-#. module: opencml
-#: selection:product.ask,type_demande:0
-msgid "Catalogue"
-msgstr "Catalogue"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "En outre, il désigne dès à présent comme responsable utilisateur …………………………………………………………………………………… en cas d'absence ……………………………………………………………."
-msgstr "En outre, il désigne dès à présent comme responsable utilisateur …………………………………………………………………………………… en cas d'absence ……………………………………………………………."
-
-#. module: opencml
-#: field:product.ask,observation:0
-msgid "Observations"
-msgstr "Observations"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "juridictionnelle désignée ci-après."
-msgstr "juridictionnelle désignée ci-après."
-
-#. module: opencml
-#: field:product.ask,mark_lib_unite_iso:0
-msgid "Libellé unité CODE ISO"
-msgstr "Libellé unité CODE ISO"
-
-#. module: opencml
-#: model:mail.message.subtype,description:opencml.product_ask_achat
-msgid "Nouvelle demande de produit pour le service ACHAT"
-msgstr "Nouvelle demande de produit pour le service ACHAT"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "L’une des activités de ELVETEC est l’installation, l’entretien et le contrôle de matériels et appareils destinés aux laboratoires d’analyses et de recherches et, plus généralement, à toute entreprise à même de procéder à des analyses et recherches."
-msgstr "L’une des activités de ELVETEC est l’installation, l’entretien et le contrôle de matériels et appareils destinés aux laboratoires d’analyses et de recherches et, plus généralement, à toute entreprise à même de procéder à des analyses et recherches."
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Visite de dépannage"
-msgstr "Visite de dépannage"
-
-#. module: opencml
-#: field:product.ask,code_movex:0
-#: field:res.company,code_movex:0
-#: field:res.country,code_movex:0
-msgid "Code Movex"
-msgstr "Code Movex"
-
-#. module: opencml
-#: report:stock.preparation.list.out:0
-#: field:wiz.assets,name:0
-msgid "Description"
-msgstr "Description"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "PU.HT"
-msgstr "PU.HT"
-
-#. module: opencml
-#: help:product.ask,achat_pays_id:0
-msgid "ORCO"
-msgstr "ORCO"
-
-#. module: opencml
-#: model:ir.actions.server,name:opencml.action_set_alert_contrat
-msgid "Alerte de fin de contrat"
-msgstr "Alerte de fin de contrat"
-
-#. module: opencml
-#: model:mail.message.subtype,description:opencml.product_ask_done
-#: model:mail.message.subtype,name:opencml.product_ask_done
-msgid "Demande terminée"
-msgstr "Demande terminée"
-
-#. module: opencml
-#: code:addons/opencml/wizard/import_part_add_wiz.py:245
+#. module: mro_extended
+#: field:account.analytic.amendments,contract_id:0
+#: field:account.analytic.services,contract_id:0
+#: code:addons/mro_extended/wizard/cancelled_contract.py:52
+#: code:addons/mro_extended/wizard/refuse_amendment.py:53
+#: field:create.amendment,contract_id:0
+#: field:generic.assets,contract_id:0
+#: field:mro.order,contract_id:0
+#: field:sale.make.mro,contract_id:0
 #, python-format
-msgid "ATTENTION !"
-msgstr "ATTENTION !"
+msgid "Contract"
+msgstr "Contrat"
 
-#. module: opencml
-#: field:product.ask,mark_um_prix_vte_fd:0
-msgid "U/M px. Vent.f/d"
-msgstr "U/M px. Vent.f/d"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Les prix sont fermes et définitifs pendant la durée du contrat."
-msgstr "Les prix sont fermes et définitifs pendant la durée du contrat."
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "Devis accepté"
-msgstr "Devis accepté"
-
-#. module: opencml
-#: model:mail.message.subtype,description:opencml.product_ask_appros
-#: model:mail.message.subtype,description:opencml.product_ask_cdg
-msgid "Demande de produit pour le service CDG"
-msgstr "Demande de produit pour le service CDG"
-
-#. module: opencml
-#: field:product.ask,mark_latex:0
-msgid "Latex"
-msgstr "Latex"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Prestataire"
-msgstr "Prestataire"
-
-#. module: opencml
-#: field:product.ask,mark_page_cml:0
-msgid "Page Catalogue CML"
-msgstr "Page Catalogue CML"
-
-#. module: opencml
-#: model:ir.model,name:opencml.model_res_country
-msgid "Country"
-msgstr "Pays"
-
-#. module: opencml
-#: field:product.ask,mark_code_fab_achat:0
-msgid "Code fab/achat"
-msgstr "Code fab/achat"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Cependant, les parties pourront d'un commun accord, convenir de remplacer la ou les stipulations invalidées."
-msgstr "Cependant, les parties pourront d'un commun accord, convenir de remplacer la ou les stipulations invalidées."
-
-#. module: opencml
-#: model:ir.actions.report.xml,name:opencml.report_contrat_maintenance
-msgid "Contrat de Maintenance"
-msgstr "Contrat de Maintenance"
-
-#. module: opencml
-#: view:cert.consta:0
-msgid "Imprimer"
-msgstr "Imprimer"
-
-#. module: opencml
-#: report:rapport.intervention:0
-msgid "JEUDI"
-msgstr "JEUDI"
-
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "L'application de cette clause ne pourra toutefois avoir lieu que huit jours après l'envoi, en lettre recommandée avec avis de réception, d'une mise en demeure restée sans effet , celle-ci devant préciser que le Prestataire entend faire jouer la présente clause."
-msgstr "L'application de cette clause ne pourra toutefois avoir lieu que huit jours après l'envoi, en lettre recommandée avec avis de réception, d'une mise en demeure restée sans effet , celle-ci devant préciser que le Prestataire entend faire jouer la présente clause."
-
-#. module: opencml
-#: field:product.ask,email:0
-msgid "Courriel"
-msgstr "Courriel"
-
-#. module: opencml
-#: view:mro.order:0
-msgid "Maintenance Corrective"
-msgstr "Maintenance Corrective"
-
-#. module: opencml
-#: field:product.ask,message_summary:0
+#. module: mro_extended
+#: field:mro.tools,message_summary:0
+#: field:mro.tools.booking,message_summary:0
 msgid "Summary"
 msgstr "Résumé"
 
-#. module: opencml
-#: model:ir.actions.act_window,help:opencml.product_ask2_normal_action
-#: model:ir.actions.act_window,help:opencml.product_ask_normal_action
+#. module: mro_extended
+#: field:mro.tools,active:0
+msgid "Active"
+msgstr "Actif"
+
+#. module: mro_extended
+#: field:mro.order,partner_id:0
+msgid "Client"
+msgstr "Client"
+
+#. module: mro_extended
+#: field:account.analytic.account,remise:0
+msgid "Remise en %"
+msgstr "Remise en %"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Thursday"
+msgstr "Jeudi"
+
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:321
+#, python-format
+msgid "Cannot consume parts!"
+msgstr "Impossible de consommer les pièces!"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Amendments not accepted"
+msgstr "Avenants en attente"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.action_sale_make_contract
+msgid "Make Contract"
+msgstr "Créer un contrat"
+
+#. module: mro_extended
+#: selection:account.analytic.account,end_type:0
+msgid "End date"
+msgstr "Date de fin"
+
+#. module: mro_extended
+#: field:create.amendment,date_end:0
+msgid "Date End"
+msgstr "Date End"
+
+#. module: mro_extended
+#: help:product.product,property_stock_asset:0
+msgid "This location will be used as the destination location for installed parts during asset life."
+msgstr "Cet emplacement sera utilisé comme emplacement de destination pour les pièces installées au cours de la vie de l'actif."
+
+#. module: mro_extended
+#: field:account.analytic.account,loan:0
+#: field:generic.assets,loan:0
+msgid "Loan"
+msgstr "Prêt"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Update maintenance orders"
+msgstr "Mise à jour des interventions"
+
+#. module: mro_extended
+#: report:tools_planning_month_print:0
+msgid "Period"
+msgstr "Période"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Re-open project"
+msgstr "Rouvrir le projet"
+
+#. module: mro_extended
+#: view:mro.tools:0
+#: view:mro.tools.booking:0
+msgid "Bookings"
+msgstr "Réservations"
+
+#. module: mro_extended
+#: selection:account.analytic.account,select1:0
+msgid "Day of month"
+msgstr "Jour du mois"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Done"
+msgstr "Terminée"
+
+#. module: mro_extended
+#: help:account.analytic.account,interval:0
+msgid "Repeat every (Days/Week/Month/Year)"
+msgstr "Répéter chaque (Jour/Semaine/Mois/Année)"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "All Day?"
+msgstr "Journée entière?"
+
+#. module: mro_extended
+#: view:cancelled.contract:0
+#: view:create.amendment:0
+#: view:refuse.amendment:0
+#: view:sale.make.contract:0
+#: view:sale.make.mro:0
+#: view:tools.planning.wiz:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mro_extended
+#: view:sale.order:0
+msgid "Add Maintenance Order"
+msgstr "Ajouter une intervention"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Open"
+msgstr "Ouverte"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Tuesday"
+msgstr "Mardi"
+
+#. module: mro_extended
+#: help:mro.tools,image:0
+msgid "This field holds the image used as image for the tool, limited to 1024x1024px."
+msgstr "Ce champ contient l'image utilisée comme image pour l'outil, limité à 1024x1024px."
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "Select Weekdays"
+msgstr "Sélectionner les jours de la semaine"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: view:create.amendment:0
+#: model:ir.actions.act_window,name:mro_extended.action_create_amendment
+#: model:ir.model,name:mro_extended.model_create_amendment
+msgid "Create Amendment"
+msgstr "Créer un avenant"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_sale_make_mro
+msgid "Make mro orders"
+msgstr "Créer une intervention"
+
+#. module: mro_extended
+#: field:account.analytic.account,recurrency:0
+#: help:account.analytic.account,recurrency:0
+#: field:account.analytic.account,rrule_type:0
+msgid "Recurrency"
+msgstr "Récurrence"
+
+#. module: mro_extended
+#: sql_constraint:product.serial:0
+msgid "Serial number must be unique per product"
+msgstr "Le numéro de série doit être unique par produit"
+
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:287
+#, python-format
+msgid "Please define asset for Contract service in contract: %s"
+msgstr "Veuillez définir un équipement pour les prestations dans le contrat : %s"
+
+#. module: mro_extended
+#: field:account.analytic.account,exrule:0
+msgid "Exception Rule"
+msgstr "Règle d'exception"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "October"
+msgstr "Octobre"
+
+#. module: mro_extended
+#: view:cancelled.contract:0
+#: view:create.amendment:0
+#: view:refuse.amendment:0
+msgid "_Confirm"
+msgstr "_Confirmer"
+
+#. module: mro_extended
+#: help:account.analytic.account,exdate:0
+msgid "This property         defines the list of date/time exceptions for a recurring calendar component."
+msgstr "This property         defines the list of date/time exceptions for a recurring calendar component."
+
+#. module: mro_extended
+#: field:mro.tools,serial:0
+msgid "Serial no."
+msgstr "N° de série"
+
+#. module: mro_extended
+#: field:mro.tools,booking_ids:0
+msgid "Booking"
+msgstr "Réservation"
+
+#. module: mro_extended
+#: selection:account.analytic.account,rrule_type:0
+msgid "Day(s)"
+msgstr "Jour(s)"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: mro_extended
+#: field:account.analytic.amendments,name:0
+#: field:account.analytic.services,name:0
+#: field:create.amendment,name:0
+#: field:generic.assets,name:0
+#: field:sale.make.contract,description:0
+#: field:sale.make.mro,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "May"
+msgstr "Mai"
+
+#. module: mro_extended
+#: field:account.analytic.services,price:0
+#: field:services.assets,price:0
+#: field:services.assets.wizard,price:0
+msgid "Price"
+msgstr "Prix"
+
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:498
+#, python-format
+msgid ""
+"This asset already belongs to this partner for this period: %s. \n"
+" From %s to %s"
+msgstr ""
+"Cet équipement apartient déjà à ce partnaire pour cette période: %s. \n"
+" du %s au %s"
+
+#. module: mro_extended
+#: selection:mro.tools,tools_place:0
+msgid "Movable"
+msgstr "Mobile"
+
+#. module: mro_extended
+#: help:account.analytic.account,exrule:0
+msgid "Defines a         rule or repeating pattern of time to exclude from the recurring rule."
+msgstr "Définit une règle ou un motif répétitif de temps à exclure de la règle récurrente."
+
+#. module: mro_extended
+#: code:addons/mro_extended/wizard/sale_make_contract.py:146
+#, python-format
+msgid "<em>%s</em> has been <b>created</b>."
+msgstr "<em>%s</em> a été <b>créé</b>."
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Assets involved"
+msgstr "Équipements concernés"
+
+#. module: mro_extended
+#: code:addons/mro_extended/mro_extended.py:282
+#, python-format
+msgid "Please define asset for Contract service %s in contract: %s"
+msgstr "Veuillez définir un équipement pour la prestation %s dans le contrat: %s"
+
+#. module: mro_extended
+#: view:refuse.amendment:0
+msgid "Refuse the amendment will terminate the contract. Are you sure?"
+msgstr "Refuser l'avenant résiliera le contrat. Continuer?"
+
+#. module: mro_extended
+#: view:account.analytic.account:0
+msgid "{'required': [('type','=','contract')]}"
+msgstr "{'required': [('type','=','contract')]}"
+
+#. module: mro_extended
+#: view:sale.make.contract:0
+#: view:sale.make.mro:0
+msgid "_Create"
+msgstr "_Créer"
+
+#. module: mro_extended
+#: field:mro.order,subcontractor_id:0
+msgid "Subcontractor"
+msgstr "Sous-traitant"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.action_cancelled_contract
+#: model:ir.actions.act_window,name:mro_extended.action_refuse_amendment
+#: model:ir.model,name:mro_extended.model_refuse_amendment
+#: view:refuse.amendment:0
+msgid "Refuse Amendment"
+msgstr "Refuser l'avenant"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "ready,meeting,progress"
+msgstr "ready,meeting,progress"
+
+#. module: mro_extended
+#: model:ir.model,name:mro_extended.model_product_serial
+msgid "product.serial"
+msgstr "product.serial"
+
+#. module: mro_extended
+#: field:sale.make.contract,partner_id:0
+#: field:sale.make.mro,partner_id:0
+msgid "Customer"
+msgstr "Client"
+
+#. module: mro_extended
+#: field:mro.order,date_deadline:0
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "February"
+msgstr "Février"
+
+#. module: mro_extended
+#: field:mro.tools.booking,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: mro_extended
+#: field:account.analytic.account,exdate:0
+msgid "Exception Date/Times"
+msgstr "Exception Date/Times"
+
+#. module: mro_extended
+#: field:mro.tools,message_ids:0
+#: field:mro.tools.booking,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: mro_extended
+#: field:account.analytic.account,th:0
+msgid "Thu"
+msgstr "Jeu"
+
+#. module: mro_extended
+#: field:tools.planning.wiz,year:0
+msgid "Year"
+msgstr "Année"
+
+#. module: mro_extended
+#: field:account.analytic.account,maintenance_date_end:0
+msgid "Maintenance date end"
+msgstr "Date de fin"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.mro_product_normal_action
+msgid "MRO Parts"
+msgstr "MRO Parts"
+
+#. module: mro_extended
+#: selection:account.analytic.account,month_list:0
+#: selection:tools.planning.wiz,months:0
+msgid "April"
+msgstr "Avril"
+
+#. module: mro_extended
+#: field:mro.order,subcontract:0
+msgid "Subcontract?"
+msgstr "Sous-traitance?"
+
+#. module: mro_extended
+#: code:addons/mro_extended/analytic.py:103
+#, python-format
+msgid "Interval cannot be negative."
+msgstr "L'interval ne peut être négatif."
+
+#. module: mro_extended
+#: field:account.analytic.account,byday:0
+msgid "By day"
+msgstr "Par jour"
+
+#. module: mro_extended
+#: field:generic.assets,date_start:0
+msgid "Date start"
+msgstr "Date de début"
+
+#. module: mro_extended
+#: help:mro.tools,message_ids:0
+#: help:mro.tools.booking,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages et historique de communication"
+
+#. module: mro_extended
+#: field:account.analytic.account,amount_service:0
+#: field:account.analytic.amendments,amount_service:0
+msgid "Montant total"
+msgstr "Montant total"
+
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Invoicing"
+msgstr "Facturation"
+
+#. module: mro_extended
+#: view:product.product:0
+msgid "Serial numbers"
+msgstr "Numéros de série"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,help:mro_extended.action_mro_booking_tools
 msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
-"                Cliquez pour créer un nouvelle demande\n"
+"                Click to schedule a new booking.\n"
 "              </p>\n"
 "            "
 msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
-"                Cliquez pour créer un nouvelle demande\n"
+"                Cliquez pour créer une nouvelle reservation\n"
 "              </p>\n"
 "            "
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire déclare être assuré pour sa responsabilité civile professionnelle auprès d'une compagnie notoirement solvable pour tous les dommages matériels et immatériels consécutifs à l'exécution de la prestation par son personnel ou ses collaborateurs."
-msgstr "Le Prestataire déclare être assuré pour sa responsabilité civile professionnelle auprès d'une compagnie notoirement solvable pour tous les dommages matériels et immatériels consécutifs à l'exécution de la prestation par son personnel ou ses collaborateurs."
+#. module: mro_extended
+#: selection:mro.order,place:0
+msgid "Worskhop"
+msgstr "Atelier"
 
-#. module: opencml
-#: view:product.ask:0
-msgid "Refuser la demande"
-msgstr "Refuser la demande"
+#. module: mro_extended
+#: view:account.analytic.account:0
+#: selection:account.analytic.amendments,state:0
+msgid "Refused"
+msgstr "Refusé"
 
-#. module: opencml
-#: view:create.assets:0
-#: model:ir.actions.act_window,name:opencml.action_create_assets
-msgid "Ajout équipements"
-msgstr "Ajout équipements"
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Meeting fixed"
+msgstr "RDV fixé"
 
-#. module: opencml
-#: field:mro.protocoles,sequence:0
-msgid "Sequence"
-msgstr "Sequence"
-
-#. module: opencml
-#: code:addons/opencml/wizard/import_part_add_wiz.py:245
+#. module: mro_extended
+#: code:addons/mro_extended/wizard/sale_make_mro.py:129
 #, python-format
-msgid "Erreur dans le fichier ligne: "
-msgstr "Erreur dans le fichier ligne: "
+msgid "Maintenance Order <em>%s</em> has been <b>created</b>."
+msgstr "L'intervention <em>%s</em> a été <b>créée</b>."
 
-#. module: opencml
-#: view:sale.order:0
-msgid "Demande de produit virtuel"
-msgstr "Demande de produit virtuel"
+#. module: mro_extended
+#: view:mro.order:0
+msgid "Do invoice"
+msgstr "Créer la facture"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire reconnaît que toute divulgation léserait les intérêts du Client et engagerait sa responsabilité."
-msgstr "Le Prestataire reconnaît que toute divulgation léserait les intérêts du Client et engagerait sa responsabilité."
+#. module: mro_extended
+#: selection:mro.order,place:0
+msgid "Site"
+msgstr "Sur site"
 
-#. module: opencml
-#: report:contrat.maintenance:0
-msgid "Le Prestataire s'interdit de communiquer à quiconque, directement ou indirectement, tout ou partie des informations de toute nature, commerciale, industrielle, technique, financière, nominative, etc., qui lui auront été communiquées par le Client, ou dont il aurait eu connaissance à l'occasion de l'exécution du présent contrat."
-msgstr "Le Prestataire s'interdit de communiquer à quiconque, directement ou indirectement, tout ou partie des informations de toute nature, commerciale, industrielle, technique, financière, nominative, etc., qui lui auront été communiquées par le Client, ou dont il aurait eu connaissance à l'occasion de l'exécution du présent contrat."
+#. module: mro_extended
+#: view:cancelled.contract:0
+#: model:ir.model,name:mro_extended.model_cancelled_contract
+msgid "Cancelled Contract"
+msgstr "Contrats annulés"
 
-#. module: opencml
-#: field:product.ask,mark_id_ref:0
-msgid "ID ref= assortiment ou non"
-msgstr "ID ref= assortiment ou non"
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Second"
+msgstr "Second"
 
-#. module: opencml
-#: report:stock.preparation.list.out:0
-msgid "Warehouse Address :"
-msgstr "Entrepôt Adresse :"
+#. module: mro_extended
+#: view:create.amendment:0
+msgid "Remove contract services and assets"
+msgstr "Enlever des prestation et equipements"
+
+#. module: mro_extended
+#: field:mro.tools,data:0
+msgid "File"
+msgstr "Fichier"
+
+#. module: mro_extended
+#: field:mro.tools,image_small:0
+msgid "Small-sized image"
+msgstr "Image de petite taille"
+
+#. module: mro_extended
+#: field:sale.make.contract,duration:0
+#: field:sale.make.mro,duration:0
+msgid "Duration"
+msgstr "Durée"
+
+#. module: mro_extended
+#: model:ir.actions.act_window,name:mro_extended.action_mro_tools
+#: model:ir.model,name:mro_extended.model_mro_tools
+#: model:ir.ui.menu,name:mro_extended.menu_maintenance_mro_tools
+#: model:ir.ui.menu,name:mro_extended.menu_maintenance_tools
+#: field:mro.order,tools_ids:0
+#: view:mro.tools:0
+#: view:mro.tools.booking:0
+#: field:tools.planning.wiz,tools_id:0
+#: report:tools_planning_month_print:0
+msgid "Tools"
+msgstr "Outils"
+
+#. module: mro_extended
+#: selection:account.analytic.account,week_list:0
+msgid "Saturday"
+msgstr "Samedi"
+
+#. module: mro_extended
+#: selection:account.analytic.account,byday:0
+msgid "Fifth"
+msgstr "Cinquième"
 
