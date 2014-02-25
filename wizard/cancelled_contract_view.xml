@@ -6,8 +6,7 @@
           <field name="name">cancelled.contract.form</field>
           <field name="model">cancelled.contract</field>
           <field name="arch" type="xml">
-            <form string="Cancelled Contract"  version="7.0">
-            		<field name="id" invisible="1"/>
+            <form string="Cancelled Contract"  version="7.0">           		
                     <div><label string="Cancelled the Contract will terminate the contract. Are you sure?" /></div>
                     <group>
                         <field name="date_refused"/>
@@ -23,7 +22,7 @@
 
 
        <record id="action_cancelled_contract" model="ir.actions.act_window">
-          <field name="name">Refuse Amendment</field>
+          <field name="name">Cancelled Contract</field>
           <field name="type">ir.actions.act_window</field>
           <field name="res_model">cancelled.contract</field>
           <field name="view_type">form</field>

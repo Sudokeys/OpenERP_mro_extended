@@ -34,11 +34,11 @@ class cancelled_contract(osv.osv_memory):
             context = {}
         
         contract_obj = self.pool.get('account.analytic.account')
-
         wiz = self.browse(cr,uid,ids,context=context)
         #~ for contract in contract_obj.browse(cr, uid, data, context=context):
 
-        contract_id=wiz[0].id
+        contract_id = context and context.get('active_id', False) or False
+        print 'id :',contract_id  
         date_refused=wiz[0].date_refused
         if contract_id and date_refused:
             contract_obj.write(cr,uid,[contract_id],{'state':'cancelled','date_refused':wiz[0].date_refused},context=context)
