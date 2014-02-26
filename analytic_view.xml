@@ -126,6 +126,7 @@
                                         <field name="service_real_id" invisible="1"/>
                                         <field name="asset_id"/>
                                         <field name="serial_id"/>
+                                        <field name="standard_price"/>
                                         <field name="price"/>
                                         <field name="move_type"/>
                                     </tree>
@@ -150,6 +151,7 @@
                             <tree editable="top">
                                 <field name="service_id" on_change="onchange_service(service_id)" context="{'default_contract':True}" domain="[('contract','=',True)]"/>
                                 <field name="name"/>
+                                <field name="standard_price"/>
                                 <field name="price"/>
                                 <field name="asset_id" on_change="onchange_asset(asset_id)" domain="[('contract_id','=',parent.id),('service_id','=',False)]"/>
                             </tree>

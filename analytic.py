@@ -174,7 +174,8 @@ class account_analytic_account(osv.osv):
             tp=0.0
             i=0
             for line in contract.service_ids:
-                p=_oproduct.read(cr,uid,[line.service_id.id],['standard_price'])[0]['standard_price']
+                #p=_oproduct.read(cr,uid,[line.service_id.id],['standard_price'])[0]['standard_price']
+                p=line.standard_price
                 if p>0 and line.price>0:
                     pv = line.price-(line.price*remise)
                     #if line.service_id.id==34054 : p=100.00
@@ -477,6 +478,7 @@ class account_analytic_services(osv.osv):
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
         'asset_id': fields.many2one('generic.assets','Asset', select=True),
+        'standard_price': fields.float('Standard price'),
     }
     
     _defaults = {
@@ -487,6 +489,7 @@ class account_analytic_services(osv.osv):
         result = {}
         product_obj = self.pool.get('product.product')
         product_obj = product_obj.browse(cr, uid, product, context=context)
+        result['standard_price'] = product_obj.standard_price
         result['name'] = self.pool.get('product.product').name_get(cr, uid, [product_obj.id], context=context)[0][1]
         return {'value': result}
     
@@ -530,6 +533,7 @@ class services_assets(osv.osv):
         'price': fields.float('Price'),
         'amendment_id': fields.many2one('account.analytic.amendments', 'Amendment'),
         'move_type': fields.selection([('add','Add'),('remove','Remove'),('remain','Remain')],'Move type'),
+        'standard_price': fields.float('Standard price'),
         
     }
     
