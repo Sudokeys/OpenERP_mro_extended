@@ -183,7 +183,8 @@ class account_analytic_account(osv.osv):
                     tp +=p
                     i+=1
             if i>0 :
-                val=(tpv-tp)/tp
+                #val=(tpv-tp)/tp
+                val=(tpv-tp)/tpv
                 res[contract.id] = val*100
             else : 0.0
         return res    
