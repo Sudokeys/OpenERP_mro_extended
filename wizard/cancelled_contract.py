@@ -41,7 +41,7 @@ class cancelled_contract(osv.osv_memory):
         print 'id :',contract_id  
         date_refused=wiz[0].date_refused
         if contract_id and date_refused:
-            contract_obj.write(cr,uid,[contract_id],{'state':'cancelled','date_refused':wiz[0].date_refused},context=context)
+            contract_obj.write(cr,uid,[contract_id],{'state':'close','date_refused':wiz[0].date_refused},context=context)
             return {
                     'domain': str([('id', '=', contract_id)]),
                     'view_type': 'form',

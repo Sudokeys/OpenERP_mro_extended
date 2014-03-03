@@ -42,7 +42,7 @@ class refuse_amendment(osv.osv_memory):
             amendment_obj.write(cr,uid,data,{'state':'refused'},context=context)
             amendments=amendment_obj.browse(cr,uid,data,context=context)
             contract_id=amendments[0].contract_id.id
-            contract_obj.write(cr,uid,[contract_id],{'state':'cancelled','date_refused':wiz[0].date_refused},context=context)
+            contract_obj.write(cr,uid,[contract_id],{'state':'close','date_refused':wiz[0].date_refused},context=context)
             return {
                     'domain': str([('id', '=', contract_id)]),
                     'view_type': 'form',
