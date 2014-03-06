@@ -333,8 +333,44 @@ class mro_order(osv.osv):
         })
         order.write({'parts_move_lines': [(4, move_id)]}, context=context)
         return move_id
-        
 
+    def onchange_tools(self, cr, uid, ids, vals,tech_id,date_exect, context=None):
+        msg=''
+        msgres=''
+        _mt=self.pool.get('mro.tools')   
+        _mtb=self.pool.get('mro.tools.booking')  
+        i=1 
+        tabdispo=[]   
+        for tool in _mt.browse(cr, uid, vals[0][2]):
+            res=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','!=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
+            if res and res[0]:
+                msg+=str(i)+' - '+tool.name+'\n'
+                i+=1
+            else:
+                tabdispo.append(tool.id)
+
+        i=1         
+        for tool in _mt.browse(cr, uid, tabdispo):
+            res2=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
+            if not res2:
+                msgres+=str(i)+' - '+tool.name+'\n'
+                i+=1
+                       
+        if msg!='':  
+            msg =u'Tools are not available for this intervention : \n'+msg  
+        if msg!='' and msgres!='':  
+            msg +='\n--- --- ---\n'
+        if msgres!='':  
+            msg +=u'Book these tools for this intervention : \n'+msgres  
+
+        if msg!='' or msgres!='': 
+            warning = {
+                    'title': ' Warning ! ',
+                    'message' : msg
+            }  
+            return {'warning':warning}
+        else:    
+            return True
     
     
 class mro_tools(osv.osv):
@@ -420,7 +456,7 @@ class mro_tools(osv.osv):
         'purchase_value':fields.float('Purchase value',digits_compute=dp.get_precision('Product Price')),
         'tools_place':fields.selection(selection=TOOLS_PLACE,string='Place'),
         'booking_ids':fields.one2many('mro.tools.booking','tools_id',string='Booking'),
-        'inventory_num':fields.char(u'Inventory number')
+        'inventory_num':fields.char(u'Inventory number'),
 
     }
 
@@ -536,7 +572,13 @@ class mro_tools_booking(osv.osv):
         'date_booking_begin':fields.date('Booking date begin'),
         'date_booking_end':fields.date('Booking date end'),
         'booking_comment':fields.text('Comment'),
+        'state': fields.selection([('draft', 'Demand'),('open', 'Reserved'),
+                                    ('cancelled', 'Cancelled')], 'Statut', required=True),
     }
+    _defaults={
+        'state':'draft',
+    }
+
     def check_tools_available(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
         if tools_id and date_booking_begin and date_booking_end:
             plus=''

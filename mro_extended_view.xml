@@ -63,7 +63,7 @@
 
                 <field name="tools_description" position="replace">
                     <field name="tools_description" invisible="True"/>
-                    <field name="tools_ids"/>
+                    <field name="tools_ids" on_change="onchange_tools(tools_ids,technician,date_execution)"/>
                 </field>
                 
                 <page string="Parts" position="before">
@@ -170,7 +170,7 @@
                    <separator/>
                    <group  expand='1' string='Group by...'>
                        <filter string='Tools' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'name'}"/>
-                   </group>
+                    </group>
                 </search>
             </field>
         </record>
@@ -236,6 +236,7 @@
                                         <field name="date_booking_begin"/>
                                         <field name="date_booking_end"/>
                                         <field name="calibration_booking"/>
+                                        <field name="state"/>
                                     </tree>
                                 </field>
                             </page>
@@ -341,6 +342,7 @@
                     <field name="date_booking_begin"/>
                     <field name="date_booking_end"/>
                     <field name="calibration_booking"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -357,6 +359,7 @@
                                 <field name="tools_id" on_change="onchange_tools_id(tools_id,date_booking_begin,date_booking_end,context)"/>
                                 <field name="calibration_booking"/>
                                 <field name="technician_id" attrs="{'required':[('calibration_booking','=',False)]}"/>
+                                <field name="state"/>
                             </group>
                             <group name="gb12" colspan="2" col="2">
                                 <field name="date_booking_begin" required="1" on_change="onchange_booking_begin(date_booking_begin,context)"/>
