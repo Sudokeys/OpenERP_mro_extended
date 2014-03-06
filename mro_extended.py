@@ -236,7 +236,7 @@ class mro_order(osv.osv):
         }
         return invoice_vals
     
-    def _invoice_line(self, cr, uid,invoice_id,remise, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
+    def _invoice_line(self, cr, uid,invoice_id,name,remise, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
         invoice_line_obj = self.pool.get('account.invoice.line')
         line_value =  {
             'product_id': product_id,
@@ -247,6 +247,8 @@ class mro_order(osv.osv):
                         #product, uom_id, qty=0, name='', type='out_invoice', partner_id=False, fposition_id=False, price_unit=False, currency_id=False, context=None, company_id=None):
         line_value.update(line_dict['value'])
 
+        if name:
+            line_value['name']=name
         line_value['price_unit'] = amount
         line_value['invoice_id']= invoice_id
         line_value['quantity']=quantity
@@ -276,6 +278,7 @@ class mro_order(osv.osv):
                             'price':serv.price,
                             'qty':1,
                             'discount':remise,
+                            'name':serv.name,
                         })
                     if serv.asset_id==False and serv.service_id:
                         raise osv.except_osv(_('Error!'),
@@ -293,6 +296,7 @@ class mro_order(osv.osv):
                     'price':part.parts_id.list_price,
                     'qty':part.parts_qty,
                     'discount':0.0,
+                    'name':False,
                 })
 
             if len(lines)>0:
@@ -303,7 +307,7 @@ class mro_order(osv.osv):
                     if inv_id:
                         #invoice line
                         for line in lines:
-                            self._invoice_line(cr,uid,inv_id,line['discount'], line['product_id'], False, line['qty'], '', 'out_invoice',
+                            self._invoice_line(cr,uid,inv_id,line['name'],line['discount'], line['product_id'], False, line['qty'], '', 'out_invoice',
                             interv.partner_id.id, interv.partner_id.property_account_receivable,
                             line['price'],context=None)
                 self.write(cr, uid, ids, {'state': 'invoiced','invoice_id':inv_id})
