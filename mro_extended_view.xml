@@ -62,8 +62,12 @@
 
 
                 <field name="tools_description" position="replace">
+	                <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">
+	                	<field name="warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" colspan="1"/>
+	                </group>
+	                <separator colspan="1"/>
                     <field name="tools_description" invisible="True"/>
-                    <field name="tools_ids" on_change="onchange_tools(tools_ids,technician,date_execution)"/>
+                    <field name="tools_ids"/> 
                 </field>
                 
                 <page string="Parts" position="before">

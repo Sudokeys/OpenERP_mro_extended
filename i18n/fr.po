@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131031-002505\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 14:50+0000\n"
-"PO-Revision-Date: 2014-03-03 11:48+0100\n"
+"POT-Creation-Date: 2014-03-06 09:55+0000\n"
+"PO-Revision-Date: 2014-03-06 11:04+0100\n"
 "Last-Translator: CBN <jl@adn-france.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,11 +57,17 @@ msgid "Make Maintenance Order"
 msgstr "Créer une intervention"
 
 #. module: mro_extended
-#: code:addons/mro_extended/analytic.py:283
+#: code:addons/mro_extended/analytic.py:284
 #: code:addons/mro_extended/wizard/sale_make_contract.py:56
 #, python-format
 msgid "Contract: "
 msgstr "Contrat: "
+
+#. module: mro_extended
+#: view:sale.make.contract:0
+#: view:sale.make.mro:0
+msgid "_Create"
+msgstr "_Créer"
 
 #. module: mro_extended
 #: field:account.analytic.services,asset_id:0
@@ -203,7 +209,7 @@ msgstr "Prestations contactuelles / Equipements"
 #. module: mro_extended
 #: field:account.analytic.account,date_wished:0
 msgid "Wished Date"
-msgstr "Date souhaitée"
+msgstr "Wished Date"
 
 #. module: mro_extended
 #: view:sale.order:0
@@ -262,11 +268,11 @@ msgid "Year(s)"
 msgstr "Année(s)"
 
 #. module: mro_extended
-#: code:addons/mro_extended/analytic.py:379
+#: code:addons/mro_extended/analytic.py:380
 #: code:addons/mro_extended/mro_extended.py:218
 #: code:addons/mro_extended/mro_extended.py:281
 #: code:addons/mro_extended/mro_extended.py:286
-#: code:addons/mro_extended/mro_extended.py:497
+#: code:addons/mro_extended/mro_extended.py:533
 #, python-format
 msgid "Error!"
 msgstr "Erreur!"
@@ -281,6 +287,7 @@ msgstr "N° de série"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
+#: selection:mro.tools.booking,state:0
 msgid "Cancelled"
 msgstr "Annulé"
 
@@ -323,7 +330,7 @@ msgid "Contract Renewal"
 msgstr "Renouvellement du contrat"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:526
+#: code:addons/mro_extended/mro_extended.py:562
 #, python-format
 msgid "IN CALIBRATION"
 msgstr "En étalonnage"
@@ -437,7 +444,7 @@ msgstr "Fin de validité sur 3 mois"
 #. module: mro_extended
 #: field:generic.assets,mro_id:0
 msgid "MRO Order"
-msgstr "MRO ordre"
+msgstr "MRO Order"
 
 #. module: mro_extended
 #: field:account.analytic.account,su:0
@@ -703,7 +710,7 @@ msgstr "Premier"
 #: view:mro.tools.booking:0
 #: field:mro.tools.booking,booking_comment:0
 msgid "Comment"
-msgstr "Commentaire"
+msgstr "Comment"
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -808,7 +815,7 @@ msgstr "Les interventions \"À planifier\" seront remplacées."
 #. module: mro_extended
 #: field:account.analytic.account,amendment_ids:0
 msgid "Amendments"
-msgstr "Amendements"
+msgstr "Amendments"
 
 #. module: mro_extended
 #: help:mro.tools,image_small:0
@@ -903,6 +910,11 @@ msgid "Monday"
 msgstr "Lundi"
 
 #. module: mro_extended
+#: field:mro.tools.booking,state:0
+msgid "Statut"
+msgstr "Statut"
+
+#. module: mro_extended
 #: selection:account.analytic.account,byday:0
 msgid "Third"
 msgstr "Troisième"
@@ -931,7 +943,7 @@ msgstr "Réservation des outils"
 #. module: mro_extended
 #: view:cancelled.contract:0
 msgid "Cancelled the Contract will terminate the contract. Are you sure?"
-msgstr "Annulé le contrat prend fin. Etes-vous sûr?"
+msgstr "Annulé le contrat prend fin le contrat. Etes-vous sûr ?"
 
 #. module: mro_extended
 #: selection:account.analytic.account,end_type:0
@@ -1108,7 +1120,7 @@ msgstr "Date de fin"
 #. module: mro_extended
 #: field:create.amendment,date_end:0
 msgid "Date End"
-msgstr "Date End"
+msgstr "Date de fin"
 
 #. module: mro_extended
 #: help:product.product,property_stock_asset:0
@@ -1129,7 +1141,7 @@ msgstr "Mise à jour des interventions"
 #. module: mro_extended
 #: report:tools_planning_month_print:0
 msgid "Period"
-msgstr "Période"
+msgstr "Period"
 
 #. module: mro_extended
 #: view:account.analytic.account:0
@@ -1255,7 +1267,7 @@ msgstr "Prix d'achat"
 #. module: mro_extended
 #: help:account.analytic.account,exdate:0
 msgid "This property         defines the list of date/time exceptions for a recurring calendar component."
-msgstr "Cette propriété définit la liste des exceptions de date / heure pour un composant de calendrier récurrente."
+msgstr "This property         defines the list of date/time exceptions for a recurring calendar component."
 
 #. module: mro_extended
 #: field:mro.tools,serial:0
@@ -1301,7 +1313,7 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:498
+#: code:addons/mro_extended/mro_extended.py:534
 #, python-format
 msgid ""
 "This asset already belongs to this partner for this period: %s. \n"
@@ -1318,7 +1330,7 @@ msgstr "Mobile"
 #. module: mro_extended
 #: help:account.analytic.account,exrule:0
 msgid "Defines a         rule or repeating pattern of time to exclude from the recurring rule."
-msgstr "Définit une règle ou un motif répétitif de temps à exclure de la règle récurrente."
+msgstr "Defines a         rule or repeating pattern of time to exclude from the recurring rule."
 
 #. module: mro_extended
 #: code:addons/mro_extended/wizard/sale_make_contract.py:146
@@ -1348,10 +1360,9 @@ msgid "{'required': [('type','=','contract')]}"
 msgstr "{'required': [('type','=','contract')]}"
 
 #. module: mro_extended
-#: view:sale.make.contract:0
-#: view:sale.make.mro:0
-msgid "_Create"
-msgstr "_Créer"
+#: selection:mro.tools.booking,state:0
+msgid "Demand"
+msgstr "Demand"
 
 #. module: mro_extended
 #: field:mro.order,subcontractor_id:0
@@ -1368,7 +1379,7 @@ msgstr "Refuser l'avenant"
 #. module: mro_extended
 #: view:mro.order:0
 msgid "ready,meeting,progress"
-msgstr "prêt, réunion, en cours"
+msgstr "ready,meeting,progress"
 
 #. module: mro_extended
 #: model:ir.model,name:mro_extended.model_product_serial
@@ -1495,6 +1506,11 @@ msgid "Worskhop"
 msgstr "Atelier"
 
 #. module: mro_extended
+#: selection:mro.tools.booking,state:0
+msgid "Reserved"
+msgstr "Reservé"
+
+#. module: mro_extended
 #: view:account.analytic.account:0
 #: selection:account.analytic.amendments,state:0
 msgid "Refused"
@@ -1526,7 +1542,7 @@ msgstr "Sur site"
 #: model:ir.actions.act_window,name:mro_extended.action_cancelled_contract
 #: model:ir.model,name:mro_extended.model_cancelled_contract
 msgid "Cancelled Contract"
-msgstr "Contrat annulé"
+msgstr "Contrats annulés"
 
 #. module: mro_extended
 #: selection:account.analytic.account,byday:0

@@ -144,6 +144,50 @@ class mro_order(osv.osv):
             
         return {'value': value}
     
+    def _warning_tools(self, cr, uid, ids, field_name, arg, context=None):
+        resdic = {}
+        for orders in self.browse(cr, uid, ids, context=context):
+            resdic[orders.id]=0
+            _o=self.pool.get('mro.order') 
+            tabtool=[]
+            for order in _o.browse(cr, uid, [orders.id]):
+                for tool in  order.tools_ids:
+                    tabtool.append(tool.id)
+                tech_id= order.technician.id
+                date_exect= order.date_execution
+            
+            msg=''
+            msgres=''
+            _mt=self.pool.get('mro.tools')   
+            _mtb=self.pool.get('mro.tools.booking')  
+            i=1 
+            tabdispo=[]   
+            for tool in _mt.browse(cr, uid, tabtool):
+                resids=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','!=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
+                if resids and resids[0]:
+                    msg+=str(i)+' - '+tool.name+'\n'
+                    i+=1
+                else:
+                    tabdispo.append(tool.id)
+    
+            i=1         
+            for tool in _mt.browse(cr, uid, tabdispo):
+                resids2=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
+                if not resids2:
+                    msgres+=str(i)+' - '+tool.name+'\n'
+                    i+=1
+                           
+            if msg!='':  
+                msg =u'Tools are not available for this intervention : \n'+msg  
+            if msg!='' and msgres!='':  
+                msg +='\n'
+            if msgres!='':  
+                msg +=u'Book these tools for this intervention : \n'+msgres  
+            if msg=='':  msg='0'
+            resdic[orders.id]= msg
+
+        return resdic
+    
     _columns = {
         'asset_id': fields.many2one('asset.asset', 'Asset', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         #~ 'asset_ids': fields.many2many('product.product', string='Assets', required=True),
@@ -168,6 +212,8 @@ class mro_order(osv.osv):
         'duration': fields.float('Duration (h)', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'allday': fields.boolean('All Day', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'invoice_id':fields.many2one('account.invoice',u'Invoice',readonly=True),
+        'warning_tools': fields.function(_warning_tools, string='Reservations tools',
+            type='text',track_visibility='always'), 
     }
     
     _defaults = {
@@ -337,45 +383,59 @@ class mro_order(osv.osv):
         })
         order.write({'parts_move_lines': [(4, move_id)]}, context=context)
         return move_id
-
-    def onchange_tools(self, cr, uid, ids, vals,tech_id,date_exect, context=None):
-        msg=''
-        msgres=''
-        _mt=self.pool.get('mro.tools')   
-        _mtb=self.pool.get('mro.tools.booking')  
-        i=1 
-        tabdispo=[]   
-        for tool in _mt.browse(cr, uid, vals[0][2]):
-            res=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','!=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
-            if res and res[0]:
-                msg+=str(i)+' - '+tool.name+'\n'
-                i+=1
-            else:
-                tabdispo.append(tool.id)
-
-        i=1         
-        for tool in _mt.browse(cr, uid, tabdispo):
-            res2=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
-            if not res2:
-                msgres+=str(i)+' - '+tool.name+'\n'
-                i+=1
-                       
-        if msg!='':  
-            msg =u'Tools are not available for this intervention : \n'+msg  
-        if msg!='' and msgres!='':  
-            msg +='\n--- --- ---\n'
-        if msgres!='':  
-            msg +=u'Book these tools for this intervention : \n'+msgres  
-
-        if msg!='' or msgres!='': 
-            warning = {
-                    'title': ' Warning ! ',
-                    'message' : msg
-            }  
-            return {'warning':warning}
-        else:    
-            return True
     
+    """
+    def write(self, cr, uid, ids, vals, context=None):
+        retour = super(mro_order, self).write(cr, uid, ids, vals, context=context)
+        cr.commit()
+        if vals.get('tools_ids'):
+            print 'vals : ',vals['tools_ids']  
+        
+ 
+            _o=self.pool.get('mro.order') 
+            tabtool=[]
+            for order in _o.browse(cr, uid, ids):
+                for tool in  order.tools_ids:
+                    tabtool.append(tool.id)
+                tech_id= order.technician.id
+                date_exect= order.date_execution
+            
+            msg=''
+            msgres=''
+            _mt=self.pool.get('mro.tools')   
+            _mtb=self.pool.get('mro.tools.booking')  
+            i=1 
+            tabdispo=[]   
+            for tool in _mt.browse(cr, uid, tabtool):
+                res=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','!=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
+                if res and res[0]:
+                    msg+=str(i)+' - '+tool.name+'\n'
+                    i+=1
+                else:
+                    tabdispo.append(tool.id)
+    
+            i=1         
+            for tool in _mt.browse(cr, uid, tabdispo):
+                res2=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
+                if not res2:
+                    msgres+=str(i)+' - '+tool.name+'\n'
+                    i+=1
+                           
+            if msg!='':  
+                msg =u'Tools are not available for this intervention : \n'+msg  
+            if msg!='' and msgres!='':  
+                msg +='\n'
+            if msgres!='':  
+                msg +=u'Book these tools for this intervention : \n'+msgres  
+         
+            print 'msg : ', msg
+            
+            _o.write(cr, uid, ids, { 'warning_tools' : msg })
+            return {'value':retour}           
+        else:    
+            return {'value':retour}
+    """
+
     
 class mro_tools(osv.osv):
     """
