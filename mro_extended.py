@@ -146,6 +146,9 @@ class mro_order(osv.osv):
     
     def _warning_tools(self, cr, uid, ids, field_name, arg, context=None):
         resdic = {}
+        toolsstate={'draft': _('Demand'),
+                    'open': _('Reserved'),
+                    'cancelled': _('Cancelled')}
         for orders in self.browse(cr, uid, ids, context=context):
             resdic[orders.id]=0
             _o=self.pool.get('mro.order') 
@@ -165,7 +168,8 @@ class mro_order(osv.osv):
             for tool in _mt.browse(cr, uid, tabtool):
                 resids=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','!=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
                 if resids and resids[0]:
-                    msg+=str(i)+' - '+tool.name+'\n'
+                    tmpmtb=_mtb.browse(cr, uid, resids[0])
+                    msg+=str(i)+' - '+tool.name+' ('+ toolsstate[tmpmtb.state] +')\n'
                     i+=1
                 else:
                     tabdispo.append(tool.id)
@@ -178,11 +182,11 @@ class mro_order(osv.osv):
                     i+=1
                            
             if msg!='':  
-                msg =u'Tools are not available for this intervention : \n'+msg  
+                msg =_(u'Tools are not available for this intervention')+' : \n'+msg  
             if msg!='' and msgres!='':  
                 msg +='\n'
             if msgres!='':  
-                msg +=u'Book these tools for this intervention : \n'+msgres  
+                msg +=_(u'Book these tools for this intervention')+' : \n'+msgres  
             if msg=='':  msg='0'
             resdic[orders.id]= msg
 
