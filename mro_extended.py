@@ -486,6 +486,7 @@ class generic_assets(osv.osv):
     _name = 'generic.assets'
     _description = 'Generic Assets'
     
+    
     def _get_date(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         done=[]
@@ -562,13 +563,25 @@ class generic_assets(osv.osv):
         prod = product_obj.browse(cr, uid, product, context=context)
         result['name'] = self.pool.get('product.product').name_get(cr, uid, [prod.id], context=context)[0][1]
         return {'value': result}
+
+
         
 class mro_tools_booking(osv.osv):
     _name='mro.tools.booking'
     _description = 'Booking for tools'
     _inherit = ['mail.thread']
 
+    def set_open(self,cr,uid,ids,context=None):
+        print ids
+        self.write(cr,uid,ids,{'state':'open'},context=context)
 
+    def set_demand(self,cr,uid,ids,context=None):
+        print ids
+        self.write(cr,uid,ids,{'state':'draft'},context=context)
+
+    def set_cancel(self,cr,uid,ids,context=None):
+        print ids
+        self.write(cr,uid,ids,{'state':'cancelled'},context=context)
 
     def get_tech_name(self,cr,uid,ids,field_name,arg,context=None):
         res={}
@@ -579,6 +592,7 @@ class mro_tools_booking(osv.osv):
             elif o.technician_id:
                 res[o.id]=o.technician_id.name
         return res
+
 
     _columns={
         'name':fields.function(get_tech_name,type='char',string='Name'),
@@ -591,9 +605,12 @@ class mro_tools_booking(osv.osv):
         'state': fields.selection([('draft', 'Demand'),('open', 'Reserved'),
                                     ('cancelled', 'Cancelled')], 'Statut', required=True),
     }
+
+
     _defaults={
         'state':'draft',
     }
+    
 
     def check_tools_available(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
         if tools_id and date_booking_begin and date_booking_end:

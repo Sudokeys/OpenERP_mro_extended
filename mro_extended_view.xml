@@ -19,7 +19,7 @@
                     <button name="button_done" states="invoiced" string="Done" class="oe_highlight"/>
                 </button>
                 
-                
+               
                 <xpath expr="/form/sheet/group" position="replace">
                 <group>
                     <group name="partner">
@@ -58,14 +58,14 @@
                         <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                     </group>
                 </group>
+                 <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">
+	                	<field name="warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" colspan="1"/>
+	                </group>
+	                <separator colspan="1"/>
                 </xpath>
 
 
                 <field name="tools_description" position="replace">
-	                <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">
-	                	<field name="warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" colspan="1"/>
-	                </group>
-	                <separator colspan="1"/>
                     <field name="tools_description" invisible="True"/>
                     <field name="tools_ids"/> 
                 </field>
@@ -324,9 +324,12 @@
             <field name="model">mro.tools.booking</field>
             <field name="arch" type="xml">
                 <search string="Booking tools">
+                   <field name="state"/>
                    <field name="tools_id"/>
                    <field name="technician_id"/>
                    <field name="calibration_booking"/>
+                   <filter name="demand_booking" string="Demand" icon="terp-accessories-archiver" domain="[('state','=','draft')]"/>
+                   <filter name="reserve_booking" string="Reserve" icon="terp-accessories-archiver" domain="[('state','=','open')]"/>
                    <filter name="calibration_booking" string="Calibration booking" icon="terp-accessories-archiver" domain="[('calibration_booking','=',True)]"/>
                    <separator/>
                    <group  expand='1' string='Group by...'>
@@ -355,15 +358,22 @@
             <field name="model">mro.tools.booking</field>
             <field name="arch" type="xml">
                 <form string="Booking Tools" version="7.0">
-                    <header>
-                    </header>
+                                 
+             	<header attrs=""> 
+                          <button name="set_demand" string="Demand" type="object" states="open,cancelled" />  
+                          <button name="set_open" string="Reserve" type="object" states="draft,cancelled" class="oe_highlight"/>  
+                          <button name="set_cancel" string="Cancel" type="object" states="draft,open" />  
+                        <field name="state"  widget="statusbar"
+                            statusbar_visible="draft,open,cancelled" />
+
+             	</header> 
+             
                     <sheet>
                         <group name="gb1" colspan="4" col="4">
                             <group name="gb11" colspan="2" col="2">
                                 <field name="tools_id" on_change="onchange_tools_id(tools_id,date_booking_begin,date_booking_end,context)"/>
                                 <field name="calibration_booking"/>
                                 <field name="technician_id" attrs="{'required':[('calibration_booking','=',False)]}"/>
-                                <field name="state"/>
                             </group>
                             <group name="gb12" colspan="2" col="2">
                                 <field name="date_booking_begin" required="1" on_change="onchange_booking_begin(date_booking_begin,context)"/>
@@ -385,7 +395,8 @@
             <field name="model">mro.tools.booking</field>
             <field name="priority" eval="2"/>
             <field name="arch" type="xml">
-                <calendar string="Bookings" date_start="date_booking_begin" color="tools_id" date_stop="date_booking_end">
+			  
+                <calendar string="Bookings"  date_start="date_booking_begin" color="tools_id" date_stop="date_booking_end">
                     <field name="tools_id"/>
                     <field name="name"/>
                     <field name="state" invisible="1"/>
@@ -410,8 +421,10 @@
             <field name="view_type">form</field>
             <field name="view_mode">calendar,tree,form,gantt</field>
             <field name="help">List of booking for tools</field>
-            <field name="domain">[('state','=','open')]</field>
-            <field name="context">{}</field>
+<!--             <field name="domain">[('state','=','open')]</field> -->
+<!--             <field name="context">{'default_state':'open'}</field> -->
+			<field name="domain">[]</field>
+          	<field name="context">{}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to schedule a new booking.
@@ -427,7 +440,8 @@
             <field name="view_type">form</field>
             <field name="view_mode">calendar,tree,form,gantt</field>
             <field name="help">List of booking for tools</field>
-            <field name="domain">[('state','=','draft')]</field>
+<!--             <field name="domain">[('state','=','draft')]</field> -->
+            <field name="domain">[]</field>
             <field name="context">{}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
@@ -443,11 +457,11 @@
             parent="menu_maintenance_tools"
             sequence="120"/>
             
-        <menuitem name="Pre-booking tools"
-            action="action_mro_booking_tools_draft"
-            id="menu_maintenance_mro_booking_tools_draft"
-            parent="menu_maintenance_tools"
-            sequence="121"/>
+<!--         <menuitem name="Pre-booking tools" -->
+<!--             action="action_mro_booking_tools_draft" -->
+<!--             id="menu_maintenance_mro_booking_tools_draft" -->
+<!--             parent="menu_maintenance_tools" -->
+<!--             sequence="121"/> -->
         
         <record id="action_assets" model="ir.actions.act_window">
             <field name="name">Assets</field>
