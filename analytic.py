@@ -467,11 +467,9 @@ class account_analytic_account(osv.osv):
         return data
     
     def _alert_fin_contrat(self, cr, uid, context=None):
-        print 'tyty'
         datem15= datetime.now() + timedelta(days=15)
         datedeb=datetime.strftime(datem15, "%Y-%m-%d")+' 00:00:00'
         datefin=datetime.strftime(datem15, "%Y-%m-%d")+' 23:59:59'
-        print 'datefin : ',datefin
         
         ids=self.pool.get('account.analytic.account').search(cr, uid, [('date','>=',datedeb),('date','<=',datefin),('date_start','!=',False),('partner_id','!=',False),('date','!=',False),('state','=','open')])
         res=[]
