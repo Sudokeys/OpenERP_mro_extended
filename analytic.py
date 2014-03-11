@@ -466,7 +466,31 @@ class account_analytic_account(osv.osv):
             data['end_type'] = 'end_date'
         return data
     
-
+    def _alert_fin_contrat(self, cr, uid, context=None):
+        print 'tyty'
+        datem15= datetime.now() + timedelta(days=15)
+        datedeb=datetime.strftime(datem15, "%Y-%m-%d")+' 00:00:00'
+        datefin=datetime.strftime(datem15, "%Y-%m-%d")+' 23:59:59'
+        print 'datefin : ',datefin
+        
+        ids=self.pool.get('account.analytic.account').search(cr, uid, [('date','>=',datedeb),('date','<=',datefin),('date_start','!=',False),('partner_id','!=',False),('date','!=',False),('state','=','open')])
+        res=[]
+        res1=[]
+        for i in self.browse(cr, uid, ids, context):
+            for j in i.message_follower_ids:
+                res.append(j.id)
+            for k in i.message_ids:
+                res1.append(k.id) 
+               
+            if not self.pool.get('mail.message').search(cr,uid,[
+                                                            ('body','ilike','&lt;p&gt;Ce contrat sera expiré dans 2 semaines.&lt;/p&gt;'),
+                                                            ('res_id','=',i.id)]):
+                create_id=self.pool.get('mail.message').create(cr, uid, {
+                                                                    'partner_ids':[i.manager_id.id],
+                                                                    'body':u'Ce contrat sera expiré dans 2 semaines. Veuillez vous rapprocher du client afin de lui proposer un avenant de reconduction.',
+                                                                    'res_id':i.id,
+                                                                    'model':'account.analytic.account',
+                                                                    'record_name':i.name},context)
         
     
 class account_analytic_services(osv.osv):

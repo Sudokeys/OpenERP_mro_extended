@@ -1,0 +1,16 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.cron" id="cron_alert_fin_contrat">
+            <field name='name'>Alerte fin de contrat 24 heures</field>
+            <field name='interval_number'>24</field>
+            <field name='interval_type'>hours</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+            <field name="doall" eval="True" />
+            <field name="model">account.analytic.account</field>
+            <field name="function">_alert_fin_contrat</field>
+            <field name="args">(None,)</field>
+        </record>
+    </data>
+</openerp>
