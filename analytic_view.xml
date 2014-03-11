@@ -153,7 +153,7 @@
                                 <field name="name"/>
                                 <field name="standard_price"/>
                                 <field name="price"/>
-                                <field name="asset_id" on_change="onchange_asset(asset_id)" domain="[('contract_id','=',parent.id),('service_id','=',False)]"/>
+ 								<field name="asset_id" on_change="onchange_asset(asset_id)" domain="[('contract_id','=',parent.id)]"/>
                             </tree>
                         </field>
                         <group class="oe_subtotal_footer oe_right" colspan="2" name="service_total">
