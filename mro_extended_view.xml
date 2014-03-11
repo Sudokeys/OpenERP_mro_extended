@@ -324,12 +324,12 @@
             <field name="model">mro.tools.booking</field>
             <field name="arch" type="xml">
                 <search string="Booking tools">
-                   <field name="state"/>
+                   <field name="state" />
                    <field name="tools_id"/>
                    <field name="technician_id"/>
                    <field name="calibration_booking"/>
                    <filter name="demand_booking" string="Demand" icon="terp-accessories-archiver" domain="[('state','=','draft')]"/>
-                   <filter name="reserve_booking" string="Reserve" icon="terp-accessories-archiver" domain="[('state','=','open')]"/>
+                   <filter name="reserve_booking" context="{'default_state':'open'}" string="Reserve" icon="terp-accessories-archiver" domain="[('state','=','open')]"/>
                    <filter name="calibration_booking" string="Calibration booking" icon="terp-accessories-archiver" domain="[('calibration_booking','=',True)]"/>
                    <separator/>
                    <group  expand='1' string='Group by...'>
@@ -421,10 +421,8 @@
             <field name="view_type">form</field>
             <field name="view_mode">calendar,tree,form,gantt</field>
             <field name="help">List of booking for tools</field>
-<!--             <field name="domain">[('state','=','open')]</field> -->
-<!--             <field name="context">{'default_state':'open'}</field> -->
 			<field name="domain">[]</field>
-          	<field name="context">{}</field>
+          	<field name="context">{"search_default_state":"open"}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to schedule a new booking.
@@ -433,23 +431,6 @@
 
         </record>
         
-        <record id="action_mro_booking_tools_draft" model="ir.actions.act_window">
-            <field name="name">Booking tools</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">mro.tools.booking</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">calendar,tree,form,gantt</field>
-            <field name="help">List of booking for tools</field>
-<!--             <field name="domain">[('state','=','draft')]</field> -->
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to schedule a new booking.
-              </p>
-            </field>
-
-        </record>
         
         <menuitem name="Booking tools"
             action="action_mro_booking_tools"
@@ -457,11 +438,6 @@
             parent="menu_maintenance_tools"
             sequence="120"/>
             
-<!--         <menuitem name="Pre-booking tools" -->
-<!--             action="action_mro_booking_tools_draft" -->
-<!--             id="menu_maintenance_mro_booking_tools_draft" -->
-<!--             parent="menu_maintenance_tools" -->
-<!--             sequence="121"/> -->
         
         <record id="action_assets" model="ir.actions.act_window">
             <field name="name">Assets</field>

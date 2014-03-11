@@ -239,6 +239,11 @@
             <field name="model">account.analytic.account</field>
             <field name="inherit_id" ref="account_analytic_analysis.view_account_analytic_account_overdue_search" />
             <field name="arch" type="xml">
+            	<field name="partner_id" position="replace">
+                    <field name="partner_id" />
+                   </field>
+                <field name="parent_id" position="replace">
+                   </field>   
                 <filter string="Contracts not assigned" position="after" >
                     <field name="asset_ids" string="Asset Serial #" filter_domain="[('asset_ids.serial_id','ilike', self)]"/>
                     <separator/>
