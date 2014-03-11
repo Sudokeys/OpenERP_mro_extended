@@ -328,7 +328,7 @@
                    <field name="tools_id"/>
                    <field name="technician_id"/>
                    <field name="calibration_booking"/>
-                   <filter name="demand_booking" string="Demand" icon="terp-accessories-archiver" domain="[('state','=','draft')]"/>
+                   <filter name="demand_booking"  context="{'default_state':'draft'}" string="Demand" icon="terp-accessories-archiver" domain="[('state','=','draft')]"/>
                    <filter name="reserve_booking" context="{'default_state':'open'}" string="Reserve" icon="terp-accessories-archiver" domain="[('state','=','open')]"/>
                    <filter name="calibration_booking" string="Calibration booking" icon="terp-accessories-archiver" domain="[('calibration_booking','=',True)]"/>
                    <separator/>
@@ -422,7 +422,7 @@
             <field name="view_mode">calendar,tree,form,gantt</field>
             <field name="help">List of booking for tools</field>
 			<field name="domain">[]</field>
-          	<field name="context">{"search_default_state":"open"}</field>
+          	<field name="context">{"search_default_state":"open", 'default_state':'open'}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to schedule a new booking.
