@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130904-231132\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-11 16:16+0000\n"
-"PO-Revision-Date: 2014-03-11 17:20+0100\n"
+"POT-Creation-Date: 2014-03-12 14:42+0000\n"
+"PO-Revision-Date: 2014-03-12 16:00+0100\n"
 "Last-Translator: CBN <jl@adn-france.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: mro_extended
 #: view:mro.order:0
 msgid "ready,meeting,progress,invoicing,invoiced,done"
-msgstr "prêt, réunion, des progrès, de la facturation, la facture, fait"
+msgstr "ready,meeting,progress,invoicing,invoiced,done"
 
 #. module: mro_extended
 #: field:account.analytic.account,we:0
@@ -189,7 +189,7 @@ msgstr "Ratios"
 #. module: mro_extended
 #: view:create.amendment:0
 msgid "Renewal?"
-msgstr "Renouvellement ?"
+msgstr "Renouvellement?"
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -269,10 +269,10 @@ msgstr "Année(s)"
 
 #. module: mro_extended
 #: code:addons/mro_extended/analytic.py:380
-#: code:addons/mro_extended/mro_extended.py:268
-#: code:addons/mro_extended/mro_extended.py:334
-#: code:addons/mro_extended/mro_extended.py:339
-#: code:addons/mro_extended/mro_extended.py:550
+#: code:addons/mro_extended/mro_extended.py:271
+#: code:addons/mro_extended/mro_extended.py:337
+#: code:addons/mro_extended/mro_extended.py:342
+#: code:addons/mro_extended/mro_extended.py:553
 #, python-format
 msgid "Error!"
 msgstr "Erreur!"
@@ -332,7 +332,7 @@ msgid "Contract Renewal"
 msgstr "Renouvellement du contrat"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:591
+#: code:addons/mro_extended/mro_extended.py:594
 #, python-format
 msgid "IN CALIBRATION"
 msgstr "En étalonnage"
@@ -381,7 +381,7 @@ msgstr "Répéter jusqu'à"
 #: help:mro.tools,message_summary:0
 #: help:mro.tools.booking,message_summary:0
 msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Résume Chatter (nombre de messages, ...). Ce résumé est directement en format html pour être inséré dans une vue kanban."
+msgstr "Résumé Chatter (nombre de messages, ...). Ce résumé est directement en format html pour être inséré dans une vue kanban."
 
 #. module: mro_extended
 #: model:ir.model,name:mro_extended.model_mro_tools_booking
@@ -401,7 +401,7 @@ msgid "_Print"
 msgstr "_Print"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:269
+#: code:addons/mro_extended/mro_extended.py:272
 #, python-format
 msgid "Please define sales journal for this company: \"%s\" (id:%d)."
 msgstr "Configurez un journale de vente pour cette compagnie: \"%s\" (id:%d)."
@@ -459,7 +459,7 @@ msgid "Status"
 msgstr "Statut"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:376
+#: code:addons/mro_extended/mro_extended.py:379
 #, python-format
 msgid "You must first assign a location for the parts in the asset."
 msgstr "Vous devez d'abord assigner un emplacement pour les pièces détachées dans la fiche de l'équipement."
@@ -525,7 +525,7 @@ msgstr "Compte analytique"
 #. module: mro_extended
 #: field:mro.order,duration:0
 msgid "Duration (h)"
-msgstr "Durée (h)"
+msgstr "Duration (h)"
 
 #. module: mro_extended
 #: code:addons/mro_extended/analytic.py:105
@@ -563,7 +563,7 @@ msgstr "Mois"
 #. module: mro_extended
 #: view:sale.order:0
 msgid "Add assets"
-msgstr "Ajouter"
+msgstr "Add assets"
 
 #. module: mro_extended
 #: field:mro.tools,inventory_num:0
@@ -728,7 +728,7 @@ msgstr "Premier"
 #: view:mro.tools.booking:0
 #: field:mro.tools.booking,booking_comment:0
 msgid "Comment"
-msgstr "Comment"
+msgstr "Commentaire"
 
 #. module: mro_extended
 #: view:mro.order:0
@@ -868,6 +868,11 @@ msgid "Add"
 msgstr "Ajout"
 
 #. module: mro_extended
+#: view:mro.order:0
+msgid "Check the availability of tools"
+msgstr "Vérifier la disponibilité des outils"
+
+#. module: mro_extended
 #: selection:account.analytic.amendments,state:0
 msgid "Draft"
 msgstr "Brouillon"
@@ -961,7 +966,7 @@ msgstr "Réservation des outils"
 #. module: mro_extended
 #: view:cancelled.contract:0
 msgid "Cancelled the Contract will terminate the contract. Are you sure?"
-msgstr "Annulé le contrat, il prend fin. Etes-vous sûr ?"
+msgstr "Cancelled the Contract will terminate the contract. Are you sure?"
 
 #. module: mro_extended
 #: selection:account.analytic.account,end_type:0
@@ -1120,7 +1125,7 @@ msgid "Thursday"
 msgstr "Jeudi"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:375
+#: code:addons/mro_extended/mro_extended.py:378
 #, python-format
 msgid "Cannot consume parts!"
 msgstr "Impossible de consommer les pièces!"
@@ -1143,7 +1148,7 @@ msgstr "Date de fin"
 #. module: mro_extended
 #: field:create.amendment,date_end:0
 msgid "Date End"
-msgstr "Date de fin"
+msgstr "Date End"
 
 #. module: mro_extended
 #: help:product.product,property_stock_asset:0
@@ -1259,7 +1264,7 @@ msgid "Serial number must be unique per product"
 msgstr "Le numéro de série doit être unique par produit"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:340
+#: code:addons/mro_extended/mro_extended.py:343
 #, python-format
 msgid "Please define asset for Contract service in contract: %s"
 msgstr "Veuillez définir un équipement pour les prestations dans le contrat : %s"
@@ -1337,7 +1342,7 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:551
+#: code:addons/mro_extended/mro_extended.py:554
 #, python-format
 msgid ""
 "This asset already belongs to this partner for this period: %s. \n"
@@ -1368,7 +1373,7 @@ msgid "Assets involved"
 msgstr "Équipements concernés"
 
 #. module: mro_extended
-#: code:addons/mro_extended/mro_extended.py:335
+#: code:addons/mro_extended/mro_extended.py:338
 #, python-format
 msgid "Please define asset for Contract service %s in contract: %s"
 msgstr "Veuillez définir un équipement pour la prestation %s dans le contrat: %s"
@@ -1406,7 +1411,7 @@ msgstr "Refuser l'avenant"
 #. module: mro_extended
 #: view:mro.order:0
 msgid "ready,meeting,progress"
-msgstr "prêt, en attente, en cours"
+msgstr "ready,meeting,progress"
 
 #. module: mro_extended
 #: model:ir.model,name:mro_extended.model_product_serial
@@ -1476,7 +1481,7 @@ msgstr "Avril"
 #. module: mro_extended
 #: field:mro.order,warning_tools:0
 msgid "Reservations tools"
-msgstr "Réservations d'outils"
+msgstr "Reservations tools"
 
 #. module: mro_extended
 #: code:addons/mro_extended/analytic.py:103
@@ -1572,7 +1577,7 @@ msgstr "Sur site"
 #: model:ir.actions.act_window,name:mro_extended.action_cancelled_contract
 #: model:ir.model,name:mro_extended.model_cancelled_contract
 msgid "Cancelled Contract"
-msgstr "Contrat annulé"
+msgstr "Cancelled Contract"
 
 #. module: mro_extended
 #: selection:account.analytic.account,byday:0

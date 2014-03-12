@@ -466,15 +466,24 @@ class account_analytic_account(osv.osv):
             data['end_type'] = 'end_date'
         return data
     
-    def _alert_fin_contrat(self, cr, uid, context=None):
-        datem15= datetime.now() + timedelta(days=15)
+    def alert_fin_contrat(self, cr, uid, typedelai='days',delai=15):
+        context = {}
+        
+        #print 'args : ',args
+        print 'typedelai : ',typedelai
+        print 'delai : ',delai
+        if typedelai=='days' : datem15= datetime.now() + timedelta(days=delai)
+        if typedelai=='month' : datem15= datetime.now() + timedelta(month=delai)
         datedeb=datetime.strftime(datem15, "%Y-%m-%d")+' 00:00:00'
         datefin=datetime.strftime(datem15, "%Y-%m-%d")+' 23:59:59'
         
         ids=self.pool.get('account.analytic.account').search(cr, uid, [('date','>=',datedeb),('date','<=',datefin),('date_start','!=',False),('partner_id','!=',False),('date','!=',False),('state','=','open')])
+        print 'ids : ',ids
+        self.pool.get('account.analytic.account').write(cr, uid,ids,{'state':'pending'},context)
         res=[]
         res1=[]
         for i in self.browse(cr, uid, ids, context):
+            print 'i.id : ',i.id
             for j in i.message_follower_ids:
                 res.append(j.id)
             for k in i.message_ids:
