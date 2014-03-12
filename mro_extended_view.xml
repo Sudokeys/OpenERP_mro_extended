@@ -58,7 +58,9 @@
                         <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                     </group>
                 </group>
-                 <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">
+                <button name="def_verif_tools" attrs="{'invisible':[('warning_tools','=','0')]}" string="Check the availability of tools" class="oe_highlight" type="object" />
+	                	<separator colspan="1"/>
+                 <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">	                
 	                	<field name="warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" colspan="1"/>
 	                </group>
 	                <separator colspan="1"/>

@@ -246,7 +246,10 @@ class mro_order(osv.osv):
     def action_done(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'state': 'done'})
         return True
-
+    
+    def def_verif_tools(self, cr, uid, ids, vals, context=None):
+        return 
+    
 ################################################################################
 # DO invoice
 ################################################################################    
