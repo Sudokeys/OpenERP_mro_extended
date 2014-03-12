@@ -9,7 +9,7 @@
             <field name="active">True</field>
             <field name="doall" eval="True" />
             <field name="model">account.analytic.account</field>
-            <field name="function">_alert_fin_contrat</field>
+            <field name="function">alert_fin_contrat</field>
             <field name="args">('days',15)</field>
         </record>
     </data>
