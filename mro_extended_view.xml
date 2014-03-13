@@ -402,7 +402,7 @@
                 <calendar string="Bookings"  date_start="date_booking_begin" color="tools_id" date_stop="date_booking_end">
                     <field name="tools_id"/>
                     <field name="name"/>
-                    <field name="state" invisible="1"/>
+<!--                     <field name="state"  invisible="1"/>				 -->
                 </calendar>
             </field>
         </record>
