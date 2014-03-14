@@ -57,6 +57,7 @@ class mro_order(osv.osv):
     Maintenance Orders
     """
     _inherit = 'mro.order'
+
     
     def onchange_partner(self, cr, uid, ids, partner_id):
         """
@@ -64,6 +65,32 @@ class mro_order(osv.osv):
         """
         partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
         return {'value': {'technician': partner.technician.id}}
+    
+    def update_assets(self, cr, uid, ids,context=None):
+        print 'tyty'
+        if context is None:
+            context = {}
+        ids_asset=[]
+        _omro= self.pool.get('mro.order')
+        res = _omro.browse(cr, uid, ids, context)[0]
+        contract_id=res.contract_id.id
+        asset_ids=res.asset_ids
+        print 'asset_ids : ',asset_ids
+        for x in asset_ids:
+            ids_asset.append(x.id)
+        print 'ids_asset : ' ,ids_asset 
+        _oga= self.pool.get('generic.assets')
+        ids_new_asset=[]
+        ids_new_asset = _oga.search(cr, uid, [('contract_id','=',contract_id)])
+        for x in ids_new_asset:
+            if x not in ids_asset:
+                ids_asset.append(x)
+        print 'ids_asset : ' ,ids_asset
+        self.write(cr, uid, ids, {'asset_ids': [(6,0,ids_asset)]})
+        return True
+
+
+        
         
     def onchange_technician(self, cr, uid, ids, technician, partner_id):
         """
@@ -191,11 +218,22 @@ class mro_order(osv.osv):
             resdic[orders.id]= msg
 
         return resdic
+
+    def action_ready(self, cr, uid, ids):
+        context={}
+        res = self.browse(cr, uid, ids, context)[0]       
+        if len(res.asset_ids)==0 :  
+            raise osv.except_osv(('Erreur'), (_(u'You must enter equipment ! ') ) )
+        else  : 
+            self.write(cr, uid, ids, {'state': 'ready'})
+        return True 
+
     
     _columns = {
         'asset_id': fields.many2one('asset.asset', 'Asset', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         #~ 'asset_ids': fields.many2many('product.product', string='Assets', required=True),
-        'asset_ids': fields.many2many('generic.assets', string='Assets', required=True),
+        #'asset_ids': fields.many2many('generic.assets', string='Assets', required=True),
+        'asset_ids': fields.many2many('generic.assets', string='Assets'),
         'partner_id': fields.many2one('res.partner','Client'),
         'subcontract': fields.boolean('Subcontract?'),
         'subcontractor_id': fields.many2one('res.partner','Subcontractor'),

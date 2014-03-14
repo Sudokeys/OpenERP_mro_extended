@@ -24,7 +24,13 @@
                 <group>
                     <group name="partner">
                         <field name="partner_id" on_change="onchange_partner(partner_id)"/>
-                        <field name="contract_id" attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
+                        
+                        <field name="contract_id"  attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
+
+                        <field name="id" invisible="1"/>
+                        <div colspan="2"  style="float:right">
+						<button name="update_assets" colspan="2"  string="Import equipment contract" type="object" attrs="{'invisible':[('contract_id','=',False)]}" class="oe_edit_only oe_link oe_inline" />
+                        </div>
                         <field name="order_id"/>
                         <field name="invoice_id"/>
                         <field name="description"/>
@@ -76,7 +82,7 @@
                     <page string="Assets" autofocus="True">
                         <group string="Assets involved">
                             <field name="asset_ids" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id':partner_id}" nolabel="1" >
-                                <tree editable="top">
+                                 <tree editable="top"> 
                                     <field name="default_code"/>
                                     <field name="asset_id" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
                                     <field name="serial_id" context="{'default_product_id':asset_id}" domain="[('product_id','=',asset_id)]" options='{"no_open": True}'/>
