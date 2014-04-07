@@ -67,7 +67,6 @@ class mro_order(osv.osv):
         return {'value': {'technician': partner.technician.id}}
     
     def update_assets(self, cr, uid, ids,context=None):
-        print 'tyty'
         if context is None:
             context = {}
         ids_asset=[]

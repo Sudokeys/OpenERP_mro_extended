@@ -35,7 +35,7 @@ Required modules:
     'website': 'http://adn-france.com',
     'category': 'Enterprise Asset Management',
     'sequence': 150,
-    'depends': ['mro','mro_pm','hr','account_analytic_analysis'],
+    'depends': ['base','mro','mro_pm','hr','account_analytic_analysis','portal_project_issue'],
     'demo': [],
     'data': [
         'security/ir.model.access.csv',

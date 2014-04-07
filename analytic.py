@@ -479,7 +479,6 @@ class account_analytic_account(osv.osv):
         res=[]
         res1=[]
         for i in self.browse(cr, uid, ids, context):
-            print 'i.id : ',i.id
             for j in i.message_follower_ids:
                 res.append(j.id)
             for k in i.message_ids:
