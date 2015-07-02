@@ -52,20 +52,25 @@ STATE_SELECTION = [
     ]
 TOOLS_PLACE=[('fixed','Fixed'),('movable','Movable')]
 
+PLACE_SELECTION = [('site','Site'),
+                   ('workshop','Atelier'),
+                   ('labo','Labo')]
+
+
 class mro_order(osv.osv):
     """
     Maintenance Orders
     """
     _inherit = 'mro.order'
 
-    
+
     def onchange_partner(self, cr, uid, ids, partner_id):
         """
         onchange handler of partner_id.
         """
         partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
         return {'value': {'technician': partner.technician.id}}
-    
+
     def update_assets(self, cr, uid, ids,context=None):
         if context is None:
             context = {}
@@ -74,23 +79,20 @@ class mro_order(osv.osv):
         res = _omro.browse(cr, uid, ids, context)[0]
         contract_id=res.contract_id.id
         asset_ids=res.asset_ids
-        print 'asset_ids : ',asset_ids
         for x in asset_ids:
             ids_asset.append(x.id)
-        print 'ids_asset : ' ,ids_asset 
         _oga= self.pool.get('generic.assets')
         ids_new_asset=[]
         ids_new_asset = _oga.search(cr, uid, [('contract_id','=',contract_id)])
         for x in ids_new_asset:
             if x not in ids_asset:
                 ids_asset.append(x)
-        print 'ids_asset : ' ,ids_asset
         self.write(cr, uid, ids, {'asset_ids': [(6,0,ids_asset)]})
         return True
 
 
-        
-        
+
+
     def onchange_technician(self, cr, uid, ids, technician, partner_id):
         """
         onchange handler of technician.
@@ -101,7 +103,7 @@ class mro_order(osv.osv):
             if technician and not partner.technician :
                 self.pool.get('res.partner').write(cr,uid,partner.id,{'technician':technician})
         return value
-        
+
     def onchange_subcontractor(self, cr, uid, ids, description, subcontract, subcontractor_id):
         value={}
         if subcontract and subcontractor_id:
@@ -110,7 +112,7 @@ class mro_order(osv.osv):
         else:
             value['description']='%s' % (description.split(' [Subcontract') and description.split(' [Subcontract')[0] or '' +description.split('Subcontract]') and description.split('Subcontract]')[1] or '')
         return {'value':value}
-        
+
     def onchange_dates(self, cr, uid, ids, start_date, duration=False, end_date=False, allday=False, date_type=False, context=None):
         """Returns duration and/or end date based on values passed
         @param self: The object pointer
@@ -124,9 +126,9 @@ class mro_order(osv.osv):
         """
         if context is None:
             context = {}
-            
+
         value = {}
-            
+
         if not start_date:
             return value
         if not end_date and not duration:
@@ -162,14 +164,14 @@ class mro_order(osv.osv):
             diff = end - start
             duration = float(diff.days)* 24 + (float(diff.seconds) / 3600)
             value['duration'] = round(duration, 2)
-        
+
         if date_type=='date_planned':
             value['date_scheduled'] = start_date
         if date_type=='date_scheduled':
             value['date_execution'] = start_date
-            
+
         return {'value': value}
-    
+
     def _warning_tools(self, cr, uid, ids, field_name, arg, context=None):
         resdic = {}
         toolsstate={'draft': _('Demand'),
@@ -177,20 +179,20 @@ class mro_order(osv.osv):
                     'cancelled': _('Cancelled')}
         for orders in self.browse(cr, uid, ids, context=context):
             resdic[orders.id]=0
-            _o=self.pool.get('mro.order') 
+            _o=self.pool.get('mro.order')
             tabtool=[]
             for order in _o.browse(cr, uid, [orders.id]):
                 for tool in  order.tools_ids:
                     tabtool.append(tool.id)
                 tech_id= order.technician.id
                 date_exect= order.date_execution
-            
+
             msg=''
             msgres=''
-            _mt=self.pool.get('mro.tools')   
-            _mtb=self.pool.get('mro.tools.booking')  
-            i=1 
-            tabdispo=[]   
+            _mt=self.pool.get('mro.tools')
+            _mtb=self.pool.get('mro.tools.booking')
+            i=1
+            tabdispo=[]
             for tool in _mt.browse(cr, uid, tabtool):
                 resids=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','!=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
                 if resids and resids[0]:
@@ -199,20 +201,20 @@ class mro_order(osv.osv):
                     i+=1
                 else:
                     tabdispo.append(tool.id)
-    
-            i=1         
+
+            i=1
             for tool in _mt.browse(cr, uid, tabdispo):
                 resids2=_mtb.search(cr,uid,[('tools_id','=',tool.id),('technician_id','=',tech_id),('state','!=','cancelled'),('date_booking_begin','<=',date_exect),('date_booking_end','>=',date_exect)])
                 if not resids2:
                     msgres+=str(i)+' - '+tool.name+'\n'
                     i+=1
-                           
-            if msg!='':  
-                msg =_(u'Tools are not available for this intervention')+' : \n'+msg  
-            if msg!='' and msgres!='':  
+
+            if msg!='':
+                msg =_(u'Tools are not available for this intervention')+' : \n'+msg
+            if msg!='' and msgres!='':
                 msg +='\n'
-            if msgres!='':  
-                msg +=_(u'Book these tools for this intervention')+' : \n'+msgres  
+            if msgres!='':
+                msg +=_(u'Book these tools for this intervention')+' : \n'+msgres
             if msg=='':  msg='0'
             resdic[orders.id]= msg
 
@@ -220,14 +222,14 @@ class mro_order(osv.osv):
 
     def action_ready(self, cr, uid, ids):
         context={}
-        res = self.browse(cr, uid, ids, context)[0]       
-        if len(res.asset_ids)==0 :  
+        res = self.browse(cr, uid, ids, context)[0]
+        if len(res.asset_ids)==0 :
             raise osv.except_osv(('Erreur'), (_(u'You must enter equipment ! ') ) )
-        else  : 
+        else  :
             self.write(cr, uid, ids, {'state': 'ready'})
-        return True 
+        return True
 
-    
+
     _columns = {
         'asset_id': fields.many2one('asset.asset', 'Asset', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         #~ 'asset_ids': fields.many2many('product.product', string='Assets', required=True),
@@ -239,7 +241,7 @@ class mro_order(osv.osv):
         'contract_id': fields.many2one('account.analytic.account','Contract'),
         'technician': fields.many2one('hr.employee','Technician',required=True),
         'order_id': fields.many2one('sale.order','Order'),
-        'place': fields.selection([('site','Site'),('workshop','Worskhop')],'Place'),
+        'place': fields.selection(PLACE_SELECTION,'Place'),
         'state': fields.selection(STATE_SELECTION, 'Status', readonly=True,
             help="When the maintenance order is created the status is set to 'Draft'.\n\
             If the order is confirmed the status is set to 'Waiting Parts'.\n\
@@ -254,42 +256,42 @@ class mro_order(osv.osv):
         'allday': fields.boolean('All Day', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'invoice_id':fields.many2one('account.invoice',u'Invoice',readonly=True),
         'warning_tools': fields.function(_warning_tools, string='Reservations tools',
-            type='text',track_visibility='always'), 
+            type='text',track_visibility='always'),
     }
-    
+
     _defaults = {
         'date_planned': False,
         'date_scheduled': False,
         'date_execution': False,
         'maintenance_type': lambda *a: 'cm',
     }
-    
+
     _order = 'date_execution desc'
-    
+
     def action_meeting(self, cr, uid, ids):
         self.write(cr, uid, ids, {'state': 'meeting'})
         return True
-    
+
     def action_progress(self, cr, uid, ids):
         self.write(cr, uid, ids, {'state': 'progress'})
         return True
-        
+
     def action_invoicing(self, cr, uid, ids, context=None):
         for order in self.browse(cr, uid, ids, context=context):
             self.pool.get('stock.move').action_done(cr, uid, [x.id for x in order.parts_move_lines])
         self.write(cr, uid, ids, {'state': 'invoicing', 'date_execution': time.strftime('%Y-%m-%d %H:%M:%S')})
         return True
-        
+
     def action_done(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'state': 'done'})
         return True
-    
+
     def def_verif_tools(self, cr, uid, ids, vals, context=None):
-        return 
-    
+        return
+
 ################################################################################
 # DO invoice
-################################################################################    
+################################################################################
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
         """Prepare the dict of values to create the new invoice for a
            mro order. This method may be overridden to implement custom
@@ -325,7 +327,7 @@ class mro_order(osv.osv):
             'user_id': uid,
         }
         return invoice_vals
-    
+
     def _invoice_line(self, cr, uid,invoice_id,name,remise, product_id, False, quantity, uom, type, partner_id, fpos_id, amount, context=None):
         invoice_line_obj = self.pool.get('account.invoice.line')
         line_value =  {
@@ -348,7 +350,7 @@ class mro_order(osv.osv):
             line_value['invoice_line_tax_id'] = tax_tab
         invoice_line_id = invoice_line_obj.create(cr, uid, line_value, context=context)
         return invoice_line_id
-    
+
     def action_do_invoice(self, cr, uid, ids,context=False):
         inv_obj=self.pool.get('account.invoice')
         invline_obj=self.pool.get('account.invoice.line')
@@ -360,7 +362,7 @@ class mro_order(osv.osv):
             if interv.asset_ids and interv.contract_id:
                 interv_asset_liste=[x.id for x in interv.asset_ids]
                 remise=interv.contract_id.remise or 0.0
-                
+
                 for serv in interv.contract_id.service_ids:
                     if serv.service_id and serv.asset_id and serv.asset_id.id in interv_asset_liste :
                         lines.append({
@@ -374,7 +376,7 @@ class mro_order(osv.osv):
                         raise osv.except_osv(_('Error!'),
                         _('Please define asset for Contract service %s in contract: %s' ) % (serv.service_id.name,interv.contract_id.name))
 
-                
+
                 if len(lines)<=0:
                     raise osv.except_osv(_('Error!'),
                     _('Please define asset for Contract service in contract: %s' ) % (interv.contract_id.name))
@@ -428,7 +430,7 @@ class mro_order(osv.osv):
         order.write({'parts_move_lines': [(4, move_id)]}, context=context)
         return move_id
 
-    
+
 class mro_tools(osv.osv):
     """
     Tools
@@ -436,7 +438,7 @@ class mro_tools(osv.osv):
     _name = 'mro.tools'
     _description = 'Tools'
     _inherit = ['mail.thread']
-    
+
     def name_get(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -521,12 +523,12 @@ class mro_tools(osv.osv):
         'active': True,
         'tools_place':'movable',
     }
-    
+
 class generic_assets(osv.osv):
     _name = 'generic.assets'
     _description = 'Generic Assets'
-    
-    
+
+
     def _get_date(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         done=[]
@@ -548,7 +550,7 @@ class generic_assets(osv.osv):
                 if other:
                     res[asset.id]['date_next'] = other[0]
         return res
-    
+
     _columns = {
         'name': fields.char('Description', size=128),
         'date_start': fields.date('Date start'),
@@ -564,18 +566,18 @@ class generic_assets(osv.osv):
         'default_code': fields.related('asset_id','default_code',string='Reference',type='char',readonly=True),
         'loan': fields.boolean('Loan'),
     }
-    
+
     _defaults = {
     }
-    
+
     _sql_constraints = [
-                     ('name_unique', 
+                     ('name_unique',
                       'unique(asset_id,serial_id,partner_id)',
                       'Serial number must be unique per product and per partner')
     ]
-    
+
     def _check_date(self, cr, uid, ids, context=None):
-        
+
         for asset in self.browse(cr,uid,ids,context=context):
             if asset.serial_id and asset.date_start and asset.date_end:
                 cr.execute('select id,partner_id,date_start,date_end from generic_assets \
@@ -595,7 +597,7 @@ class generic_assets(osv.osv):
     _constraints = [
         (_check_date, 'Check assets dates.', ['date_start','date_end']),
     ]
-    
+
     def onchange_asset(self, cr, uid, ids, product, context=None):
         context = context or {}
         result = {}
@@ -605,22 +607,19 @@ class generic_assets(osv.osv):
         return {'value': result}
 
 
-        
+
 class mro_tools_booking(osv.osv):
     _name='mro.tools.booking'
     _description = 'Booking for tools'
     _inherit = ['mail.thread']
 
     def set_open(self,cr,uid,ids,context=None):
-        print ids
         self.write(cr,uid,ids,{'state':'open'},context=context)
 
     def set_demand(self,cr,uid,ids,context=None):
-        print ids
         self.write(cr,uid,ids,{'state':'draft'},context=context)
 
     def set_cancel(self,cr,uid,ids,context=None):
-        print ids
         self.write(cr,uid,ids,{'state':'cancelled'},context=context)
 
     def get_tech_name(self,cr,uid,ids,field_name,arg,context=None):
@@ -650,7 +649,7 @@ class mro_tools_booking(osv.osv):
     _defaults={
         'state':'draft',
     }
-    
+
 
     def check_tools_available(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
         if tools_id and date_booking_begin and date_booking_end:
@@ -658,7 +657,7 @@ class mro_tools_booking(osv.osv):
             if id:
                 plus="AND id<>%s" % (id[0])
             cr.execute("""
-                SELECT id 
+                SELECT id
                 FROM   mro_tools_booking
                 WHERE tools_id=%s and (date_booking_begin, date_booking_end) OVERLAPS (TIMESTAMP '%s', TIMESTAMP '%s')
                  %s
