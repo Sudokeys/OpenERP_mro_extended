@@ -50,7 +50,6 @@ STATE_SELECTION = [
         ('done', 'Done'),
         ('cancel', 'Canceled')
     ]
-TOOLS_PLACE=[('fixed','Fixed'),('movable','Movable')]
 
 PLACE_SELECTION = [('site','Site'),
                    ('workshop','Atelier'),
@@ -487,6 +486,9 @@ class mro_tools(osv.osv):
         'active': fields.boolean('Active'),
         'model': fields.char('Model', size=128),
         'manufacturer': fields.char('Manufacturer', size=128),
+        'cert_id': fields.char(u'N° du certificat'),
+        'prestataire': fields.char('Prestataire'),
+        'reservable': fields.boolean('Réservable'),
         'serial': fields.char('Serial no.', size=128),
         'data': fields.binary('File'),
         # image: all image fields are base64 encoded and PIL-supported
@@ -512,7 +514,7 @@ class mro_tools(osv.osv):
         'date_validity_end': fields.date('Validity date end'),
         'date_validity_3m':fields.function(_get_validity_3m,type='boolean',string='Validity end in 3 months'),
         'purchase_value':fields.float('Purchase value',digits_compute=dp.get_precision('Product Price')),
-        'tools_place':fields.selection(selection=TOOLS_PLACE,string='Place'),
+        'mobile': fields.boolean('Mobile'),
         'booking_ids':fields.one2many('mro.tools.booking','tools_id',string='Booking'),
         'inventory_num':fields.char(u'Inventory number'),
 
@@ -521,7 +523,6 @@ class mro_tools(osv.osv):
     _order='name asc'
     _defaults = {
         'active': True,
-        'tools_place':'movable',
     }
 
 class generic_assets(osv.osv):

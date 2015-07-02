@@ -18,13 +18,13 @@
                     <button name="button_do_invoice" states="invoicing" string="Do invoice" class="oe_highlight"/>
                     <button name="button_done" states="invoiced" string="Done" class="oe_highlight"/>
                 </button>
-                
-               
+
+
                 <xpath expr="/form/sheet/group" position="replace">
                 <group>
                     <group name="partner">
                         <field name="partner_id" on_change="onchange_partner(partner_id)"/>
-                        
+
                         <field name="contract_id"  attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
 
                         <field name="id" invisible="1"/>
@@ -66,7 +66,7 @@
                 </group>
                 <button name="def_verif_tools" attrs="{'invisible':[('warning_tools','=','0')]}" string="Check the availability of tools" class="oe_highlight" type="object" />
 	                	<separator colspan="1"/>
-                 <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">	                
+                 <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">
 	                	<field name="warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" colspan="1"/>
 	                </group>
 	                <separator colspan="1"/>
@@ -75,14 +75,14 @@
 
                 <field name="tools_description" position="replace">
                     <field name="tools_description" invisible="True"/>
-                    <field name="tools_ids"/> 
+                    <field name="tools_ids"/>
                 </field>
-                
+
                 <page string="Parts" position="before">
                     <page string="Assets" autofocus="True">
                         <group string="Assets involved">
                             <field name="asset_ids" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id':partner_id}" nolabel="1" >
-                                 <tree editable="top"> 
+                                 <tree editable="top">
                                     <field name="default_code"/>
                                     <field name="asset_id" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
                                     <field name="serial_id" context="{'default_product_id':asset_id}" domain="[('product_id','=',asset_id)]" options='{"no_open": True}'/>
@@ -119,11 +119,11 @@
                         <field name="parts_location_id" domain="[('usage','=','internal')]" groups="stock.group_locations"/>
                     </group>
                 </field>
-                
+
                 <field name="parts_id" position="replace">
                     <field name="parts_id" domain="[('mro_type','=','part')]" context="{'default_mro_type':'part'}" on_change="onchange_parts(parts_id)"/>
                 </field>
-                
+
 <!--
                 <field name="problem_description" position="replace">
                     <field name="problem_description" colspan="4" nolabel="1" widget="html"/>
@@ -131,7 +131,7 @@
 -->
             </field>
         </record>
-        
+
         <record id="mro_order_tree_view" model="ir.ui.view">
             <field name="name">mro.order.tree</field>
             <field name="model">mro.order</field>
@@ -143,7 +143,7 @@
                 </field>
             </field>
         </record>
-        
+
         <record id="mro_order_calendar_view" model="ir.ui.view">
             <field name="name">mro.order.calendar</field>
             <field name="model">mro.order</field>
@@ -157,7 +157,7 @@
                 </calendar>
             </field>
         </record>
-        
+
         <record id="mro_order_search" model="ir.ui.view">
             <field name="name">mro.order.search</field>
             <field name="model">mro.order</field>
@@ -168,14 +168,14 @@
                 </filter>
             </field>
         </record>
-          
+
 
         <!--MRO TOOLS-->
 
         <record id="mro_tools_search" model="ir.ui.view">
             <field name="name">mro.tools.search</field>
             <field name="model">mro.tools</field>
-            
+
             <field name="arch" type="xml">
                 <search string="Tools">
                    <field name="name"/>
@@ -205,7 +205,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <record id="mro_tools_form_view" model="ir.ui.view">
             <field name="name">mro.tools.form</field>
             <field name="model">mro.tools</field>
@@ -216,7 +216,7 @@
                     <sheet>
                         <field name="image_medium" widget="image" class="oe_avatar oe_left"/>
                         <div class="oe_title">
-                            <h1>Tool Name <field name="name" class="oe_inline"/></h1>
+                            <h1>Nom de l'outil<field name="name" class="oe_inline"/></h1>
                         </div>
                         <group>
                             <field name="active"/>
@@ -234,7 +234,9 @@
                                     <group>
                                         <field name="date_validity_begin"/>
                                         <field name="date_validity_end"/>
-                                        <field name="tools_place"/>
+                                        <field name="mobile"/>
+                                        <field name="cert_id"/>
+                                        <field name="prestataire"/>
                                         <field name="data"/>
                                     </group>
                                 </group>
@@ -242,6 +244,9 @@
                             <page string="Bookings" >
                                 <field name="id" invisible="1"/>
                                 <separator string="Bookings" colspan="4"/>
+                                <group name="reservation">
+                                    <field name="reservable"/>
+                                </group>
                                 <field name="booking_ids" colspan="4" nolabel="1"
                                 context="{'default_tools_id':id}">
                                     <tree string="Booking tools">
@@ -262,7 +267,7 @@
                 </form>
             </field>
         </record>
-        
+
         <!-- Tool Kanban View  -->
         <record model="ir.ui.view" id="mro_tools_kanban_view">
             <field name="name">Tool Kanban</field>
@@ -289,7 +294,7 @@
                 </kanban>
             </field>
         </record>
-            
+
         <record id="action_mro_tools" model="ir.actions.act_window">
             <field name="name">Tools</field>
             <field name="type">ir.actions.act_window</field>
@@ -297,7 +302,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
-            
+
         <record id="action_mro_tools_3months" model="ir.actions.act_window">
             <field name="name">End of validity in 3 months</field>
             <field name="type">ir.actions.act_window</field>
@@ -314,19 +319,19 @@
             id="menu_maintenance_tools"
             parent="base.menu_mro_root"
             sequence="9"/>
-            
+
         <menuitem name="Tools"
             action="action_mro_tools"
             id="menu_maintenance_mro_tools"
             parent="menu_maintenance_tools"
             sequence="100"/>
-            
+
         <menuitem name="End of validity in 3 months"
             action="action_mro_tools_3months"
             id="menu_maintenance_mro_tools_3months"
             parent="menu_maintenance_tools"
             sequence="110"/>
-        
+
         <!-- Booking tools -->
         <record id="mro_booking_tools_search_view" model="ir.ui.view">
             <field name="name">mro.booking.tools.search</field>
@@ -367,16 +372,16 @@
             <field name="model">mro.tools.booking</field>
             <field name="arch" type="xml">
                 <form string="Booking Tools" version="7.0">
-                                 
-             	<header attrs=""> 
-                          <button name="set_demand" string="Demand" type="object" states="open,cancelled" />  
-                          <button name="set_open" string="Reserve" type="object" states="draft,cancelled" class="oe_highlight"/>  
-                          <button name="set_cancel" string="Cancel" type="object" states="draft,open" />  
+
+             	<header attrs="">
+                          <button name="set_demand" string="Demand" type="object" states="open,cancelled" />
+                          <button name="set_open" string="Reserve" type="object" states="draft,cancelled" class="oe_highlight"/>
+                          <button name="set_cancel" string="Cancel" type="object" states="draft,open" />
                         <field name="state"  widget="statusbar"
                             statusbar_visible="draft,open,cancelled" />
 
-             	</header> 
-             
+             	</header>
+
                     <sheet>
                         <group name="gb1" colspan="4" col="4">
                             <group name="gb11" colspan="2" col="2">
@@ -404,7 +409,7 @@
             <field name="model">mro.tools.booking</field>
             <field name="priority" eval="2"/>
             <field name="arch" type="xml">
-			  
+
                 <calendar string="Bookings"  date_start="date_booking_begin" color="tools_id" date_stop="date_booking_end">
                     <field name="tools_id"/>
                     <field name="name"/>
@@ -439,15 +444,15 @@
             </field>
 
         </record>
-        
-        
+
+
         <menuitem name="Booking tools"
             action="action_mro_booking_tools"
             id="menu_maintenance_mro_booking_tools"
             parent="menu_maintenance_tools"
             sequence="120"/>
-            
-        
+
+
         <record id="action_assets" model="ir.actions.act_window">
             <field name="name">Assets</field>
             <field name="type">ir.actions.act_window</field>
@@ -457,7 +462,7 @@
             <field name="domain">[('mro_type','=','asset')]</field>
             <field name="context">{'default_mro_type':'asset'}</field>
         </record>
-        
+
         <delete model="ir.ui.menu" search="[('name', '=', 'Assets')]"/>
         <menuitem name="Assets"
             id="menu_maintenance_assets"
@@ -474,7 +479,7 @@
             parent="menu_maintenance_assets"
             groups="mro.group_mro_user"
             sequence="100"/>
-            
+
         <delete model="ir.ui.menu" search="[('name', '=', 'Parts')]"/>
         <record id="mro_product_normal_action" model="ir.actions.act_window">
             <field name="name">MRO Parts</field>
@@ -497,6 +502,6 @@
             id="mro_menu_maintenance_parts_parts"
             parent="mro_menu_maintenance_parts"
             sequence="100"/>
-    
+
     </data>
 </openerp>
