@@ -385,7 +385,7 @@
                     <sheet>
                         <group name="gb1" colspan="4" col="4">
                             <group name="gb11" colspan="2" col="2">
-                                <field name="tools_id" on_change="onchange_tools_id(tools_id,date_booking_begin,date_booking_end,context)"/>
+                                <field name="tools_id" domain="[('reservable','=',1)]" on_change="onchange_tools_id(tools_id,date_booking_begin,date_booking_end,context)"/>
                                 <field name="calibration_booking"/>
                                 <field name="technician_id" attrs="{'required':[('calibration_booking','=',False)]}"/>
                             </group>
@@ -393,8 +393,8 @@
                                 <field name="date_booking_begin" required="1" on_change="onchange_booking_begin(date_booking_begin,context)"/>
                                 <field name="date_booking_end" required="1" on_change="onchange_booking(tools_id,date_booking_begin,date_booking_end,context)"/>
                                 <separator string="Comment" colspan="2"/>
-                                <field name="booking_comment" nolabel="1" colspan="2"/>
                             </group>
+                            <field name="booking_comment" nolabel="1"/>
                         </group>
                      </sheet>
                      <div class="oe_chatter">
