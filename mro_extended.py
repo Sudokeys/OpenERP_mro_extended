@@ -430,6 +430,18 @@ class mro_order(osv.osv):
         return move_id
 
 
+class mro_tools_type(osv.osv):
+    """
+    Tools Type
+    """
+    _name = 'mro.tools.type'
+    _description = 'Tools Type'
+
+    _columns = {
+        'name': fields.char(string='name'),
+        'code': fields.char(string='code'),
+    }
+
 class mro_tools(osv.osv):
     """
     Tools
@@ -443,7 +455,7 @@ class mro_tools(osv.osv):
             context = {}
         if not ids:
             return []
-        res = [(r['id'], r['name']+(r['model'] and ' '+r['model'] or '')  or r['name']  ) for r in self.read(cr, uid, ids, ['model','name'], context)]
+        res = [(r['id'], (r['type'] and r['type'][1]+' '+r['name']) or r['name']) for r in self.read(cr, uid, ids, ['type','name'], context)]
 
         return res
 
@@ -453,7 +465,7 @@ class mro_tools(osv.osv):
         if not context:
             context={}
         ids=[]
-        ids = self.search(cr, user, ['|',('name', operator, name),('model', operator, name)] + args,limit=limit, context=context)
+        ids = self.search(cr, user, ['|','|',('name', operator, name),('model', operator, name),('type', operator, name)] + args,limit=limit, context=context)
         return self.name_get(cr, user, ids, context)
 
     def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
@@ -483,6 +495,7 @@ class mro_tools(osv.osv):
 
     _columns = {
         'name': fields.char('Tool Name', size=128, required=True),
+        'type': fields.many2one('mro.tools.type', string='Type'),
         'active': fields.boolean('Active'),
         'model': fields.char('Model', size=128),
         'manufacturer': fields.char('Manufacturer', size=128),
