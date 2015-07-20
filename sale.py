@@ -35,6 +35,7 @@ class sale_order_line(osv.osv):
     _columns={
         'assets_id':fields.many2one('product.product',u'Asset'),
         'is_contract':fields.boolean(u'Is contract'),
+        'asset_rel_ids':fields.many2many('product.product',string=u'Domaine assets'),
     }
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
@@ -48,4 +49,11 @@ class sale_order_line(osv.osv):
             prod=self.pool.get('product.product').browse(cr,uid,product,context)
             if prod and prod.contract:
                 res['is_contract'] = True
+        if partner_id:
+            assets=[]
+            partner=self.pool.get('res.partner').browse(cr,uid,partner_id,context)
+            if partner and partner.asset_ids:
+                for asset in partner.asset_ids:
+                    assets.append(asset.asset_id.id)
+                res['asset_rel_ids'] = [(6,0,assets)]
         return {'value': res}
