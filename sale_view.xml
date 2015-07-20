@@ -19,10 +19,11 @@
                     </page>
                 </notebook>
                 <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/form/field[@name='name']" position="after">
-                    <group name="add_assets" colspan="4">
-                        <separator string="Ajouter des Equipements"/>
-                        <field name="is_contract" invisible="1"/>
-                        <field name="assets_ids" nolabel="1" attrs="{'invisible':[('is_contract','!=',True)]}" domain="[('mro_type','=','asset')]"/>
+                    <field name="is_contract" invisible="1"/>
+                    <group name="add_assets" colspan="2" attrs="{'invisible':[('is_contract','!=',True)]}">
+                        <separator string="Ajouter un Equipement" colspan="2"/>
+                        <newline/>
+                        <field name="assets_id" string="Equipement" domain="[('mro_type','=','asset')]"/>
                     </group>
                 </xpath>
             </field>

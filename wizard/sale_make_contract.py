@@ -106,18 +106,17 @@ class sale_make_contract(osv.osv_memory):
                         'contract_id': new_id,
                     }
 
-                    if line.assets_ids:
-                        for asset in line.assets_ids:
-                            serv_id=analserv_obj.create(cr,uid,vals1,context=context)
-                            vals = {
-                                'name': asset.name,
-                                'asset_id': asset.id,
-                                'contract_id': new_id,
-                                'partner_id': partner.id,
-                                'service_id':serv_id,
-                                }
-                            ass_id=geneasset_obj.create(cr,uid,vals,context=context)
-                            analserv_obj.write(cr,uid,serv_id,{'asset_id':ass_id},context=context)
+                    if line.assets_id:
+                        serv_id=analserv_obj.create(cr,uid,vals1,context=context)
+                        vals = {
+                            'name': line.assets_id.name,
+                            'asset_id': line.assets_id.id,
+                            'contract_id': new_id,
+                            'partner_id': partner.id,
+                            'service_id':serv_id,
+                            }
+                        ass_id=geneasset_obj.create(cr,uid,vals,context=context)
+                        analserv_obj.write(cr,uid,serv_id,{'asset_id':ass_id},context=context)
                     else:
                         serv_id=analserv_obj.create(cr,uid,vals1,context=context)
 
@@ -209,9 +208,8 @@ class sale_make_contract(osv.osv_memory):
             for line in sale.order_line:
 #                if line.product_id.mro_type=='asset':
 #                    assets.append(line.product_id.id)
-                if line.assets_ids:
-                    for ass in line.assets_ids:
-                        assets.append(ass.id)
+                if line.assets_id:
+                    assets.append(line.assets_id.id)
         return assets
         
     def _get_services(self, cr, uid, context=None):

@@ -33,8 +33,8 @@ class sale_order_line(osv.osv):
     _inherit='sale.order.line'
 
     _columns={
-        'assets_ids':fields.many2many('product.product','sale_order_line_assets_rel','order_line_id','asset_id',u'Assets'),
-        'is_contract':fields.boolean(u'Is contratct'),
+        'assets_id':fields.many2one('product.product',u'Asset'),
+        'is_contract':fields.boolean(u'Is contract'),
     }
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
@@ -43,7 +43,7 @@ class sale_order_line(osv.osv):
         context = context or {}
         res=super(sale_order_line,self).product_id_change(cr, uid, ids, pricelist, product, qty,
             uom, qty_uos, uos, name, partner_id, lang, update_tax, date_order, packaging, fiscal_position, flag, context)
-
+        res['is_contract'] = False
         if product:
             prod=self.pool.get('product.product').browse(cr,uid,product,context)
             if prod and prod.contract:
