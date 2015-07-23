@@ -348,7 +348,7 @@ class account_analytic_account(osv.osv):
                     'description': '',
                     'origin': data.code,
                     'asset_ids': [(6,0,[x.id for x in data.asset_ids])],
-                    'maintenance_type': 'pm',
+                    'maintenance_type': 'm12',
                     'date_planned': r_date.strftime("%Y-%m-%d %H:%M:%S"),
                     'date_scheduled': r_date.strftime("%Y-%m-%d %H:%M:%S"),
                     'date_execution': r_date.strftime("%Y-%m-%d %H:%M:%S"),
