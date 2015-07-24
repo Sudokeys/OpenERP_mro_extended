@@ -308,6 +308,10 @@ class account_analytic_account(osv.osv):
             mro_obj.unlink(cr,uid,[x.id for x in c.mro_order_ids if x.state == 'draft'],context=context)
             
         for data in contracts:
+            #Technician mandatory
+            if not data.partner_id.technician:
+                raise osv.except_osv(_('Error!'), _("Please link a technician in the partner."))
+            
             if not data.rrule:
                 result.append(data.id)
                 continue

@@ -1639,3 +1639,8 @@ msgstr "Samedi"
 msgid "Fifth"
 msgstr "Cinquième"
 
+#. module: mro_extended
+#: code:addons/mro_extended/sale_make_mro.py:107
+#, python-format
+msgid "Please link a technician in the partner."
+msgstr "Liez un technicien au partenaire svp"

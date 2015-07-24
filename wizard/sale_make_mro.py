@@ -102,6 +102,9 @@ class sale_make_mro(osv.osv_memory):
                     'duration': make.duration,
                 }
                 if partner.id:
+                    #Technician mandatory
+                    if not partner.technician:
+                        raise osv.except_osv(_('Error!'), _("Please link a technician in the partner."))
                     vals['technician'] = partner.technician and partner.technician.id or False
                 new_id = mro_obj.create(cr, uid, vals, context=context)
                 for line in make.asset_ids:
