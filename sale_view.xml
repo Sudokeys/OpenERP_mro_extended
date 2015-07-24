@@ -21,10 +21,14 @@
                 <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/form/field[@name='name']" position="after">
                     <field name="is_contract" invisible="1"/>
                     <field name="asset_rel_ids" invisible="1"/>
-                    <group name="add_assets" colspan="2" attrs="{'invisible':[('is_contract','!=',True)]}">
+                    <group name="add_assets" col="6" colspan="2" attrs="{'invisible':[('is_contract','!=',True)]}">
                         <separator string="Ajouter un Equipement" colspan="2"/>
                         <newline/>
                         <field name="assets_id" string="Equipement" domain="[('mro_type','=','asset'),('id','in',asset_rel_ids[0][2])]"/>
+                        <field name="assets_no_domain" string="Tous les équipements" 
+                            on_change="onchange_domain(asset_rel_ids,assets_no_domain,assets_partner,parent.partner_id)"/>
+                        <field name="assets_partner" string="Client filtre"
+                            on_change="onchange_domain(asset_rel_ids,assets_no_domain,assets_partner,parent.partner_id)"/>
                     </group>
                 </xpath>
             </field>
