@@ -105,20 +105,11 @@ class sale_make_contract(osv.osv_memory):
                         'price': line.price_unit,
                         'contract_id': new_id,
                     }
-
+                    serv_id=analserv_obj.create(cr,uid,vals1,context=context)
                     if line.assets_id:
-                        serv_id=analserv_obj.create(cr,uid,vals1,context=context)
-                        vals = {
-                            'name': line.assets_id.name,
-                            'asset_id': line.assets_id.id,
-                            'contract_id': new_id,
-                            'partner_id': partner.id,
-                            'service_id':serv_id,
-                            }
-                        ass_id=geneasset_obj.create(cr,uid,vals,context=context)
-                        analserv_obj.write(cr,uid,serv_id,{'asset_id':ass_id},context=context)
-                    else:
-                        serv_id=analserv_obj.create(cr,uid,vals1,context=context)
+                        geneasset_obj.write(cr,uid,line.assets_id.id,{'contract_id':new_id},context=context)
+                        contract_obj.write(cr,uid,new_id,{'asset_ids':[(4,line.assets_id.id)]},context=context)
+                        analserv_obj.write(cr,uid,serv_id,{'asset_id':line.assets_id.id},context=context)
 
 
 
@@ -209,7 +200,7 @@ class sale_make_contract(osv.osv_memory):
 #                if line.product_id.mro_type=='asset':
 #                    assets.append(line.product_id.id)
                 if line.assets_id:
-                    assets.append(line.assets_id.id)
+                    assets.append(line.assets_id.asset_id.id)
         return assets
         
     def _get_services(self, cr, uid, context=None):

@@ -33,11 +33,11 @@ class sale_order_line(osv.osv):
     _inherit='sale.order.line'
 
     _columns={
-        'assets_id':fields.many2one('product.product',u'Asset'),
+        'assets_id':fields.many2one('generic.assets',u'Asset'),#Changement d'objet, vider la colonne avant update (update sale_order_line set assets_id = NULL )
         'assets_partner':fields.many2one('res.partner',u'Asset partner filter'),
         'is_contract':fields.boolean(u'Is contract'),
         'assets_no_domain':fields.boolean(u'All assets'),
-        'asset_rel_ids':fields.many2many('product.product',string=u'Domaine assets'),
+        'asset_rel_ids':fields.many2many('generic.assets',string=u'Domaine assets'),
         
     }
 
@@ -57,22 +57,22 @@ class sale_order_line(osv.osv):
             partner=self.pool.get('res.partner').browse(cr,uid,partner_id,context)
             if partner and partner.asset_ids:
                 for asset in partner.asset_ids:
-                    assets.append(asset.asset_id.id)
+                    assets.append(asset.id)
                 res['asset_rel_ids'] = [(6,0,assets)]
         return {'value': res}
         
     def onchange_domain(self, cr, uid, ids, asset_rel_ids,assets_no_domain,assets_partner,partner_id, context=None):
         context = context or {}
         domain = {}
-        domain['assets_id']=[('mro_type','=','asset'),('id','in',asset_rel_ids[0][2])]
+        domain['assets_id']=[('id','in',asset_rel_ids[0][2])]
         if assets_no_domain and not assets_partner:
-            domain['assets_id']=[('mro_type','=','asset')]
+            domain['assets_id']=[]
             return {'domain': domain}
         active_partner = assets_partner or partner_id
         if active_partner:
             assets=[]
             partner=self.pool.get('res.partner').browse(cr,uid,active_partner,context)
             for asset in partner.asset_ids:
-                assets.append(asset.asset_id.id)
-            domain['assets_id']=[('mro_type','=','asset'),('id','in',assets)]
+                assets.append(asset.id)
+            domain['assets_id']=[('id','in',assets)]
         return {'domain': domain}
