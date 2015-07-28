@@ -650,7 +650,7 @@ class mro_tools_booking(osv.osv):
     _columns={
         'name':fields.function(get_tech_name,type='char',string='Name'),
         'tools_id':fields.many2one('mro.tools','Tool',select=True),
-        'technician_id': fields.many2one('hr.employee','Technician',select=True),
+        'technician_id': fields.many2one('res.users','Technician',select=True),
         'calibration_booking':fields.boolean('Calibration booking'),
         'date_booking_begin':fields.date('Booking date begin'),
         'date_booking_end':fields.date('Booking date end'),
@@ -664,42 +664,17 @@ class mro_tools_booking(osv.osv):
         'state':'draft',
     }
 
-
-    def check_tools_available(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
-        if tools_id and date_booking_begin and date_booking_end:
-            plus=''
-            if id:
-                plus="AND id<>%s" % (id[0])
-            cr.execute("""
-                SELECT id
-                FROM   mro_tools_booking
-                WHERE tools_id=%s and (date_booking_begin, date_booking_end) OVERLAPS (TIMESTAMP '%s', TIMESTAMP '%s')
-                 %s
-            """ %(tools_id,date_booking_begin,date_booking_end,plus))
-            res=cr.fetchall()
-            if res and len(res)>0:
-                return False
-        return True
     ############################################################################
     # on_change
     ############################################################################
-    def onchange_tools_id(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
-        value={}
-        warning={}
-        if tools_id and date_booking_begin and date_booking_end:
-            #check if tools is available betwen date begin and date end
-            res=self.check_tools_available(cr,uid,id,tools_id,date_booking_begin,date_booking_end,context)
-            if not res:
-                warning={'title':u'Warning !!','message':u'Tools not available for this dates'}
-                value={'tools_id':False}
 
-        return {'value':value,'warning':warning}
     def onchange_booking_begin(self,cr,uid,id,date_booking_begin,context=None):
         value={'date_booking_end':False}
         if date_booking_begin:
             dt=datetime.strptime(date_booking_begin, '%Y-%m-%d')+relativedelta(days=4)
             value['date_booking_end']=dt.strftime('%Y-%m-%d')
         return {'value':value}
+
     def onchange_booking(self,cr,uid,id,tools_id,date_booking_begin,date_booking_end,context=None):
         value={}
         warning={}
