@@ -30,7 +30,7 @@
                         on_change="onchange_domain(asset_rel_ids,assets_no_domain,assets_partner,parent.partner_id)"/>
                 </xpath>
                  <xpath expr="//field[@name='order_line']" position="before">
-                    <button states="draft" string="Import équipements" name="%(action_sale_import_assets)d" type="action" class="oe_highlight"/>
+                    <button  string="Import équipements" attrs="{'invisible':['|',('type','in',['DDDV']),('state','!=','draft')]}"  name="%(action_sale_import_assets)d" type="action" class="oe_highlight"/>
                 </xpath>
                  <xpath expr="//field[@name='order_line']/tree" position="attributes">
                     <attribute name="editable">bottom</attribute>
