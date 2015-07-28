@@ -44,6 +44,7 @@ Required modules:
         'wizard/refuse_amendment_view.xml',
         'wizard/create_amendment_view.xml',
         'wizard/cancelled_contract_view.xml',
+        'wizard/sale_import_assets_view.xml',
         'report/tools_planning_print.xml',
         'mro_extended_view.xml',
         'mro_extended_workflow.xml',

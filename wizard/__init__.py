@@ -25,4 +25,5 @@ import refuse_amendment
 import create_amendment
 import tools_planning_wiz
 import cancelled_contract
+import sale_import_assets
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

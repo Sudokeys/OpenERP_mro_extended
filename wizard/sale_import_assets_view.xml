@@ -1,0 +1,33 @@
+<openerp>
+   <data>
+
+       <record id="view_sale_import_assets" model="ir.ui.view">
+          <field name="name">sale.import.assets.form</field>
+          <field name="model">sale.import.assets</field>
+          <field name="arch" type="xml">
+            <form string="Import équipements"  version="7.0">
+                <group col="2">
+                    <field name="partner_id" invisible="1"/>
+                    <field name="product_contract_id" domain="[('contract','=',True)]"/>
+                    <field name="asset_ids" context="{'search_default_partner_id':partner_id}"/>
+                </group>
+                <footer>
+                    <button name="importer" string="Importer" type="object" class="oe_highlight"/>
+                    ou
+                    <button string="Annuler" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+          </field>
+       </record>
+
+       <record id="action_sale_import_assets" model="ir.actions.act_window">
+          <field name="name">Import équipements</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sale.import.assets</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+   </data>
+</openerp>
