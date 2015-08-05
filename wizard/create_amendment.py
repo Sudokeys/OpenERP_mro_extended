@@ -25,11 +25,12 @@ from openerp.tools.translate import _
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
+
 class services_assets_wizard(osv.osv_memory):
 
     _name = "services.assets.wizard"
     _description = "Contract services / Assets"
-    
+
     _columns = {
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
         'service_real_id': fields.many2one('account.analytic.services', 'Contract service real id'),
@@ -41,11 +42,12 @@ class services_assets_wizard(osv.osv_memory):
         #~ 'create_amendment_id_remove': fields.many2one('create.amendment', 'Amendment creation remove'),
     }
 
+
 class create_amendment(osv.osv_memory):
 
     _name = "create.amendment"
     _description = "Create Amendment"
-    
+
     def default_get(self, cr, uid, fields, context=None):
         if context is None: context = {}
         res = super(create_amendment, self).default_get(cr, uid, fields, context=context)
@@ -64,9 +66,9 @@ class create_amendment(osv.osv_memory):
                                         'price':service.price,
                                         })
         res['service_asset_ids_old'] = service_asset_ids
-        res['contract_id'] = contract.id          
+        res['contract_id'] = contract.id
         return res
-    
+
     def confirm(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -133,10 +135,10 @@ class create_amendment(osv.osv_memory):
                                                 #~ 'contract_id':contract_id,
                                                 #~ })
                 #~ service_obj.write(cr,uid,service_id,{'asset_id':asset_id})
-        
+
         return {'type': 'ir.actions.act_window_close'}
 
-            
+
     _columns = {
         'name': fields.char('Description', size=128),
         'date': fields.date('Date'),
@@ -148,7 +150,10 @@ class create_amendment(osv.osv_memory):
         'service_asset_ids_new': fields.one2many('services.assets.wizard','create_amendment_id_new','Contract services / Assets'),
         'service_asset_ids_remove': fields.many2many('account.analytic.services',string='Contract services / Assets'),
         'price_rise': fields.float('Price Rise (%)'),
-    }
+        'order_number':fields.char(u'N° de commande'),
+        'date_invoice': fields.date('Date de facture'),
+        'invoice_number': fields.char(u'N° de facture'),
+        }
     _defaults = {
         'price_rise': 3.00,
     }
