@@ -1,0 +1,34 @@
+<openerp>
+    <data>
+      <record id="view_amendments_tree" model="ir.ui.view">
+        <field name="name">create.amendment</field>
+        <field name="model">create.amendment</field>
+        <field name="arch" type="xml">
+          <tree string="Amendments">
+            <field name="name"/>
+            <field name="date"/>
+            <field name="date_begin"/>
+            <field name="contract_id"/>
+            <field name="order_number"/>
+            <field name="price_rise"/>
+          </tree>
+        </field>
+      </record>
+
+    <record id="tools_amendments_wiz_action" model="ir.actions.act_window">
+      <field name="name">Suivi des avenants en cours</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">create.amendment</field>
+      <field name="view_type">tree</field>
+      <field name="view_mode">tree,form</field>
+      <field name="target">new</field>
+    </record>
+    <menuitem name="Suivi des avenants en cours"
+              action="tools_amendments_wiz_action"
+              id="tools_follow_amendments_wiz_menu"
+              parent="base.menu_sales"
+              sequence="8"/>
+
+
+  </data>
+</openerp>
