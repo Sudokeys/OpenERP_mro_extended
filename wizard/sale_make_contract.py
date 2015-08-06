@@ -22,6 +22,7 @@
 import time
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
+from datetime import timedelta, datetime
 
 
 class sale_make_contract(osv.osv_memory):
@@ -233,6 +234,20 @@ class sale_make_contract(osv.osv_memory):
         'service_ids': _get_services,
         'date_planned': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
     }
+class account_analytic_account(osv.osv):
+     _inherit = 'account.analytic.account'
+
+
+     _columns = {
+        'description2': fields.related('Description', 'description2', type='many2one', relation='account.analytic.account',  store=True, readonly=True),
+        'date_start': fields.Date.today('Start Date', required=True),
+        'date': fields.Date('End Date', required=True, compute='_date_fin'),
+
+     }
+    def _date_fin(self, cr, uid, context=None):
+        self.validity
+        if self.validity is not None
+            self.date = datetime.now() + timedelta(days=self.validity)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
