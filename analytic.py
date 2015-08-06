@@ -67,7 +67,7 @@ def get_recurrent_dates(rrulestring, exdate, startdate=None, exrule=None):
 
 class account_analytic_account(osv.osv):
     _inherit = 'account.analytic.account'
-    
+
     def name_get(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -81,7 +81,7 @@ class account_analytic_account(osv.osv):
         res = [(r['id'], r[rec_name]+(r['code'] and ' '+r['code'] or '')  or r[rec_name]  ) for r in self.read(cr, uid, ids, ['code',rec_name], context)]
 
         return res
-    
+
     def _get_rulestring(self, cr, uid, ids, name, arg, context=None):
         """
         Gets Recurrence rule string according to value type RECUR of iCalendar from the values given.
@@ -121,7 +121,7 @@ class account_analytic_account(osv.osv):
                 data.update(update_data)
                 super(calendar_event, obj).write(cr, uid, ids, data, context=context)
         return True
-        
+
     def _get_amendment(self, cr, uid, ids, name, arg, context=None):
         result = {}
         if not isinstance(ids, list):
@@ -137,7 +137,7 @@ class account_analytic_account(osv.osv):
                     if amend_data['state'] == 'draft':
                         result[id]=True
         return result
-    
+
     def _get_amendment_search(self, cr, uid, obj, name, domain, context=None):
         res=[]
         ids=self.search(cr,uid,[],context=context)
@@ -146,7 +146,7 @@ class account_analytic_account(osv.osv):
                 if amend.state=='draft':
                     res.append(contract.id)
         return [('id','in',res)]
-    
+
     def _amount_service(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for contract in self.browse(cr, uid, ids, context=context):
@@ -156,13 +156,13 @@ class account_analytic_account(osv.osv):
                 val += line.price
             res[contract.id] = val
         return res
-    
+
     def _get_contract(self, cr, uid, ids, context=None):
         result = {}
         for line in self.pool.get('account.analytic.services').browse(cr, uid, ids, context=context):
             result[line.contract_id.id] = True
         return result.keys()
-    
+
     def _amount_marge(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         _oproduct=self.pool.get('product.product')
@@ -187,13 +187,13 @@ class account_analytic_account(osv.osv):
                 val=(tpv-tp)/tpv
                 res[contract.id] = val*100
             else : 0.0
-        return res    
-    
+        return res
+
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
         'asset_ids': fields.many2many('generic.assets',string='Assets'),
         'service_ids': fields.one2many('account.analytic.services','contract_id','Contract services'),
-        'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Amendments'),
+        'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Amendments',readonly=True),
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
         'date_refused': fields.date('Refused Date'),
         'date_wished': fields.date('Wished Date'),
@@ -249,13 +249,13 @@ class account_analytic_account(osv.osv):
                 'account.analytic.account': (lambda self, cr, uid, ids, c={}: ids, ['service_ids'], 10),
                 'account.analytic.services': (_get_contract, ['price'], 10),
             },
-            type='float',track_visibility='always'), 
+            type='float',track_visibility='always'),
         #~ 'state': fields.selection([('template', 'Template'),('draft','New'),('open','In Progress'),('pending','To Renew'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
         'remise': fields.float('Remise en %'),
         'marge': fields.function(_amount_marge, digits_compute=dp.get_precision('Account'), string='Marge en %',
-            type='float',track_visibility='always'), 
+            type='float',track_visibility='always'),
     }
-    
+
     _defaults = {
         'state':'draft',
         'date': lambda *a: (datetime.strptime(time.strftime('%Y-%m-%d'),'%Y-%m-%d')+relativedelta(years=1)).strftime('%Y-%m-%d'),
@@ -273,7 +273,7 @@ class account_analytic_account(osv.osv):
             if 'order' in context.keys():
                 order=context.get('order')
         return super(account_analytic_account, self).search(cr, uid, args, offset, limit, order, context, count=False)
-        
+
     def on_change_partner_id(self, cr, uid, ids,partner_id, name, context={}):
         res={}
         if partner_id:
@@ -289,15 +289,15 @@ class account_analytic_account(osv.osv):
                     #~ if exist_ids:
                         #~ continue
                 #~ res['asset_ids'].append(self.pool.get('generic.assets').create(cr,uid,{'asset_id':asset.id}))
-                
+
         return {'value': res}
-        
+
     def on_change_end_date(self, cr, uid, ids,date, context={}):
         res={}
         if date:
             res['end_date']=date
         return {'value': res}
-    
+
     def get_recurrency(self, cr, uid, ids, context=None):
         mro_obj = self.pool.get('mro.order')
         result=[]
@@ -306,12 +306,12 @@ class account_analytic_account(osv.osv):
         #~ for data in self.read(cr, uid, ids, ['rrule', 'exdate', 'exrule', 'date_start'], context=context):
         for c in contracts:
             mro_obj.unlink(cr,uid,[x.id for x in c.mro_order_ids if x.state == 'draft'],context=context)
-            
+
         for data in contracts:
             #Technician mandatory
             if not data.partner_id.technician:
                 raise osv.except_osv(_('Error!'), _("Please link a technician in the partner."))
-            
+
             if not data.rrule:
                 result.append(data.id)
                 continue
@@ -319,7 +319,7 @@ class account_analytic_account(osv.osv):
                 event_date = datetime.strptime(data.date_wished, "%Y-%m-%d")
             else:
                 event_date = datetime.strptime(data.date_start, "%Y-%m-%d")
-            
+
 
             # TOCHECK: the start date should be replaced by event date; the event date will be changed by that of calendar code
 
@@ -362,7 +362,7 @@ class account_analytic_account(osv.osv):
                 mro_read=mro_obj.read(cr,uid,mro_id,['name'],context=context)
                 mro_obj.write(cr,uid,mro_id,{'description': '%s - %s' % (data.name or '',mro_read['name'])},context=context)
         return res
-    
+
     def compute_rule_string(self, data):
         """
         Compute rule string according to value type RECUR of iCalendar from the values given.
@@ -403,7 +403,7 @@ class account_analytic_account(osv.osv):
             res = 'FREQ=' + freq.upper() + get_week_string(freq, data) + interval_srting + get_end_date(data) + get_month_string(freq, data)
 
         return res
-    
+
     def _get_empty_rrule_data(self):
         return  {
             'byday' : False,
@@ -425,7 +425,7 @@ class account_analytic_account(osv.osv):
             'day' : False,
             'week_list' : False
         }
-    
+
     def _parse_rrule(self, rule, data, date_start):
         day_list = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
         rrule_type = ['yearly', 'monthly', 'weekly', 'daily']
@@ -469,15 +469,15 @@ class account_analytic_account(osv.osv):
         else:
             data['end_type'] = 'end_date'
         return data
-    
+
     def alert_fin_contrat(self, cr, uid, typedelai='days',delai=15):
         context = {}
         if typedelai=='days' : datem15= datetime.now() + timedelta(days=delai)
-        if typedelai=='months' : 
+        if typedelai=='months' :
             delai = delai*30
             datem15= datetime.now() + timedelta(days=delai)
         datedeb=datetime.strftime(datem15, "%Y-%m-%d")+' 00:00:00'
-        datefin=datetime.strftime(datem15, "%Y-%m-%d")+' 23:59:59'        
+        datefin=datetime.strftime(datem15, "%Y-%m-%d")+' 23:59:59'
         ids=self.pool.get('account.analytic.account').search(cr, uid, [('date','>=',datedeb),('date','<=',datefin),('date_start','!=',False),('partner_id','!=',False),('date','!=',False),('state','=','open')])
         self.pool.get('account.analytic.account').write(cr, uid,ids,{'state':'pending'},context)
         res=[]
@@ -486,8 +486,8 @@ class account_analytic_account(osv.osv):
             for j in i.message_follower_ids:
                 res.append(j.id)
             for k in i.message_ids:
-                res1.append(k.id) 
-               
+                res1.append(k.id)
+
             if not self.pool.get('mail.message').search(cr,uid,[
                                                             ('body','ilike','&lt;p&gt;Ce contrat sera expiré dans 2 semaines.&lt;/p&gt;'),
                                                             ('res_id','=',i.id)]):
@@ -497,12 +497,12 @@ class account_analytic_account(osv.osv):
                                                                     'res_id':i.id,
                                                                     'model':'account.analytic.account',
                                                                     'record_name':i.name},context)
-        
-    
+
+
 class account_analytic_services(osv.osv):
     _name = 'account.analytic.services'
     _description = 'Contract services'
-    
+
     _columns = {
         'name': fields.char('Description', size=128),
         'price': fields.float('Price'),
@@ -511,10 +511,10 @@ class account_analytic_services(osv.osv):
         'asset_id': fields.many2one('generic.assets','Asset', select=True),
         'standard_price': fields.float('Standard price'),
     }
-    
+
     _defaults = {
     }
-    
+
     def onchange_service(self, cr, uid, ids, product, context=None):
         context = context or {}
         result = {}
@@ -523,7 +523,7 @@ class account_analytic_services(osv.osv):
         result['standard_price'] = product_obj.standard_price
         result['name'] = self.pool.get('product.product').name_get(cr, uid, [product_obj.id], context=context)[0][1]
         return {'value': result}
-    
+
     def create(self, cr, uid, vals, context=None):
         service_id = super(account_analytic_services, self).create(cr, uid, vals, context)
         if 'asset_id' in vals:
@@ -535,7 +535,7 @@ class account_analytic_services(osv.osv):
                 for asset_id in asset_ids:
                     asset_obj.write(cr,uid,vals['asset_id'],{'service_id':False})
         return service_id
-        
+
     def onchange_asset(self, cr, uid, ids, asset, context=None):
         context = context or {}
         result = {}
@@ -548,14 +548,14 @@ class account_analytic_services(osv.osv):
                 for asset_id in asset_ids:
                     asset_obj.write(cr,uid,asset_id,{'service_id':False})
         return {'value': result}
-    
+
 class services_assets(osv.osv):
 
     _name = "services.assets"
     _description = "Contract services / Assets"
-    
-    
-    
+
+
+
     _columns = {
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
         'service_real_id': fields.many2one('account.analytic.services', 'Contract service real id'),
@@ -565,15 +565,15 @@ class services_assets(osv.osv):
         'amendment_id': fields.many2one('account.analytic.amendments', 'Amendment'),
         'move_type': fields.selection([('add','Add'),('remove','Remove'),('remain','Remain')],'Move type'),
         'standard_price': fields.float('Standard price'),
-        
+
     }
-    
-    
-        
+
+
+
 class account_analytic_amendments(osv.osv):
     _name = 'account.analytic.amendments'
     _description = 'Contract amendments'
-    
+
     def _amount_service(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for amend in self.browse(cr, uid, ids, context=context):
@@ -583,8 +583,8 @@ class account_analytic_amendments(osv.osv):
                 val += line.price
             res[amend.id] = val
         return res
-    
-    
+
+
     _columns = {
         'name': fields.char('Description', size=128),
         'date': fields.date('Date'),
@@ -594,19 +594,19 @@ class account_analytic_amendments(osv.osv):
         'state': fields.selection([('draft','Draft'),('accepted','Accepted'),('refused','Refused')],'Status'),
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
         'service_asset_ids': fields.one2many('services.assets','amendment_id','Contract services / Assets',readonly=True),
-        'amount_service': fields.function(_amount_service, digits_compute=dp.get_precision('Account'), string='Montant total',type='float'), 
+        'amount_service': fields.function(_amount_service, digits_compute=dp.get_precision('Account'), string='Montant total',type='float'),
     }
-    
+
     _defaults = {
         'state': 'draft',
         'date': fields.date.context_today,
     }
-    
+
     _order = 'id desc'
-    
+
     def button_draft(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
-        
+
     def button_accepted(self, cr, uid, ids, context=None):
         print 'context',context,ids
         contract_obj = self.pool.get('account.analytic.account')
@@ -638,4 +638,4 @@ class account_analytic_amendments(osv.osv):
                                                 })
                     service_obj.write(cr,uid,service_id,{'asset_id':asset_id})
         return self.write(cr, uid, ids, {'state': 'accepted'}, context=context)
-    
+

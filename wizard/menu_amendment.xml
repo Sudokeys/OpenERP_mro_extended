@@ -1,19 +1,32 @@
 <openerp>
     <data>
-      <record id="view_amendments_tree" model="ir.ui.view">
-        <field name="name">create.amendment</field>
-        <field name="model">create.amendment</field>
-        <field name="arch" type="xml">
-          <tree string="Amendments">
-            <field name="name"/>
-            <field name="date"/>
-            <field name="date_begin"/>
-            <field name="contract_id"/>
-            <field name="order_number"/>
-            <field name="price_rise"/>
-          </tree>
-        </field>
-      </record>
+
+        <record id="view_create_amendment_search" model="ir.ui.view">
+            <field name="name">create.amendment</field>
+            <field name="model">create.amendment</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+            <search string="Amendment">
+                <field name="name" select="True"/>
+            </search>
+            </field>
+        </record>
+
+    <record id="view_amendments_tree" model="ir.ui.view">
+      <field name="name">create.amendment</field>
+      <field name="model">create.amendment</field>
+      <field name="arch" type="xml">
+        <tree string="Amendments">
+          <field name="name"/>
+          <field name="date"/>
+          <field name="date_begin"/>
+          <field name="contract_id"/>
+          <field name="order_number"/>
+          <field name="price_rise"/>
+        </tree>
+      </field>
+    </record>
 
     <record id="tools_amendments_wiz_action" model="ir.actions.act_window">
       <field name="name">Suivi des avenants en cours</field>
