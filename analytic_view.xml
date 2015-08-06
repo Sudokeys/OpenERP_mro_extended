@@ -140,7 +140,7 @@
                                 <field name="name"/>
                                 <field name="date"/>
                                 <field name="state"/>
-                                <button name="button_draft" string="Back to draft" type="object" icon="gtk-cancel" states="accepted" />
+                                <button name="button_draft" string="Back to draft" type="object" icon="gtk-cancel" states="accepted,refused" />
                                 <button name="button_accepted" string="Accepted" type="object" icon="gtk-apply" states="draft" />
                                 <button name="%(action_refuse_amendment)d" string="Refused" type="action" icon="gtk-cancel" states="draft" />
                             </tree>

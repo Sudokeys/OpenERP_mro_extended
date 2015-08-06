@@ -1,0 +1,44 @@
+<openerp>
+    <data>
+        
+        <record id="view_create_amendment_search" model="ir.ui.view">
+            <field name="name">account.analytic.amendments.search</field>
+            <field name="model">account.analytic.amendments</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Amendment">
+                    <field name="name" select="True"/>
+                    <filter name="group_state_id" string="State" icon="terp-partner" context="{'group_by':'state'}"/>
+                </search>
+            </field>
+        </record>
+
+    <record id="view_account_analytic_amendments_tree" model="ir.ui.view">
+      <field name="name">account.analytic.amendments.tree</field>
+      <field name="model">account.analytic.amendments</field>
+      <field name="arch" type="xml">
+        <tree string="Amendments">
+          <field name="name"/>
+          <field name="date"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="tools_amendments_wiz_action" model="ir.actions.act_window">
+      <field name="name">Suivi des avenants en cours</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">account.analytic.amendments</field>
+      <field name="view_id" ref="view_account_analytic_amendments_tree"/>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'search_default_group_state_id': 'draft'}</field>
+      <field name="target">current</field>
+    </record>
+ 
+   <menuitem name="Suivi des avenants en cours"
+              action="tools_amendments_wiz_action"
+              id="tools_follow_amendments_wiz_menu"
+              parent="base.menu_sales"
+              sequence="8"/>
+
+  </data>
+</openerp>
