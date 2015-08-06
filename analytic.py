@@ -247,14 +247,18 @@ class account_analytic_account(osv.osv):
         'amount_service': fields.function(_amount_service, digits_compute=dp.get_precision('Account'), string='Montant total',
             store={
                 'account.analytic.account': (lambda self, cr, uid, ids, c={}: ids, ['service_ids'], 10),
-                'account.analytic.services': (_get_contract, ['price'], 10),
+               'account.analytic.services': (_get_contract, ['price'], 10),
             },
             type='float',track_visibility='always'),
         #~ 'state': fields.selection([('template', 'Template'),('draft','New'),('open','In Progress'),('pending','To Renew'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
         'remise': fields.float('Remise en %'),
         'marge': fields.function(_amount_marge, digits_compute=dp.get_precision('Account'), string='Marge en %',
             type='float',track_visibility='always'),
-    }
+        'order_number':fields.char(u'N° de commande'),
+        'date_invoice': fields.date('Date de facture'),
+        'invoice_number': fields.char(u'N° de facture'),
+
+   }
 
     _defaults = {
         'state':'draft',
@@ -595,6 +599,10 @@ class account_analytic_amendments(osv.osv):
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
         'service_asset_ids': fields.one2many('services.assets','amendment_id','Contract services / Assets',readonly=True),
         'amount_service': fields.function(_amount_service, digits_compute=dp.get_precision('Account'), string='Montant total',type='float'),
+        'order_number':fields.char(u'N° de commande'),
+        'date_invoice': fields.date('Date de facture'),
+        'invoice_number': fields.char(u'N° de facture'),
+
     }
 
     _defaults = {
