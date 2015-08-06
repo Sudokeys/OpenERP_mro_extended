@@ -55,7 +55,8 @@ class sale_import_assets(osv.osv_memory):
                     'product_uom_qty':1.0,
                     'product_uom':w.product_contract_id.uom_id.id,
                     'is_contract':w.product_contract_id.contract,
-                    'assets_id':asset.id
+                    'assets_id':asset.id,
+                    'assets_partner':asset.partner_id and asset.partner_id.id or False
                 }
                 vals.update(res['value']['value'])
                 sale_line_obj.create(cr,uid,vals,context=context)
