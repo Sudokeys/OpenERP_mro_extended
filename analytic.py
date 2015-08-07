@@ -30,6 +30,9 @@ from openerp.tools.translate import _
 from openerp import netsvc
 from openerp import tools, SUPERUSER_ID
 import re
+import logging
+
+_logger = logging.getLogger(__name__)
 
 months = {
     1: "January", 2: "February", 3: "March", 4: "April", \
@@ -67,6 +70,26 @@ def get_recurrent_dates(rrulestring, exdate, startdate=None, exrule=None):
 
 class account_analytic_account(osv.osv):
     _inherit = 'account.analytic.account'
+
+    def create(self, cr, uid, vals, context=None):
+        _logger.info("=======uid = %s =======" % uid)
+        users = self.pool.get('res.users').browse(cr, uid, [uid], context)
+        for user in users:
+            _logger.info("===== user = %s =====" % user.name[:3])
+            if vals.get('name','Name')=='Name':
+                vals['name'] = user.name[:3]
+                vals['name'] += self.pool.get('ir.sequence').get(cr,uid,'account.analytic.account.name') or 'Name'
+                _logger.info("====vals['name'] = %s ====" % vals['name'])
+        serial_id = super(account_analytic_account, self).create(cr, uid, vals, context)
+        return serial_id
+
+    def set_open(self, cr, uid, ids, context=None):
+        states = self.browse(cr,uid,ids,context)
+        for st in states:
+            if st.state=='close':
+                self.write(cr,uid,ids,{'state':'draft'},context=context)
+            else:
+                res = super(account_analytic_account, self).set_open(cr,uid,ids,context=context)
 
     def name_get(self, cr, uid, ids, context=None):
         if context is None:
@@ -250,7 +273,9 @@ class account_analytic_account(osv.osv):
                'account.analytic.services': (_get_contract, ['price'], 10),
             },
             type='float',track_visibility='always'),
-        #~ 'state': fields.selection([('template', 'Template'),('draft','New'),('open','In Progress'),('pending','To Renew'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
+        # 'state': fields.selection([('template', 'Template'),('draft','New'),('open','In Progress'),('pending','To Renew'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
+        'state': fields.selection([('draft','Draft'),('open','In Progress'),('pending','To Renew'),('refuse','Refused'),('close','Closed'),('cancelled', 'Cancelled')], 'Status', required=True, track_visibility='onchange'),
+
         'remise': fields.float('Remise en %'),
         'marge': fields.function(_amount_marge, digits_compute=dp.get_precision('Account'), string='Marge en %',
             type='float',track_visibility='always'),
@@ -270,6 +295,7 @@ class account_analytic_account(osv.osv):
         'select1': 'date',
         'interval': 1,
         'recurrency': True,
+        'name': 'Name',
     }
 
     def search(self,cr,uid, args, offset=0, limit=0, order=None, context=None, count=False):
@@ -514,10 +540,28 @@ class account_analytic_services(osv.osv):
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
         'asset_id': fields.many2one('generic.assets','Asset', select=True),
         'standard_price': fields.float('Standard price'),
+        'discount': fields.float('Discount %'),
+        'quantity': fields.integer('Quantity'),
+        'total': fields.float('Total'),
     }
 
     _defaults = {
+        'quantity': 1,
     }
+
+    def onchange_quantity(self, cr, uid, ids, standard_price, price, quantity, discount, context=None):
+        result = {}
+        if discount and discount != 0:
+            result['total'] = price * quantity
+        else:
+            result['total'] = standard_price * quantity
+        return {'value': result}
+
+    def onchange_discount(self, cr, uid, ids, discount, standard_price, context=None):
+        result = {}
+        remise =  (standard_price * discount) / 100
+        result['price'] = standard_price - remise
+        return {'value':result}
 
     def onchange_service(self, cr, uid, ids, product, context=None):
         context = context or {}

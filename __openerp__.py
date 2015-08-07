@@ -38,6 +38,7 @@ Required modules:
     'depends': ['base','mro','mro_pm','hr','account_analytic_analysis','portal_project_issue'],
     'demo': [],
     'data': [
+        'sequence.xml',
         'security/ir.model.access.csv',
         'wizard/sale_make_mro_view.xml',
         'wizard/sale_make_contract_view.xml',
