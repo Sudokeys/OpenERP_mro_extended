@@ -214,7 +214,7 @@ class account_analytic_account(osv.osv):
 
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
-        'asset_ids': fields.many2many('generic.assets',string='Assets'),
+        'asset_ids': fields.many2many('generic.assets',string='Assets',readonly=True),
         'service_ids': fields.one2many('account.analytic.services','contract_id','Contract services'),
         'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Amendments',readonly=True),
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
