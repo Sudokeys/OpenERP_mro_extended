@@ -549,8 +549,18 @@ class account_analytic_services(osv.osv):
         'quantity': 1,
     }
 
-    def onchange_quantity(self, cr, uid, ids, standard_price, price, quantity, discount, context=None):
+    def write(self, cr, uid, ids, vals, context=None):
+        if 'quantity' in vals:
+            if vals['quantity'] > 1:
+                vals['asset_id'] = False
+        write_id = super(account_analytic_services, self).write(cr, uid, ids, vals, context)
+        return write_id
+
+
+    def onchange_quantity(self, cr, uid, ids, standard_price, price, quantity, discount, asset_id, context=None):
         result = {}
+        if quantity > 1:
+            result['asset_id'] = False
         if discount and discount != 0:
             result['total'] = price * quantity
         else:
@@ -574,6 +584,9 @@ class account_analytic_services(osv.osv):
 
     def create(self, cr, uid, vals, context=None):
         service_id = super(account_analytic_services, self).create(cr, uid, vals, context)
+        if 'quantity' in vals:
+            if vals['quantity'] > 1:
+                vals['asset_id'] = False
         if 'asset_id' in vals:
             asset_obj = self.pool.get('generic.assets')
             if vals['asset_id']:
@@ -646,6 +659,8 @@ class account_analytic_amendments(osv.osv):
         'order_number':fields.char(u'N° de commande'),
         'date_invoice': fields.date('Date de facture'),
         'invoice_number': fields.char(u'N° de facture'),
+        'total': fields.float('Total'),
+        'quantity':fields.integer('Quantity'),
 
     }
 
@@ -655,6 +670,11 @@ class account_analytic_amendments(osv.osv):
     }
 
     _order = 'id desc'
+
+    def onchange_quantity(self, cr, uid, ids, price_rise, quantity, context=None):
+        result = {}
+        result['total'] = price * quantity
+        return {'value': result}
 
     def button_draft(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
