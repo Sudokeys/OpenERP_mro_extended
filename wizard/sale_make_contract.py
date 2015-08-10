@@ -60,7 +60,7 @@ class sale_make_contract(osv.osv_memory):
     def view_init(self, cr, uid, fields_list, context=None):
         return super(sale_make_contract, self).view_init(cr, uid, fields_list, context=context)
 
-    def makeContract(self, cr, uid, ids, context=None):
+    def makeContract(self, vals, cr, uid, ids, context=None):
         """
         This function  create Maintenance Order on given case.
         @param self: The object pointer
@@ -72,14 +72,18 @@ class sale_make_contract(osv.osv_memory):
         """
         if context is None:
             context = {}
-        
+
         contract_obj = self.pool.get('account.analytic.account')
+        date_start = self.pool.get('account.analytic.account')
+        date = self.pool.get('account.analytic.account')
         sale_obj = self.pool.get('sale.order')
         partner_obj = self.pool.get('res.partner')
         geneasset_obj=self.pool.get('generic.assets')
         analserv_obj=self.pool.get('account.analytic.services')
 
         data = context and context.get('active_ids', []) or []
+
+        
 
         for make in self.browse(cr, uid, ids, context=context):
             partner = make.partner_id
@@ -94,7 +98,27 @@ class sale_make_contract(osv.osv_memory):
                     'partner_id': make.partner_id.id,
                     'manager_id': make.partner_id.user_id and make.partner_id.user_id.id or False,
                 }
-                
+
+                self.validity
+                self.note
+                self.note_interne
+                if vals.get('partner_id') is not None:
+                    vals['date_start'] = time.strftime('%Y-%m-%d'),
+                _logger.info("=== vals = %s ===" % vals['date_start'])
+
+                if sale.validity is not None:
+                    vals['date'] = str(
+                        datetime.strptime(vals.get('date_start'),
+                            tools.DEFAULT_SERVER_DATETIME_FORMAT)
+                    + timedelta(days=vals.get('validity')))
+                _logger.info("=== vals = %s ===" % vals['date'])
+
+                if sale.note is not None:
+                    vals['description'] = str(vals.get('note'))
+
+                if sale.note_interne is not None:
+                    vals['note_intern'] = str(vals.get('note_interne'))
+
                 new_id = contract_obj.create(cr, uid, vals, context=context)
                 sale_obj.write(cr,uid,sale.id,{'project_id':new_id},context)
 

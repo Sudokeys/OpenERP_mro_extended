@@ -197,6 +197,7 @@ class account_analytic_account(osv.osv):
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
         'date_refused': fields.date('Refused Date'),
         'date_wished': fields.date('Wished Date'),
+        'note_intern': fields.text('description'),
         'maintenance_date_start': fields.datetime('Maintenance date start'),
         'maintenance_date_end': fields.datetime('Maintenance date end'),
         'exdate': fields.text('Exception Date/Times', help="This property \

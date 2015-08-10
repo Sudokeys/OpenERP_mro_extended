@@ -46,6 +46,11 @@
                 <field name="partner_id" position="attributes">
                     <attribute name="attrs">{'required': [('type','=','contract')]}</attribute>
                 </field>
+                <!--Manda-->
+                <field name="description" position="after">
+                    <separator string="Commentaire interne"/>
+                    <field name="note_intern"/>
+                </field>
                   
                 <group name="contract" position="after">
                     <group string="Maintenance" name="maintenance" groups="mro.group_mro_user">
