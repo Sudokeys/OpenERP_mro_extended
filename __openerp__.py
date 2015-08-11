@@ -57,7 +57,7 @@ Required modules:
         'product_data.xml',
         'wizard/tools_planning_wiz_view.xml',
         'ir_cron_data.xml',
-
+        'res_users_view.xml',
     ],
     'application': True,
 }

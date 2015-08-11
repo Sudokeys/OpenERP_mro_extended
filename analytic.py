@@ -75,9 +75,11 @@ class account_analytic_account(osv.osv):
         _logger.info("=======uid = %s =======" % uid)
         users = self.pool.get('res.users').browse(cr, uid, [uid], context)
         for user in users:
-            _logger.info("===== user = %s =====" % user.name[:3])
             if vals.get('name','Name')=='Name':
-                vals['name'] = user.name[:3]
+                if user.trigramme:
+                    vals['name'] = user.trigramme
+                else:
+                    vals['name'] = user.name[:3]
                 vals['name'] += self.pool.get('ir.sequence').get(cr,uid,'account.analytic.account.name') or 'Name'
                 _logger.info("====vals['name'] = %s ====" % vals['name'])
         serial_id = super(account_analytic_account, self).create(cr, uid, vals, context)

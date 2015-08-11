@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 ADN France (<http://adn-france.com>).
+#    Copyright (C) 2013 ADN (<http://adn-france.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,13 +16,12 @@
 #
 ##############################################################################
 
-import res_users
-import report
-import mro_extended
-import wizard
-import res_partner
-import sale
-import analytic
-import product
+from openerp.osv import fields, osv
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class ResUsers(osv.osv):
+    _inherit = 'res.users'
+
+    _columns = {
+        'trigramme': fields.char('Trigramme', size=4),
+    }
