@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data noupdate="1">
+    <data noupdate="0">
         <!-- Sequences for sale.order -->
 
         <record id="seq_type_account_analytic_account" model="ir.sequence.type">
@@ -15,6 +15,20 @@
             <field name="padding">2</field>
             <field name="company_id" eval="False"/>
         </record>
+
+        <record id="seq_type_mro_order" model="ir.sequence.type">
+            <field name="name">Intervention mro_order</field>
+            <field name="code">mro.order.name</field>
+        </record>
+
+        <record id="seq_account_analytic_account" model="ir.sequence">
+            <field name="name">Intervention mro_order</field>
+            <field name="code">mro.order.name</field>
+            <field name="prefix">%(y)s</field>
+            <field name="padding">9</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
 
     </data>
 </openerp>
