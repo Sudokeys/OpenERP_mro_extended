@@ -432,9 +432,9 @@ class mro_order(osv.osv):
         for user in users:
             if vals.get('name','/')=='/':
                 if user.trigramme:
-                    vals['name'] = user.trigramme
+                    vals['name'] = user.trigramme + '/'
                 else:
-                    vals['name'] = user.name[:3]
+                    vals['name'] = user.name[:3] + '/'
                 vals['name'] += self.pool.get('ir.sequence').get(cr,uid,'mro.order.name') or '/'
         serial_id = super(mro_order, self).create(cr, uid, vals, context)
         return serial_id
