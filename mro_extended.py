@@ -246,7 +246,7 @@ class mro_order(osv.osv):
             If the stock is available then the status is set to 'Ready to Maintenance'.\n\
             When the maintenance order gets started then the status is set to 'In Progress'.\n\
             When the maintenance is over, the status is set to 'Done'."),
-        'maintenance_type': fields.selection(MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=True, readonly=True, states={'draft': [('readonly', False)]}),
+        'maintenance_type': fields.selection(MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         'tools_ids': fields.many2many('mro.tools',string='Tools'),
         'date_deadline': fields.datetime('End Date', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'duration': fields.float('Duration (h)', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
@@ -254,6 +254,10 @@ class mro_order(osv.osv):
         'invoice_id':fields.many2one('account.invoice',u'Invoice',readonly=True),
         'warning_tools': fields.function(_warning_tools, string='Reservations tools',
             type='text',track_visibility='always'),
+        'description': fields.char('Description', size=64),
+        'date_execution': fields.datetime('Execution Date'),
+        'com_interne': fields.text('Commentaire Interne'),
+        'com_client': fields.text('Commentaire client'),
     }
 
     _defaults = {

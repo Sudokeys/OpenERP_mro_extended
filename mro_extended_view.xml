@@ -21,55 +21,52 @@
 
 
                 <xpath expr="/form/sheet/group" position="replace">
-                <group>
-                    <group name="partner">
-                        <field name="partner_id" on_change="onchange_partner(partner_id)"/>
-
-                        <field name="contract_id"  attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
-
-                        <field name="id" invisible="1"/>
-                        <div colspan="2"  style="float:right">
-						<button name="update_assets" colspan="2"  string="Import equipment contract" type="object" attrs="{'invisible':[('contract_id','=',False)]}" class="oe_edit_only oe_link oe_inline" />
-                        </div>
-                        <field name="order_id"/>
-                        <field name="invoice_id"/>
-                        <field name="description"/>
+                    <group>
+                        <group name="partner">
+                            <field name="partner_id" on_change="onchange_partner(partner_id)"/>
+                            <field name="contract_id"  attrs="{'invisible':[('partner_id','=',False)]}" domain="[('partner_id','=',partner_id)]"/>
+                            <field name="id" invisible="1"/>
+                            <div colspan="2"  style="float:right">
+                                <button name="update_assets" colspan="2"  string="Import equipment contract" type="object" attrs="{'invisible':[('contract_id','=',False)]}" class="oe_edit_only oe_link oe_inline" />
+                            </div>
+                            <field name="order_id"/>
+                            <field name="invoice_id"/>
+                            <field name="description"/>
+                        </group>
+                        <group name="details">
+                            <field name="technician" on_change="onchange_technician(technician,partner_id)"/>
+                            <field name="subcontract" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)"/>
+                            <field name="subcontractor_id" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)" attrs="{'invisible':[('subcontract','=',False)]}"/>
+                            <field name="maintenance_type" invisible="True"/>
+                            <field name="origin"/>
+                            <field name="task_id" invisible="True"/>
+                        </group>
+                        <group name="planning">
+                            <field name="date_planned" on_change="onchange_dates(date_planned, duration, False, allday,'date_planned')"/>
+                            <field name="date_scheduled" on_change="onchange_dates(date_scheduled, duration, False, allday,'date_scheduled')"/>
+                            <field name="date_execution" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')" invisible="True"/>
+                            <label for="duration"/>
+                            <div>
+                                <field name="duration" widget="float_time" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')" class="oe_inline" attrs="{'invisible': [('allday','=',True)]}"/>
+                                <!--
+                                    <label string="hours" attrs="{'invisible': [('allday','=',True)]}"/>
+                                -->
+                                <field name="allday" on_change="onchange_dates(date_execution, False, False, allday,'date_execution')" class="oe_inline"/>
+                                <label for="allday" string="All Day?"/>
+                            </div>
+                            <field name="date_deadline" invisible="True"/>
+                        </group>
+                        <group name="type">
+                            <field name="place" invisible="True"/>
+                            <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                        </group>
                     </group>
-                    <group name="details">
-                        <field name="technician" on_change="onchange_technician(technician,partner_id)"/>
-                        <field name="subcontract" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)"/>
-                        <field name="subcontractor_id" on_change="onchange_subcontractor(description,subcontract,subcontractor_id)" attrs="{'invisible':[('subcontract','=',False)]}"/>
-                        <field name="maintenance_type"/>
-                        <field name="origin"/>
-                        <field name="task_id" invisible="True"/>
+                    <button name="def_verif_tools" attrs="{'invisible':[('warning_tools','=','0')]}" string="Check the availability of tools" class="oe_highlight" type="object" />
+                    <separator colspan="1"/>
+                    <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">
+                        <field name="warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" colspan="1"/>
                     </group>
-                    <group name="planning">
-                        <field name="date_planned" on_change="onchange_dates(date_planned, duration, False, allday,'date_planned')"/>
-                        <field name="date_scheduled" on_change="onchange_dates(date_scheduled, duration, False, allday,'date_scheduled')"/>
-                        <field name="date_execution" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"/>
-                        <label for="duration"/>
-                        <div>
-                            <field name="duration" widget="float_time" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')"
-                                class="oe_inline" attrs="{'invisible': [('allday','=',True)]}"/>
-<!--
-                            <label string="hours" attrs="{'invisible': [('allday','=',True)]}"/>
--->
-                            <field name="allday" on_change="onchange_dates(date_execution, False, False, allday,'date_execution')" class="oe_inline"/>
-                            <label for="allday" string="All Day?"/>
-                        </div>
-                        <field name="date_deadline" invisible="True"/>
-                    </group>
-                    <group name="type">
-                        <field name="place"/>
-                        <field name="company_id" groups="base.group_multi_company" widget="selection"/>
-                    </group>
-                </group>
-                <button name="def_verif_tools" attrs="{'invisible':[('warning_tools','=','0')]}" string="Check the availability of tools" class="oe_highlight" type="object" />
-	                	<separator colspan="1"/>
-                 <group name="grp_warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" class="oe_view_nocontent_create opensav" colspan="1">
-	                	<field name="warning_tools" attrs="{'invisible':[('warning_tools','=','0')]}" colspan="1"/>
-	                </group>
-	                <separator colspan="1"/>
+                    <separator colspan="1"/>
                 </xpath>
 
 
@@ -506,6 +503,42 @@
             id="mro_menu_maintenance_parts_parts"
             parent="mro_menu_maintenance_parts"
             sequence="100"/>
+
+        <record id="view_mro_order_form_inherit_replace" model="ir.ui.view">
+            <field name="name">mro.order.form.inherit</field>
+            <field name="model">mro.order</field>
+            <field name="inherit_id" ref="mro_extended.mro_order_form_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="replace">
+                    <field name="description" invisible="1"/>
+                </xpath>
+                <!--<xpath expr="//field[@name='place']" position="replace">
+                </xpath>-->
+                <xpath expr="//form/sheet/group/group/field[@name='maintenance_type']" position="attributes">
+                    <attribute name="invisible">True</attribute> 
+                </xpath>
+           </field>
+       </record>
+
+        <record id="view_mro_order_comment_form" model="ir.ui.view">
+            <field name="name">mro comment</field>
+            <field name="model">mro.order</field>
+            <field name="inherit_id" ref="mro.mro_order_form_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="before">
+                    <div class="oe_inline">
+                        <group>
+                            <field name="com_interne" class="oe_inline" />
+                        </group>
+                        <group>
+                            <field name="com_client"/>
+                        </group>
+                    </div>
+            </xpath>
+            </field>
+        </record>
 
     </data>
 </openerp>
