@@ -30,8 +30,8 @@ class sale_make_mro(osv.osv_memory):
 
     _name = "sale.make.mro"
     _description = "Make mro orders"
-    
-    
+
+
     #~ MAINTENANCE_TYPE_SELECTION = [
         #~ ('cm', 'Corrective'),
         #~ ('pm', 'Preventive'),
@@ -74,7 +74,7 @@ class sale_make_mro(osv.osv_memory):
         """
         if context is None:
             context = {}
-        
+
         mro_obj = self.pool.get('mro.order')
         sale_obj = self.pool.get('sale.order')
         partner_obj = self.pool.get('res.partner')
@@ -100,6 +100,8 @@ class sale_make_mro(osv.osv_memory):
                     'date_scheduled': make.date_planned,
                     'date_execution': make.date_planned,
                     'duration': make.duration,
+                    'com_interne': sale.note_interne,
+                    'com_client': sale.note,
                 }
                 if partner.id:
                     #Technician mandatory
@@ -124,9 +126,9 @@ class sale_make_mro(osv.osv_memory):
                             'maintenance_id': new_id,
                         }
                         self.pool.get('mro.order.parts.line').create(cr,uid,vals,context=context)
-                    
-                    
-                
+
+
+
                 mro_order = mro_obj.browse(cr, uid, new_id, context=context)
                 new_ids.append(new_id)
                 message = _("Maintenance Order <em>%s</em> has been <b>created</b>.") % (mro_order.name)
@@ -168,7 +170,7 @@ class sale_make_mro(osv.osv_memory):
 
         sale = sale_obj.read(cr, uid, active_id, ['project_id'])
         return sale['project_id']
-        
+
     def _get_duration(self, cr, uid, context=None):
         if context is None:
             context = {}
@@ -182,7 +184,7 @@ class sale_make_mro(osv.osv_memory):
                 if line.product_id.mro_type=='labor':
                     duration = line.product_uom_qty
         return duration
-        
+
     _columns = {
         'contract_id': fields.many2one('account.analytic.account', 'Contract'),
         'partner_id': fields.many2one('res.partner', 'Customer', required=True, domain=[('customer','=',True)]),
