@@ -519,7 +519,7 @@
                     <attribute name="invisible">True</attribute> 
                 </xpath>
            </field>
-       </record>
+        </record>
 
         <record id="view_mro_order_comment_form" model="ir.ui.view">
             <field name="name">mro comment</field>
@@ -528,15 +528,19 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="before">
-                    <div class="oe_inline">
-                        <group>
-                            <field name="com_interne" class="oe_inline" />
-                        </group>
-                        <group>
-                            <field name="com_client"/>
+                    <div col="12">
+                        <group colspan="5">
+                            <span>
+                                <strong><label string="commentaire interne"/></strong>
+                                <field name="com_interne" nolabel="1" placeholder='Commentaire Interne'/>
+                            </span>
+                            <span>
+                                <strong><label string="commentaire client"/></strong>
+                                <field name="com_client" nolabel="1" placeholder='Commentaire Client'/>
+                            </span>
                         </group>
                     </div>
-            </xpath>
+                </xpath>
             </field>
         </record>
 
