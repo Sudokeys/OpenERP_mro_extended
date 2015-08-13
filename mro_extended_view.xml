@@ -518,6 +518,14 @@
                 <xpath expr="//form/sheet/group/group/field[@name='maintenance_type']" position="attributes">
                     <attribute name="invisible">True</attribute> 
                 </xpath>
+
+                <xpath expr="//notebook/page[@string='Labor']" position="replace">
+                </xpath>
+                <xpath expr="//notebook/page[@string='Operations']" position="replace">
+                </xpath>
+                <xpath expr="//notebook/page[@string='Documentation']" position="replace">
+                </xpath>
+ 
            </field>
         </record>
 
