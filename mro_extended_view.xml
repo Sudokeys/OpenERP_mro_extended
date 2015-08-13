@@ -42,8 +42,8 @@
                             <field name="task_id" invisible="True"/>
                         </group>
                         <group name="planning">
-                            <field name="date_planned" on_change="onchange_dates(date_planned, duration, False, allday,'date_planned')"/>
-                            <field name="date_scheduled" on_change="onchange_dates(date_scheduled, duration, False, allday,'date_scheduled')"/>
+                            <field name="date_planned" string="Date prévue" on_change="onchange_dates(date_planned, duration, False, allday,'date_planned')"/>
+                            <field name="date_scheduled" string="Date réelle" on_change="onchange_dates(date_scheduled, duration, False, allday,'date_scheduled')"/>
                             <field name="date_execution" on_change="onchange_dates(date_execution, duration, False, allday,'date_execution')" invisible="True"/>
                             <label for="duration"/>
                             <div>
