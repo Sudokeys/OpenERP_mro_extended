@@ -525,7 +525,29 @@
                 </xpath>
                 <xpath expr="//notebook/page[@string='Documentation']" position="replace">
                 </xpath>
- 
+
+                <xpath expr="//notebook/page[@string='Parts']" position="replace">
+                    <page string='Lignes'>
+                        <field name="asset_ids">
+                            <group string="Assets involved">
+                                <field name="asset_ids" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id':partner_id}" nolabel="1">
+                                    <tree editable="top">
+                                        <field name="default_code"/>
+                                        <field name="asset_id" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]"/>
+                                        <field name="serial_id" context="{'default_product_id':asset_id}" domain="[('product_id','=',asset_id)]" options="{&quot;no_open&quot;: True}"/>
+                                        <field name="date_start"/>
+                                        <field name="date_end"/>
+                                        <field name="contract_id"/>
+                                        <field name="loan"/>
+                                        <field name="partner_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </field>
+                        <field name="parts_lines" />
+                    </page>
+                </xpath>
+                
            </field>
         </record>
 
