@@ -139,8 +139,10 @@
                                         <field name="service_real_id" invisible="1"/>
                                         <field name="asset_id"/>
                                         <field name="serial_id"/>
+                                        <!--<field name="quantity"/>-->
                                         <field name="standard_price"/>
                                         <field name="price"/>
+                                        <!--<field name="total"/>-->
                                         <field name="move_type"/>
                                     </tree>
                                 </field>
@@ -152,8 +154,8 @@
                             <tree>
                                 <field name="name"/>
                                 <field name="date"/>
-                                <field name="quantity"/>
-                                <field name="total"/>
+                                <!--<field name="quantity"/>-->
+                                <!--<field name="total"/>-->
                                 <field name="state"/>
                                 <button name="button_draft" string="Back to draft" type="object" icon="gtk-cancel" states="accepted,refused" />
                                 <button name="button_accepted" string="Accepted" type="object" icon="gtk-apply" states="draft" />

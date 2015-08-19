@@ -34,14 +34,30 @@ class services_assets_wizard(osv.osv_memory):
     _columns = {
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
         'service_real_id': fields.many2one('account.analytic.services', 'Contract service real id'),
-        'asset_id': fields.many2one('product.product', 'Asset', required=True),
+        'asset_id': fields.many2one('product.product', 'Asset'),#required=True
         'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
         'price': fields.float('Price'),
         'create_amendment_id_old': fields.many2one('create.amendment', 'Amendment creation old'),
         'create_amendment_id_new': fields.many2one('create.amendment', 'Amendment creation new'),
+        'quantity': fields.integer(u'Quantité', help=u'Defini la quantité'),
+        'total': fields.float('Total', help='Total'),
         #~ 'create_amendment_id_remove': fields.many2one('create.amendment', 'Amendment creation remove'),
     }
 
+
+    def onchange_quantity(self, cr, uid, ids, price, quantity, asset_id, context=None):
+        result = {}
+        if quantity > 1:
+            result['asset_id'] = False
+            result['total'] = price * quantity
+        return {'value': result}
+
+    def onchange_asset(self, cr, uid, ids, asset_id, quantity, price, context=None):
+        result = {}
+        if asset_id:
+            result['quantity'] = 1
+            result['total'] = price * quantity
+        return {'value': result}
 
 class create_amendment(osv.osv_memory):
 
@@ -122,6 +138,8 @@ class create_amendment(osv.osv_memory):
                                                 'price':sa_new.price,
                                                 'amendment_id':amendment_id,
                                                 'move_type':'add',
+                                                'quantity': sa_new.quantity,
+                                                'total': sa_new.total,
                                                 })
                 #~ service_id=service_obj.create(cr,uid,{'service_id':sa_new.service_id.id,
                                                 #~ 'name':sa_new.service_id.name,
@@ -153,6 +171,8 @@ class create_amendment(osv.osv_memory):
         'order_number':fields.char(u'N° de commande'),
         'date_invoice': fields.date('Date de facture'),
         'invoice_number': fields.char(u'N° de facture'),
+        'quantity': fields.integer(u'Quantité', help=u'Defini la quantité'),
+        'total': fields.float('Total', help='Total'),
         }
     _defaults = {
         'price_rise': 3.00,
