@@ -128,7 +128,12 @@
                                 <group>
                                     <field name="price_rise"/>
                                 </group>
-                                <field name="service_asset_ids" nolabel="1" colspan="4">
+                                <group colspan="4">
+                                    <field name="order_number"/>
+                                    <field name="date_invoice"/>
+                                    <field name="invoice_number"/>
+                                </group>
+                               <field name="service_asset_ids" nolabel="1" colspan="4">
                                     <tree>
                                         <field name="service_id"/>
                                         <field name="service_real_id" invisible="1"/>
