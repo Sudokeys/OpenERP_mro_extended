@@ -26,7 +26,7 @@
     'description': """
 Added Features
 -------------
-    
+
 
 Required modules:
     * mro
@@ -38,6 +38,7 @@ Required modules:
     'depends': ['base','mro','mro_pm','hr','account_analytic_analysis','portal_project_issue'],
     'demo': [],
     'data': [
+        'sequence.xml',
         'security/ir.model.access.csv',
         'wizard/sale_make_mro_view.xml',
         'wizard/sale_make_contract_view.xml',
@@ -45,6 +46,7 @@ Required modules:
         'wizard/create_amendment_view.xml',
         'wizard/cancelled_contract_view.xml',
         'wizard/sale_import_assets_view.xml',
+        'menu_amendment.xml',
         'report/tools_planning_print.xml',
         'mro_extended_view.xml',
         'mro_extended_workflow.xml',
@@ -55,7 +57,7 @@ Required modules:
         'product_data.xml',
         'wizard/tools_planning_wiz_view.xml',
         'ir_cron_data.xml',
-
+        'res_users_view.xml',
     ],
     'application': True,
 }

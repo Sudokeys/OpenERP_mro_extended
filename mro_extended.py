@@ -30,6 +30,8 @@ import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 from openerp import netsvc
 from openerp import tools
+import logging
+_logger = logging.getLogger(__name__)
 MAINTENANCE_TYPE_SELECTION = [
         #~ ('bm', 'Breakdown'),
         ('cm', 'Corrective'),
@@ -62,7 +64,6 @@ class mro_order(osv.osv):
     """
     _inherit = 'mro.order'
 
-
     def onchange_partner(self, cr, uid, ids, partner_id):
         """
         onchange handler of partner_id.
@@ -88,9 +89,6 @@ class mro_order(osv.osv):
                 ids_asset.append(x)
         self.write(cr, uid, ids, {'asset_ids': [(6,0,ids_asset)]})
         return True
-
-
-
 
     def onchange_technician(self, cr, uid, ids, technician, partner_id):
         """
@@ -248,7 +246,7 @@ class mro_order(osv.osv):
             If the stock is available then the status is set to 'Ready to Maintenance'.\n\
             When the maintenance order gets started then the status is set to 'In Progress'.\n\
             When the maintenance is over, the status is set to 'Done'."),
-        'maintenance_type': fields.selection(MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=True, readonly=True, states={'draft': [('readonly', False)]}),
+        'maintenance_type': fields.selection(MAINTENANCE_TYPE_SELECTION, 'Maintenance Type', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         'tools_ids': fields.many2many('mro.tools',string='Tools'),
         'date_deadline': fields.datetime('End Date', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
         'duration': fields.float('Duration (h)', readonly=True, states={'draft':[('readonly',False)],'released':[('readonly',False)],'ready':[('readonly',False)]}),
@@ -256,6 +254,10 @@ class mro_order(osv.osv):
         'invoice_id':fields.many2one('account.invoice',u'Invoice',readonly=True),
         'warning_tools': fields.function(_warning_tools, string='Reservations tools',
             type='text',track_visibility='always'),
+        'description': fields.char('Description', size=64),
+        'date_execution': fields.datetime('Execution Date'),
+        'com_interne': fields.text('Commentaire Interne'),
+        'com_client': fields.text('Commentaire client'),
     }
 
     _defaults = {
@@ -404,7 +406,6 @@ class mro_order(osv.osv):
                 self.write(cr, uid, ids, {'state': 'invoiced','invoice_id':inv_id})
         return True
 
-
     def _make_consume_parts_line(self, cr, uid, parts_line, context=None):
         stock_move = self.pool.get('stock.move')
         order = parts_line.maintenance_id
@@ -429,6 +430,18 @@ class mro_order(osv.osv):
         order.write({'parts_move_lines': [(4, move_id)]}, context=context)
         return move_id
 
+    def create(self, cr, uid, vals, context=None):
+        vals['name'] = '/'
+        users = self.pool.get('res.users').browse(cr, uid, [uid], context)
+        for user in users:
+            if vals.get('name','/')=='/':
+                if user.trigramme:
+                    vals['name'] = user.trigramme + '/'
+                else:
+                    vals['name'] = user.name[:3] + '/'
+                vals['name'] += self.pool.get('ir.sequence').get(cr,uid,'mro.order.name') or '/'
+        serial_id = super(mro_order, self).create(cr, uid, vals, context)
+        return serial_id
 
 class mro_tools_type(osv.osv):
     """
@@ -619,8 +632,6 @@ class generic_assets(osv.osv):
         prod = product_obj.browse(cr, uid, product, context=context)
         result['name'] = self.pool.get('product.product').name_get(cr, uid, [prod.id], context=context)[0][1]
         return {'value': result}
-
-
 
 class mro_tools_booking(osv.osv):
     _name='mro.tools.booking'
