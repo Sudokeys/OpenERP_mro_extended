@@ -214,6 +214,23 @@ class account_analytic_account(osv.osv):
             else : 0.0
         return res
 
+    # def print_quotation(self, cr, uid, ids, context=None):
+    def print_quotation(self, cr, uid, ids, context=None):
+        _logger.info("\n\n===============print_quotation================\n\n")
+        _logger.info("\n\n================ids = %s ===============\n\n" % ids)
+        _logger.info("\n\n================context = %s ===============\n\n" % context)
+
+        if context is None:
+            context = {}
+        form = self.read(cr, uid, ids)
+        datas = {
+            'model': 'account.analytic.account',
+            'ids': ids,
+            'form': form,
+        }
+        _logger.info("\n\n===============datas = %s =============\n\n" % datas)
+        return {'type': 'ir.actions.report.xml', 'report_name': 'account.analytic.account', 'datas': datas,}
+
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
         'asset_ids': fields.many2many('generic.assets',string='Assets',readonly=True),
@@ -623,12 +640,14 @@ class services_assets(osv.osv):
     _columns = {
         'service_id': fields.many2one('product.product', 'Contract service', required=True),
         'service_real_id': fields.many2one('account.analytic.services', 'Contract service real id'),
-        'asset_id': fields.many2one('product.product', 'Asset', required=True),
+        'asset_id': fields.many2one('product.product', 'Asset'),# required=True
         'serial_id': fields.many2one('product.serial', 'Serial #', select=True),
         'price': fields.float('Price'),
         'amendment_id': fields.many2one('account.analytic.amendments', 'Amendment'),
         'move_type': fields.selection([('add','Add'),('remove','Remove'),('remain','Remain')],'Move type'),
         'standard_price': fields.float('Standard price'),
+        'quantity': fields.integer(u'Quantité', help=u'Defini la quantité'),
+        'total': fields.float('Total', help='Total'),
 
     }
 
@@ -662,8 +681,8 @@ class account_analytic_amendments(osv.osv):
         'order_number':fields.char(u'N° de commande'),
         'date_invoice': fields.date('Date de facture'),
         'invoice_number': fields.char(u'N° de facture'),
-        'total': fields.float('Total'),
-        'quantity':fields.integer('Quantity'),
+        # 'total': fields.float('Total'),
+        # 'quantity':fields.integer('Quantity'),
 
     }
 
