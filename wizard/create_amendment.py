@@ -62,7 +62,7 @@ class services_assets_wizard(osv.osv_memory):
         return {'value':result}
 
 
-    def onchange_quantity(self, cr, uid, ids, price, quantity, asset_id, context=None):
+    def onchange_quantity(self, cr, uid, ids, price, quantity, asset_id, discount, standard_price, context=None):
         result = {}
         if quantity > 1:
             result['asset_id'] = False
