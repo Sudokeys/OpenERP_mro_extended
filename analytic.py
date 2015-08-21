@@ -647,6 +647,7 @@ class services_assets(osv.osv):
         'standard_price': fields.float('Standard price'),
         'quantity': fields.integer(u'Quantité', help=u'Defini la quantité'),
         'total': fields.float('Total', help='Total'),
+        'discount': fields.float('Remise', help='Remise en pourcentage'),
 
     }
 

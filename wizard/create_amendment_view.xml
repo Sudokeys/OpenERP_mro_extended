@@ -37,10 +37,11 @@
                     <separator string="Add contract services and assets" colspan="4"/>
                     <field name="service_asset_ids_new" nolabel="1" colspan="4">
                         <tree editable="top">
-                            <field name="service_id" context="{'default_contract':True}" domain="[('contract','=',True)]"
-                                on_change="onchange_asset(asset_id, quantity, price)"/>
-                            <field name="asset_id" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]" attrs="{'readonly': [('quantity', '>', 1)]}"/>
+                            <field name="service_id" on_change="onchange_service_id(service_id)" context="{'default_contract':True}" domain="[('contract','=',True)]"/>
+                            <field name="asset_id" on_change="onchange_asset(asset_id, quantity, price)" context="{'default_mro_type':'asset'}" domain="[('mro_type','=','asset')]" attrs="{'readonly': [('quantity', '>', 1)]}"/>
                             <field name="serial_id" context="{'default_product_id':asset_id}" domain="[('product_id','=',asset_id)]"/>
+                            <field name="standard_price"/>
+                            <field name="discount" on_change="onchange_discount(discount, standard_price, quantity)"/>
                             <field name="quantity" on_change="onchange_quantity(price, quantity, asset_id)" />
                             <field name="price"/>
                             <field name="total"/>

@@ -24,7 +24,8 @@ from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
-
+import logging
+_logger = logging.getLogger(__name__)
 
 class services_assets_wizard(osv.osv_memory):
 
@@ -41,8 +42,25 @@ class services_assets_wizard(osv.osv_memory):
         'create_amendment_id_new': fields.many2one('create.amendment', 'Amendment creation new'),
         'quantity': fields.integer(u'Quantité', help=u'Defini la quantité'),
         'total': fields.float('Total', help='Total'),
+        'standard_price': fields.float('Standard price'),
+        'discount': fields.float('Remise', help='Remise en pourcentage'),
         #~ 'create_amendment_id_remove': fields.many2one('create.amendment', 'Amendment creation remove'),
     }
+
+    def onchange_service_id(self, cr, uid, ids, service_id, context=None):
+        result = {}
+        product_obj = self.pool.get('product.product')
+        result['standard_price'] = product_obj.read(cr, uid, service_id, ['standard_price'], context=context)['standard_price']
+        _logger.info("\n\n=========== standard_price = %s ==============\n\n" % result['standard_price'])
+        return {'value': result}
+
+    def onchange_discount(self, cr, uid, ids, discount, standard_price, quantity, context=None):
+        result = {}
+        remise =  (standard_price * discount) / 100
+        result['price'] = standard_price - remise
+        result['total'] = quantity * result['price']
+        return {'value':result}
+
 
 
     def onchange_quantity(self, cr, uid, ids, price, quantity, asset_id, context=None):
@@ -149,6 +167,7 @@ class create_amendment(osv.osv_memory):
                                                 'order_number':sa_new.order_number,
                                                 'date_invoice': sa_new.date_invoice,
                                                 'invoice_number': sa_new.invoice_number,
+                                                'discount': sa_new.discount,
                                                 })
                 #~ service_id=service_obj.create(cr,uid,{'service_id':sa_new.service_id.id,
                                                 #~ 'name':sa_new.service_id.name,
