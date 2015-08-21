@@ -214,22 +214,21 @@ class account_analytic_account(osv.osv):
             else : 0.0
         return res
 
-    # def print_quotation(self, cr, uid, ids, context=None):
-    def print_quotation(self, cr, uid, ids, context=None):
-        _logger.info("\n\n===============print_quotation================\n\n")
-        _logger.info("\n\n================ids = %s ===============\n\n" % ids)
-        _logger.info("\n\n================context = %s ===============\n\n" % context)
-
+    def print_contract(self, cr, uid, ids, context=None):
+        so_obj = self.pool.get('sale.order')
+        so_ids = so_obj.search(cr, uid, [('project_id', 'in', ids)])
+        if len(so_ids) == 0:
+            raise osv.except_osv(_('Error!'), _(u'Aucun Document associé\n Aucune référence pointant vers sale.order\n'))
+        _logger.info("\n\n=================so_ids = %s ===========\n\n" % so_ids)
         if context is None:
             context = {}
-        form = self.read(cr, uid, ids)
+        form = so_obj.read(cr, uid, so_ids)
         datas = {
-            'model': 'account.analytic.account',
-            'ids': ids,
+            'model': 'sale.order',
+            'ids': so_ids,
             'form': form,
         }
-        _logger.info("\n\n===============datas = %s =============\n\n" % datas)
-        return {'type': 'ir.actions.report.xml', 'report_name': 'account.analytic.account', 'datas': datas,}
+        return {'type': 'ir.actions.report.xml', 'report_name': 'contrat.maintenance', 'datas': datas}
 
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
