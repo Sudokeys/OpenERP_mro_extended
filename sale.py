@@ -22,6 +22,9 @@ from openerp.osv import fields, osv
 import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 from openerp import netsvc
+import logging
+_logger = logging.getLogger(__name__)
+
 
 class sale_order(osv.osv):
     _inherit = 'sale.order'
@@ -29,6 +32,20 @@ class sale_order(osv.osv):
     _columns = {
         'mro_order_ids': fields.one2many('mro.order','order_id','Maintenance Orders'),
     }
+
+    def print_contract(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        so_ids = self.search(cr, uid, [('project_id', 'in', ids)])
+        form = self.read(cr, uid, so_ids)
+        datas = {
+            'model': 'sale.order',
+            'ids': so_ids,
+            'form': form,
+        }
+        return {'type': 'ir.actions.report.xml', 'report_name': 'contrat.maintenance', 'datas': datas}
+
+
 class sale_order_line(osv.osv):
     _inherit='sale.order.line'
 
@@ -38,7 +55,7 @@ class sale_order_line(osv.osv):
         'is_contract':fields.boolean(u'Is contract'),
         'assets_no_domain':fields.boolean(u'All assets'),
         'asset_rel_ids':fields.many2many('generic.assets',string=u'Domaine assets'),
-        
+
     }
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
@@ -60,7 +77,7 @@ class sale_order_line(osv.osv):
                     assets.append(asset.id)
                 res['asset_rel_ids'] = [(6,0,assets)]
         return {'value': res}
-        
+
     def onchange_domain(self, cr, uid, ids, asset_rel_ids,assets_no_domain,assets_partner,partner_id, context=None):
         context = context or {}
         domain = {}

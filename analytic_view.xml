@@ -16,12 +16,13 @@
                         <button name="set_open" string="Re-open project" type="object" states="pending,close" />
                         <button name="set_open" string="Re-open project" type="object" states="cancelled,draft"/>
                         <button name="set_cancel" string="Cancel Contract" type="object" states="open,pending"/>
+
                         <field name="state" readonly="1" widget="statusbar"
                             statusbar_visible="open,pending,close" statusbar_colors='{"pending":"red", "template":"blue"}'/>
                     </header>
                     <header attrs="{'invisible':[('type','not in',['contract'])]}">
                         <button name="set_open" string="Open" type="object" states="draft,close"/>
-                        
+                        <button name="print_contract" string="Imprimer contrat" type="object" states="draft,open,cancelled,pending,close"/>
                         <!-- button name="set_cancel" string="Terminate" type="object" states="open"/-->
                         <button name="%(action_cancelled_contract)d" string="Terminate" type="action" icon="gtk-cancel" states="open" />
                         <button name="set_close" string="Contract Finished" attrs="{'invisible': [('state','!=','open')]}" type="object"  />
