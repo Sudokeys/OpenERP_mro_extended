@@ -37,16 +37,6 @@
           <field name="target">new</field>
        </record>
 
-       <record id="view_order_form_inherit_s2m" model="ir.ui.view">
-            <field name="name">analytic.view.inherit_mro</field>
-            <field name="model">account.analityc.account</field>
-            <field name="priority" eval="1000"/>
-            <field name="inherit_id" ref="account_analytic_analysis.account_analytic_account_form_form" />
-            <field name="arch" type="xml">
-              <separator string="Commentaire interne"/>
-              <field name="description2"/>
-            </field>
-        </record>
 
    </data>
 </openerp>

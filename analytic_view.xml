@@ -110,7 +110,7 @@
 
                 </group>
                 <notebook position="inside">
-                    <page string="suivi administratif">
+                    <page string="Suivi administratif">
                         <group>
                             <field name="order_number"/>
                             <field name="date_invoice"/>

@@ -114,6 +114,9 @@ class create_amendment(osv.osv_memory):
                                                 'price':sa_remove.price,
                                                 'amendment_id':amendment_id,
                                                 'move_type':'remove',
+                                                'order_number':sa_remove.order_number,
+                                                'date_invoice': sa_remove.date_invoice,
+                                                'invoice_number': sa_remove.invoice_number,
                                                 })
                 service_removed_ids.append(sa_remove.id)
                 asset_removed_ids.append(sa_remove.asset_id.asset_id.id)
@@ -129,6 +132,9 @@ class create_amendment(osv.osv_memory):
                                                     'price':sa_old.price + (sa_old.price*wiz.price_rise)/100,
                                                     'amendment_id':amendment_id,
                                                     'move_type':'remain',
+                                                    'order_number':sa_old.order_number,
+                                                    'date_invoice': sa_old.date_invoice,
+                                                    'invoice_number': sa_old.invoice_number,
                                                     })
             #ADD
             for sa_new in wiz.service_asset_ids_new:
@@ -140,6 +146,9 @@ class create_amendment(osv.osv_memory):
                                                 'move_type':'add',
                                                 'quantity': sa_new.quantity,
                                                 'total': sa_new.total,
+                                                'order_number':sa_new.order_number,
+                                                'date_invoice': sa_new.date_invoice,
+                                                'invoice_number': sa_new.invoice_number,
                                                 })
                 #~ service_id=service_obj.create(cr,uid,{'service_id':sa_new.service_id.id,
                                                 #~ 'name':sa_new.service_id.name,

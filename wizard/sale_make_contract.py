@@ -97,12 +97,11 @@ class sale_make_contract(osv.osv_memory):
                     'type': 'contract',
                     'partner_id': make.partner_id.id,
                     'manager_id': make.partner_id.user_id and make.partner_id.user_id.id or False,
-                    'date_start': make.time.strftime('%Y-%m-%d'),
-                    'date': make.str(
-                        datetime.strptime(vals.get('date_start'), '%Y-%m-%d')
-                    + timedelta(days=vals.get('validity'))),
-                    'description': make.str(vals.get('note')),
-                    'note_intern': make.str(vals.get('note_interne'))
+                    'date_start': time.strftime('%Y-%m-%d'),
+                    'date': (datetime.strptime(time.strftime('%Y-%m-%d'), '%Y-%m-%d')
+                    + timedelta(days=sale.validity)).strftime('%Y-%m-%d'),
+                    'description': sale.note,
+                    'note_intern': sale.note_interne
 
                 }
 
@@ -258,20 +257,7 @@ class sale_make_contract(osv.osv_memory):
         'service_ids': _get_services,
         'date_planned': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
     }
-class account_analytic_account(osv.osv):
-     _inherit = 'account.analytic.account'
 
-
-     _columns = {
-        'description2': fields.related('Description', 'description2', type='many2one', relation='account.analytic.account',  store=True, readonly=True),
-        'date_start': fields.Date.today('Start Date', required=True),
-        'date': fields.Date('End Date', required=True, compute='_date_fin'),
-
-     }
-    def _date_fin(self, cr, uid, context=None):
-        self.validity
-        if self.validity is not None
-            self.date = datetime.now() + timedelta(days=self.validity)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
