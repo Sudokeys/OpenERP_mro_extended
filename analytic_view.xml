@@ -138,12 +138,13 @@
                                     <tree>
                                         <field name="service_id"/>
                                         <field name="service_real_id" invisible="1"/>
-                                        <field name="asset_id"/>
                                         <field name="serial_id"/>
-                                        <!--<field name="quantity"/>-->
                                         <field name="standard_price"/>
+                                        <field name="discount"/>
                                         <field name="price"/>
-                                        <!--<field name="total"/>-->
+                                        <field name="quantity"/>
+                                        <field name="total"/>
+                                        <field name="asset_id"/>
                                         <field name="move_type"/>
                                     </tree>
                                 </field>
