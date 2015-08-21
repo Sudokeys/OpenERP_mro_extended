@@ -33,18 +33,6 @@ class sale_order(osv.osv):
         'mro_order_ids': fields.one2many('mro.order','order_id','Maintenance Orders'),
     }
 
-    def print_contract(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        so_ids = self.search(cr, uid, [('project_id', 'in', ids)])
-        form = self.read(cr, uid, so_ids)
-        datas = {
-            'model': 'sale.order',
-            'ids': so_ids,
-            'form': form,
-        }
-        return {'type': 'ir.actions.report.xml', 'report_name': 'contrat.maintenance', 'datas': datas}
-
 
 class sale_order_line(osv.osv):
     _inherit='sale.order.line'
