@@ -49,8 +49,11 @@
                     <attribute name="attrs">{'required': [('type','=','contract')]}</attribute>
                 </field>
                 <!--Manda-->
+                <separator name="description" position="replace">
+                	<separator string="Commentaire interne" name="description" />
+                </separator>
                 <field name="description" position="replace">
-                    <separator string="Commentaire interne"/>
+                    
                     <field name="note_intern"/>
                     <separator string="Commentaire externe" name="description" />
                     <field name="description"/>
