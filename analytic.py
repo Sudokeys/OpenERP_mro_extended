@@ -214,6 +214,18 @@ class account_analytic_account(osv.osv):
             else : 0.0
         return res
 
+    def _get_presta_equip(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        for contract in self.browse(cr, uid, ids, context=context):
+            res[contract.id] = 0
+            val=[]
+            for line in contract.service_ids:
+                if line.asset_id :
+                    val.append(line.asset_id.id)
+            res[contract.id] = val
+            _logger.info("\n\n=================val = %s ===========\n\n" % val)
+        return res
+
     def print_contract(self, cr, uid, ids, context=None):
         so_obj = self.pool.get('sale.order')
         so_ids = so_obj.search(cr, uid, [('project_id', 'in', ids)])
@@ -234,6 +246,7 @@ class account_analytic_account(osv.osv):
         'mro_order_ids': fields.one2many('mro.order','contract_id','Maintenance Orders'),
         'asset_ids': fields.many2many('generic.assets',string='Assets',readonly=True),
         'service_ids': fields.one2many('account.analytic.services','contract_id','Contract services'),
+        'equipements': fields.function(_get_presta_equip, relation="generic.assets", type='many2many', string='Equipement'),
         'amendment_ids': fields.one2many('account.analytic.amendments','contract_id','Amendments',readonly=True),
         'amendment': fields.function(_get_amendment, fnct_search=_get_amendment_search, type='boolean', string='Amendment not accepted'),
         'date_refused': fields.date('Refused Date'),
