@@ -194,7 +194,8 @@
                         <div class="oe_clear"/>
                     </page>
                     <page string="Assets" name="asset_page" attrs="{'invisible':[('type','not in',['contract'])]}">
-
+						
+						<field name="asset_ids" invisible="1"/>
                         <field name="equipements"/>
                     </page>
                     <page string="Maintenance Orders" name="mro_order_page" groups="mro.group_mro_user" attrs="{'invisible':[('type','not in',['contract'])]}">
