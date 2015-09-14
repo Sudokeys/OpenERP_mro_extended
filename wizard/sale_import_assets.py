@@ -43,12 +43,14 @@ class sale_import_assets(osv.osv_memory):
         partner_obj = self.pool.get('res.partner')
         data = context and context.get('active_id', False) or False
         sale = sale_obj.browse(cr, uid, data, context=context)
+        if not context.get('partner_id'):
+            context['partner_id']=sale.partner_id.id
         for w in self.browse(cr, uid, ids, context=context):
             new_ids = []
             for asset in w.asset_ids:
                 res = sale_line_obj.product_id_change(cr, uid, [sale.id], sale.pricelist_id.id,
                     w.product_contract_id.id, qty=1.0, uom=w.product_contract_id.uom_id.id,qty_uos=1.0, uos=False, name='', partner_id=sale.partner_id.id,
-                    lang=False, update_tax=True, date_order=False,packaging=False, fiscal_position=False,flag=False, context=context)
+                    lang=False, update_tax=True, date_order=sale.date_order,packaging=False, fiscal_position=False,flag=False, context=context)
                 vals = {
                     'order_id':sale.id,
                     'product_id':w.product_contract_id.id,
@@ -58,5 +60,7 @@ class sale_import_assets(osv.osv_memory):
                     'assets_id':asset.id
                 }
                 vals.update(res['value']['value'])
+                if not vals.get('name'):
+                    vals['name']=asset.name
                 sale_line_obj.create(cr,uid,vals,context=context)
         return True

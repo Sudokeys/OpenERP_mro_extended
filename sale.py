@@ -52,7 +52,7 @@ class sale_order_line(osv.osv):
         context = context or {}
         res=super(sale_order_line,self).product_id_change(cr, uid, ids, pricelist, product, qty,
             uom, qty_uos, uos, name, partner_id, lang, update_tax, date_order, packaging, fiscal_position, flag, context)
-        res['is_contract'] = False
+        res['is_contract'] = False        
         if product:
             prod=self.pool.get('product.product').browse(cr,uid,product,context)
             if prod and prod.contract:
