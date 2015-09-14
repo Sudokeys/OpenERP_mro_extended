@@ -62,5 +62,7 @@ class sale_import_assets(osv.osv_memory):
                 vals.update(res['value']['value'])
                 if not vals.get('name'):
                     vals['name']=asset.name
+                    if not asset.name:
+                        raise osv.except_osv(_(u'Erreur !'), _(u"La description de l'équipement est obligatoire !"))
                 sale_line_obj.create(cr,uid,vals,context=context)
         return True
