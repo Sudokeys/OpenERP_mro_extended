@@ -51,18 +51,18 @@ class sale_import_assets(osv.osv_memory):
                 res = sale_line_obj.product_id_change(cr, uid, [sale.id], sale.pricelist_id.id,
                     w.product_contract_id.id, qty=1.0, uom=w.product_contract_id.uom_id.id,qty_uos=1.0, uos=False, name='', partner_id=sale.partner_id.id,
                     lang=False, update_tax=True, date_order=sale.date_order,packaging=False, fiscal_position=False,flag=False, context=context)
+                
                 vals = {
                     'order_id':sale.id,
                     'product_id':w.product_contract_id.id,
                     'product_uom_qty':1.0,
                     'product_uom':w.product_contract_id.uom_id.id,
                     'is_contract':w.product_contract_id.contract,
-                    'assets_id':asset.id
+                    'assets_id':asset.id,
+                    'assets_partner':  asset.partner_id.id
                 }
                 vals.update(res['value']['value'])
                 if not vals.get('name'):
-                    vals['name']=asset.name
-                    if not asset.name:
-                        raise osv.except_osv(_(u'Erreur !'), _(u"La description de l'équipement est obligatoire !"))
+                    vals['name']=asset.asset_id.name
                 sale_line_obj.create(cr,uid,vals,context=context)
         return True

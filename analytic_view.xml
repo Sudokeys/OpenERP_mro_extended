@@ -333,7 +333,7 @@
                     <field name="date_previous"/>
                     <field name="date_next"/>
 -->
-                    <field name="partner_id" readonly="1"/>
+                    <field name="partner_id" attrs="{'readonly':[('partner_id','!=',False)]}"/>
                 </form>
             </field>
         </record>
