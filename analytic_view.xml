@@ -175,17 +175,17 @@
                             </tree>
                         </field>
                     </page>
-                    <page string="Contract services" name="service_page" attrs="{'invisible':[('type','not in',['contract'])]}">
+                    <page string="Prestations contractuelles" name="service_page" attrs="{'invisible':[('type','not in',['contract'])]}">
                         <field name="service_ids">
                             <tree editable="top">
-                                <field name="service_id" on_change="onchange_service(service_id)" context="{'default_contract':True}" domain="[('contract','=',True)]"/>
+                                <field name="service_id" string="Prestations contractuelles" on_change="onchange_service(service_id)" context="{'default_contract':True}" domain="[('contract','=',True)]"/>
                                 <field name="name"/>
                                 <field name="standard_price"/>
-                                <field name="discount" on_change="onchange_discount(discount, standard_price)"/>
+                                <field name="discount"  on_change="onchange_discount(discount, standard_price)"/>
                                 <field name="price"/>
-                                <field name="quantity" on_change="onchange_quantity(standard_price, price, quantity, discount, asset_id)"/>
+                                <field name="quantity" string="Quantit&#233;" on_change="onchange_quantity(standard_price, price, quantity, discount, asset_id)"/>
                                 <field name="total"/>
-                                <field name="asset_id" on_change="onchange_asset(asset_id)"  attrs="{'readonly': [('quantity', '>', 1)]}" /> 
+                                <field name="asset_id" on_change="onchange_asset(asset_id)"   /> 
                             </tree>
                         </field>
                         <group class="oe_subtotal_footer oe_right" colspan="2" name="service_total">
