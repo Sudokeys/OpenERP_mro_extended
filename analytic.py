@@ -572,7 +572,7 @@ class account_analytic_services(osv.osv):
         'contract_id': fields.many2one('account.analytic.account', 'Contract', select=True),
         'asset_id': fields.many2one('generic.assets','Asset', select=True),
         'standard_price': fields.float('Standard price'),
-        'discount': fields.float('Discount %'),
+        'discount': fields.float('Remise %'),
         'quantity': fields.integer('Quantity'),
         'total': fields.float('Total'),
     }
